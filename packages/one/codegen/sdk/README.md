@@ -146,3 +146,19 @@ letting Metro and the browser compiler emit ordinary CommonJS data exports
 without an extra export-getter layer.
 
 Per-class consumers must also import wrapper modules for returned handles whose members they use. For example, UIApplication.keyWindow needs the UIWindow wrapper before accessing rootViewController. Side-effect imports register these wrappers; generated SDK modules are marked as side effects so bundlers retain registration.
+
+`generateAppSdk(frameworks, log, options)` accepts per-framework `entries`
+containing retained numeric callable IDs. Omitting a framework from that map
+keeps its full table. `appSdkOptions(root)` derives those IDs from static facade
+imports and the generated split-facade dependency groups, including superclass
+wrappers, side-effect imports, property descriptors and method descriptors.
+Namespace or side-effect barrel imports keep the complete framework. Direct
+low-level SDK calls with computed IDs also keep full tables.
+
+Selected emission preserves callable identities, callback implementations and
+shared type conformances. It filters generic opening witnesses with the same
+entry set and derives referenced framework conformances from retained entries.
+The shared full table and manifest remain unpruned. Selected tables use a
+selection hash in their cache filename and are published only after native
+compiler validation. The full manifest retains exact compiler exclusions so
+selected emission reproduces accessor and generic fallback decisions.

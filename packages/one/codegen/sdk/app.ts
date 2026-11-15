@@ -6,10 +6,9 @@
 // their ABI and signature-based ids match tables built from another SDK. output
 // is cached per sdk and generator, so a second prebuild only copies files.
 import { createHash } from 'node:crypto'
-import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs'
 import { homedir } from 'node:os'
-import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { join } from 'node:path'
 import { emitModule, typeUsrs, type Entry, type ModuleOutput } from './emit'
 import { emitFacade } from './emit-ts'
 import { CXX_INTEROP, generateModule, learnImplementationDetails, prepare, SDKS, typecheck, withImports } from './generate'
@@ -30,40 +29,11 @@ export function writeSdkNativeSupport(dir: string, sdkRoot = sdkPath()) {
   }
 }
 
-const SKIP = new Set(['node_modules', 'ios', 'android', 'dist', 'build', 'types'])
-const SOURCE = /\.(?:[cm]?[jt]sx?)$/
-const IMPORT = /['"]one\/ios\/([A-Za-z_][A-Za-z0-9_]*)(?:\/[A-Za-z_$][A-Za-z0-9_$]*)?['"]/g
-const ONE_IMPORT = /(?:\bfrom\s*|\bimport\s*\(?\s*|\brequire\s*\(\s*)['"]one['"]/
-const SDK_BACKEND = /\brequire\(\s*['"](\.\/[\w.-]+\.sdk)['"]\s*\)/g
+export { appSdkOptions } from './selection'
+import { importedBindings } from './selection'
 
-// the native root barrel loads the unified modules together. their ios
-// implementations, and the sdk backends those load on first use, contribute
-// framework imports too, even when an app never names one/ios itself. derive
-// these dependencies from the shipped sources rather than maintaining a second
-// list beside the implementations.
-export function importedFrameworks(
-  root: string,
-  platformRoot = join(dirname(fileURLToPath(import.meta.url)), '../../src/platform')
-): string[] {
-  const found = new Set<string>()
-  let usesOne = false
-  const scan = (file: string, unified: boolean) => {
-    const source = readFileSync(file, 'utf8')
-    for (const match of source.matchAll(IMPORT)) found.add(match[1])
-    if (!unified && ONE_IMPORT.test(source)) usesOne = true
-    if (unified) for (const match of source.matchAll(SDK_BACKEND)) scan(join(dirname(file), `${match[1]}.ts`), true)
-  }
-  const walk = (dir: string, unified = false) => {
-    for (const entry of readdirSync(dir, { withFileTypes: true })) {
-      if (entry.name.startsWith('.') || SKIP.has(entry.name)) continue
-      const full = join(dir, entry.name)
-      if (entry.isDirectory()) walk(full, unified)
-      else if (SOURCE.test(entry.name) && (!unified || /\.ios\.[jt]sx?$/.test(entry.name))) scan(full, unified)
-    }
-  }
-  walk(root)
-  if (usesOne) walk(platformRoot, true)
-  return [...found].sort()
+export function importedFrameworks(root: string, platformRoot?: string): string[] {
+  return [...importedBindings(root, platformRoot).keys()].sort()
 }
 
 // SDK-specific compiler outputs stay separate. the wire generation identifies
@@ -78,7 +48,9 @@ function cacheDir() {
 }
 
 // `modules` names the frameworks declaring the types the entries pass
-type Cached = { entries: Omit<Entry, 'swift'>[]; skipped: ModuleOutput['skipped']; modules: string[] }
+type Cached = { entries: Omit<Entry, 'swift'>[]; skipped: ModuleOutput['skipped']; modules: string[]; exclusions: [string, string][] }
+
+export type AppSdkOptions = { entries?: Readonly<Record<string, readonly number[]>> }
 
 function entryUsrs(entry: Omit<Entry, 'swift'>) {
   const types = [...entry.params.map((p) => p.type), ...(entry.returns ? [entry.returns] : []),
@@ -131,7 +103,7 @@ function openCache() {
       const modules = new Set(entries.flatMap((entry) => entryUsrs(entry).map((usr) => bridge.index.get(usr)?.module ?? '')))
       modules.delete('')
       modules.delete(module)
-      const cached: Cached = { entries: entries.map(({ swift, ...e }) => e), skipped, modules: [...modules].sort() }
+      const cached: Cached = { entries: entries.map(({ swift, ...e }) => e), skipped, modules: [...modules].sort(), exclusions: [...result.exclude] }
       writeFileSync(facadeFile(module), emitFacade({ module, table: tableName(module), entries: cached.entries, skipped }, bridge))
       writeFileSync(manifest(module), JSON.stringify(cached))
     }
@@ -147,9 +119,9 @@ function openCache() {
   // less those the compiler rejected for its table
   const types = async (module: string, log: (message: string) => void) => {
     if (existsSync(typesFile(module))) return
-    const { skipped } = await table(module, log)
+    const { exclusions } = await table(module, log)
     const { bridge, symbols, imports } = await ready()
-    const exclude = new Map(skipped.filter((s) => s.reason.startsWith('compile:')).map((s) => [s.usr, s.reason]))
+    const exclude = new Map(exclusions)
     const emitTypes = () => withImports(emitModule(loadGraph(module)!, bridge, symbols, exclude, { conformancesOnly: true, table: tableName(module) }).swift, imports)
     // validate a temp file and publish atomically, so a failure or kill never
     // leaves an unvalidated file for the existsSync fast path to serve
@@ -171,19 +143,51 @@ function openCache() {
       rmSync(tmp, { force: true })
     }
   }
-  return { known, table, types, tableFile, typesFile, facadeFile, generation }
+  const selectedTable = async (module: string, entryIds: ReadonlySet<number>, log: (message: string) => void) => {
+    const cached = await table(module, log)
+    const retained = cached.entries.filter((entry) => entryIds.has(entry.id)).map((entry) => entry.id).sort((a, b) => a - b)
+    const key = createHash('sha256').update(JSON.stringify(retained)).digest('hex')
+    const file = join(cache, `OneSDK_${module}.${key}.swift`)
+    const { bridge, symbols, imports } = await ready()
+    const modules = [...new Set(cached.entries.filter((entry) => entryIds.has(entry.id)).flatMap((entry) => entryUsrs(entry).map((usr) => bridge.index.get(usr)?.module ?? '')))].filter((name) => name && name !== module).sort()
+    if (existsSync(file)) return { file, modules }
+    const exclude = new Map(cached.exclusions)
+    const output = emitModule(loadGraph(module)!, bridge, symbols, exclude, { table: tableName(module), entryIds: new Set(retained) })
+    if (output.entries.length !== retained.length || output.entries.some((entry) => !entryIds.has(entry.id)))
+      throw new Error(`[one] selected ${module} bindings differ from the full compiled manifest`)
+    const temporary = `${file}.${process.pid}.tmp.swift`
+    try {
+      for (;;) {
+        writeFileSync(temporary, withImports(output.swift, imports))
+        const errors = await typecheck([temporary])
+        if (learnImplementationDetails(errors, imports)) continue
+        if (errors.length) throw new Error(`[one] selected ${module} bindings do not compile:\n${errors.join('\n')}`)
+        renameSync(temporary, file)
+        break
+      }
+    } finally {
+      rmSync(temporary, { force: true })
+    }
+    log(`[one] ${module} bindings: ${retained.length}/${cached.entries.length} bundled entries`)
+    return { file, modules }
+  }
+  return { known, table, types, selectedTable, tableFile, typesFile, facadeFile, generation }
 }
 
 // generates (or reuses) the tables and conformances an app needs and returns
 // the swift files to compile, keyed by file name
-export async function generateAppSdk(frameworks: string[], log = console.info) {
-  const { known, table, types, tableFile, typesFile, facadeFile, generation } = sdkCache()
+export async function generateAppSdk(frameworks: string[], log = console.info, options: AppSdkOptions = {}) {
+  if (Object.values(options.entries ?? {}).some((ids) => ids.some((id) => !Number.isSafeInteger(id) || id < 0 || id >= 2 ** 52)))
+    throw new Error('[one] bundled SDK entry IDs must be nonnegative 52-bit integers')
+  const { known, table, types, selectedTable, tableFile, typesFile, facadeFile, generation } = sdkCache()
   const files = new Map<string, string>()
   const facades = new Map<string, string>()
   const referenced = new Set<string>()
   for (const module of frameworks) {
-    const { modules } = await table(module, log)
-    files.set(`OneSDK_${module}.swift`, tableFile(module))
+    const entryIds = options.entries?.[module]
+    const selected = entryIds === undefined ? undefined : await selectedTable(module, new Set(entryIds), log)
+    const { modules } = selected ?? await table(module, log)
+    files.set(`OneSDK_${module}.swift`, selected?.file ?? tableFile(module))
     facades.set(`${module}.ts`, facadeFile(module))
     for (const m of modules) referenced.add(m)
   }
