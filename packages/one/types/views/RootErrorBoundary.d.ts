@@ -12,6 +12,7 @@ export declare class RootErrorBoundary extends React.Component<{
         hasError: boolean;
         error: Error;
     };
+    componentDidMount(): void;
     componentDidCatch(error: Error, info: React.ErrorInfo): void;
     handleRetry: () => void;
     render(): string | number | bigint | boolean | React.JSX.Element | Iterable<React.ReactNode> | Promise<string | number | bigint | boolean | Iterable<React.ReactNode> | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | React.ReactPortal | null | undefined> | null | undefined;
