@@ -137,7 +137,8 @@ Limits:
 * Code that is only known at run time, such as `new Function` and `eval`, runs in the interpreter without the speedup.
 * Apple only runs native code signed into the build, so an over-the-air update cannot carry compiled code. Updates are Hermes bytecode, and an app that launches one runs it on Hermes, which the build still links, until the next build brings the compiled program back.
 * Reanimated and worklets runtimes stay on Hermes.
-* The engine adds about 170 MB to the app today.
+* The engine adds about 80 MB to the app, plus the compiled program, which grows with your bundle (14 MB for the `one-basic` example).
+* The runtime leaves out Bun and Node APIs that Hermes lacks too, such as servers, databases, sockets and child processes.
 
 Remove `engine: 'bun'` and prebuild again to go back to Hermes.
 
