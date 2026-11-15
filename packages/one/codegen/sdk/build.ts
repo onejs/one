@@ -16,7 +16,7 @@ import { dirname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { transform } from 'esbuild'
 import { compactFacade } from './compact'
-import { splitFacade } from './split-facade'
+import { splitFacade, facadeEntryGroups, type SDKEntryGroup } from './split-facade'
 
 const dir = dirname(fileURLToPath(import.meta.url))
 const fingerprintPath = join(dir, 'fingerprint.ts')
@@ -87,6 +87,7 @@ export async function buildIosFacades(
   const bindings = join(dir, '../../ios-bindings')
   const facades = readdirSync(bindings).filter((name) => name.endsWith('.ts'))
   const selectedByFramework = perClassSdkImports()
+  const entryGroups: Record<string, Record<string, SDKEntryGroup>> = {}
   rmSync(outdir, { recursive: true, force: true })
   mkdirSync(outdir, { recursive: true })
   const types = join(dir, '../../dist/ios-types')
@@ -107,6 +108,7 @@ export async function buildIosFacades(
         }
       )
       const framework = name.slice(0, -3)
+      entryGroups[framework] = facadeEntryGroups(code)
       const selected = selectedByFramework.get(framework)
       const declaration = join(dir, '../../ios-types', framework)
       writeFileSync(
@@ -148,6 +150,10 @@ export async function buildIosFacades(
       )
     })
   )
+  const { generatorFingerprint } = await import('./fingerprint.ts')
+  const metadataDirectory = join(dir, '../../dist/sdk')
+  mkdirSync(metadataDirectory, { recursive: true })
+  writeFileSync(join(metadataDirectory, 'entries.json'), JSON.stringify({ generation: generatorFingerprint().slice(0, 16), frameworks: Object.fromEntries(Object.entries(entryGroups).sort(([a], [b]) => a.localeCompare(b))) }))
   return facades.length
 }
 

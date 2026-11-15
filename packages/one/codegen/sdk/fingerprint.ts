@@ -27,6 +27,8 @@ const EMITTER_SOURCES = [
   'codegen/sdk/inherited-inits.ts',
   'codegen/sdk/graph.ts',
   'codegen/sdk/identity.ts',
+  'codegen/sdk/selection.ts',
+  'codegen/sdk/split-facade.ts',
   'codegen/sdk/types.ts',
   'ios/Nitro/HybridOneSDK.swift',
   'ios/SDK/OneSDKRuntime.swift',

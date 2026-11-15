@@ -225,9 +225,9 @@ function isMainActor(symbol: Symbol | undefined) {
 // tables pass but whose api the app does not call. `table` is the name the
 // runtime finds the table by (the module by default); an app's tables carry
 // their generation in it, so a facade never calls a table of another one.
-export type EmitOptions = { conformancesOnly?: boolean; table?: string }
+export type EmitOptions = { conformancesOnly?: boolean; table?: string; entryIds?: ReadonlySet<number> }
 
-export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol>, exclude = new Map<string, string>(), { conformancesOnly = false, table = graph.module }: EmitOptions = {}): ModuleOutput {
+export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol>, exclude = new Map<string, string>(), { conformancesOnly = false, table = graph.module, entryIds }: EmitOptions = {}): ModuleOutput {
   const byUsr = new Map(graph.symbols.map((s) => [s.identifier.precise, s]))
   const ownerOf = new Map<string, string>()
   const requirements = new Set<string>()
@@ -810,9 +810,12 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
 
   entries.sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0))
   assignEntryIds(entries)
+  const selectedEntries = entryIds === undefined ? entries : entries.filter((entry) => entryIds.has(entry.id))
   // the table opens the receiver as the owner's protocol, whose extension
   // holds the member bodies with the owner's generic parameters in scope
-  const openings = [...opened].map(([ownerUsr, { info, value, bodies }]) => {
+  const openings = [...opened].flatMap(([ownerUsr, { info, value, bodies }]) => {
+    const selectedBodies = [...bodies].filter(([entry]) => entryIds === undefined || entryIds.has(entry.id))
+    if (!selectedBodies.length) return []
     const protocol = `OneSDKOpen_${graph.module}_${info.path.join('_').replace(/\W/g, '_')}`
     // a member writing a value receiver goes through a mutating requirement,
     // and the table writes the opened value back to the handle
@@ -824,7 +827,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       `${name.startsWith('Mutate') && (value || !conforming) ? 'mutating ' : ''}func ${witness(name)}(_ id: Int64, _ c: OneSDKCall) ${name.endsWith('Async') ? 'async ' : ''}throws -> Any`
     const names = ['Sync', 'Async', 'Mutate', 'MutateAsync']
     const methods = names.map((name) => {
-      const cases = [...bodies].filter(([entry, { mutates }]) => method(entry, mutates) === name).sort(([a], [b]) => a.id - b.id)
+      const cases = selectedBodies.filter(([entry, { mutates }]) => method(entry, mutates) === name).sort(([a], [b]) => a.id - b.id)
         .map(([entry, { body }]) => `    case ${entry.id}: ${body}`)
       return `  ${signature(name, true)} {
     switch id {
@@ -832,7 +835,7 @@ ${cases.map((line) => `${line}\n`).join('')}    default: throw OneSDKError.unkno
     }
   }`
     })
-    for (const [entry, { mutates }] of bodies) {
+    for (const [entry, { mutates }] of selectedBodies) {
       const call = `try ${entry.isAsync ? 'await ' : ''}o.${witness(method(entry, mutates))}(${entry.id}, c)`
       entry.swift = mutates
         ? `var o: any ${protocol} = try c.receiver(); let r = ${call}; c.setReceiver(o); return r`
@@ -849,14 +852,14 @@ ${methods.join('\n')}
   })
   // public getters can await main; key-path observation already runs on that actor.
   // decided here, while swift bodies exist; app manifests keep only the kind
-  for (const e of entries) {
+  for (const e of selectedEntries) {
     if (e.kind !== 'get' || e.isAsync || e.receiver?.k !== 'named' || !e.swift.includes(observedGetter(e))) continue
     if (e.usr.startsWith('c:objc(')) e.observation = 'kvo'
     else if (bridge.index.get(e.receiver.usr ?? '')?.conformsTo?.includes(OBSERVABLE)) e.observation = 'tracking'
   }
-  const swift = renderSwift(graph.module, table, [...imports].sort(), conformancesOnly ? [] : entries, [...conformances, ...(conformancesOnly ? [] : openings)], () => emitProtocols(graph, bridge, all, exclude, skipped))
+  const swift = renderSwift(graph.module, table, [...imports].sort(), conformancesOnly ? [] : selectedEntries, [...conformances, ...(conformancesOnly ? [] : openings)], () => emitProtocols(graph, bridge, all, exclude, skipped))
   const body = swift.replace(/^import \S+\n/gm, '')
-  return { module: graph.module, entries, skipped, swift: swift.replace(/^import (\S+)\n/gm, (line, module) =>
+  return { module: graph.module, entries: selectedEntries, skipped, swift: swift.replace(/^import (\S+)\n/gm, (line, module) =>
     module === 'Foundation' || module === 'One' || module === graph.module || new RegExp(`\\b${module}\\.`).test(body) ||
     [...importedNames.get(module) ?? []].some((name) => new RegExp(`\\b${name}\\b`).test(body)) ? line : '') }
 }
