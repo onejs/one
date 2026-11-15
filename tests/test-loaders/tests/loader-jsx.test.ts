@@ -1,3 +1,5 @@
+import { readdir, readFile } from 'node:fs/promises'
+import { join } from 'node:path'
 import { type Browser, type BrowserContext, type Page, chromium } from 'playwright'
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
@@ -60,6 +62,8 @@ describe('loader JSX (renderJSX)', () => {
     expect(html).toContain('server heading')
     expect(html).toContain('post-one')
     expect(html).toContain('post-two')
+    expect(html).toMatch(/server-signal-(?:<!-- -->)?\d+/)
+    expect(html).not.toContain('loader-jsx-server-only-marker')
     expect(html).toContain('__oneJSX')
     // server components resolved in order even though post-two finishes first
     expect(html.indexOf('post-one')).toBeLessThan(html.indexOf('post-two'))
@@ -133,6 +137,31 @@ describe('loader JSX (renderJSX)', () => {
     await clickUntilText(page, '#jsx-counter-b', '#jsx-count-b', 'b:21')
 
     await page.close()
+  })
+
+  test('production client bundle contains no server walker or server-only loader code', async () => {
+    if (process.env.TEST_ONLY !== 'prod') return
+
+    const clientDir = join(process.cwd(), 'dist/client')
+    const files: string[] = []
+    const collect = async (dir: string) => {
+      for (const entry of await readdir(dir, { withFileTypes: true })) {
+        const path = join(dir, entry.name)
+        if (entry.isDirectory()) await collect(path)
+        else if (/\.(?:js|mjs|cjs)$/.test(entry.name)) files.push(path)
+      }
+    }
+    await collect(clientDir)
+    const bundle = (await Promise.all(files.map((file) => readFile(file, 'utf8')))).join(
+      '\n'
+    )
+
+    // prove the searched output is the loader-jsx client build, then that its
+    // server tree stayed server-side: no walker, no node-only data module.
+    expect(bundle).toContain('components/LoaderJsxCounter.tsx#Counter')
+    expect(bundle).not.toContain('cannot cross to the client')
+    expect(bundle).not.toContain('loader-jsx-server-only-marker')
+    expect(bundle).not.toContain('node:os')
   })
 
   test('ssg page ships static loader jsx and hydrates its island', async () => {

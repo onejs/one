@@ -1,3 +1,7 @@
+import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { parseSync } from 'oxc-parser'
 import * as React from 'react'
 import { renderToString } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
@@ -8,7 +12,11 @@ import {
   ServerJSX,
 } from './loaderJSX'
 import { transformTreeShakeClient } from './vite/plugins/clientTreeShakePlugin'
-import { transformUseClient } from './vite/plugins/loaderJSXPlugin'
+import {
+  collectLoaderJSXRegistrationImports,
+  createLoaderJSXUniversalModule,
+  transformUseClient,
+} from './vite/plugins/loaderJSXPlugin'
 import { ClientFallback, JSXSlot, renderJSX } from './server/renderJSX'
 
 const wire = <T,>(value: T): T => JSON.parse(JSON.stringify(value))
@@ -319,6 +327,65 @@ describe('loaderJSX plugin transforms', () => {
     expect(out?.code).toContain('Panel.__oneClientId = "app/ui.tsx#default"')
     expect(out?.code).not.toContain('hook.__oneClientId')
     expect(transformUseClient(`export function A() {}`, '/p/a.tsx', '/p')).toBeUndefined()
+  })
+
+  it('creates a universal registry module only for referenced components', () => {
+    const code = createLoaderJSXUniversalModule(['Link', 'YStack', 'Text'], true)
+    expect(code).toContain(`import { registerLoaderClient, Link } from 'one'`)
+    expect(code).toContain(`import { Text, YStack } from 'tamagui'`)
+    expect(code).not.toContain('Paragraph')
+    expect(code).not.toContain('H1')
+    expect(createLoaderJSXUniversalModule([], true)).toBe('export {}')
+  })
+
+  it('collects only referenced universal components and does not crawl framework internals', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'one-loader-jsx-registry-'))
+    const appDir = join(root, 'app')
+    const frameworkFile = join(root, 'packages/one/src/internal.tsx')
+    mkdirSync(appDir, { recursive: true })
+    mkdirSync(join(root, 'packages/one/src'), { recursive: true })
+
+    const counterFile = join(appDir, 'Counter.tsx')
+    const nestedFile = join(appDir, 'Nested.tsx')
+    const postFile = join(appDir, 'Post.tsx')
+    writeFileSync(counterFile, `'use client'\nexport function Counter() { return null }`)
+    writeFileSync(nestedFile, `'use client'\nexport function Nested() { return null }`)
+    writeFileSync(
+      postFile,
+      `import { YStack } from '@tamagui/core'\nimport { Nested } from './Nested'\nexport function Post() { return null }`
+    )
+    writeFileSync(
+      frameworkFile,
+      `'use client'\nexport function Internal() { return null }`
+    )
+
+    const route = `import { Link, renderJSX } from 'one'
+import { Button, Text } from 'tamagui'
+import { Counter } from './Counter'
+import { Post } from './Post'
+import { Internal } from './framework'
+export async function loader() { return renderJSX(null) }
+export default function Page() { return null }`
+    const routeFile = join(appDir, 'index.tsx')
+    const imports = await collectLoaderJSXRegistrationImports(
+      parseSync(routeFile, route).program,
+      routeFile,
+      async (source) => {
+        const files: Record<string, string> = {
+          './Counter': counterFile,
+          './Nested': nestedFile,
+          './Post': postFile,
+          './framework': frameworkFile,
+        }
+        return files[source] ? { id: files[source] } : null
+      }
+    )
+
+    expect(imports).toEqual([
+      `import 'virtual:one-loader-jsx-universal:Link,Text,YStack'`,
+      `import 'virtual:one-loader-jsx-client:${counterFile}'`,
+      `import 'virtual:one-loader-jsx-client:${nestedFile}'`,
+    ])
   })
 
   it('ships no server walker in the client route bundle', async () => {

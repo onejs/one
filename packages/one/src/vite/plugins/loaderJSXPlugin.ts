@@ -10,6 +10,7 @@ import type { Plugin } from 'vite'
 
 const CLIENT_PREFIX = 'virtual:one-loader-jsx-client:'
 const UNIVERSAL_ID = 'virtual:one-loader-jsx-universal'
+const UNIVERSAL_PREFIX = 'virtual:one-loader-jsx-universal:'
 const RESOLVED = '\0'
 
 const USE_CLIENT_RE = /(['"])use client\1/
@@ -80,6 +81,107 @@ function collectClientExports(program: any): ClientExport[] {
   return out.filter((e) => e.exported === 'default' || /^[A-Z]/.test(e.exported))
 }
 
+export type LoaderJSXUniversalUse = {
+  link: boolean
+  primitives: Set<string>
+  allPrimitives: boolean
+}
+
+export function createLoaderJSXUniversalUse(): LoaderJSXUniversalUse {
+  return { link: false, primitives: new Set(), allPrimitives: false }
+}
+
+function importedName(specifier: any): string | undefined {
+  return specifier?.imported?.name ?? specifier?.imported?.value
+}
+
+export function collectLoaderJSXUniversalImports(
+  program: any,
+  used: LoaderJSXUniversalUse
+) {
+  for (const node of program.body as any[]) {
+    if (!node.source) continue
+    const source = node.source.value
+    const isTamagui = source === 'tamagui' || source.startsWith('@tamagui/')
+
+    if (node.type === 'ImportDeclaration' && node.importKind !== 'type') {
+      for (const specifier of node.specifiers ?? []) {
+        if (specifier.importKind === 'type') continue
+        if (isTamagui) {
+          if (specifier.type === 'ImportNamespaceSpecifier') used.allPrimitives = true
+          const name = importedName(specifier)
+          if (name && TAMAGUI_PRIMITIVES.includes(name)) used.primitives.add(name)
+        }
+        if (source === 'one') {
+          if (specifier.type === 'ImportNamespaceSpecifier') used.link = true
+          if (importedName(specifier) === 'Link') used.link = true
+        }
+      }
+      continue
+    }
+
+    if (node.type === 'ExportAllDeclaration' && node.exportKind !== 'type' && isTamagui) {
+      used.allPrimitives = true
+      continue
+    }
+
+    if (node.type === 'ExportNamedDeclaration' && node.exportKind !== 'type') {
+      for (const specifier of node.specifiers ?? []) {
+        if (specifier.exportKind === 'type') continue
+        const name = specifier.local?.name ?? specifier.local?.value
+        if (isTamagui && name && TAMAGUI_PRIMITIVES.includes(name)) {
+          used.primitives.add(name)
+        }
+        if (source === 'one' && name === 'Link') used.link = true
+      }
+    }
+  }
+  return used
+}
+
+export function loaderJSXUniversalSelection(used: LoaderJSXUniversalUse): string[] {
+  return [
+    ...(used.link ? ['Link'] : []),
+    ...(used.allPrimitives
+      ? ['all']
+      : TAMAGUI_PRIMITIVES.filter((primitive) => used.primitives.has(primitive))),
+  ]
+}
+
+export function createLoaderJSXUniversalModule(
+  selection: readonly string[],
+  hasTamagui: boolean
+) {
+  const link = selection.includes('Link')
+  const allPrimitives = selection.includes('all')
+  const primitives = TAMAGUI_PRIMITIVES.filter((primitive) =>
+    selection.includes(primitive)
+  )
+  if (!link && !allPrimitives && primitives.length === 0) return 'export {}'
+
+  const oneImports = ['registerLoaderClient', ...(link ? ['Link'] : [])]
+  const lines = [`import { ${oneImports.join(', ')} } from 'one'`]
+  if (link) lines.push(`registerLoaderClient('one#Link', Link)`)
+
+  if (hasTamagui && allPrimitives) {
+    lines.push(`import * as __tamagui from 'tamagui'`)
+    for (const primitive of TAMAGUI_PRIMITIVES) {
+      lines.push(
+        `if (__tamagui.${primitive}) registerLoaderClient('tamagui#${primitive}', __tamagui.${primitive})`
+      )
+    }
+  } else if (hasTamagui && primitives.length > 0) {
+    lines.push(`import { ${primitives.join(', ')} } from 'tamagui'`)
+    for (const primitive of primitives) {
+      lines.push(
+        `if (${primitive}) registerLoaderClient('tamagui#${primitive}', ${primitive})`
+      )
+    }
+  }
+
+  return lines.join('\n')
+}
+
 export function transformUseClient(code: string, id: string, root: string) {
   if (!USE_CLIENT_RE.test(code)) return
   const parsed = parseSync(id, code)
@@ -102,6 +204,78 @@ export function transformUseClient(code: string, id: string, root: string) {
     `\nimport { registerLoaderClientModule as __oneRegisterClient } from 'one'\n${tags}\n__oneRegisterClient(${JSON.stringify(path)}, { ${entries.join(', ')} })\n`
   )
   return { code: s.toString(), map: s.generateMap({ hires: true }) }
+}
+
+type LoaderJSXResolver = (
+  source: string,
+  importer: string
+) => Promise<{ id: string; external?: boolean | 'absolute' } | null | undefined>
+
+export async function collectLoaderJSXRegistrationImports(
+  program: any,
+  importer: string,
+  resolve: LoaderJSXResolver
+): Promise<string[]> {
+  const used = createLoaderJSXUniversalUse()
+  const clientImports: string[] = []
+  const seen = new Set<string>()
+
+  const visit = async (program: any, importer: string): Promise<void> => {
+    collectLoaderJSXUniversalImports(program, used)
+
+    for (const node of program.body as any[]) {
+      if (
+        (node.type !== 'ImportDeclaration' &&
+          node.type !== 'ExportNamedDeclaration' &&
+          node.type !== 'ExportAllDeclaration') ||
+        !node.source ||
+        node.importKind === 'type' ||
+        node.exportKind === 'type'
+      )
+        continue
+
+      const source = node.source.value as string
+      // the framework and universal preset have their own registration paths.
+      // crawling their package graphs registers unrelated internal components.
+      if (
+        source === 'one' ||
+        source.startsWith('one/') ||
+        source === 'tamagui' ||
+        source.startsWith('@tamagui/')
+      )
+        continue
+
+      const resolved = await resolve(source, importer)
+      if (!resolved || resolved.external || /node_modules/.test(resolved.id)) continue
+      const file = resolved.id.split('?')[0]!
+      const posixFile = toPosix(file)
+      if (posixFile.includes('/packages/one/')) continue
+      if (seen.has(file)) continue
+      seen.add(file)
+      if (!/\.(js|jsx|ts|tsx)$/.test(file)) continue
+
+      let sourceCode: string
+      try {
+        sourceCode = readFileSync(file, 'utf8')
+      } catch {
+        continue
+      }
+      const child = parseSync(file, sourceCode)
+      if (child.errors.length) continue
+      if (hasUseClientDirective(child.program)) {
+        clientImports.push(`import '${CLIENT_PREFIX}${file}'`)
+      } else {
+        await visit(child.program, file)
+      }
+    }
+  }
+
+  await visit(program, importer)
+  const selection = loaderJSXUniversalSelection(used)
+  return [
+    ...(selection.length ? [`import '${UNIVERSAL_PREFIX}${selection.join(',')}'`] : []),
+    ...clientImports,
+  ]
 }
 
 export function loaderJSXPlugin(opts?: { routerRoot?: string; root?: string }): Plugin {
@@ -130,21 +304,25 @@ export function loaderJSXPlugin(opts?: { routerRoot?: string; root?: string }): 
       async handler(id) {
         const name = id.slice(RESOLVED.length)
 
-        if (name === UNIVERSAL_ID) {
-          const tamagui = await this.resolve('tamagui', `${root}/package.json`)
-          const lines = [
-            `import { Link, registerLoaderClient } from 'one'`,
-            `registerLoaderClient('one#Link', Link)`,
-          ]
-          if (tamagui && !tamagui.external) {
-            lines.push(`import * as __tamagui from 'tamagui'`)
-            for (const primitive of TAMAGUI_PRIMITIVES) {
-              lines.push(
-                `if (__tamagui.${primitive}) registerLoaderClient('tamagui#${primitive}', __tamagui.${primitive})`
-              )
-            }
-          }
-          return lines.join('\n')
+        if (name === UNIVERSAL_ID || name.startsWith(UNIVERSAL_PREFIX)) {
+          const selection =
+            name === UNIVERSAL_ID
+              ? ['Link', 'all']
+              : name
+                  .slice(UNIVERSAL_PREFIX.length)
+                  .split(',')
+                  .filter(
+                    (item) =>
+                      item === 'Link' || item === 'all' || TAMAGUI_PRIMITIVES.includes(item)
+                  )
+          const needsTamagui = selection.some((item) => item !== 'Link')
+          const tamagui = needsTamagui
+            ? await this.resolve('tamagui', `${root}/package.json`)
+            : null
+          return createLoaderJSXUniversalModule(
+            selection,
+            Boolean(tamagui && !tamagui.external)
+          )
         }
 
         if (name.startsWith(CLIENT_PREFIX)) {
@@ -173,42 +351,12 @@ export function loaderJSXPlugin(opts?: { routerRoot?: string; root?: string }): 
         const parsed = parseSync(id, code)
         if (parsed.errors.length) return
 
-        const imports = [`import '${UNIVERSAL_ID}'`]
-        const seen = new Set<string>()
-        const visit = async (program: any, importer: string): Promise<void> => {
-          for (const node of program.body as any[]) {
-            if (
-              (node.type !== 'ImportDeclaration' &&
-                node.type !== 'ExportNamedDeclaration' &&
-                node.type !== 'ExportAllDeclaration') ||
-              !node.source ||
-              node.importKind === 'type' ||
-              node.exportKind === 'type'
-            )
-              continue
-            const resolved = await this.resolve(node.source.value, importer)
-            if (!resolved || resolved.external || /node_modules/.test(resolved.id))
-              continue
-            const file = resolved.id.split('?')[0]
-            if (seen.has(file)) continue
-            seen.add(file)
-            if (!/\.(js|jsx|ts|tsx)$/.test(file)) continue
-            let source: string
-            try {
-              source = readFileSync(file, 'utf8')
-            } catch {
-              continue
-            }
-            const child = parseSync(file, source)
-            if (child.errors.length) continue
-            if (hasUseClientDirective(child.program)) {
-              imports.push(`import '${CLIENT_PREFIX}${file}'`)
-            } else {
-              await visit(child.program, file)
-            }
-          }
-        }
-        await visit(parsed.program, id)
+        const imports = await collectLoaderJSXRegistrationImports(
+          parsed.program,
+          id,
+          (source, importer) => this.resolve(source, importer)
+        )
+        if (!imports.length) return
 
         const s = new MagicString(code)
         s.append(`\n${imports.join('\n')}\n`)

@@ -253,6 +253,8 @@ export default function FeedPage() {
 
 Server functions like `PostCard` run on the server when the loader runs. Siblings resolve in parallel and stay in tree order even when they finish out of order. Because they only run inside the loader, they can use server-only imports, and none of that code ships in the client or native bundle. Keys are preserved, so when a refetch reorders a list, island state follows the item it belongs to.
 
+This boundary is explicit. The production client bundle receives the JSON envelope, the small revival runtime, the `'use client'` islands the server graph references, and the universal components it references. It does not receive `renderJSX`, server components, or imports reachable only from the loader. Host-only and server-component subtrees therefore add no component JavaScript of their own. The page and router still hydrate as usual, and values returned from the loader still cross to the client, so keep secrets in loader-only imports or [`.server.ts` modules](/docs/configuration#server-only-files) rather than in props or rendered output.
+
 ### Client islands
 
 A component from a file that starts with `'use client'` stays a reference in the envelope and renders on the client, interactive after hydration:

@@ -2,10 +2,15 @@ import { ClientFallback, Link, renderJSX, useLoader } from 'one'
 import { Text, YStack } from 'tamagui'
 import { Counter } from '../../components/LoaderJsxCounter'
 import { Ghost } from '../../components/LoaderJsxGhost'
+import { getServerSignal } from '../../components/LoaderJsxServerData'
 
 async function Post({ title, delay }: { title: string; delay: number }) {
   await new Promise((r) => setTimeout(r, delay))
   return <Text id={`jsx-post-${title}`}>post-{title}</Text>
+}
+
+function ServerSignal() {
+  return <Text id="jsx-server-signal">server-signal-{getServerSignal()}</Text>
 }
 
 export async function loader({ search }: { search?: string }) {
@@ -24,6 +29,7 @@ export async function loader({ search }: { search?: string }) {
         <Text id="jsx-heading">server heading</Text>
         <Post title="one" delay={20} />
         <Post title="two" delay={1} />
+        <ServerSignal />
         {counters}
         <ClientFallback fallback={<Text id="ghost-fallback">update the app</Text>}>
           <Ghost />
