@@ -29,3 +29,5 @@
 {"id":"00000001794770215528:5a00fb77fc6fae779d838a4c5ccc3c56","text":"s255078 exited cleanly after public CI run 43737004305 went green and onejs/one#1240 left Draft ready for review. Folded independent non-author large review and merge of #1240 into s257963 (one-pr1256-1240-rev on studio-64)."}
 
 {"id":"00000001794770774545:abf42df3818c38120327274313b5e6b6","text":"Independent review s257963 of One #1240: APPROVED after P2 fix d1f887470b (auto mode no longer fails pod install offline / on slow 450MB downloads; =1 still strict). Squash auto-merge armed (--delete-branch), merges when required checks on d1f887470b pass; #1099 closed. RAN: 4 install modes + offline on probe app, tsc strict. Read: no npm publish path on main merge; prebuilt-ios publishes GitHub prerelease only after binary consumer. P3: Node 22.13-22.17 cannot run prebuilt.ts. Review https://github.com/onejs/one/pull/1240#issuecomment-6899966568"}
+
+{"id":"00000001794772977019:02ab30d14f34deb758d008fad8aa4379","text":"onejs/one#1240 merged as c1fc0e00fb7e8c3496bcfbab426e09e067f752df (#1099 closed)."}
