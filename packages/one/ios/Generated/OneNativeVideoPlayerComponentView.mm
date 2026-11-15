@@ -23,6 +23,24 @@ using namespace facebook::react;
       auto emitter = std::static_pointer_cast<const OneNativeVideoPlayerEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
     };
+    _nativeView.onVideoReady = ^(double width, double height, NSInteger eventCount) {
+      OneNativeVideoPlayerComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeVideoPlayerEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeVideoPlayerVideoReady({.width = (double)width, .height = (double)height, .eventCount = (int)eventCount});
+    };
+    _nativeView.onVideoError = ^(NSString *message, NSInteger eventCount) {
+      OneNativeVideoPlayerComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeVideoPlayerEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeVideoPlayerVideoError({.message = std::string(message.UTF8String), .eventCount = (int)eventCount});
+    };
+    _nativeView.onFirstFrame = ^(NSInteger eventCount) {
+      OneNativeVideoPlayerComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeVideoPlayerEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeVideoPlayerFirstFrame({.eventCount = (int)eventCount});
+    };
     _nativeView.onPlaybackStatus = ^(NSString *state, double positionMs, double durationMs, NSInteger eventCount) {
       OneNativeVideoPlayerComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
@@ -42,7 +60,7 @@ using namespace facebook::react;
     identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_nativeView configure:RCTNSStringFromString(next.url)
-    autoplay:next.autoplay command:RCTNSStringFromString(next.command) commandRevision:next.commandRevision seekToMs:next.seekToMs];
+    autoplay:next.autoplay contentFit:RCTNSStringFromString(next.contentFit) command:RCTNSStringFromString(next.command) commandRevision:next.commandRevision seekToMs:next.seekToMs];
 
   [super updateProps:props oldProps:oldProps];
   // the swiftui element that is the control carries testID (OneNativeAccessibility), so a test
