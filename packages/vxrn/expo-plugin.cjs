@@ -955,6 +955,24 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
           script = nativeProjectPatches.addBunEngineToBundleReactNativeShellScript(script)
         }
         phase.shellScript = JSON.stringify(script)
+        if (bunEngine) {
+          const program = JSON.stringify(nativeProjectPatches.ONE_BUN_ENGINE.program)
+          phase.alwaysOutOfDate = 1
+          phase.outputPaths = [...(phase.outputPaths ?? []).filter((path) => path !== program), program]
+          const project = nextConfig.modResults
+          const name = nativeProjectPatches.ONE_BUN_ENGINE.identityPhase
+          const target = project.getFirstTarget()
+          if (!project.buildPhaseObject('PBXShellScriptBuildPhase', name)) {
+            project.addBuildPhase([], 'PBXShellScriptBuildPhase', name, target.uuid, {
+              shellPath: '/bin/sh',
+              shellScript: nativeProjectPatches.ONE_BUN_ENGINE.identityScript,
+            })
+          }
+          target.firstTarget.buildPhases = nativeProjectPatches.orderBunEnginePhases(
+            target.firstTarget.buildPhases,
+            (entry) => entry.comment
+          )
+        }
         return nextConfig
       },
     ],

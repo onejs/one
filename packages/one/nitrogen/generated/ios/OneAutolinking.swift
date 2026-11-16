@@ -134,6 +134,18 @@ public final class OneAutolinking {
     return HybridOneHaptics.self is any RecyclableView.Type
   }
   
+  public static func createOneKeyboard() -> bridge.std__shared_ptr_HybridOneKeyboardSpec_ {
+    let hybridObject = HybridOneKeyboard()
+    return { () -> bridge.std__shared_ptr_HybridOneKeyboardSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+  
+  public static func isOneKeyboardRecyclable() -> Bool {
+    return HybridOneKeyboard.self is any RecyclableView.Type
+  }
+  
   public static func createOneLaunchScreen() -> bridge.std__shared_ptr_HybridOneLaunchScreenSpec_ {
     let hybridObject = HybridOneLaunchScreen()
     return { () -> bridge.std__shared_ptr_HybridOneLaunchScreenSpec_ in

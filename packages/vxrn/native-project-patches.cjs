@@ -883,11 +883,18 @@ function enableViewCullingInAppDelegate(appDelegate) {
   )
 }
 
-// the bun engine (engine: 'bun'): a release build compiles its bundle ahead of
-// time into Bun.framework and runs it instead of hermes. debug builds stay on
+// the bun engine (engine: 'bun'): a release build links bun's runtime into the
+// app executable, compiles its bundle ahead of time into the program the link
+// places in __TEXT,__bun, and runs it instead of hermes. debug builds stay on
 // hermes and ship no bun. the pod lives in vxrn/ios/OneBunEngine.
 const ONE_BUN_ENGINE = {
   marker: '# [vxrn/one] bun engine',
+  identityPhase: '[One] Bun engine identity',
+  // the bundle phase writes the program and the link reads it through
+  // -sectcreate, so xcode orders the link after the phase and relinks on change
+  program: '$(DERIVED_FILE_DIR)/one-bun-program',
+  identityScript:
+    'case "$CONFIGURATION" in *Debug*) ;; *) /bin/bash "$ONE_BUN_ENGINE_SCRIPT" identity || exit 1 ;; esac',
   bridgingHeaderImport: '#import <OneBunEngine/OneBunEngine.h>',
   // bun's allocator reserves about 32 GB of address space, half of what iOS gives an
   // app by default, so a long session ran out and malloc failed
@@ -918,9 +925,82 @@ ${release} export USE_HERMES=false ONE_BUN_ENGINE=1 ;; esac`
   )
   return insertAfterBundlePhaseRunner(
     withPlainBundle,
-    `${ONE_BUN_ENGINE.marker}: compile the release bundle into the app's Bun.framework
-${release} /bin/bash "$ONE_BUN_ENGINE_SCRIPT" || exit 1 ;; esac`
+    `${ONE_BUN_ENGINE.marker}: compile the release bundle into the program the app links
+${release} /bin/bash "$ONE_BUN_ENGINE_SCRIPT" program || exit 1 ;; esac`
   )
+}
+
+const BUNDLE_PHASE = 'Bundle React Native code and images'
+
+// the link reads the program the bundle phase compiles, and the identity phase
+// reads the linked executable. the bundle phase goes before sources, since
+// xcode's compile stage includes app intents extraction, which reads the link
+function orderBunEnginePhases(phases, nameOf) {
+  const bundle = phases.find((phase) => nameOf(phase) === BUNDLE_PHASE)
+  const identity = phases.find((phase) => nameOf(phase) === ONE_BUN_ENGINE.identityPhase)
+  const ordered = phases.filter((phase) => phase !== bundle && phase !== identity)
+  const sources = ordered.findIndex((phase) => nameOf(phase) === 'Sources')
+  const link = ordered.findIndex((phase) => nameOf(phase) === 'Frameworks')
+  if (!bundle || !identity || sources === -1 || link < sources) {
+    throw new Error('[vxrn] the iOS app target lost its bundle, sources or link phase: cannot order the bun engine phases')
+  }
+  ordered.splice(link + 1, 0, identity)
+  ordered.splice(sources, 0, bundle)
+  return ordered
+}
+
+const PBX_PHASE_LIST = /(buildPhases = \(\n)((?:\s*\w+ \/\* [^*]+ \*\/,\n)*)(\s*\);)/g
+
+function addBunEnginePhasesToProject(project) {
+  const head = `/* ${BUNDLE_PHASE} */ = {\n`
+  const at = project.indexOf(head)
+  if (at === -1) throw new Error('[vxrn] the iOS project has no bundle phase')
+  const body = project.slice(at, project.indexOf('shellScript = ', at))
+  if (!body.includes(ONE_BUN_ENGINE.program)) {
+    const patched = body
+      .replace(/^(\s*)isa = PBXShellScriptBuildPhase;\n/m, '$&$1alwaysOutOfDate = 1;\n')
+      .replace(/^(\s*)outputPaths = \(\n/m, `$&$1\t${JSON.stringify(ONE_BUN_ENGINE.program)},\n`)
+    if (!patched.includes(ONE_BUN_ENGINE.program)) throw new Error('[vxrn] the iOS bundle phase has no outputs list')
+    project = project.slice(0, at) + patched + project.slice(at + body.length)
+  }
+  const id = 'B0E1D2C3B4A5968778695A4B'
+  if (!project.includes(`${id} /* ${ONE_BUN_ENGINE.identityPhase} */ = {`)) {
+    const section = '/* Begin PBXShellScriptBuildPhase section */\n'
+    if (!project.includes(section)) throw new Error('[vxrn] the iOS project has no script phases')
+    project = project.replace(
+      section,
+      `${section}\t\t${id} /* ${ONE_BUN_ENGINE.identityPhase} */ = {
+\t\t\tisa = PBXShellScriptBuildPhase;
+\t\t\talwaysOutOfDate = 1;
+\t\t\tbuildActionMask = 2147483647;
+\t\t\tfiles = (
+\t\t\t);
+\t\t\tinputPaths = (
+\t\t\t);
+\t\t\tname = ${JSON.stringify(ONE_BUN_ENGINE.identityPhase)};
+\t\t\toutputPaths = (
+\t\t\t);
+\t\t\trunOnlyForDeploymentPostprocessing = 0;
+\t\t\tshellPath = /bin/sh;
+\t\t\tshellScript = ${JSON.stringify(ONE_BUN_ENGINE.identityScript)};
+\t\t};
+`
+    )
+  }
+  let targets = 0
+  project = project.replace(PBX_PHASE_LIST, (list, open, entries, close) => {
+    if (!entries.includes(`/* ${BUNDLE_PHASE} */`)) return list
+    targets++
+    const lines = entries.split('\n').filter(Boolean)
+    const indent = lines[0].match(/^\s*/)[0]
+    if (!entries.includes(`/* ${ONE_BUN_ENGINE.identityPhase} */`)) {
+      lines.push(`${indent}${id} /* ${ONE_BUN_ENGINE.identityPhase} */,`)
+    }
+    const ordered = orderBunEnginePhases(lines, (line) => line.match(/\/\* (.+) \*\//)[1])
+    return `${open}${ordered.join('\n')}\n${close}`
+  })
+  if (targets !== 1) throw new Error(`[vxrn] expected one iOS app target with a bundle phase, found ${targets}`)
+  return project
 }
 
 function runBunEngineInAppDelegate(appDelegate) {
@@ -953,6 +1033,8 @@ module.exports = {
   ONE_BUN_ENGINE,
   injectBunEngineIntoPodfile,
   addBunEngineToBundleReactNativeShellScript,
+  orderBunEnginePhases,
+  addBunEnginePhasesToProject,
   runBunEngineInAppDelegate,
   injectSkiaDawnVendoringIntoPodfile,
   injectWebGPUHeaderPathsIntoPodfile,

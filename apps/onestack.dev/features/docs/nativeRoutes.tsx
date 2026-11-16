@@ -14,6 +14,7 @@ export const nativeRoutes = [
       { title: 'Picture in Picture', route: '/native/picture-in-picture' },
       { title: 'Portal', route: '/native/portal' },
       { title: 'Text Input', route: '/native/text-input' },
+      { title: 'Keyboard', route: '/native/keyboard' },
       { title: 'Gradients', route: '/native/gradients' },
       { title: 'Fonts', route: '/native/fonts' },
       { title: 'Safe Area', route: '/native/safe-area' },

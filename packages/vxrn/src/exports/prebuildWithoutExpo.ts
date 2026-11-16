@@ -53,6 +53,7 @@ type NativeProjectPatches = {
   ONE_BUN_ENGINE: { marker: string; bridgingHeaderImport: string; entitlement: string }
   injectBunEngineIntoPodfile(podfile: string): string
   addBunEngineToBundleReactNativeShellScript(input: string): string
+  addBunEnginePhasesToProject(project: string): string
   runBunEngineInAppDelegate(appDelegate: string): string
   ONE_VIEW_CULLING: { bridgingHeaderImport: string }
   enableViewCullingInAppDelegate(appDelegate: string): string
@@ -3029,6 +3030,9 @@ end`
         app.updates?.runtimeVersion,
         app.ios?.engine === 'bun'
       )
+      if (app.ios?.engine === 'bun') {
+        rendered = nativeProjectPatches.addBunEnginePhasesToProject(rendered)
+      }
       if (app.ios?.appIntents) rendered = patchIosPbxprojAppIntents(rendered, appName)
       rendered = patchIosPbxprojOneBridgingHeader(rendered, appName)
       if (Object.keys(appEntitlements(app)).length && !app.ios?.widgets) {

@@ -6,8 +6,8 @@
 extern "C" {
 #endif
 
-// whether the bundle the host boots stands for the program compiled into
-// Bun.framework. an over-the-air update ships hermes bytecode and boots on hermes
+// whether the bundle the host boots stands for the program compiled into the
+// app executable. an over-the-air update ships hermes bytecode and boots on hermes
 BOOL one_bun_engine_runs_bundle(NSURL *_Nullable bundleURL);
 
 // a JSRuntimeFactoryRef that runs the app's bun-compiled program

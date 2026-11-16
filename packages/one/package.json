@@ -175,6 +175,12 @@
       "import": "./dist/esm/image.mjs",
       "require": "./dist/cjs/image.cjs"
     },
+    "./keyboard": {
+      "react-native": "./dist/esm/keyboard.native.js",
+      "types": "./types/keyboard.d.ts",
+      "import": "./dist/esm/keyboard.mjs",
+      "require": "./dist/cjs/keyboard.cjs"
+    },
     "./drawer": {
       "react-native": "./dist/esm/drawer.native.js",
       "types": "./types/drawer.d.ts",
@@ -313,6 +319,7 @@
     "perfect-debounce": "^1.0.0",
     "picocolors": "^1.0.0",
     "react-compiler-runtime": "^1.0.0",
+    "react-native-is-edge-to-edge": "^1.3.1",
     "react-native-nitro-image": "0.15.2",
     "react-native-nitro-modules": "0.37.1",
     "react-native-nitro-web-image": "0.15.2",
@@ -503,6 +510,13 @@
         "OneNativeCamera": "OneNativeCameraComponentView",
         "OneNativeUIKitHost": "OneNativeUIKitHostComponentView",
         "OneNativeContent": "OneNativeContentComponentView",
+        "OneKeyboardControllerView": "OneKeyboardControllerViewComponentView",
+        "OneKeyboardGestureArea": "OneKeyboardGestureAreaComponentView",
+        "OneOverKeyboardView": "OneOverKeyboardViewComponentView",
+        "OneKeyboardBackgroundView": "OneKeyboardBackgroundViewComponentView",
+        "OneKeyboardExtender": "OneKeyboardExtenderComponentView",
+        "OneClippingScrollViewDecoratorView": "OneClippingScrollViewDecoratorViewComponentView",
+        "OneKeyboardToolbarGroupView": "OneKeyboardToolbarGroupViewComponentView",
         "OneNativeMenu": "OneNativeMenuComponentView",
         "OneNativeTab": "OneNativeTabComponentView",
         "OneNativeList": "OneNativeListComponentView",

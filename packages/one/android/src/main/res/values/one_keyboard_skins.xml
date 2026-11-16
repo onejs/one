@@ -1,0 +1,35 @@
+<resources>
+  <style name="one_keyboard_aosp_light">
+    <item name="oneKeyboardColor">#ebeff1</item>
+  </style>
+  <style name="one_keyboard_gboard_dark">
+    <item name="oneKeyboardColor">#1c1c2c</item>
+  </style>
+  <style name="one_keyboard_gboard_light">
+    <item name="oneKeyboardColor">#ebeff1</item>
+  </style>
+  <style name="one_keyboard_gboard_tts_dark">
+    <item name="oneKeyboardColor">#202124</item>
+  </style>
+  <style name="one_keyboard_gboard_tts_light">
+    <item name="oneKeyboardColor">#f8f9fa</item>
+  </style>
+  <style name="one_keyboard_swiftkey_dark">
+    <item name="oneKeyboardColor">#141414</item>
+  </style>
+  <style name="one_keyboard_swiftkey_light">
+    <item name="oneKeyboardColor">#f1f1f1</item>
+  </style>
+  <style name="one_keyboard_yandex_dark">
+    <item name="oneKeyboardColor">#1a1b20</item>
+  </style>
+  <style name="one_keyboard_yandex_light">
+    <item name="oneKeyboardColor">#eeedf4</item>
+  </style>
+  <style name="one_keyboard_samsung_dark">
+    <item name="oneKeyboardColor">#080808</item>
+  </style>
+  <style name="one_keyboard_samsung_light">
+    <item name="oneKeyboardColor">#e4e4e4</item>
+  </style>
+</resources>

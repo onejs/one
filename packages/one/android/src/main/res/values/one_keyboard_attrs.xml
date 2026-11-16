@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="OneKeyboardColorProperties">
+    <attr name="oneKeyboardColor" format="color" />
+    <attr name="oneKeyboardTone" format="integer" />
+  </declare-styleable>
+</resources>
