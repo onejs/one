@@ -27,22 +27,22 @@ export class AtomicLoadOrdering extends SDKHandle {
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Synchronization_aed0a59b0b283436", 2914306482002148, this, []); }
+  get description(): string { return callSDK<string>("Synchronization_d04ad79e98d4fc54", 2914306482002148, this, []); }
   /**
    * static var sequentiallyConsistent: AtomicLoadOrdering { get }
    * @availability iOS 18.0+
    */
-  static get sequentiallyConsistent(): AtomicLoadOrdering { return callSDK<AtomicLoadOrdering>("Synchronization_aed0a59b0b283436", 4450018520188170, undefined, []); }
+  static get sequentiallyConsistent(): AtomicLoadOrdering { return callSDK<AtomicLoadOrdering>("Synchronization_d04ad79e98d4fc54", 4450018520188170, undefined, []); }
   /**
    * static var relaxed: AtomicLoadOrdering { get }
    * @availability iOS 18.0+
    */
-  static get relaxed(): AtomicLoadOrdering { return callSDK<AtomicLoadOrdering>("Synchronization_aed0a59b0b283436", 3674261972100051, undefined, []); }
+  static get relaxed(): AtomicLoadOrdering { return callSDK<AtomicLoadOrdering>("Synchronization_d04ad79e98d4fc54", 3674261972100051, undefined, []); }
   /**
    * static var acquiring: AtomicLoadOrdering { get }
    * @availability iOS 18.0+
    */
-  static get acquiring(): AtomicLoadOrdering { return callSDK<AtomicLoadOrdering>("Synchronization_aed0a59b0b283436", 2658778822203616, undefined, []); }
+  static get acquiring(): AtomicLoadOrdering { return callSDK<AtomicLoadOrdering>("Synchronization_d04ad79e98d4fc54", 2658778822203616, undefined, []); }
   declare readonly $type: { "s:15Synchronization18AtomicLoadOrderingV": true };
 }
 
@@ -99,22 +99,22 @@ export class AtomicStoreOrdering extends SDKHandle {
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Synchronization_aed0a59b0b283436", 1069135822460744, this, []); }
+  get description(): string { return callSDK<string>("Synchronization_d04ad79e98d4fc54", 1069135822460744, this, []); }
   /**
    * static var sequentiallyConsistent: AtomicStoreOrdering { get }
    * @availability iOS 18.0+
    */
-  static get sequentiallyConsistent(): AtomicStoreOrdering { return callSDK<AtomicStoreOrdering>("Synchronization_aed0a59b0b283436", 1702503515418460, undefined, []); }
+  static get sequentiallyConsistent(): AtomicStoreOrdering { return callSDK<AtomicStoreOrdering>("Synchronization_d04ad79e98d4fc54", 1702503515418460, undefined, []); }
   /**
    * static var relaxed: AtomicStoreOrdering { get }
    * @availability iOS 18.0+
    */
-  static get relaxed(): AtomicStoreOrdering { return callSDK<AtomicStoreOrdering>("Synchronization_aed0a59b0b283436", 2785519824510209, undefined, []); }
+  static get relaxed(): AtomicStoreOrdering { return callSDK<AtomicStoreOrdering>("Synchronization_d04ad79e98d4fc54", 2785519824510209, undefined, []); }
   /**
    * static var releasing: AtomicStoreOrdering { get }
    * @availability iOS 18.0+
    */
-  static get releasing(): AtomicStoreOrdering { return callSDK<AtomicStoreOrdering>("Synchronization_aed0a59b0b283436", 1653569731485101, undefined, []); }
+  static get releasing(): AtomicStoreOrdering { return callSDK<AtomicStoreOrdering>("Synchronization_d04ad79e98d4fc54", 1653569731485101, undefined, []); }
   declare readonly $type: { "s:15Synchronization19AtomicStoreOrderingV": true };
 }
 
@@ -127,32 +127,32 @@ export class AtomicUpdateOrdering extends SDKHandle {
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Synchronization_aed0a59b0b283436", 3450796705564498, this, []); }
+  get description(): string { return callSDK<string>("Synchronization_d04ad79e98d4fc54", 3450796705564498, this, []); }
   /**
    * static var acquiringAndReleasing: AtomicUpdateOrdering { get }
    * @availability iOS 18.0+
    */
-  static get acquiringAndReleasing(): AtomicUpdateOrdering { return callSDK<AtomicUpdateOrdering>("Synchronization_aed0a59b0b283436", 3189201152341187, undefined, []); }
+  static get acquiringAndReleasing(): AtomicUpdateOrdering { return callSDK<AtomicUpdateOrdering>("Synchronization_d04ad79e98d4fc54", 3189201152341187, undefined, []); }
   /**
    * static var sequentiallyConsistent: AtomicUpdateOrdering { get }
    * @availability iOS 18.0+
    */
-  static get sequentiallyConsistent(): AtomicUpdateOrdering { return callSDK<AtomicUpdateOrdering>("Synchronization_aed0a59b0b283436", 1249355060802532, undefined, []); }
+  static get sequentiallyConsistent(): AtomicUpdateOrdering { return callSDK<AtomicUpdateOrdering>("Synchronization_d04ad79e98d4fc54", 1249355060802532, undefined, []); }
   /**
    * static var relaxed: AtomicUpdateOrdering { get }
    * @availability iOS 18.0+
    */
-  static get relaxed(): AtomicUpdateOrdering { return callSDK<AtomicUpdateOrdering>("Synchronization_aed0a59b0b283436", 4260194939389401, undefined, []); }
+  static get relaxed(): AtomicUpdateOrdering { return callSDK<AtomicUpdateOrdering>("Synchronization_d04ad79e98d4fc54", 4260194939389401, undefined, []); }
   /**
    * static var acquiring: AtomicUpdateOrdering { get }
    * @availability iOS 18.0+
    */
-  static get acquiring(): AtomicUpdateOrdering { return callSDK<AtomicUpdateOrdering>("Synchronization_aed0a59b0b283436", 2716702063327110, undefined, []); }
+  static get acquiring(): AtomicUpdateOrdering { return callSDK<AtomicUpdateOrdering>("Synchronization_d04ad79e98d4fc54", 2716702063327110, undefined, []); }
   /**
    * static var releasing: AtomicUpdateOrdering { get }
    * @availability iOS 18.0+
    */
-  static get releasing(): AtomicUpdateOrdering { return callSDK<AtomicUpdateOrdering>("Synchronization_aed0a59b0b283436", 3021521138314287, undefined, []); }
+  static get releasing(): AtomicUpdateOrdering { return callSDK<AtomicUpdateOrdering>("Synchronization_d04ad79e98d4fc54", 3021521138314287, undefined, []); }
   declare readonly $type: { "s:15Synchronization20AtomicUpdateOrderingV": true };
 }
 
@@ -407,39 +407,39 @@ export class WordPair extends SDKHandle {
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Synchronization_aed0a59b0b283436", 3891906393110676, this, []); }
+  get description(): string { return callSDK<string>("Synchronization_d04ad79e98d4fc54", 3891906393110676, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 18.0+
    */
-  get debugDescription(): string { return callSDK<string>("Synchronization_aed0a59b0b283436", 1565767567380875, this, []); }
+  get debugDescription(): string { return callSDK<string>("Synchronization_d04ad79e98d4fc54", 1565767567380875, this, []); }
   /**
    * static func decodeAtomicRepresentation(_ representation: consuming WordPair.AtomicRepresentation) -> WordPair
    * @availability iOS 18.0+
    */
-  static decodeAtomicRepresentation(representation: WordPair_AtomicRepresentation): WordPair { return callSDK<WordPair>("Synchronization_aed0a59b0b283436", 2145328081003644, undefined, [representation]); }
+  static decodeAtomicRepresentation(representation: WordPair_AtomicRepresentation): WordPair { return callSDK<WordPair>("Synchronization_d04ad79e98d4fc54", 2145328081003644, undefined, [representation]); }
   /**
    * static func encodeAtomicRepresentation(_ value: consuming WordPair) -> WordPair.AtomicRepresentation
    * @availability iOS 18.0+
    */
-  static encodeAtomicRepresentation(value: WordPair): WordPair_AtomicRepresentation { return callSDK<WordPair_AtomicRepresentation>("Synchronization_aed0a59b0b283436", 2607987779367571, undefined, [value]); }
+  static encodeAtomicRepresentation(value: WordPair): WordPair_AtomicRepresentation { return callSDK<WordPair_AtomicRepresentation>("Synchronization_d04ad79e98d4fc54", 2607987779367571, undefined, [value]); }
   /**
    * init(first: UInt, second: UInt)
    * @availability iOS 18.0+
    */
-  static init(first: number, second: number): WordPair { return callSDK<WordPair>("Synchronization_aed0a59b0b283436", 1903868827520677, undefined, [first, second]); }
+  static init(first: number, second: number): WordPair { return callSDK<WordPair>("Synchronization_d04ad79e98d4fc54", 1903868827520677, undefined, [first, second]); }
   /**
    * var first: UInt
    * @availability iOS 18.0+
    */
-  get first(): number { return callSDK<number>("Synchronization_aed0a59b0b283436", 23321773883079, this, []); }
-  set first(value: number) { callSDK<void>("Synchronization_aed0a59b0b283436", 1358622134524267, this, [value]); }
+  get first(): number { return callSDK<number>("Synchronization_d04ad79e98d4fc54", 23321773883079, this, []); }
+  set first(value: number) { callSDK<void>("Synchronization_d04ad79e98d4fc54", 1358622134524267, this, [value]); }
   /**
    * var second: UInt
    * @availability iOS 18.0+
    */
-  get second(): number { return callSDK<number>("Synchronization_aed0a59b0b283436", 87863111757005, this, []); }
-  set second(value: number) { callSDK<void>("Synchronization_aed0a59b0b283436", 3309844799596745, this, [value]); }
+  get second(): number { return callSDK<number>("Synchronization_d04ad79e98d4fc54", 87863111757005, this, []); }
+  set second(value: number) { callSDK<void>("Synchronization_d04ad79e98d4fc54", 3309844799596745, this, [value]); }
   declare readonly $type: { "s:15Synchronization8WordPairV": true };
 }
 
@@ -453,14 +453,14 @@ export type WordPair_AtomicRepresentation = SDKHandle;
  * func atomicMemoryFence(ordering: AtomicUpdateOrdering)
  * @availability iOS 18.0+
  */
-export function atomicMemoryFence(ordering: AtomicUpdateOrdering): void { return callSDK<void>("Synchronization_aed0a59b0b283436", 540733216395664, undefined, [ordering]); }
+export function atomicMemoryFence(ordering: AtomicUpdateOrdering): void { return callSDK<void>("Synchronization_d04ad79e98d4fc54", 540733216395664, undefined, [ordering]); }
 
-registerSDKClass("Synchronization.Atomic", Atomic, { module: "Synchronization_aed0a59b0b283436", properties: {} });
-registerSDKClass("Synchronization.AtomicLazyReference", AtomicLazyReference, { module: "Synchronization_aed0a59b0b283436", properties: {} });
-registerSDKClass("Synchronization.AtomicLoadOrdering", AtomicLoadOrdering, { module: "Synchronization_aed0a59b0b283436", properties: {} });
+registerSDKClass("Synchronization.Atomic", Atomic, { module: "Synchronization_d04ad79e98d4fc54", properties: {} });
+registerSDKClass("Synchronization.AtomicLazyReference", AtomicLazyReference, { module: "Synchronization_d04ad79e98d4fc54", properties: {} });
+registerSDKClass("Synchronization.AtomicLoadOrdering", AtomicLoadOrdering, { module: "Synchronization_d04ad79e98d4fc54", properties: {} });
 registerSDKProtocol("s:15Synchronization27AtomicOptionalRepresentableP", {"encodeAtomicRepresentation":"encodeAtomicRepresentation(_:)","decodeAtomicRepresentation":"decodeAtomicRepresentation(_:)","encodeAtomicOptionalRepresentation":"encodeAtomicOptionalRepresentation(_:)","decodeAtomicOptionalRepresentation":"decodeAtomicOptionalRepresentation(_:)"});
 registerSDKProtocol("s:15Synchronization19AtomicRepresentableP", {"encodeAtomicRepresentation":"encodeAtomicRepresentation(_:)","decodeAtomicRepresentation":"decodeAtomicRepresentation(_:)"});
-registerSDKClass("Synchronization.AtomicStoreOrdering", AtomicStoreOrdering, { module: "Synchronization_aed0a59b0b283436", properties: {} });
-registerSDKClass("Synchronization.AtomicUpdateOrdering", AtomicUpdateOrdering, { module: "Synchronization_aed0a59b0b283436", properties: {} });
-registerSDKClass("Synchronization.Mutex", Mutex, { module: "Synchronization_aed0a59b0b283436", properties: {} });
-registerSDKClass("Synchronization.WordPair", WordPair, { module: "Synchronization_aed0a59b0b283436", properties: {} });
+registerSDKClass("Synchronization.AtomicStoreOrdering", AtomicStoreOrdering, { module: "Synchronization_d04ad79e98d4fc54", properties: {} });
+registerSDKClass("Synchronization.AtomicUpdateOrdering", AtomicUpdateOrdering, { module: "Synchronization_d04ad79e98d4fc54", properties: {} });
+registerSDKClass("Synchronization.Mutex", Mutex, { module: "Synchronization_d04ad79e98d4fc54", properties: {} });
+registerSDKClass("Synchronization.WordPair", WordPair, { module: "Synchronization_d04ad79e98d4fc54", properties: {} });

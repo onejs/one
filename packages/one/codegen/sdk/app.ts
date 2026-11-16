@@ -88,20 +88,31 @@ function openCache() {
     }
     if (!existsSync(manifest(module))) {
       log(`[one] generating iOS bindings for ${module}`)
-      const result = await generateModule(module, await ready(), cache, { table: tableName(module) })
-      if (!result) {
-        const error = extractionErrors.get(module)
-        throw new Error(`[one] no symbol graph for ${module}${error ? `: swift-symbolgraph-extract failed: ${error}` : ''}`)
+      // concurrent prebuilds share this cache: each generates and typechecks in
+      // its own directory and publishes by rename, with the manifest last
+      const work = join(cache, `.work-${process.pid}-${module}`)
+      mkdirSync(work, { recursive: true })
+      try {
+        const result = await generateModule(module, await ready(), work, { table: tableName(module) })
+        if (!result) {
+          const error = extractionErrors.get(module)
+          throw new Error(`[one] no symbol graph for ${module}${error ? `: swift-symbolgraph-extract failed: ${error}` : ''}`)
+        }
+        if (result.errors.length) throw new Error(`[one] ${module} bindings do not compile:\n${result.errors.join('\n')}`)
+        const { entries, skipped } = result.output
+        const { bridge } = await ready()
+        const modules = new Set(entries.flatMap((entry) => entryUsrs(entry).map((usr) => bridge.index.get(usr)?.module ?? '')))
+        modules.delete('')
+        modules.delete(module)
+        const cached: Cached = { entries: entries.map(({ swift, ...e }) => e), skipped, modules: [...modules].sort(), exclusions: [...result.exclude] }
+        writeFileSync(join(work, 'facade.ts'), emitFacade({ module, table: tableName(module), entries: cached.entries, skipped }, bridge))
+        writeFileSync(join(work, 'manifest.json'), JSON.stringify(cached))
+        renameSync(result.file, tableFile(module))
+        renameSync(join(work, 'facade.ts'), facadeFile(module))
+        renameSync(join(work, 'manifest.json'), manifest(module))
+      } finally {
+        rmSync(work, { recursive: true, force: true })
       }
-      if (result.errors.length) throw new Error(`[one] ${module} bindings do not compile:\n${result.errors.join('\n')}`)
-      const { entries, skipped } = result.output
-      const { bridge } = await ready()
-      const modules = new Set(entries.flatMap((entry) => entryUsrs(entry).map((usr) => bridge.index.get(usr)?.module ?? '')))
-      modules.delete('')
-      modules.delete(module)
-      const cached: Cached = { entries: entries.map(({ swift, ...e }) => e), skipped, modules: [...modules].sort(), exclusions: [...result.exclude] }
-      writeFileSync(facadeFile(module), emitFacade({ module, table: tableName(module), entries: cached.entries, skipped }, bridge))
-      writeFileSync(manifest(module), JSON.stringify(cached))
     }
     return JSON.parse(readFileSync(manifest(module), 'utf8'))
   }

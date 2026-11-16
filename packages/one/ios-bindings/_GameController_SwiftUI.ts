@@ -11,13 +11,13 @@ export class GameControllerEventHandlingOptions extends SDKHandle {
    * static func receivesEventsInView(_ receivesEventsInView: Bool) -> GameControllerEventHandlingOptions
    * @availability iOS 26.0+
    */
-  static receivesEventsInView(receivesEventsInView: boolean): GameControllerEventHandlingOptions { return callSDK<GameControllerEventHandlingOptions>("_GameController_SwiftUI_aed0a59b0b283436", 680730925207307, undefined, [receivesEventsInView]); }
+  static receivesEventsInView(receivesEventsInView: boolean): GameControllerEventHandlingOptions { return callSDK<GameControllerEventHandlingOptions>("_GameController_SwiftUI_d04ad79e98d4fc54", 680730925207307, undefined, [receivesEventsInView]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): GameControllerEventHandlingOptions { return callSDK<GameControllerEventHandlingOptions>("_GameController_SwiftUI_aed0a59b0b283436", 868918325359811, undefined, []); }
+  static init(): GameControllerEventHandlingOptions { return callSDK<GameControllerEventHandlingOptions>("_GameController_SwiftUI_d04ad79e98d4fc54", 868918325359811, undefined, []); }
   declare readonly $type: { "s:23_GameController_SwiftUI0aB20EventHandlingOptionsV": true };
 }
 
-registerSDKClass("_GameController_SwiftUI.GameControllerEventHandlingOptions", GameControllerEventHandlingOptions, { module: "_GameController_SwiftUI_aed0a59b0b283436", properties: {} });
+registerSDKClass("_GameController_SwiftUI.GameControllerEventHandlingOptions", GameControllerEventHandlingOptions, { module: "_GameController_SwiftUI_d04ad79e98d4fc54", properties: {} });
