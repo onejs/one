@@ -3,7 +3,7 @@
 // simulator. run from packages/one:
 //   bun codegen/sdk/generate.ts --out <dir> [--typecheck] Module...
 import { execFile, execFileSync } from 'node:child_process'
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import { promisify } from 'node:util'
@@ -47,7 +47,6 @@ function oneModule(sdk: Sdk) {
   if (!module) {
     module = (async () => {
       const dir = mkdtempSync(join(tmpdir(), 'one-sdk-runtime-'))
-      process.once('exit', () => rmSync(dir, { recursive: true, force: true }))
       const moduleMap = writeCLinkageModules(join(dir, 'CLinkage'), target(sdk).sdkRoot)
       await run('xcrun', ['swiftc', '-emit-module', '-parse-as-library', '-module-name', 'One', ...target(sdk).args,
         ...cLinkageSwiftFlags(moduleMap, target(sdk).sdkRoot),
