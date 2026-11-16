@@ -2,8 +2,6 @@
 
 #import <AppKit/AppKit.h>
 
-#include <folly/dynamic.h>
-
 #include <string>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -15,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 // nil, with `error` set, for a config the menu bar cannot represent
-OneMacosAppCommandConfig *_Nullable OneMacosParseAppCommands(const folly::dynamic &config, std::string &error);
+OneMacosAppCommandConfig *_Nullable OneMacosParseAppCommands(NSDictionary *config, std::string &error);
 
 // A root view runs the commands its window's runtime configured.
 @protocol OneMacosAppCommandTarget <NSObject>

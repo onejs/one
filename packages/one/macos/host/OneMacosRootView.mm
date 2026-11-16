@@ -2,6 +2,7 @@
 #import "OneMacosRootView.h"
 
 #include <atomic>
+#include <react/utils/FollyConvert.h>
 
 #include <cxxreact/JSBigString.h>
 #include <react/renderer/componentregistry/ComponentDescriptorProviderRegistry.h>
@@ -167,7 +168,7 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   };
   moduleContext.configureAppCommands = [weakSelf, generation](const folly::dynamic &config) {
     std::string error;
-    OneMacosAppCommandConfig *parsed = OneMacosParseAppCommands(config, error);
+    OneMacosAppCommandConfig *parsed = OneMacosParseAppCommands(convertFollyDynamicToId(config), error);
     if (parsed) {
       dispatch_async(dispatch_get_main_queue(), ^{
         OneMacosHost *strongSelf = weakSelf;

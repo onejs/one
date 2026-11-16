@@ -103,18 +103,18 @@ bool parseKeystroke(const std::string &keystroke, NSString *__strong *keyEquival
   return true;
 }
 
-const folly::dynamic *member(const folly::dynamic &object, const char *name)
+id member(id object, const char *name)
 {
-  return object.isObject() ? object.get_ptr(name) : nullptr;
+  return [object isKindOfClass:NSDictionary.class] ? object[@(name)] : nil;
 }
 
-bool stringMember(const folly::dynamic &object, const char *name, std::string &out)
+bool stringMember(id object, const char *name, std::string &out)
 {
-  auto *value = member(object, name);
-  if (!value || !value->isString() || value->getString().empty()) {
+  id value = member(object, name);
+  if (![value isKindOfClass:NSString.class] || [value length] == 0) {
     return false;
   }
-  out = value->getString();
+  out.assign([value UTF8String], [value lengthOfBytesUsingEncoding:NSUTF8StringEncoding]);
   return true;
 }
 
@@ -135,8 +135,8 @@ bool stringMember(const folly::dynamic &object, const char *name, std::string &o
 
 @implementation OneMacosAppCommandConfig {
  @public
-  folly::dynamic _menus;
-  folly::dynamic _toolbar;
+  NSArray<NSDictionary *> *_menus;
+  NSArray<NSDictionary *> *_toolbar;
   NSArray<OneMacosAppCommandBinding *> *_bindings;
   NSSet<NSString *> *_commandIds;
 }
@@ -148,14 +148,14 @@ bool stringMember(const folly::dynamic &object, const char *name, std::string &o
 
 @end
 
-static bool OneMacosCheckMenuItems(const folly::dynamic &items, const std::string &path, NSMutableSet<NSString *> *ids, std::string &error)
+static bool OneMacosCheckMenuItems(id items, const std::string &path, NSMutableSet<NSString *> *ids, std::string &error)
 {
-  if (!items.isArray()) {
+  if (![items isKindOfClass:NSArray.class]) {
     error = path + " must be an array";
     return false;
   }
-  for (size_t index = 0; index < items.size(); index++) {
-    const auto &item = items[index];
+  for (size_t index = 0; index < [items count]; index++) {
+    id item = items[index];
     std::string itemPath = path + "[" + std::to_string(index) + "]";
     std::string kind, label, commandId;
     stringMember(item, "kind", kind);
@@ -173,8 +173,8 @@ static bool OneMacosCheckMenuItems(const folly::dynamic &items, const std::strin
       }
       [ids addObject:@(commandId.c_str())];
     } else if (kind == "submenu") {
-      auto *children = member(item, "items");
-      if (!children || !OneMacosCheckMenuItems(*children, itemPath + ".items", ids, error)) {
+      id children = member(item, "items");
+      if (!children || !OneMacosCheckMenuItems(children, itemPath + ".items", ids, error)) {
         if (!children) {
           error = itemPath + ".items must be an array";
         }
@@ -188,19 +188,19 @@ static bool OneMacosCheckMenuItems(const folly::dynamic &items, const std::strin
   return true;
 }
 
-OneMacosAppCommandConfig *OneMacosParseAppCommands(const folly::dynamic &config, std::string &error)
+OneMacosAppCommandConfig *OneMacosParseAppCommands(NSDictionary *config, std::string &error)
 {
-  auto *bindings = member(config, "bindings");
-  auto *menus = member(config, "menus");
-  if (!bindings || !bindings->isArray() || !menus || !menus->isArray()) {
+  id bindings = member(config, "bindings");
+  id menus = member(config, "menus");
+  if (![bindings isKindOfClass:NSArray.class] || ![menus isKindOfClass:NSArray.class]) {
     error = "config must have bindings and menus arrays";
     return nil;
   }
 
   NSMutableSet<NSString *> *ids = [NSMutableSet new];
   NSMutableArray<OneMacosAppCommandBinding *> *parsed = [NSMutableArray new];
-  for (size_t index = 0; index < bindings->size(); index++) {
-    const auto &binding = (*bindings)[index];
+  for (size_t index = 0; index < [bindings count]; index++) {
+    id binding = bindings[index];
     std::string path = "bindings[" + std::to_string(index) + "]";
     std::string commandId, key;
     if (!stringMember(binding, "id", commandId) || !stringMember(binding, "key", key)) {
@@ -217,11 +217,11 @@ OneMacosAppCommandConfig *OneMacosParseAppCommands(const folly::dynamic &config,
     }
     entry.keyEquivalent = keyEquivalent;
     entry.modifiers = modifiers;
-    auto *context = member(binding, "context");
-    if (context && !context->isNull()) {
+    id context = member(binding, "context");
+    if (context && context != NSNull.null) {
       auto predicate = std::make_shared<Predicate>();
-      if (!context->isString() || !PredicateParser(context->getString()).parse(*predicate, error)) {
-        error = path + ": " + (context->isString() ? error : "context must be a string");
+      if (![context isKindOfClass:NSString.class] || !PredicateParser([context UTF8String]).parse(*predicate, error)) {
+        error = path + ": " + ([context isKindOfClass:NSString.class] ? error : "context must be a string");
         return nil;
       }
       entry->_context = predicate;
@@ -230,33 +230,33 @@ OneMacosAppCommandConfig *OneMacosParseAppCommands(const folly::dynamic &config,
     [parsed addObject:entry];
   }
 
-  for (size_t index = 0; index < menus->size(); index++) {
-    const auto &menu = (*menus)[index];
+  for (size_t index = 0; index < [menus count]; index++) {
+    id menu = menus[index];
     std::string path = "menus[" + std::to_string(index) + "]";
     std::string label;
     if (!stringMember(menu, "label", label)) {
       error = path + ".label must be a non-empty string";
       return nil;
     }
-    auto *items = member(menu, "items");
+    id items = member(menu, "items");
     if (!items) {
       error = path + ".items must be an array";
       return nil;
     }
-    if (!OneMacosCheckMenuItems(*items, path + ".items", ids, error)) {
+    if (!OneMacosCheckMenuItems(items, path + ".items", ids, error)) {
       return nil;
     }
   }
 
-  auto *toolbar = member(config, "toolbar");
+  id toolbar = member(config, "toolbar");
   if (toolbar) {
-    if (!toolbar->isArray()) {
+    if (![toolbar isKindOfClass:NSArray.class]) {
       error = "toolbar must be an array";
       return nil;
     }
     NSMutableSet<NSString *> *toolbarIds = [NSMutableSet new];
-    for (size_t index = 0; index < toolbar->size(); index++) {
-      const auto &item = (*toolbar)[index];
+    for (size_t index = 0; index < [toolbar count]; index++) {
+      id item = toolbar[index];
       std::string path = "toolbar[" + std::to_string(index) + "]";
       std::string kind, commandId, label, image;
       stringMember(item, "kind", kind);
@@ -273,8 +273,8 @@ OneMacosAppCommandConfig *OneMacosParseAppCommands(const folly::dynamic &config,
       }
       [toolbarIds addObject:identifier];
       [ids addObject:identifier];
-      if (auto *badge = member(item, "badge")) {
-        double value = badge->isNumber() ? badge->asDouble() : -1;
+      if (id badge = member(item, "badge")) {
+        double value = [badge isKindOfClass:NSNumber.class] && CFGetTypeID((__bridge CFTypeRef)badge) != CFBooleanGetTypeID() ? [badge doubleValue] : -1;
         if (!std::isfinite(value) || value < 0 || std::trunc(value) != value || value > 9007199254740991.0) {
           error = path + ".badge must be a non-negative safe integer";
           return nil;
@@ -283,9 +283,15 @@ OneMacosAppCommandConfig *OneMacosParseAppCommands(const folly::dynamic &config,
     }
   }
 
+  if (![NSJSONSerialization isValidJSONObject:config]) {
+    error = "config must contain only JSON values";
+    return nil;
+  }
+  NSDictionary *snapshot = [NSJSONSerialization JSONObjectWithData:
+      [NSJSONSerialization dataWithJSONObject:config options:0 error:nil] options:0 error:nil];
   OneMacosAppCommandConfig *result = [OneMacosAppCommandConfig new];
-  result->_menus = *menus;
-  result->_toolbar = toolbar ? *toolbar : folly::dynamic();
+  result->_menus = snapshot[@"menus"];
+  result->_toolbar = snapshot[@"toolbar"];
   result->_bindings = parsed;
   result->_commandIds = ids;
   return result;
@@ -413,18 +419,18 @@ static NSView<OneMacosAppCommandTarget> *OneMacosAppCommandTargetInWindow(NSWind
   if (config != _config) {
     NSMutableArray *identifiers = [NSMutableArray new];
     NSMutableDictionary *definitions = [NSMutableDictionary new];
-    for (const auto &entry : config->_toolbar) {
-      if (entry["kind"].getString() == "flexibleSpace") {
+    for (NSDictionary *entry in config->_toolbar) {
+      if ([entry[@"kind"] isEqualToString:@"flexibleSpace"]) {
         [identifiers addObject:NSToolbarFlexibleSpaceItemIdentifier];
         continue;
       }
-      NSString *commandId = @(entry["id"].getString().c_str());
+      NSString *commandId = entry[@"id"];
       NSString *identifier = [@"OneMacos.Command." stringByAppendingString:commandId];
       NSMutableDictionary *definition = [@{
-        @"id": commandId, @"label": @(entry["label"].getString().c_str()),
-        @"image": @(entry["systemImage"].getString().c_str())
+        @"id": commandId, @"label": entry[@"label"],
+        @"image": entry[@"systemImage"]
       } mutableCopy];
-      if (auto *badge = member(entry, "badge")) definition[@"badge"] = @((NSInteger)badge->asDouble());
+      if (NSNumber *badge = entry[@"badge"]) definition[@"badge"] = @([badge integerValue]);
       definitions[identifier] = definition;
       [identifiers addObject:identifier];
     }
@@ -475,7 +481,7 @@ static void OneMacosUpdateWindowToolbars()
   for (NSWindow *window in NSApp.windows) {
     OneMacosAppCommandConfig *config = [OneMacosAppCommandTargetInWindow(window) oneMacosAppCommandConfig];
     OneMacosWindowToolbar *owner = objc_getAssociatedObject(window, &toolbarKey);
-    if (config && config->_toolbar.isArray()) {
+    if (config && config->_toolbar != nil) {
       if (!owner) {
         owner = [[OneMacosWindowToolbar alloc] initWithWindow:window];
         objc_setAssociatedObject(window, &toolbarKey, owner, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -555,26 +561,26 @@ static NSMenuItem *OneMacosAppCommandItem(NSString *title, OneMacosAppCommandBin
 }
 
 static NSArray<NSMenuItem *> *OneMacosAppCommandMenuItems(
-    const folly::dynamic &items, NSDictionary<NSString *, OneMacosAppCommandBinding *> *shown)
+    NSArray<NSDictionary *> *items, NSDictionary<NSString *, OneMacosAppCommandBinding *> *shown)
 {
   NSMutableArray<NSMenuItem *> *result = [NSMutableArray new];
-  for (const auto &item : items) {
-    std::string kind = item["kind"].getString();
-    if (kind == "separator") {
+  for (NSDictionary *item in items) {
+    NSString *kind = item[@"kind"];
+    if ([kind isEqualToString:@"separator"]) {
       [result addObject:NSMenuItem.separatorItem];
       continue;
     }
-    NSString *label = @(item["label"].getString().c_str());
-    if (kind == "submenu") {
+    NSString *label = item[@"label"];
+    if ([kind isEqualToString:@"submenu"]) {
       NSMenuItem *parent = [[NSMenuItem alloc] initWithTitle:label action:nil keyEquivalent:@""];
       parent.submenu = [[NSMenu alloc] initWithTitle:label];
-      for (NSMenuItem *child in OneMacosAppCommandMenuItems(item["items"], shown)) {
+      for (NSMenuItem *child in OneMacosAppCommandMenuItems(item[@"items"], shown)) {
         [parent.submenu addItem:child];
       }
       [result addObject:parent];
       continue;
     }
-    NSString *commandId = @(item["id"].getString().c_str());
+    NSString *commandId = item[@"id"];
     OneMacosAppCommandBinding *binding = shown[commandId];
     if (!binding) {
       binding = [OneMacosAppCommandBinding new];
@@ -658,10 +664,10 @@ static void OneMacosApplyAppCommands(OneMacosAppCommandConfig *_Nullable config)
     insertTopLevelAt = mainMenu.numberOfItems;
   }
 
-  for (size_t index = 0; index < config->_menus.size(); index++) {
-    const auto &menu = config->_menus[index];
-    NSString *label = @(menu["label"].getString().c_str());
-    NSMutableArray<NSMenuItem *> *items = [OneMacosAppCommandMenuItems(menu["items"], shown) mutableCopy];
+  for (size_t index = 0; index < config->_menus.count; index++) {
+    NSDictionary *menu = config->_menus[index];
+    NSString *label = menu[@"label"];
+    NSMutableArray<NSMenuItem *> *items = [OneMacosAppCommandMenuItems(menu[@"items"], shown) mutableCopy];
     NSMenu *existing = nil;
     if (index == 0) {
       existing = applicationMenu;
