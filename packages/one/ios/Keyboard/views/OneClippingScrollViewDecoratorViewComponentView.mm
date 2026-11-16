@@ -42,9 +42,11 @@ static void KCApplyNoopScrollRectToVisible(UIScrollView *scrollView)
   Class originalClass = object_getClass(scrollView);
   NSString *originalClassName = NSStringFromClass(originalClass);
 
-  // Already patched — nothing to do
-  if ([originalClassName hasPrefix:KCNoScrollRectClassPrefix]) {
-    return;
+  // KVO and other runtime subclasses can sit above our patch.
+  for (Class cls = originalClass; cls; cls = class_getSuperclass(cls)) {
+    if ([NSStringFromClass(cls) hasPrefix:KCNoScrollRectClassPrefix]) {
+      return;
+    }
   }
 
   NSString *subclassName = [KCNoScrollRectClassPrefix stringByAppendingString:originalClassName];
@@ -89,9 +91,11 @@ static void KCApplyFixedHitTest(UIScrollView *scrollView)
   Class originalClass = object_getClass(container);
   NSString *originalClassName = NSStringFromClass(originalClass);
 
-  // Already patched — nothing to do
-  if ([originalClassName hasPrefix:KCFixedHitTestClassPrefix]) {
-    return;
+  // KVO and other runtime subclasses can sit above our patch.
+  for (Class cls = originalClass; cls; cls = class_getSuperclass(cls)) {
+    if ([NSStringFromClass(cls) hasPrefix:KCFixedHitTestClassPrefix]) {
+      return;
+    }
   }
 
   NSString *subclassName = [KCFixedHitTestClassPrefix stringByAppendingString:originalClassName];

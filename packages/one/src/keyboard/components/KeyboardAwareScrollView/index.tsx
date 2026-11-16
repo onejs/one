@@ -217,7 +217,12 @@ const KeyboardAwareScrollView = forwardRef<
         // insets mode: `ScrollViewWithBottomPadding` extends scrollable area without
         // changing layout, so when the keyboard hides and we're at the end of the
         // ScrollView we must manually scroll back.
-        if (keyboardWillHide.value && ghostViewSpace.value > 0) {
+        if (
+          enabled &&
+          keyboardWillHide.value &&
+          keyboardHeight.value > 0 &&
+          ghostViewSpace.value > 0
+        ) {
           scrollTo(
             scrollViewAnimatedRef,
             0,
@@ -235,7 +240,7 @@ const KeyboardAwareScrollView = forwardRef<
 
         return false
       },
-      [mode]
+      [enabled, mode]
     )
     const performScrollWithPositionRestoration = useCallback(
       (newPosition: number) => {
@@ -364,6 +369,7 @@ const KeyboardAwareScrollView = forwardRef<
           'worklet'
 
           const keyboardWillChangeSize = keyboardHeight.value !== e.height && e.height > 0
+          const hideWasInterrupted = keyboardWillHide.value && e.height > 0
 
           keyboardWillAppear.value = e.height > 0 && keyboardHeight.value === 0
           keyboardWillHide.value = e.height === 0
@@ -436,14 +442,25 @@ const KeyboardAwareScrollView = forwardRef<
           }
 
           if (mode === 'insets') {
+            // content shorter than the ScrollView has no ghost space: removing it would
+            // target an offset above the top, which is clamped to 0 natively and makes
+            // the content jump by the header inset
             ghostViewSpace.value =
-              position.value +
-              scrollViewLayout.value.height -
-              scrollViewContentSize.value.height
+              position.value -
+              Math.max(
+                scrollViewContentSize.value.height - scrollViewLayout.value.height,
+                0
+              )
 
             if (ghostViewSpace.value > 0) {
               scrollPosition.value = position.value
             }
+          }
+
+          if (hideWasInterrupted && !focusWasChanged) {
+            // The unchanged input keeps its pre-animation layout, so its scroll
+            // base must also come from before keyboard movement.
+            scrollPosition.value = scrollBeforeKeyboardMovement.value
           }
         },
         onMove: (e) => {

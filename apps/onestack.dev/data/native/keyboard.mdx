@@ -1,0 +1,85 @@
+---
+title: Keyboard
+description: Keyboard tracking, avoidance, and control, built in from react-native-keyboard-controller
+---
+
+`one/keyboard` follows the software keyboard frame by frame on the UI thread,
+moves content out of its way, and lets you dismiss it, move focus between
+fields, and drag it closed. It is
+[react-native-keyboard-controller](https://github.com/kirillzyusko/react-native-keyboard-controller)
+by Kiryl Ziusko, built into One, so an app gets it without another native
+dependency. The API matches the library's, so the library's documentation
+applies to every component and hook here.
+
+iOS runs the native implementation. On Android and web the components render
+plain views and the module calls do nothing, until the Android port lands.
+
+## Usage
+
+Wrap the app once, near the root:
+
+```tsx
+import { KeyboardProvider } from 'one/keyboard'
+
+export default function Layout({ children }) {
+  return <KeyboardProvider>{children}</KeyboardProvider>
+}
+```
+
+Then read the keyboard where you need it:
+
+```tsx
+import Animated, { useAnimatedStyle } from 'react-native-reanimated'
+import { KeyboardController, useReanimatedKeyboardAnimation } from 'one/keyboard'
+
+function Composer() {
+  const { height } = useReanimatedKeyboardAnimation()
+  const style = useAnimatedStyle(() => ({
+    transform: [{ translateY: height.value }],
+  }))
+
+  return (
+    <Animated.View style={style}>
+      <Send onPress={() => KeyboardController.dismiss()} />
+    </Animated.View>
+  )
+}
+```
+
+`height` is negative while the keyboard is open and follows the keyboard's
+own animation curve, including while a finger drags it.
+
+## What it includes
+
+- **Provider and hooks**: `KeyboardProvider`, `useKeyboardAnimation`,
+  `useReanimatedKeyboardAnimation`, `useKeyboardHandler`,
+  `useAnimatedKeyboard`, `useKeyboardState`, `useFocusedInputHandler`,
+  `useReanimatedFocusedInput`.
+- **Components**: `KeyboardAvoidingView`, `KeyboardAwareScrollView`,
+  `KeyboardChatScrollView`, `KeyboardStickyView`, `KeyboardToolbar`,
+  `KeyboardGestureArea` for interactive swipe to dismiss, `KeyboardExtender`,
+  `OverKeyboardView`, `KeyboardBackgroundView`.
+- **Module**: `KeyboardController.dismiss`, `setFocusTo`, `isVisible`,
+  `state`, `preload`, plus `KeyboardEvents` for the will and did show and hide
+  events.
+
+## Moving from react-native-keyboard-controller
+
+Change the import from `react-native-keyboard-controller` to `one/keyboard`
+and remove the package. Both can be installed side by side while you move
+over: One's native classes, components, and selectors use their own names.
+
+Three things behave differently:
+
+- **The keyboard warm-up waits for launch.** `KeyboardProvider` still warms
+  the keyboard so the first tap on a field opens it at once, but the warm-up
+  focuses a hidden field, which holds the main thread for about 160 ms. One
+  runs it after the launch screen is gone plus one second, instead of during
+  the first render.
+- **Nothing runs at app load.** The library swizzled `UIResponder` and
+  started a window observer when the app binary loaded. One does both the
+  first time a component needs them.
+- **The provider renders its native view directly.** Reanimated handlers
+  register by view tag instead of through animated wrappers. Values from
+  `useKeyboardAnimation`, the React Native `Animated` API, are driven from
+  JavaScript.

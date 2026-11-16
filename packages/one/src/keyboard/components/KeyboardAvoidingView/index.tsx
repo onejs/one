@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useMemo } from 'react'
-import { View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import Reanimated, { interpolate, runOnUI, useSharedValue } from 'react-native-reanimated'
 
 import { KeyboardControllerNative } from '../../bindings'
@@ -159,9 +159,43 @@ const KeyboardAvoidingView = forwardRef<
       [onLayoutProps, automaticOffset]
     )
 
+    const isPositionBehavior = behavior === 'position'
+    const containerStyle = isPositionBehavior ? contentContainerStyle : style
+    const originalStyle = useMemo(
+      () => StyleSheet.flatten(containerStyle),
+      [containerStyle]
+    )
     const animatedStyle = useAnimatedStyle(() => {
       if (!enabled) {
-        return {}
+        // Reanimated retains previously applied values when a style key is omitted.
+        switch (behavior) {
+          case 'height':
+            return {
+              height: originalStyle?.height ?? 'auto',
+              flex: originalStyle?.flex,
+            }
+          case 'position':
+            return { bottom: originalStyle?.bottom ?? 'auto' }
+          case 'padding':
+            return {
+              paddingBottom:
+                originalStyle?.paddingBottom ??
+                originalStyle?.paddingVertical ??
+                originalStyle?.padding ??
+                0,
+            }
+          case 'translate-with-padding':
+            return {
+              paddingTop:
+                originalStyle?.paddingTop ??
+                originalStyle?.paddingVertical ??
+                originalStyle?.padding ??
+                0,
+              transform: originalStyle?.transform ?? [],
+            }
+          default:
+            return {}
+        }
       }
 
       const bottom = interpolateToRelativeKeyboardHeight(keyboard.progress.value)
@@ -195,10 +229,8 @@ const KeyboardAvoidingView = forwardRef<
         default:
           return {}
       }
-    }, [behavior, enabled, interpolateToRelativeKeyboardHeight])
+    }, [behavior, enabled, interpolateToRelativeKeyboardHeight, originalStyle])
     const combinedRef = useCombinedRef(internalRef, ref)
-    const isPositionBehavior = behavior === 'position'
-    const containerStyle = isPositionBehavior ? contentContainerStyle : style
     const combinedStyles = useMemo(
       () => [containerStyle, animatedStyle],
       [containerStyle, animatedStyle]

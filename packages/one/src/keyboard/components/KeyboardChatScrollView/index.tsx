@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useMemo } from 'react'
-import { StyleSheet } from 'react-native'
+import { Platform, StyleSheet } from 'react-native'
 import { makeMutable, useAnimatedRef } from 'react-native-reanimated'
 import Reanimated from 'react-native-reanimated'
 
@@ -15,6 +15,7 @@ import { useFrozenPadding } from './useFrozenPadding'
 import type { KeyboardChatScrollViewProps, KeyboardChatScrollViewRef } from './types'
 import type { LayoutChangeEvent } from 'react-native'
 
+const OS = Platform.OS
 const ZERO_CONTENT_PADDING = makeMutable(0)
 const ZERO_BLANK_SPACE = makeMutable(0)
 
@@ -42,6 +43,10 @@ const KeyboardChatScrollView: React.ForwardRefExoticComponent<
   ) => {
     const scrollViewRef = useAnimatedRef<Reanimated.ScrollView>()
     const onRef = useCombinedRef(ref, scrollViewRef)
+    // on iOS `contentInset.top` lets the content rest below the top edge (e.g.
+    // under a transparent header), so the lowest offset is `-contentInset.top`
+    const contentInsetTop = OS === 'ios' ? (rest.contentInset?.top ?? 0) : 0
+    const minScroll = contentInsetTop > 0 ? -contentInsetTop : 0
     const freezeSV = useDerivedValue(() =>
       typeof freeze === 'boolean' ? freeze : freeze.value
     )
@@ -59,6 +64,7 @@ const KeyboardChatScrollView: React.ForwardRefExoticComponent<
       keyboardLiftBehavior,
       freeze: freezeSV,
       offset,
+      minScroll,
       blankSpace,
       extraContentPadding,
       initialContentOffsetY: rest.contentOffset?.y,
@@ -73,6 +79,7 @@ const KeyboardChatScrollView: React.ForwardRefExoticComponent<
       layout,
       size,
       contentOffsetY,
+      minScroll,
       inverted,
       keyboardLiftBehavior,
       freeze: freezeSV,

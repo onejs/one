@@ -31,6 +31,9 @@ extension KeyboardMovementObserver {
 
   @objc func keyboardWillDisappear(_ notification: Notification) {
     guard !UIResponder.isKeyboardPreloading else { return }
+    // once the keyboard hides, the `keyboardWillShow` that `KeyboardAreaExtender` armed the flag
+    // for can't arrive anymore, so the next show is a real one and must not be swallowed
+    KeyboardEventsIgnorer.shared.shouldIgnoreKeyboardEvents = false
     let (duration, _) = notification.keyboardMetaData()
     tag = UIResponder.current.reactViewTag
     self.notification = notification

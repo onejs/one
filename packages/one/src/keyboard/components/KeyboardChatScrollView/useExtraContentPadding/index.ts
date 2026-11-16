@@ -26,6 +26,8 @@ type UseExtraContentPaddingOptions = {
   size: SharedValue<{ width: number; height: number }>
   /** IOS only — when provided, sets contentOffset atomically with contentInset. */
   contentOffsetY?: SharedValue<number>
+  /** Lowest scroll offset, `-contentInset.top` on iOS. Defaults to `0`. */
+  minScroll?: number
   inverted: boolean
   keyboardLiftBehavior: KeyboardLiftBehavior
   freeze: SharedValue<boolean>
@@ -57,6 +59,7 @@ function useExtraContentPadding(options: UseExtraContentPaddingOptions): void {
     layout,
     size,
     contentOffsetY,
+    minScroll = 0,
     inverted,
     keyboardLiftBehavior,
     freeze,
@@ -165,18 +168,19 @@ function useExtraContentPadding(options: UseExtraContentPaddingOptions): void {
       } else {
         const maxScroll = Math.max(
           size.value.height - layout.value.height + currentTotal,
-          0
+          minScroll
         )
 
-        // Clamp at 0 as well: when the content is shorter than the viewport a
-        // shrinking padding makes `effectiveDelta` negative while `base` is
-        // already 0, so the target would go below the top of the content.
-        target = Math.max(Math.min(base + effectiveDelta, maxScroll), 0)
+        // Clamp at `minScroll` as well: when the content is shorter than the
+        // viewport a shrinking padding makes `effectiveDelta` negative while
+        // `base` is already at `minScroll`, so the target would go below the
+        // top of the content.
+        target = Math.max(Math.min(base + effectiveDelta, maxScroll), minScroll)
       }
 
       scrollToTarget(target)
     },
-    [inverted, keyboardLiftBehavior]
+    [inverted, keyboardLiftBehavior, minScroll]
   )
 }
 

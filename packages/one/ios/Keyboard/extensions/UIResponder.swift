@@ -14,9 +14,11 @@ extension Optional where Wrapped: UIResponder {
   }
 
   var nativeID: String? {
-    guard let superview = (self as? UIView)?.superview else { return nil }
+    guard let superview = (self as? UIView)?.superview,
+          superview.responds(to: NSSelectorFromString("nativeId"))
+    else { return nil }
 
-      return superview.safeValue(forKey: "nativeId") as? String
+    return superview.safeValue(forKey: "nativeId") as? String
   }
 }
 
@@ -52,23 +54,41 @@ extension UIResponder {
   static func preloadKeyboardIfNeeded() {
     guard !hasPreloadedKeyboard else { return }
     hasPreloadedKeyboard = true
-    isKeyboardPreloading = true
 
-    DispatchQueue.main.async {
-      defer { isKeyboardPreloading = false }
-      guard let window = UIApplication.shared.activeWindow else { return }
-      // a field is already being edited (e.g. `autoFocus`), the dummy field would steal its focus
-      guard UIResponder.current == nil else { return }
+    // The dummy field's `resignFirstResponder` below ends an input session, and UIKit does that
+    // synchronously: it waits for the keyboard daemon (`com.apple.TextInput.kbd`) inside
+    // `UIKeyboardTaskQueue.waitUntilAllTasksAreFinished`. On a freshly booted device the daemon
+    // is not running yet, and its start-up blocks the main thread for seconds (#1202).
+    // A spell-check request reaches the same daemon, so start it from a background queue first.
+    // The word has to be misspelled: a correctly spelled one is answered without the daemon.
+    DispatchQueue.global(qos: .userInitiated).async {
+      _ = UITextChecker().rangeOfMisspelledWord(
+        in: "helo wrld",
+        range: NSRange(location: 0, length: 9),
+        startingAt: 0,
+        wrap: false,
+        language: "en_US"
+      )
 
-      let lagFreeField = UITextField(frame: .zero)
-      lagFreeField.isHidden = true
-      window.addSubview(lagFreeField)
+      DispatchQueue.main.async {
+        guard let window = UIApplication.shared.activeWindow else { return }
+        // a field is already being edited (e.g. `autoFocus`), the dummy field would steal its focus
+        guard UIResponder.current == nil else { return }
 
-      lagFreeField.becomeFirstResponder()
-      UIView.performWithoutAnimation {
-        lagFreeField.resignFirstResponder()
+        // only the dummy field's own notifications must be ignored, so the flag is scoped to them
+        isKeyboardPreloading = true
+        defer { isKeyboardPreloading = false }
+
+        let lagFreeField = UITextField(frame: .zero)
+        lagFreeField.isHidden = true
+        window.addSubview(lagFreeField)
+
+        lagFreeField.becomeFirstResponder()
+        UIView.performWithoutAnimation {
+          lagFreeField.resignFirstResponder()
+        }
+        lagFreeField.removeFromSuperview()
       }
-      lagFreeField.removeFromSuperview()
     }
   }
 }

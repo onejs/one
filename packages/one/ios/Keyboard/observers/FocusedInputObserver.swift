@@ -119,13 +119,25 @@ public class FocusedInputObserver: NSObject {
       if notification.name == UIResponder.keyboardWillShowNotification {
         syncUpLayout()
       }
+      // a blur restores the original delegate at once, so a refocus of the same
+      // input within one main-queue turn needs ours back
+      DispatchQueue.main.async {
+        self.substituteDelegate(self.currentResponder)
+      }
       return
     }
 
     onFocus()
   }
 
-  @objc func didReceiveBlur(_: Notification) {
+  @objc func didReceiveBlur(_ notification: Notification) {
+    // restore the original delegate synchronously: if the input gets unmounted, Fabric
+    // recycles it for another component, which may install its own delegate before the
+    // async block below runs
+    if let input = notification.object as? UIResponder, input === currentResponder {
+      substituteDelegateBack(input)
+    }
+
     // blur gets triggered on endEditing, so we check if no upcoming
     // didReceiveFocus events are coming to exclude `noFocusedInput`
     // event when user switches between inputs
