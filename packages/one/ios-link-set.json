@@ -478,6 +478,36 @@
       "modifiers": [],
       "slots": [],
       "values": []
+    },
+    "fitness": {
+      "frameworks": [],
+      "components": [],
+      "hybrids": [
+        "OnePedometer",
+        "OneBarometer"
+      ],
+      "uses": [
+        "Pedometer",
+        "Barometer"
+      ],
+      "modifiers": [],
+      "slots": [],
+      "values": []
+    },
+    "biometrics": {
+      "frameworks": [],
+      "components": [],
+      "hybrids": [
+        "OneSecureStore",
+        "OneProtectedStore"
+      ],
+      "uses": [
+        "SecureStore",
+        "ProtectedStore"
+      ],
+      "modifiers": [],
+      "slots": [],
+      "values": []
     }
   }
 }

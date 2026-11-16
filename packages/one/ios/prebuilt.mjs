@@ -26,31 +26,13 @@ import { Readable } from 'node:stream'
 import { pipeline } from 'node:stream/promises'
 import { fileURLToPath } from 'node:url'
 
-export type Identity = {
-  // bump when the framework packaging contract changes, including script-only fixes.
-  format: 3
-  source: string
-  dependencies: Record<string, string>
-  xcode: string
-  swift: string
-  workletsFlags: Array<[string, string]>
-  releaseGroups: string[]
-  sqlite: 'zero' | 'external'
-}
-export type Archive = { file: string; sha256: string }
-export type Manifest = {
-  identity: Identity
-  key: string
-  archives: Record<'Debug' | 'Release', Archive>
-}
-
 const one = dirname(dirname(fileURLToPath(import.meta.url)))
 const repository = 'https://github.com/onejs/one/releases/download'
-const configurations = ['Debug', 'Release'] as const
+const configurations = ['Debug', 'Release']
 
-function digestTree(root: string, paths: string[]): string {
+function digestTree(root, paths) {
   const hash = createHash('sha256')
-  const walk = (name: string) => {
+  const walk = (name) => {
     if (!existsSync(join(root, name))) return
     const stat = lstatSync(join(root, name))
     if (stat.isDirectory()) {
@@ -75,9 +57,9 @@ function digestTree(root: string, paths: string[]): string {
   return hash.digest('hex')
 }
 
-export function identity(ios: string): Identity {
+export function identity(ios) {
   const require = createRequire(join(resolve(ios, '..'), 'package.json'))
-  const dependencies: Record<string, string> = {}
+  const dependencies = {}
   for (const [name, paths] of [
     [
       'react-native',
@@ -104,7 +86,7 @@ export function identity(ios: string): Identity {
         'src/featureFlags/staticFlags.json',
       ],
     ],
-  ] satisfies Array<[string, string[]]>) {
+  ]) {
     const manifest = require.resolve(`${name}/package.json`)
     dependencies[name] = digestTree(dirname(manifest), ['package.json', ...paths])
   }
@@ -113,7 +95,7 @@ export function identity(ios: string): Identity {
   ).sort()
   const app = JSON.parse(readFileSync(join(ios, '../package.json'), 'utf8'))
   const workletsFlags = Object.entries(app.worklets?.staticFeatureFlags ?? {})
-    .map(([name, value]): [string, string] => {
+    .map(([name, value]) => {
       assert(
         ['boolean', 'string', 'number'].includes(typeof value),
         `invalid Worklets flag: ${name}`
@@ -126,10 +108,13 @@ export function identity(ios: string): Identity {
   // selection, otherwise it keeps its smaller set through a source build.
   const linkSetFile = join(ios, 'one-link-set.json')
   const releaseGroups = existsSync(linkSetFile)
-    ? (JSON.parse(readFileSync(linkSetFile, 'utf8')).groups as string[]).sort()
+    ? JSON.parse(readFileSync(linkSetFile, 'utf8')).groups.sort()
     : catalog
   const unknown = releaseGroups.filter((group) => !catalog.includes(group))
-  assert(unknown.length === 0, `one-link-set.json names unknown groups: ${unknown.join(', ')}`)
+  assert(
+    unknown.length === 0,
+    `one-link-set.json names unknown groups: ${unknown.join(', ')}`
+  )
   // the podspec excludes cpp/zero and defines ONE_ZERO_SQLITE=0 for these.
   const opSqlite = app['op-sqlite'] ?? {}
   const sqlite =
@@ -151,24 +136,24 @@ export function identity(ios: string): Identity {
       stdio: ['ignore', 'pipe', 'ignore'],
     })
       .trim()
-      .split('\n')[0]!,
+      .split('\n')[0],
     workletsFlags,
     releaseGroups,
     sqlite,
   }
 }
 
-export function artifactKey(value: Identity): string {
+export function artifactKey(value) {
   return createHash('sha256').update(JSON.stringify(value)).digest('hex')
 }
 
-export async function sha256(file: string): Promise<string> {
+export async function sha256(file) {
   const hash = createHash('sha256')
   for await (const chunk of createReadStream(file)) hash.update(chunk)
   return hash.digest('hex')
 }
 
-export function readManifest(value: unknown, expected: Identity): Manifest {
+export function readManifest(value, expected) {
   assert(
     value &&
       typeof value === 'object' &&
@@ -181,9 +166,9 @@ export function readManifest(value: unknown, expected: Identity): Manifest {
   assert.equal(value.key, artifactKey(expected), 'One iOS binary identity mismatch')
   const archives = value.archives
   assert(archives && typeof archives === 'object', 'missing One iOS binary archives')
-  const readArchive = (name: 'Debug' | 'Release'): Archive => {
+  const readArchive = (name) => {
     assert(name in archives, `missing ${name} One iOS binary`)
-    const entry: unknown = Reflect.get(archives, name)
+    const entry = Reflect.get(archives, name)
     assert(
       entry && typeof entry === 'object' && 'file' in entry && 'sha256' in entry,
       'invalid One iOS binary archive'
@@ -204,9 +189,7 @@ export function readManifest(value: unknown, expected: Identity): Manifest {
   }
 }
 
-export async function publishedManifest(
-  expected: Identity
-): Promise<Manifest | undefined> {
+export async function publishedManifest(expected) {
   const result = await fetch(
     `${repository}/one-ios-${artifactKey(expected)}/manifest.json`,
     { signal: AbortSignal.timeout(120_000) }
@@ -216,11 +199,7 @@ export async function publishedManifest(
   return readManifest(await result.json(), expected)
 }
 
-export async function downloadArchive(
-  key: string,
-  entry: Archive,
-  destination: string
-): Promise<void> {
+export async function downloadArchive(key, entry, destination) {
   // no total deadline: archives are hundreds of megabytes, and undici's idle
   // timeouts still end a stalled transfer.
   const download = await fetch(`${repository}/one-ios-${key}/${entry.file}`)
@@ -236,10 +215,7 @@ export async function downloadArchive(
   )
 }
 
-export async function install(
-  ios: string,
-  local?: string
-): Promise<{ path?: string; reason?: string }> {
+export async function install(ios, local) {
   const mode = process.env.ONE_PREBUILT_IOS ?? 'auto'
   assert(
     ['auto', '0', '1'].includes(mode),
@@ -280,7 +256,7 @@ export async function install(
     const temporary = mkdtempSync(join(dirname(cache), '.download-'))
     try {
       for (const configuration of configurations) {
-        const entry: Archive = manifest.archives[configuration]
+        const entry = manifest.archives[configuration]
         const archive = join(temporary, entry.file)
         if (local) {
           await pipeline(
@@ -383,7 +359,7 @@ export async function install(
 
 // CocoaPods first copies its declared Debug xcframework. this phase then picks
 // the matching configuration before dependents compile or link against One.
-export function select(root: string, destination: string): void {
+export function select(root, destination) {
   const configuration = process.env.CONFIGURATION === 'Debug' ? 'Debug' : 'Release'
   const platform = process.env.PLATFORM_NAME
   assert(
@@ -421,7 +397,7 @@ if (process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.me
     } else {
       // auto mode never fails pod install over the binary: offline machines,
       // blocked hosts or a failed download keep the source build.
-      const result = await install(resolve(argument)).catch((error: unknown) => {
+      const result = await install(resolve(argument)).catch((error) => {
         if (process.env.ONE_PREBUILT_IOS === '1') throw error
         const message = error instanceof Error ? error.message : String(error)
         return { reason: `binary unavailable (${message.split('\n')[0]})` }

@@ -1,3 +1,4 @@
+#if ONE_GROUP_BIOMETRICS
 import Foundation
 import LocalAuthentication
 import NitroModules
@@ -244,3 +245,5 @@ final class HybridOneProtectedStore: HybridOneProtectedStoreSpec {
     return oneNativeError(code, "ProtectedStore.\(operation): keychain status \(status)")
   }
 }
+
+#endif

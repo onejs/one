@@ -256,9 +256,7 @@ private struct OneNativeNavigationStackRoot: View {
     }
     .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
     .toolbar {
-      ForEach(model.toolbarEntries) { entry in
-        OneNativeToolbarEntryContent(entry: entry)
-      }
+      OneNativeToolbarEntries(entries: model.toolbarEntries)
     }
   }
 }
@@ -379,6 +377,31 @@ struct OneNativeToolbarEntry: Identifiable {
   let systemImage: String
   let defaultItem: String
   let content: AnyView?
+}
+
+// a toolbar's entries in order. the iOS 26.5 SDK (Xcode 26.6) has no ForEach over
+// ToolbarContent, so there they fill ten fixed slots, the most one builder block takes.
+struct OneNativeToolbarEntries: ToolbarContent {
+  let entries: [OneNativeToolbarEntry]
+
+  var body: some ToolbarContent {
+#if ONE_IOS_27_SDK
+    ForEach(entries) { entry in
+      OneNativeToolbarEntryContent(entry: entry)
+    }
+#else
+    if entries.count > 0 { OneNativeToolbarEntryContent(entry: entries[0]) }
+    if entries.count > 1 { OneNativeToolbarEntryContent(entry: entries[1]) }
+    if entries.count > 2 { OneNativeToolbarEntryContent(entry: entries[2]) }
+    if entries.count > 3 { OneNativeToolbarEntryContent(entry: entries[3]) }
+    if entries.count > 4 { OneNativeToolbarEntryContent(entry: entries[4]) }
+    if entries.count > 5 { OneNativeToolbarEntryContent(entry: entries[5]) }
+    if entries.count > 6 { OneNativeToolbarEntryContent(entry: entries[6]) }
+    if entries.count > 7 { OneNativeToolbarEntryContent(entry: entries[7]) }
+    if entries.count > 8 { OneNativeToolbarEntryContent(entry: entries[8]) }
+    if entries.count > 9 { OneNativeToolbarEntryContent(entry: entries[9]) }
+#endif
+  }
 }
 
 // a group is labelled when it carries a label and plain otherwise: the two initializers
@@ -1041,9 +1064,7 @@ private struct NavigationSplitViewColumnContent: View {
     }
     .oneNativeStyle(column.swiftStyle, emit: column.emitSDKEvent)
     .toolbar {
-      ForEach(column.toolbarEntries) { entry in
-        OneNativeToolbarEntryContent(entry: entry)
-      }
+      OneNativeToolbarEntries(entries: column.toolbarEntries)
     }
   }
 }

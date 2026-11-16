@@ -14,15 +14,9 @@ import { isResponse } from '../utils/isResponse'
 import { toAbsolute, toAbsoluteUrl } from '../utils/toAbsolute'
 import type { One, RouteInfo } from '../vite/types'
 import { getRouteExports } from './serverRouteModules'
+import { urlPathToFilePath } from './preloadArtifacts'
 
 const { outputFile } = FSExtra
-
-// Convert URL path (with forward slashes) to filesystem path for cross-platform compatibility
-function urlPathToFilePath(urlPath: string): string {
-  // Remove leading slash and split by forward slash (URL separator)
-  const parts = urlPath.replace(/^\//, '').split('/')
-  return join(...parts)
-}
 
 // timing helper for build profiling
 const buildTiming = process.env.ONE_BUILD_TIMING === '1'

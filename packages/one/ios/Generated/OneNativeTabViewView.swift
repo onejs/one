@@ -522,9 +522,7 @@ private struct TabViewContent: View {
             page
           )
             .toolbar {
-              ForEach(model.toolbarEntries) { entry in
-                OneNativeToolbarEntryContent(entry: entry)
-              }
+              OneNativeToolbarEntries(entries: model.toolbarEntries)
             }
         }
       }

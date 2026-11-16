@@ -123,7 +123,7 @@ jobs:
       - name: Verify and import the produced libraries
         run: |
           node scripts/publish-one-ios.mts '${{ runner.temp }}/one-ios'
-          node packages/one/ios/prebuilt.ts import tests/native-features/ios '${{ runner.temp }}/one-ios'
+          node packages/one/ios/prebuilt.mjs import tests/native-features/ios '${{ runner.temp }}/one-ios'
       - name: Install pods with a required matching binary
         working-directory: tests/native-features/ios
         run: USE_FRAMEWORKS=static pod install
