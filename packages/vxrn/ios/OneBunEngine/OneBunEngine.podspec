@@ -3,11 +3,12 @@ require 'fileutils'
 require 'tmpdir'
 
 # the bun runtime and compiler come from an onejs/bun-engine release: the bun
-# compiler (macOS) and ios/<platform>/{Bun,BunCompat}.framework. a compiled
-# program only loads in the runtime it was compiled against, so the release is
-# pinned. ONE_BUN_ENGINE_DIR points at a local engine build instead.
-engine_version = '0.1.6'
-engine_sha256 = '0384d1f9624df740a4b4f061fccf43130600a448f65814d41105dd3983e0175d'
+# compiler (macOS), ios/<platform>/BunEngine.o, the runtime as one prelinked
+# object the app links statically, and ios/BunEngine.tbd, its exports. a
+# compiled program only loads in the runtime it was compiled against, so the
+# release is pinned. ONE_BUN_ENGINE_DIR points at a local engine build instead.
+engine_version = '0.2.0'
+engine_sha256 = '44af4a3d3a6feb8074950c7f04cc9c49e542b228c6258f5aeec1f239336e0be1'
 
 # a lambda, since cocoapods evaluates podspecs where top-level methods are not reachable
 one_bun_engine_dir = lambda do
@@ -45,15 +46,20 @@ Pod::Spec.new do |s|
   s.platforms = { :ios => '17.0' }
   s.source_files = '*.{h,mm,cpp}'
   s.public_header_files = 'OneBunEngine.h'
-  # weak: debug builds run hermes and ship no bun; release builds embed it in the bundle phase
-  link = {
-    'FRAMEWORK_SEARCH_PATHS' => "\"#{engine_dir}/ios/$(PLATFORM_NAME)\"",
-    'OTHER_LDFLAGS' => '$(inherited) -weak_framework Bun',
+  # the pod is static, so the app executable links the runtime and the program
+  # the bundle phase compiles. debug builds run hermes and link the runtime's
+  # exports weakly without it
+  s.static_framework = true
+  s.pod_target_xcconfig = { 'CLANG_CXX_LANGUAGE_STANDARD' => 'c++20' }
+  s.user_target_xcconfig = {
     'ONE_BUN_ENGINE_DIR' => engine_dir,
+    # the runtime is arm64 only
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'x86_64',
     'ONE_BUN_ENGINE_SCRIPT' => File.join(__dir__, 'embed.sh'),
+    'ONE_BUN_ENGINE_LDFLAGS' => '"$(ONE_BUN_ENGINE_DIR)/ios/$(PLATFORM_NAME)/BunEngine.o" -Wl,-sectcreate,__TEXT,__bun,"$(DERIVED_FILE_DIR)/one-bun-program" -Wl,-sectalign,__TEXT,__bun,0x4000',
+    'ONE_BUN_ENGINE_LDFLAGS[config=*Debug*]' => '-Wl,-weak_library,"$(ONE_BUN_ENGINE_DIR)/ios/BunEngine.tbd"',
+    'OTHER_LDFLAGS' => '$(inherited) $(ONE_BUN_ENGINE_LDFLAGS)',
   }
-  s.pod_target_xcconfig = link.merge('CLANG_CXX_LANGUAGE_STANDARD' => 'c++20')
-  s.user_target_xcconfig = link
   install_modules_dependencies(s)
   # with use_frameworks, react/runtime headers live in the JSITooling framework
   add_dependency(s, 'React-jsitooling', framework_name: 'JSITooling')
