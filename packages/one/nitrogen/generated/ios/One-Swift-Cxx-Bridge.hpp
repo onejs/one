@@ -190,6 +190,8 @@ namespace margelo::nitro::one { class HybridOneHapticsSpec; }
 namespace margelo::nitro::one { class HybridOneImageManipulatorSpec; }
 // Forward declaration of `HybridOneImagePickerSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
+// Forward declaration of `HybridOneKeyboardSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneKeyboardSpec; }
 // Forward declaration of `HybridOneLaunchScreenSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneLaunchScreenSpec; }
 // Forward declaration of `HybridOneLightSensorSpec` to properly resolve imports.
@@ -326,6 +328,14 @@ namespace margelo::nitro::one { struct NativeTrigger; }
 namespace margelo::nitro::one { enum class NotificationPermissionStatus; }
 // Forward declaration of `OneImageFlip` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneImageFlip; }
+// Forward declaration of `OneKeyboardEventName` to properly resolve imports.
+namespace margelo::nitro::one { enum class OneKeyboardEventName; }
+// Forward declaration of `OneKeyboardEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct OneKeyboardEvent; }
+// Forward declaration of `OneKeyboardFocus` to properly resolve imports.
+namespace margelo::nitro::one { struct OneKeyboardFocus; }
+// Forward declaration of `OneKeyboardFrame` to properly resolve imports.
+namespace margelo::nitro::one { struct OneKeyboardFrame; }
 // Forward declaration of `OneSDKPoint` to properly resolve imports.
 namespace margelo::nitro::one { struct OneSDKPoint; }
 // Forward declaration of `OneSDKRect` to properly resolve imports.
@@ -468,6 +478,8 @@ namespace One { class HybridOneHapticsSpec_cxx; }
 namespace One { class HybridOneImageManipulatorSpec_cxx; }
 // Forward declaration of `HybridOneImagePickerSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneImagePickerSpec_cxx; }
+// Forward declaration of `HybridOneKeyboardSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneKeyboardSpec_cxx; }
 // Forward declaration of `HybridOneLaunchScreenSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneLaunchScreenSpec_cxx; }
 // Forward declaration of `HybridOneLightSensorSpec_cxx` to properly resolve imports.
@@ -606,6 +618,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneHapticsSpec.hpp"
 #include "HybridOneImageManipulatorSpec.hpp"
 #include "HybridOneImagePickerSpec.hpp"
+#include "HybridOneKeyboardSpec.hpp"
 #include "HybridOneLaunchScreenSpec.hpp"
 #include "HybridOneLightSensorSpec.hpp"
 #include "HybridOneLocationSpec.hpp"
@@ -674,6 +687,10 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "NativeTriggerType.hpp"
 #include "NotificationPermissionStatus.hpp"
 #include "OneImageFlip.hpp"
+#include "OneKeyboardEvent.hpp"
+#include "OneKeyboardEventName.hpp"
+#include "OneKeyboardFocus.hpp"
+#include "OneKeyboardFrame.hpp"
 #include "OneSDKPoint.hpp"
 #include "OneSDKRect.hpp"
 #include "OneSDKResult.hpp"
@@ -755,7 +772,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline HingeState get_std__optional_HingeState_(const std::optional<HingeState>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<SizeClass>>
   /**
    * Specialized version of `std::shared_ptr<Promise<SizeClass>>`.
@@ -767,7 +784,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<SizeClass> wrap_std__shared_ptr_Promise_SizeClass__(std::shared_ptr<Promise<SizeClass>> promise) noexcept {
     return PromiseHolder<SizeClass>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const SizeClass& /* result */)>
   /**
    * Specialized version of `std::function<void(const SizeClass&)>`.
@@ -789,7 +806,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_SizeClass_Wrapper wrap_Func_void_SizeClass(Func_void_SizeClass value) noexcept {
     return Func_void_SizeClass_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void(const std::exception_ptr& /* error */)>
   /**
    * Specialized version of `std::function<void(const std::exception_ptr&)>`.
@@ -811,7 +828,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__exception_ptr_Wrapper wrap_Func_void_std__exception_ptr(Func_void_std__exception_ptr value) noexcept {
     return Func_void_std__exception_ptr_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::optional<HingeState>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::optional<HingeState>>>`.
@@ -823,7 +840,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::optional<HingeState>> wrap_std__shared_ptr_Promise_std__optional_HingeState___(std::shared_ptr<Promise<std::optional<HingeState>>> promise) noexcept {
     return PromiseHolder<std::optional<HingeState>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::optional<HingeState>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::optional<HingeState>&)>`.
@@ -845,7 +862,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__optional_HingeState__Wrapper wrap_Func_void_std__optional_HingeState_(Func_void_std__optional_HingeState_ value) noexcept {
     return Func_void_std__optional_HingeState__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void()>
   /**
    * Specialized version of `std::function<void()>`.
@@ -867,7 +884,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_Wrapper wrap_Func_void(Func_void value) noexcept {
     return Func_void_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneAdaptiveSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneAdaptiveSpec>`.
@@ -875,11 +892,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneAdaptiveSpec_ = std::shared_ptr<HybridOneAdaptiveSpec>;
   std::shared_ptr<HybridOneAdaptiveSpec> create_std__shared_ptr_HybridOneAdaptiveSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneAdaptiveSpec_(std__shared_ptr_HybridOneAdaptiveSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneAdaptiveSpec>
   using std__weak_ptr_HybridOneAdaptiveSpec_ = std::weak_ptr<HybridOneAdaptiveSpec>;
   inline std__weak_ptr_HybridOneAdaptiveSpec_ weakify_std__shared_ptr_HybridOneAdaptiveSpec_(const std::shared_ptr<HybridOneAdaptiveSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<SizeClass>
   using Result_SizeClass_ = Result<SizeClass>;
   inline Result_SizeClass_ create_Result_SizeClass_(const SizeClass& value) noexcept {
@@ -888,7 +905,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_SizeClass_ create_Result_SizeClass_(const std::exception_ptr& error) noexcept {
     return Result<SizeClass>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::optional<HingeState>>
   using Result_std__optional_HingeState__ = Result<std::optional<HingeState>>;
   inline Result_std__optional_HingeState__ create_Result_std__optional_HingeState__(const std::optional<HingeState>& value) noexcept {
@@ -897,7 +914,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__optional_HingeState__ create_Result_std__optional_HingeState__(const std::exception_ptr& error) noexcept {
     return Result<std::optional<HingeState>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<SizeClass>>>
   using Result_std__shared_ptr_Promise_SizeClass___ = Result<std::shared_ptr<Promise<SizeClass>>>;
   inline Result_std__shared_ptr_Promise_SizeClass___ create_Result_std__shared_ptr_Promise_SizeClass___(const std::shared_ptr<Promise<SizeClass>>& value) noexcept {
@@ -906,7 +923,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_SizeClass___ create_Result_std__shared_ptr_Promise_SizeClass___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<SizeClass>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::optional<HingeState>>>>
   using Result_std__shared_ptr_Promise_std__optional_HingeState____ = Result<std::shared_ptr<Promise<std::optional<HingeState>>>>;
   inline Result_std__shared_ptr_Promise_std__optional_HingeState____ create_Result_std__shared_ptr_Promise_std__optional_HingeState____(const std::shared_ptr<Promise<std::optional<HingeState>>>& value) noexcept {
@@ -915,7 +932,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__optional_HingeState____ create_Result_std__shared_ptr_Promise_std__optional_HingeState____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::optional<HingeState>>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::function<void()>>
   using Result_std__function_void____ = Result<std::function<void()>>;
   inline Result_std__function_void____ create_Result_std__function_void____(const std::function<void()>& value) noexcept {
@@ -924,7 +941,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__function_void____ create_Result_std__function_void____(const std::exception_ptr& error) noexcept {
     return Result<std::function<void()>>::withError(error);
   }
-  
+
   // pragma MARK: std::optional<std::string>
   /**
    * Specialized version of `std::optional<std::string>`.
@@ -939,7 +956,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::string get_std__optional_std__string_(const std::optional<std::string>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::function<void(const AppIntentInvocation& /* invocation */)>
   /**
    * Specialized version of `std::function<void(const AppIntentInvocation&)>`.
@@ -961,7 +978,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AppIntentInvocation_Wrapper wrap_Func_void_AppIntentInvocation(Func_void_AppIntentInvocation value) noexcept {
     return Func_void_AppIntentInvocation_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<AppIntentInvocation>
   /**
    * Specialized version of `std::vector<AppIntentInvocation>`.
@@ -972,7 +989,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneAppIntentsSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneAppIntentsSpec>`.
@@ -980,11 +997,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneAppIntentsSpec_ = std::shared_ptr<HybridOneAppIntentsSpec>;
   std::shared_ptr<HybridOneAppIntentsSpec> create_std__shared_ptr_HybridOneAppIntentsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneAppIntentsSpec_(std__shared_ptr_HybridOneAppIntentsSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneAppIntentsSpec>
   using std__weak_ptr_HybridOneAppIntentsSpec_ = std::weak_ptr<HybridOneAppIntentsSpec>;
   inline std__weak_ptr_HybridOneAppIntentsSpec_ weakify_std__shared_ptr_HybridOneAppIntentsSpec_(const std::shared_ptr<HybridOneAppIntentsSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::vector<AppIntentInvocation>>
   using Result_std__vector_AppIntentInvocation__ = Result<std::vector<AppIntentInvocation>>;
   inline Result_std__vector_AppIntentInvocation__ create_Result_std__vector_AppIntentInvocation__(const std::vector<AppIntentInvocation>& value) noexcept {
@@ -993,7 +1010,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__vector_AppIntentInvocation__ create_Result_std__vector_AppIntentInvocation__(const std::exception_ptr& error) noexcept {
     return Result<std::vector<AppIntentInvocation>>::withError(error);
   }
-  
+
   // pragma MARK: Result<void>
   using Result_void_ = Result<void>;
   inline Result_void_ create_Result_void_() noexcept {
@@ -1002,7 +1019,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_void_ create_Result_void_(const std::exception_ptr& error) noexcept {
     return Result<void>::withError(error);
   }
-  
+
   // pragma MARK: std::optional<AppleAuthFullName>
   /**
    * Specialized version of `std::optional<AppleAuthFullName>`.
@@ -1017,7 +1034,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline AppleAuthFullName get_std__optional_AppleAuthFullName_(const std::optional<AppleAuthFullName>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::optional<AppleAuthCredential>
   /**
    * Specialized version of `std::optional<AppleAuthCredential>`.
@@ -1032,7 +1049,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline AppleAuthCredential get_std__optional_AppleAuthCredential_(const std::optional<AppleAuthCredential>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<AppleAuthResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<AppleAuthResult>>`.
@@ -1044,7 +1061,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<AppleAuthResult> wrap_std__shared_ptr_Promise_AppleAuthResult__(std::shared_ptr<Promise<AppleAuthResult>> promise) noexcept {
     return PromiseHolder<AppleAuthResult>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const AppleAuthResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const AppleAuthResult&)>`.
@@ -1066,7 +1083,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AppleAuthResult_Wrapper wrap_Func_void_AppleAuthResult(Func_void_AppleAuthResult value) noexcept {
     return Func_void_AppleAuthResult_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<AppleAuthScope>
   /**
    * Specialized version of `std::vector<AppleAuthScope>`.
@@ -1077,7 +1094,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::optional<std::vector<AppleAuthScope>>
   /**
    * Specialized version of `std::optional<std::vector<AppleAuthScope>>`.
@@ -1092,7 +1109,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::vector<AppleAuthScope> get_std__optional_std__vector_AppleAuthScope__(const std::optional<std::vector<AppleAuthScope>>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<AppleCredentialState>>
   /**
    * Specialized version of `std::shared_ptr<Promise<AppleCredentialState>>`.
@@ -1104,7 +1121,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<AppleCredentialState> wrap_std__shared_ptr_Promise_AppleCredentialState__(std::shared_ptr<Promise<AppleCredentialState>> promise) noexcept {
     return PromiseHolder<AppleCredentialState>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(AppleCredentialState /* result */)>
   /**
    * Specialized version of `std::function<void(AppleCredentialState)>`.
@@ -1126,7 +1143,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AppleCredentialState_Wrapper wrap_Func_void_AppleCredentialState(Func_void_AppleCredentialState value) noexcept {
     return Func_void_AppleCredentialState_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneAppleAuthSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneAppleAuthSpec>`.
@@ -1134,11 +1151,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneAppleAuthSpec_ = std::shared_ptr<HybridOneAppleAuthSpec>;
   std::shared_ptr<HybridOneAppleAuthSpec> create_std__shared_ptr_HybridOneAppleAuthSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneAppleAuthSpec_(std__shared_ptr_HybridOneAppleAuthSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneAppleAuthSpec>
   using std__weak_ptr_HybridOneAppleAuthSpec_ = std::weak_ptr<HybridOneAppleAuthSpec>;
   inline std__weak_ptr_HybridOneAppleAuthSpec_ weakify_std__shared_ptr_HybridOneAppleAuthSpec_(const std::shared_ptr<HybridOneAppleAuthSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<bool>
   using Result_bool_ = Result<bool>;
   inline Result_bool_ create_Result_bool_(bool value) noexcept {
@@ -1147,7 +1164,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_bool_ create_Result_bool_(const std::exception_ptr& error) noexcept {
     return Result<bool>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<AppleAuthResult>>>
   using Result_std__shared_ptr_Promise_AppleAuthResult___ = Result<std::shared_ptr<Promise<AppleAuthResult>>>;
   inline Result_std__shared_ptr_Promise_AppleAuthResult___ create_Result_std__shared_ptr_Promise_AppleAuthResult___(const std::shared_ptr<Promise<AppleAuthResult>>& value) noexcept {
@@ -1156,7 +1173,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_AppleAuthResult___ create_Result_std__shared_ptr_Promise_AppleAuthResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AppleAuthResult>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<AppleCredentialState>>>
   using Result_std__shared_ptr_Promise_AppleCredentialState___ = Result<std::shared_ptr<Promise<AppleCredentialState>>>;
   inline Result_std__shared_ptr_Promise_AppleCredentialState___ create_Result_std__shared_ptr_Promise_AppleCredentialState___(const std::shared_ptr<Promise<AppleCredentialState>>& value) noexcept {
@@ -1165,7 +1182,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_AppleCredentialState___ create_Result_std__shared_ptr_Promise_AppleCredentialState___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AppleCredentialState>>>::withError(error);
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<AppTrackingPermissionStatus>>
   /**
    * Specialized version of `std::shared_ptr<Promise<AppTrackingPermissionStatus>>`.
@@ -1177,7 +1194,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<AppTrackingPermissionStatus> wrap_std__shared_ptr_Promise_AppTrackingPermissionStatus__(std::shared_ptr<Promise<AppTrackingPermissionStatus>> promise) noexcept {
     return PromiseHolder<AppTrackingPermissionStatus>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(AppTrackingPermissionStatus /* result */)>
   /**
    * Specialized version of `std::function<void(AppTrackingPermissionStatus)>`.
@@ -1199,7 +1216,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AppTrackingPermissionStatus_Wrapper wrap_Func_void_AppTrackingPermissionStatus(Func_void_AppTrackingPermissionStatus value) noexcept {
     return Func_void_AppTrackingPermissionStatus_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneAppTrackingSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneAppTrackingSpec>`.
@@ -1207,11 +1224,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneAppTrackingSpec_ = std::shared_ptr<HybridOneAppTrackingSpec>;
   std::shared_ptr<HybridOneAppTrackingSpec> create_std__shared_ptr_HybridOneAppTrackingSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneAppTrackingSpec_(std__shared_ptr_HybridOneAppTrackingSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneAppTrackingSpec>
   using std__weak_ptr_HybridOneAppTrackingSpec_ = std::weak_ptr<HybridOneAppTrackingSpec>;
   inline std__weak_ptr_HybridOneAppTrackingSpec_ weakify_std__shared_ptr_HybridOneAppTrackingSpec_(const std::shared_ptr<HybridOneAppTrackingSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<AppTrackingPermissionStatus>
   using Result_AppTrackingPermissionStatus_ = Result<AppTrackingPermissionStatus>;
   inline Result_AppTrackingPermissionStatus_ create_Result_AppTrackingPermissionStatus_(AppTrackingPermissionStatus value) noexcept {
@@ -1220,7 +1237,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_AppTrackingPermissionStatus_ create_Result_AppTrackingPermissionStatus_(const std::exception_ptr& error) noexcept {
     return Result<AppTrackingPermissionStatus>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<AppTrackingPermissionStatus>>>
   using Result_std__shared_ptr_Promise_AppTrackingPermissionStatus___ = Result<std::shared_ptr<Promise<AppTrackingPermissionStatus>>>;
   inline Result_std__shared_ptr_Promise_AppTrackingPermissionStatus___ create_Result_std__shared_ptr_Promise_AppTrackingPermissionStatus___(const std::shared_ptr<Promise<AppTrackingPermissionStatus>>& value) noexcept {
@@ -1229,7 +1246,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_AppTrackingPermissionStatus___ create_Result_std__shared_ptr_Promise_AppTrackingPermissionStatus___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AppTrackingPermissionStatus>>>::withError(error);
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<AudioRecordingPermission>>
   /**
    * Specialized version of `std::shared_ptr<Promise<AudioRecordingPermission>>`.
@@ -1241,7 +1258,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<AudioRecordingPermission> wrap_std__shared_ptr_Promise_AudioRecordingPermission__(std::shared_ptr<Promise<AudioRecordingPermission>> promise) noexcept {
     return PromiseHolder<AudioRecordingPermission>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(AudioRecordingPermission /* result */)>
   /**
    * Specialized version of `std::function<void(AudioRecordingPermission)>`.
@@ -1263,7 +1280,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AudioRecordingPermission_Wrapper wrap_Func_void_AudioRecordingPermission(Func_void_AudioRecordingPermission value) noexcept {
     return Func_void_AudioRecordingPermission_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::optional<double>
   /**
    * Specialized version of `std::optional<double>`.
@@ -1278,7 +1295,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline double get_std__optional_double_(const std::optional<double>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<AudioPlaybackStatus>>
   /**
    * Specialized version of `std::shared_ptr<Promise<AudioPlaybackStatus>>`.
@@ -1290,7 +1307,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<AudioPlaybackStatus> wrap_std__shared_ptr_Promise_AudioPlaybackStatus__(std::shared_ptr<Promise<AudioPlaybackStatus>> promise) noexcept {
     return PromiseHolder<AudioPlaybackStatus>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const AudioPlaybackStatus& /* result */)>
   /**
    * Specialized version of `std::function<void(const AudioPlaybackStatus&)>`.
@@ -1312,7 +1329,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AudioPlaybackStatus_Wrapper wrap_Func_void_AudioPlaybackStatus(Func_void_AudioPlaybackStatus value) noexcept {
     return Func_void_AudioPlaybackStatus_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::optional<bool>
   /**
    * Specialized version of `std::optional<bool>`.
@@ -1339,7 +1356,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<void> wrap_std__shared_ptr_Promise_void__(std::shared_ptr<Promise<void>> promise) noexcept {
     return PromiseHolder<void>(std::move(promise));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<AudioRecordingStatus>>
   /**
    * Specialized version of `std::shared_ptr<Promise<AudioRecordingStatus>>`.
@@ -1351,7 +1368,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<AudioRecordingStatus> wrap_std__shared_ptr_Promise_AudioRecordingStatus__(std::shared_ptr<Promise<AudioRecordingStatus>> promise) noexcept {
     return PromiseHolder<AudioRecordingStatus>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const AudioRecordingStatus& /* result */)>
   /**
    * Specialized version of `std::function<void(const AudioRecordingStatus&)>`.
@@ -1373,7 +1390,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AudioRecordingStatus_Wrapper wrap_Func_void_AudioRecordingStatus(Func_void_AudioRecordingStatus value) noexcept {
     return Func_void_AudioRecordingStatus_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<AudioRecordingResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<AudioRecordingResult>>`.
@@ -1385,7 +1402,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<AudioRecordingResult> wrap_std__shared_ptr_Promise_AudioRecordingResult__(std::shared_ptr<Promise<AudioRecordingResult>> promise) noexcept {
     return PromiseHolder<AudioRecordingResult>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const AudioRecordingResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const AudioRecordingResult&)>`.
@@ -1407,7 +1424,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AudioRecordingResult_Wrapper wrap_Func_void_AudioRecordingResult(Func_void_AudioRecordingResult value) noexcept {
     return Func_void_AudioRecordingResult_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void(const AudioInterruptionEvent& /* event */)>
   /**
    * Specialized version of `std::function<void(const AudioInterruptionEvent&)>`.
@@ -1429,7 +1446,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AudioInterruptionEvent_Wrapper wrap_Func_void_AudioInterruptionEvent(Func_void_AudioInterruptionEvent value) noexcept {
     return Func_void_AudioInterruptionEvent_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void(const AudioRemoteCommandEvent& /* event */)>
   /**
    * Specialized version of `std::function<void(const AudioRemoteCommandEvent&)>`.
@@ -1451,7 +1468,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AudioRemoteCommandEvent_Wrapper wrap_Func_void_AudioRemoteCommandEvent(Func_void_AudioRemoteCommandEvent value) noexcept {
     return Func_void_AudioRemoteCommandEvent_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::unordered_map<std::string, std::string>
   /**
    * Specialized version of `std::unordered_map<std::string, std::string>`.
@@ -1476,7 +1493,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline void emplace_std__unordered_map_std__string__std__string_(std__unordered_map_std__string__std__string_& map, const std::string& key, const std::string& value) noexcept {
     map.emplace(key, value);
   }
-  
+
   // pragma MARK: std::optional<std::unordered_map<std::string, std::string>>
   /**
    * Specialized version of `std::optional<std::unordered_map<std::string, std::string>>`.
@@ -1491,7 +1508,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::unordered_map<std::string, std::string> get_std__optional_std__unordered_map_std__string__std__string__(const std::optional<std::unordered_map<std::string, std::string>>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::optional<PitchCorrectionQuality>
   /**
    * Specialized version of `std::optional<PitchCorrectionQuality>`.
@@ -1506,7 +1523,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PitchCorrectionQuality get_std__optional_PitchCorrectionQuality_(const std::optional<PitchCorrectionQuality>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneAudioSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneAudioSpec>`.
@@ -1514,11 +1531,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneAudioSpec_ = std::shared_ptr<HybridOneAudioSpec>;
   std::shared_ptr<HybridOneAudioSpec> create_std__shared_ptr_HybridOneAudioSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneAudioSpec_(std__shared_ptr_HybridOneAudioSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneAudioSpec>
   using std__weak_ptr_HybridOneAudioSpec_ = std::weak_ptr<HybridOneAudioSpec>;
   inline std__weak_ptr_HybridOneAudioSpec_ weakify_std__shared_ptr_HybridOneAudioSpec_(const std::shared_ptr<HybridOneAudioSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<AudioRecordingPermission>>>
   using Result_std__shared_ptr_Promise_AudioRecordingPermission___ = Result<std::shared_ptr<Promise<AudioRecordingPermission>>>;
   inline Result_std__shared_ptr_Promise_AudioRecordingPermission___ create_Result_std__shared_ptr_Promise_AudioRecordingPermission___(const std::shared_ptr<Promise<AudioRecordingPermission>>& value) noexcept {
@@ -1527,7 +1544,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_AudioRecordingPermission___ create_Result_std__shared_ptr_Promise_AudioRecordingPermission___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AudioRecordingPermission>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<AudioPlaybackStatus>>>
   using Result_std__shared_ptr_Promise_AudioPlaybackStatus___ = Result<std::shared_ptr<Promise<AudioPlaybackStatus>>>;
   inline Result_std__shared_ptr_Promise_AudioPlaybackStatus___ create_Result_std__shared_ptr_Promise_AudioPlaybackStatus___(const std::shared_ptr<Promise<AudioPlaybackStatus>>& value) noexcept {
@@ -1536,7 +1553,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_AudioPlaybackStatus___ create_Result_std__shared_ptr_Promise_AudioPlaybackStatus___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AudioPlaybackStatus>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<void>>>
   using Result_std__shared_ptr_Promise_void___ = Result<std::shared_ptr<Promise<void>>>;
   inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::shared_ptr<Promise<void>>& value) noexcept {
@@ -1545,7 +1562,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<void>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<AudioRecordingStatus>>>
   using Result_std__shared_ptr_Promise_AudioRecordingStatus___ = Result<std::shared_ptr<Promise<AudioRecordingStatus>>>;
   inline Result_std__shared_ptr_Promise_AudioRecordingStatus___ create_Result_std__shared_ptr_Promise_AudioRecordingStatus___(const std::shared_ptr<Promise<AudioRecordingStatus>>& value) noexcept {
@@ -1554,7 +1571,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_AudioRecordingStatus___ create_Result_std__shared_ptr_Promise_AudioRecordingStatus___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AudioRecordingStatus>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<AudioRecordingResult>>>
   using Result_std__shared_ptr_Promise_AudioRecordingResult___ = Result<std::shared_ptr<Promise<AudioRecordingResult>>>;
   inline Result_std__shared_ptr_Promise_AudioRecordingResult___ create_Result_std__shared_ptr_Promise_AudioRecordingResult___(const std::shared_ptr<Promise<AudioRecordingResult>>& value) noexcept {
@@ -1563,7 +1580,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_AudioRecordingResult___ create_Result_std__shared_ptr_Promise_AudioRecordingResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AudioRecordingResult>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::string>
   using Result_std__string_ = Result<std::string>;
   inline Result_std__string_ create_Result_std__string_(const std::string& value) noexcept {
@@ -1572,7 +1589,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__string_ create_Result_std__string_(const std::exception_ptr& error) noexcept {
     return Result<std::string>::withError(error);
   }
-  
+
   // pragma MARK: Result<AudioPlayerStatus>
   using Result_AudioPlayerStatus_ = Result<AudioPlayerStatus>;
   inline Result_AudioPlayerStatus_ create_Result_AudioPlayerStatus_(const AudioPlayerStatus& value) noexcept {
@@ -1581,7 +1598,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_AudioPlayerStatus_ create_Result_AudioPlayerStatus_(const std::exception_ptr& error) noexcept {
     return Result<AudioPlayerStatus>::withError(error);
   }
-  
+
   // pragma MARK: std::vector<PendingBackgroundTask>
   /**
    * Specialized version of `std::vector<PendingBackgroundTask>`.
@@ -1592,7 +1609,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>`.
@@ -1604,7 +1621,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<PendingBackgroundTask>> wrap_std__shared_ptr_Promise_std__vector_PendingBackgroundTask___(std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>> promise) noexcept {
     return PromiseHolder<std::vector<PendingBackgroundTask>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::vector<PendingBackgroundTask>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<PendingBackgroundTask>&)>`.
@@ -1626,7 +1643,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_PendingBackgroundTask__Wrapper wrap_Func_void_std__vector_PendingBackgroundTask_(Func_void_std__vector_PendingBackgroundTask_ value) noexcept {
     return Func_void_std__vector_PendingBackgroundTask__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void(const BackgroundTaskInvocation& /* invocation */)>
   /**
    * Specialized version of `std::function<void(const BackgroundTaskInvocation&)>`.
@@ -1648,7 +1665,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_BackgroundTaskInvocation_Wrapper wrap_Func_void_BackgroundTaskInvocation(Func_void_BackgroundTaskInvocation value) noexcept {
     return Func_void_BackgroundTaskInvocation_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void(const std::string& /* executionId */)>
   /**
    * Specialized version of `std::function<void(const std::string&)>`.
@@ -1670,7 +1687,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__string_Wrapper wrap_Func_void_std__string(Func_void_std__string value) noexcept {
     return Func_void_std__string_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneBackgroundTasksSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneBackgroundTasksSpec>`.
@@ -1678,11 +1695,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneBackgroundTasksSpec_ = std::shared_ptr<HybridOneBackgroundTasksSpec>;
   std::shared_ptr<HybridOneBackgroundTasksSpec> create_std__shared_ptr_HybridOneBackgroundTasksSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneBackgroundTasksSpec_(std__shared_ptr_HybridOneBackgroundTasksSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneBackgroundTasksSpec>
   using std__weak_ptr_HybridOneBackgroundTasksSpec_ = std::weak_ptr<HybridOneBackgroundTasksSpec>;
   inline std__weak_ptr_HybridOneBackgroundTasksSpec_ weakify_std__shared_ptr_HybridOneBackgroundTasksSpec_(const std::shared_ptr<HybridOneBackgroundTasksSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>>
   using Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____ = Result<std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____ create_Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____(const std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>& value) noexcept {
@@ -1691,7 +1708,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____ create_Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>>::withError(error);
   }
-  
+
   // pragma MARK: std::function<void(const BarometerMeasurement& /* event */)>
   /**
    * Specialized version of `std::function<void(const BarometerMeasurement&)>`.
@@ -1713,7 +1730,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_BarometerMeasurement_Wrapper wrap_Func_void_BarometerMeasurement(Func_void_BarometerMeasurement value) noexcept {
     return Func_void_BarometerMeasurement_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneBarometerSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneBarometerSpec>`.
@@ -1721,11 +1738,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneBarometerSpec_ = std::shared_ptr<HybridOneBarometerSpec>;
   std::shared_ptr<HybridOneBarometerSpec> create_std__shared_ptr_HybridOneBarometerSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneBarometerSpec_(std__shared_ptr_HybridOneBarometerSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneBarometerSpec>
   using std__weak_ptr_HybridOneBarometerSpec_ = std::weak_ptr<HybridOneBarometerSpec>;
   inline std__weak_ptr_HybridOneBarometerSpec_ weakify_std__shared_ptr_HybridOneBarometerSpec_(const std::shared_ptr<HybridOneBarometerSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: std::shared_ptr<Promise<double>>
   /**
    * Specialized version of `std::shared_ptr<Promise<double>>`.
@@ -1737,7 +1754,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<double> wrap_std__shared_ptr_Promise_double__(std::shared_ptr<Promise<double>> promise) noexcept {
     return PromiseHolder<double>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(double /* result */)>
   /**
    * Specialized version of `std::function<void(double)>`.
@@ -1759,7 +1776,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_double_Wrapper wrap_Func_void_double(Func_void_double value) noexcept {
     return Func_void_double_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<BatteryState>>
   /**
    * Specialized version of `std::shared_ptr<Promise<BatteryState>>`.
@@ -1771,7 +1788,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<BatteryState> wrap_std__shared_ptr_Promise_BatteryState__(std::shared_ptr<Promise<BatteryState>> promise) noexcept {
     return PromiseHolder<BatteryState>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(BatteryState /* result */)>
   /**
    * Specialized version of `std::function<void(BatteryState)>`.
@@ -1793,7 +1810,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_BatteryState_Wrapper wrap_Func_void_BatteryState(Func_void_BatteryState value) noexcept {
     return Func_void_BatteryState_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<BatteryPowerState>>
   /**
    * Specialized version of `std::shared_ptr<Promise<BatteryPowerState>>`.
@@ -1805,7 +1822,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<BatteryPowerState> wrap_std__shared_ptr_Promise_BatteryPowerState__(std::shared_ptr<Promise<BatteryPowerState>> promise) noexcept {
     return PromiseHolder<BatteryPowerState>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const BatteryPowerState& /* result */)>
   /**
    * Specialized version of `std::function<void(const BatteryPowerState&)>`.
@@ -1827,7 +1844,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_BatteryPowerState_Wrapper wrap_Func_void_BatteryPowerState(Func_void_BatteryPowerState value) noexcept {
     return Func_void_BatteryPowerState_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<bool>>
   /**
    * Specialized version of `std::shared_ptr<Promise<bool>>`.
@@ -1839,7 +1856,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<bool> wrap_std__shared_ptr_Promise_bool__(std::shared_ptr<Promise<bool>> promise) noexcept {
     return PromiseHolder<bool>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(bool /* result */)>
   /**
    * Specialized version of `std::function<void(bool)>`.
@@ -1861,7 +1878,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_bool_Wrapper wrap_Func_void_bool(Func_void_bool value) noexcept {
     return Func_void_bool_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void(const BatteryLevelEvent& /* event */)>
   /**
    * Specialized version of `std::function<void(const BatteryLevelEvent&)>`.
@@ -1883,7 +1900,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_BatteryLevelEvent_Wrapper wrap_Func_void_BatteryLevelEvent(Func_void_BatteryLevelEvent value) noexcept {
     return Func_void_BatteryLevelEvent_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void(const BatteryStateEvent& /* event */)>
   /**
    * Specialized version of `std::function<void(const BatteryStateEvent&)>`.
@@ -1905,7 +1922,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_BatteryStateEvent_Wrapper wrap_Func_void_BatteryStateEvent(Func_void_BatteryStateEvent value) noexcept {
     return Func_void_BatteryStateEvent_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void(const BatteryPowerModeEvent& /* event */)>
   /**
    * Specialized version of `std::function<void(const BatteryPowerModeEvent&)>`.
@@ -1927,7 +1944,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_BatteryPowerModeEvent_Wrapper wrap_Func_void_BatteryPowerModeEvent(Func_void_BatteryPowerModeEvent value) noexcept {
     return Func_void_BatteryPowerModeEvent_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneBatterySpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneBatterySpec>`.
@@ -1935,11 +1952,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneBatterySpec_ = std::shared_ptr<HybridOneBatterySpec>;
   std::shared_ptr<HybridOneBatterySpec> create_std__shared_ptr_HybridOneBatterySpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneBatterySpec_(std__shared_ptr_HybridOneBatterySpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneBatterySpec>
   using std__weak_ptr_HybridOneBatterySpec_ = std::weak_ptr<HybridOneBatterySpec>;
   inline std__weak_ptr_HybridOneBatterySpec_ weakify_std__shared_ptr_HybridOneBatterySpec_(const std::shared_ptr<HybridOneBatterySpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<double>>>
   using Result_std__shared_ptr_Promise_double___ = Result<std::shared_ptr<Promise<double>>>;
   inline Result_std__shared_ptr_Promise_double___ create_Result_std__shared_ptr_Promise_double___(const std::shared_ptr<Promise<double>>& value) noexcept {
@@ -1948,7 +1965,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_double___ create_Result_std__shared_ptr_Promise_double___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<double>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<BatteryState>>>
   using Result_std__shared_ptr_Promise_BatteryState___ = Result<std::shared_ptr<Promise<BatteryState>>>;
   inline Result_std__shared_ptr_Promise_BatteryState___ create_Result_std__shared_ptr_Promise_BatteryState___(const std::shared_ptr<Promise<BatteryState>>& value) noexcept {
@@ -1957,7 +1974,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_BatteryState___ create_Result_std__shared_ptr_Promise_BatteryState___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<BatteryState>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<BatteryPowerState>>>
   using Result_std__shared_ptr_Promise_BatteryPowerState___ = Result<std::shared_ptr<Promise<BatteryPowerState>>>;
   inline Result_std__shared_ptr_Promise_BatteryPowerState___ create_Result_std__shared_ptr_Promise_BatteryPowerState___(const std::shared_ptr<Promise<BatteryPowerState>>& value) noexcept {
@@ -1966,7 +1983,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_BatteryPowerState___ create_Result_std__shared_ptr_Promise_BatteryPowerState___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<BatteryPowerState>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<bool>>>
   using Result_std__shared_ptr_Promise_bool___ = Result<std::shared_ptr<Promise<bool>>>;
   inline Result_std__shared_ptr_Promise_bool___ create_Result_std__shared_ptr_Promise_bool___(const std::shared_ptr<Promise<bool>>& value) noexcept {
@@ -1975,7 +1992,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_bool___ create_Result_std__shared_ptr_Promise_bool___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<bool>>>::withError(error);
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<BrowserResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<BrowserResult>>`.
@@ -1987,7 +2004,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<BrowserResult> wrap_std__shared_ptr_Promise_BrowserResult__(std::shared_ptr<Promise<BrowserResult>> promise) noexcept {
     return PromiseHolder<BrowserResult>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const BrowserResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const BrowserResult&)>`.
@@ -2009,7 +2026,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_BrowserResult_Wrapper wrap_Func_void_BrowserResult(Func_void_BrowserResult value) noexcept {
     return Func_void_BrowserResult_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::optional<BrowserPresentationStyle>
   /**
    * Specialized version of `std::optional<BrowserPresentationStyle>`.
@@ -2024,7 +2041,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline BrowserPresentationStyle get_std__optional_BrowserPresentationStyle_(const std::optional<BrowserPresentationStyle>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::optional<BrowserColorScheme>
   /**
    * Specialized version of `std::optional<BrowserColorScheme>`.
@@ -2039,7 +2056,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline BrowserColorScheme get_std__optional_BrowserColorScheme_(const std::optional<BrowserColorScheme>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<BrowserAuthResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<BrowserAuthResult>>`.
@@ -2051,7 +2068,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<BrowserAuthResult> wrap_std__shared_ptr_Promise_BrowserAuthResult__(std::shared_ptr<Promise<BrowserAuthResult>> promise) noexcept {
     return PromiseHolder<BrowserAuthResult>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const BrowserAuthResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const BrowserAuthResult&)>`.
@@ -2073,7 +2090,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_BrowserAuthResult_Wrapper wrap_Func_void_BrowserAuthResult(Func_void_BrowserAuthResult value) noexcept {
     return Func_void_BrowserAuthResult_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneBrowserSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneBrowserSpec>`.
@@ -2081,11 +2098,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneBrowserSpec_ = std::shared_ptr<HybridOneBrowserSpec>;
   std::shared_ptr<HybridOneBrowserSpec> create_std__shared_ptr_HybridOneBrowserSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneBrowserSpec_(std__shared_ptr_HybridOneBrowserSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneBrowserSpec>
   using std__weak_ptr_HybridOneBrowserSpec_ = std::weak_ptr<HybridOneBrowserSpec>;
   inline std__weak_ptr_HybridOneBrowserSpec_ weakify_std__shared_ptr_HybridOneBrowserSpec_(const std::shared_ptr<HybridOneBrowserSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<BrowserResult>>>
   using Result_std__shared_ptr_Promise_BrowserResult___ = Result<std::shared_ptr<Promise<BrowserResult>>>;
   inline Result_std__shared_ptr_Promise_BrowserResult___ create_Result_std__shared_ptr_Promise_BrowserResult___(const std::shared_ptr<Promise<BrowserResult>>& value) noexcept {
@@ -2094,7 +2111,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_BrowserResult___ create_Result_std__shared_ptr_Promise_BrowserResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<BrowserResult>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<BrowserAuthResult>>>
   using Result_std__shared_ptr_Promise_BrowserAuthResult___ = Result<std::shared_ptr<Promise<BrowserAuthResult>>>;
   inline Result_std__shared_ptr_Promise_BrowserAuthResult___ create_Result_std__shared_ptr_Promise_BrowserAuthResult___(const std::shared_ptr<Promise<BrowserAuthResult>>& value) noexcept {
@@ -2103,7 +2120,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_BrowserAuthResult___ create_Result_std__shared_ptr_Promise_BrowserAuthResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<BrowserAuthResult>>>::withError(error);
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<ContactsPermissionStatus>>
   /**
    * Specialized version of `std::shared_ptr<Promise<ContactsPermissionStatus>>`.
@@ -2115,7 +2132,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<ContactsPermissionStatus> wrap_std__shared_ptr_Promise_ContactsPermissionStatus__(std::shared_ptr<Promise<ContactsPermissionStatus>> promise) noexcept {
     return PromiseHolder<ContactsPermissionStatus>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(ContactsPermissionStatus /* result */)>
   /**
    * Specialized version of `std::function<void(ContactsPermissionStatus)>`.
@@ -2137,7 +2154,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_ContactsPermissionStatus_Wrapper wrap_Func_void_ContactsPermissionStatus(Func_void_ContactsPermissionStatus value) noexcept {
     return Func_void_ContactsPermissionStatus_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<std::string>
   /**
    * Specialized version of `std::vector<std::string>`.
@@ -2148,7 +2165,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::vector<ContactPostalAddress>
   /**
    * Specialized version of `std::vector<ContactPostalAddress>`.
@@ -2159,7 +2176,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::optional<ContactInfo>
   /**
    * Specialized version of `std::optional<ContactInfo>`.
@@ -2174,7 +2191,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline ContactInfo get_std__optional_ContactInfo_(const std::optional<ContactInfo>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::optional<ContactInfo>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::optional<ContactInfo>>>`.
@@ -2186,7 +2203,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::optional<ContactInfo>> wrap_std__shared_ptr_Promise_std__optional_ContactInfo___(std::shared_ptr<Promise<std::optional<ContactInfo>>> promise) noexcept {
     return PromiseHolder<std::optional<ContactInfo>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::optional<ContactInfo>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::optional<ContactInfo>&)>`.
@@ -2208,7 +2225,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__optional_ContactInfo__Wrapper wrap_Func_void_std__optional_ContactInfo_(Func_void_std__optional_ContactInfo_ value) noexcept {
     return Func_void_std__optional_ContactInfo__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<ContactInfo>
   /**
    * Specialized version of `std::vector<ContactInfo>`.
@@ -2219,7 +2236,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::vector<ContactInfo>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<ContactInfo>>>`.
@@ -2231,7 +2248,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<ContactInfo>> wrap_std__shared_ptr_Promise_std__vector_ContactInfo___(std::shared_ptr<Promise<std::vector<ContactInfo>>> promise) noexcept {
     return PromiseHolder<std::vector<ContactInfo>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::vector<ContactInfo>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<ContactInfo>&)>`.
@@ -2253,7 +2270,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_ContactInfo__Wrapper wrap_Func_void_std__vector_ContactInfo_(Func_void_std__vector_ContactInfo_ value) noexcept {
     return Func_void_std__vector_ContactInfo__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::string>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::string>>`.
@@ -2265,7 +2282,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::string> wrap_std__shared_ptr_Promise_std__string__(std::shared_ptr<Promise<std::string>> promise) noexcept {
     return PromiseHolder<std::string>(std::move(promise));
   }
-  
+
   // pragma MARK: std::vector<ContactPostalAddressInput>
   /**
    * Specialized version of `std::vector<ContactPostalAddressInput>`.
@@ -2276,7 +2293,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::optional<std::vector<ContactPostalAddressInput>>
   /**
    * Specialized version of `std::optional<std::vector<ContactPostalAddressInput>>`.
@@ -2291,7 +2308,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::vector<ContactPostalAddressInput> get_std__optional_std__vector_ContactPostalAddressInput__(const std::optional<std::vector<ContactPostalAddressInput>>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<ContactInfo>>
   /**
    * Specialized version of `std::shared_ptr<Promise<ContactInfo>>`.
@@ -2303,7 +2320,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<ContactInfo> wrap_std__shared_ptr_Promise_ContactInfo__(std::shared_ptr<Promise<ContactInfo>> promise) noexcept {
     return PromiseHolder<ContactInfo>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const ContactInfo& /* result */)>
   /**
    * Specialized version of `std::function<void(const ContactInfo&)>`.
@@ -2325,7 +2342,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_ContactInfo_Wrapper wrap_Func_void_ContactInfo(Func_void_ContactInfo value) noexcept {
     return Func_void_ContactInfo_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::optional<std::vector<std::string>>
   /**
    * Specialized version of `std::optional<std::vector<std::string>>`.
@@ -2340,7 +2357,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::vector<std::string> get_std__optional_std__vector_std__string__(const std::optional<std::vector<std::string>>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneContactsSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneContactsSpec>`.
@@ -2348,11 +2365,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneContactsSpec_ = std::shared_ptr<HybridOneContactsSpec>;
   std::shared_ptr<HybridOneContactsSpec> create_std__shared_ptr_HybridOneContactsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneContactsSpec_(std__shared_ptr_HybridOneContactsSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneContactsSpec>
   using std__weak_ptr_HybridOneContactsSpec_ = std::weak_ptr<HybridOneContactsSpec>;
   inline std__weak_ptr_HybridOneContactsSpec_ weakify_std__shared_ptr_HybridOneContactsSpec_(const std::shared_ptr<HybridOneContactsSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<ContactsPermissionStatus>
   using Result_ContactsPermissionStatus_ = Result<ContactsPermissionStatus>;
   inline Result_ContactsPermissionStatus_ create_Result_ContactsPermissionStatus_(ContactsPermissionStatus value) noexcept {
@@ -2361,7 +2378,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_ContactsPermissionStatus_ create_Result_ContactsPermissionStatus_(const std::exception_ptr& error) noexcept {
     return Result<ContactsPermissionStatus>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<ContactsPermissionStatus>>>
   using Result_std__shared_ptr_Promise_ContactsPermissionStatus___ = Result<std::shared_ptr<Promise<ContactsPermissionStatus>>>;
   inline Result_std__shared_ptr_Promise_ContactsPermissionStatus___ create_Result_std__shared_ptr_Promise_ContactsPermissionStatus___(const std::shared_ptr<Promise<ContactsPermissionStatus>>& value) noexcept {
@@ -2370,7 +2387,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_ContactsPermissionStatus___ create_Result_std__shared_ptr_Promise_ContactsPermissionStatus___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<ContactsPermissionStatus>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::optional<ContactInfo>>>>
   using Result_std__shared_ptr_Promise_std__optional_ContactInfo____ = Result<std::shared_ptr<Promise<std::optional<ContactInfo>>>>;
   inline Result_std__shared_ptr_Promise_std__optional_ContactInfo____ create_Result_std__shared_ptr_Promise_std__optional_ContactInfo____(const std::shared_ptr<Promise<std::optional<ContactInfo>>>& value) noexcept {
@@ -2379,7 +2396,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__optional_ContactInfo____ create_Result_std__shared_ptr_Promise_std__optional_ContactInfo____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::optional<ContactInfo>>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>
   using Result_std__shared_ptr_Promise_std__vector_ContactInfo____ = Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_ContactInfo____ create_Result_std__shared_ptr_Promise_std__vector_ContactInfo____(const std::shared_ptr<Promise<std::vector<ContactInfo>>>& value) noexcept {
@@ -2388,7 +2405,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_ContactInfo____ create_Result_std__shared_ptr_Promise_std__vector_ContactInfo____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::string>>>
   using Result_std__shared_ptr_Promise_std__string___ = Result<std::shared_ptr<Promise<std::string>>>;
   inline Result_std__shared_ptr_Promise_std__string___ create_Result_std__shared_ptr_Promise_std__string___(const std::shared_ptr<Promise<std::string>>& value) noexcept {
@@ -2397,7 +2414,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__string___ create_Result_std__shared_ptr_Promise_std__string___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::string>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<ContactInfo>>>
   using Result_std__shared_ptr_Promise_ContactInfo___ = Result<std::shared_ptr<Promise<ContactInfo>>>;
   inline Result_std__shared_ptr_Promise_ContactInfo___ create_Result_std__shared_ptr_Promise_ContactInfo___(const std::shared_ptr<Promise<ContactInfo>>& value) noexcept {
@@ -2406,7 +2423,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_ContactInfo___ create_Result_std__shared_ptr_Promise_ContactInfo___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<ContactInfo>>>::withError(error);
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridNativeCNContactSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridNativeCNContactSpec>`.
@@ -2414,11 +2431,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridNativeCNContactSpec_ = std::shared_ptr<HybridNativeCNContactSpec>;
   std::shared_ptr<HybridNativeCNContactSpec> create_std__shared_ptr_HybridNativeCNContactSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridNativeCNContactSpec_(std__shared_ptr_HybridNativeCNContactSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridNativeCNContactSpec>
   using std__weak_ptr_HybridNativeCNContactSpec_ = std::weak_ptr<HybridNativeCNContactSpec>;
   inline std__weak_ptr_HybridNativeCNContactSpec_ weakify_std__shared_ptr_HybridNativeCNContactSpec_(const std::shared_ptr<HybridNativeCNContactSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<HybridNativeCNContactSpec>>
   using Result_std__shared_ptr_HybridNativeCNContactSpec__ = Result<std::shared_ptr<HybridNativeCNContactSpec>>;
   inline Result_std__shared_ptr_HybridNativeCNContactSpec__ create_Result_std__shared_ptr_HybridNativeCNContactSpec__(const std::shared_ptr<HybridNativeCNContactSpec>& value) noexcept {
@@ -2427,7 +2444,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_HybridNativeCNContactSpec__ create_Result_std__shared_ptr_HybridNativeCNContactSpec__(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<HybridNativeCNContactSpec>>::withError(error);
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridNativeCNKeyDescriptorSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridNativeCNKeyDescriptorSpec>`.
@@ -2435,11 +2452,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridNativeCNKeyDescriptorSpec_ = std::shared_ptr<HybridNativeCNKeyDescriptorSpec>;
   std::shared_ptr<HybridNativeCNKeyDescriptorSpec> create_std__shared_ptr_HybridNativeCNKeyDescriptorSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridNativeCNKeyDescriptorSpec_(std__shared_ptr_HybridNativeCNKeyDescriptorSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridNativeCNKeyDescriptorSpec>
   using std__weak_ptr_HybridNativeCNKeyDescriptorSpec_ = std::weak_ptr<HybridNativeCNKeyDescriptorSpec>;
   inline std__weak_ptr_HybridNativeCNKeyDescriptorSpec_ weakify_std__shared_ptr_HybridNativeCNKeyDescriptorSpec_(const std::shared_ptr<HybridNativeCNKeyDescriptorSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::shared_ptr<HybridNativeCNContactSpec>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::shared_ptr<HybridNativeCNContactSpec>>>`.
@@ -2451,7 +2468,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::shared_ptr<HybridNativeCNContactSpec>> wrap_std__shared_ptr_Promise_std__shared_ptr_HybridNativeCNContactSpec___(std::shared_ptr<Promise<std::shared_ptr<HybridNativeCNContactSpec>>> promise) noexcept {
     return PromiseHolder<std::shared_ptr<HybridNativeCNContactSpec>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::shared_ptr<HybridNativeCNContactSpec>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::shared_ptr<HybridNativeCNContactSpec>&)>`.
@@ -2473,7 +2490,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__shared_ptr_HybridNativeCNContactSpec__Wrapper wrap_Func_void_std__shared_ptr_HybridNativeCNContactSpec_(Func_void_std__shared_ptr_HybridNativeCNContactSpec_ value) noexcept {
     return Func_void_std__shared_ptr_HybridNativeCNContactSpec__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<std::shared_ptr<HybridNativeCNKeyDescriptorSpec>>
   /**
    * Specialized version of `std::vector<std::shared_ptr<HybridNativeCNKeyDescriptorSpec>>`.
@@ -2484,7 +2501,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridNativeCNContactStoreSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridNativeCNContactStoreSpec>`.
@@ -2492,11 +2509,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridNativeCNContactStoreSpec_ = std::shared_ptr<HybridNativeCNContactStoreSpec>;
   std::shared_ptr<HybridNativeCNContactStoreSpec> create_std__shared_ptr_HybridNativeCNContactStoreSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridNativeCNContactStoreSpec_(std__shared_ptr_HybridNativeCNContactStoreSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridNativeCNContactStoreSpec>
   using std__weak_ptr_HybridNativeCNContactStoreSpec_ = std::weak_ptr<HybridNativeCNContactStoreSpec>;
   inline std__weak_ptr_HybridNativeCNContactStoreSpec_ weakify_std__shared_ptr_HybridNativeCNContactStoreSpec_(const std::shared_ptr<HybridNativeCNContactStoreSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::shared_ptr<HybridNativeCNContactSpec>>>>
   using Result_std__shared_ptr_Promise_std__shared_ptr_HybridNativeCNContactSpec____ = Result<std::shared_ptr<Promise<std::shared_ptr<HybridNativeCNContactSpec>>>>;
   inline Result_std__shared_ptr_Promise_std__shared_ptr_HybridNativeCNContactSpec____ create_Result_std__shared_ptr_Promise_std__shared_ptr_HybridNativeCNContactSpec____(const std::shared_ptr<Promise<std::shared_ptr<HybridNativeCNContactSpec>>>& value) noexcept {
@@ -2505,7 +2522,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__shared_ptr_HybridNativeCNContactSpec____ create_Result_std__shared_ptr_Promise_std__shared_ptr_HybridNativeCNContactSpec____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::shared_ptr<HybridNativeCNContactSpec>>>>::withError(error);
   }
-  
+
   // pragma MARK: std::optional<std::shared_ptr<HybridNativeCNContactSpec>>
   /**
    * Specialized version of `std::optional<std::shared_ptr<HybridNativeCNContactSpec>>`.
@@ -2520,7 +2537,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::shared_ptr<HybridNativeCNContactSpec> get_std__optional_std__shared_ptr_HybridNativeCNContactSpec__(const std::optional<std::shared_ptr<HybridNativeCNContactSpec>>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>
   /**
    * Specialized version of `std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>`.
@@ -2535,7 +2552,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::shared_ptr<HybridNativeCNContactStoreSpec> get_std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec__(const std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::function<void(const std::optional<std::shared_ptr<HybridNativeCNContactSpec>>& /* contact */)>
   /**
    * Specialized version of `std::function<void(const std::optional<std::shared_ptr<HybridNativeCNContactSpec>>&)>`.
@@ -2557,7 +2574,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__optional_std__shared_ptr_HybridNativeCNContactSpec___Wrapper wrap_Func_void_std__optional_std__shared_ptr_HybridNativeCNContactSpec__(Func_void_std__optional_std__shared_ptr_HybridNativeCNContactSpec__ value) noexcept {
     return Func_void_std__optional_std__shared_ptr_HybridNativeCNContactSpec___Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneContactUISpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneContactUISpec>`.
@@ -2565,11 +2582,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneContactUISpec_ = std::shared_ptr<HybridOneContactUISpec>;
   std::shared_ptr<HybridOneContactUISpec> create_std__shared_ptr_HybridOneContactUISpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneContactUISpec_(std__shared_ptr_HybridOneContactUISpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneContactUISpec>
   using std__weak_ptr_HybridOneContactUISpec_ = std::weak_ptr<HybridOneContactUISpec>;
   inline std__weak_ptr_HybridOneContactUISpec_ weakify_std__shared_ptr_HybridOneContactUISpec_(const std::shared_ptr<HybridOneContactUISpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<HybridNativeCNKeyDescriptorSpec>>
   using Result_std__shared_ptr_HybridNativeCNKeyDescriptorSpec__ = Result<std::shared_ptr<HybridNativeCNKeyDescriptorSpec>>;
   inline Result_std__shared_ptr_HybridNativeCNKeyDescriptorSpec__ create_Result_std__shared_ptr_HybridNativeCNKeyDescriptorSpec__(const std::shared_ptr<HybridNativeCNKeyDescriptorSpec>& value) noexcept {
@@ -2578,7 +2595,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_HybridNativeCNKeyDescriptorSpec__ create_Result_std__shared_ptr_HybridNativeCNKeyDescriptorSpec__(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<HybridNativeCNKeyDescriptorSpec>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>>
   using Result_std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec___ = Result<std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>>;
   inline Result_std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec___ create_Result_std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec___(const std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>& value) noexcept {
@@ -2587,7 +2604,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec___ create_Result_std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec___(const std::exception_ptr& error) noexcept {
     return Result<std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>>::withError(error);
   }
-  
+
   // pragma MARK: std::optional<DataScannerTextContentType>
   /**
    * Specialized version of `std::optional<DataScannerTextContentType>`.
@@ -2602,7 +2619,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline DataScannerTextContentType get_std__optional_DataScannerTextContentType_(const std::optional<DataScannerTextContentType>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::vector<DataScannerRecognizedDataType>
   /**
    * Specialized version of `std::vector<DataScannerRecognizedDataType>`.
@@ -2613,7 +2630,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::function<void(const DataScannerRecognizedItem& /* item */)>
   /**
    * Specialized version of `std::function<void(const DataScannerRecognizedItem&)>`.
@@ -2635,7 +2652,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_DataScannerRecognizedItem_Wrapper wrap_Func_void_DataScannerRecognizedItem(Func_void_DataScannerRecognizedItem value) noexcept {
     return Func_void_DataScannerRecognizedItem_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<DataScannerRecognizedItem>
   /**
    * Specialized version of `std::vector<DataScannerRecognizedItem>`.
@@ -2646,7 +2663,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::function<void(const std::vector<DataScannerRecognizedItem>& /* items */, const std::vector<DataScannerRecognizedItem>& /* allItems */)>
   /**
    * Specialized version of `std::function<void(const std::vector<DataScannerRecognizedItem>&, const std::vector<DataScannerRecognizedItem>&)>`.
@@ -2668,7 +2685,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_DataScannerRecognizedItem__std__vector_DataScannerRecognizedItem__Wrapper wrap_Func_void_std__vector_DataScannerRecognizedItem__std__vector_DataScannerRecognizedItem_(Func_void_std__vector_DataScannerRecognizedItem__std__vector_DataScannerRecognizedItem_ value) noexcept {
     return Func_void_std__vector_DataScannerRecognizedItem__std__vector_DataScannerRecognizedItem__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void(DataScannerScanningUnavailable /* error */)>
   /**
    * Specialized version of `std::function<void(DataScannerScanningUnavailable)>`.
@@ -2690,7 +2707,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_DataScannerScanningUnavailable_Wrapper wrap_Func_void_DataScannerScanningUnavailable(Func_void_DataScannerScanningUnavailable value) noexcept {
     return Func_void_DataScannerScanningUnavailable_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::optional<DataScannerRect>
   /**
    * Specialized version of `std::optional<DataScannerRect>`.
@@ -2705,7 +2722,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline DataScannerRect get_std__optional_DataScannerRect_(const std::optional<DataScannerRect>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridDocumentCameraImageSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridDocumentCameraImageSpec>`.
@@ -2713,11 +2730,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridDocumentCameraImageSpec_ = std::shared_ptr<HybridDocumentCameraImageSpec>;
   std::shared_ptr<HybridDocumentCameraImageSpec> create_std__shared_ptr_HybridDocumentCameraImageSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridDocumentCameraImageSpec_(std__shared_ptr_HybridDocumentCameraImageSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridDocumentCameraImageSpec>
   using std__weak_ptr_HybridDocumentCameraImageSpec_ = std::weak_ptr<HybridDocumentCameraImageSpec>;
   inline std__weak_ptr_HybridDocumentCameraImageSpec_ weakify_std__shared_ptr_HybridDocumentCameraImageSpec_(const std::shared_ptr<HybridDocumentCameraImageSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::shared_ptr<HybridDocumentCameraImageSpec>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::shared_ptr<HybridDocumentCameraImageSpec>>>`.
@@ -2729,7 +2746,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::shared_ptr<HybridDocumentCameraImageSpec>> wrap_std__shared_ptr_Promise_std__shared_ptr_HybridDocumentCameraImageSpec___(std::shared_ptr<Promise<std::shared_ptr<HybridDocumentCameraImageSpec>>> promise) noexcept {
     return PromiseHolder<std::shared_ptr<HybridDocumentCameraImageSpec>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::shared_ptr<HybridDocumentCameraImageSpec>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::shared_ptr<HybridDocumentCameraImageSpec>&)>`.
@@ -2751,7 +2768,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__shared_ptr_HybridDocumentCameraImageSpec__Wrapper wrap_Func_void_std__shared_ptr_HybridDocumentCameraImageSpec_(Func_void_std__shared_ptr_HybridDocumentCameraImageSpec_ value) noexcept {
     return Func_void_std__shared_ptr_HybridDocumentCameraImageSpec__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void(const std::vector<DataScannerRecognizedItem>& /* items */)>
   /**
    * Specialized version of `std::function<void(const std::vector<DataScannerRecognizedItem>&)>`.
@@ -2773,7 +2790,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_DataScannerRecognizedItem__Wrapper wrap_Func_void_std__vector_DataScannerRecognizedItem_(Func_void_std__vector_DataScannerRecognizedItem_ value) noexcept {
     return Func_void_std__vector_DataScannerRecognizedItem__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneDataScannerSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneDataScannerSpec>`.
@@ -2781,11 +2798,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneDataScannerSpec_ = std::shared_ptr<HybridOneDataScannerSpec>;
   std::shared_ptr<HybridOneDataScannerSpec> create_std__shared_ptr_HybridOneDataScannerSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneDataScannerSpec_(std__shared_ptr_HybridOneDataScannerSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneDataScannerSpec>
   using std__weak_ptr_HybridOneDataScannerSpec_ = std::weak_ptr<HybridOneDataScannerSpec>;
   inline std__weak_ptr_HybridOneDataScannerSpec_ weakify_std__shared_ptr_HybridOneDataScannerSpec_(const std::shared_ptr<HybridOneDataScannerSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<double>
   using Result_double_ = Result<double>;
   inline Result_double_ create_Result_double_(double value) noexcept {
@@ -2794,7 +2811,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_double_ create_Result_double_(const std::exception_ptr& error) noexcept {
     return Result<double>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::shared_ptr<HybridDocumentCameraImageSpec>>>>
   using Result_std__shared_ptr_Promise_std__shared_ptr_HybridDocumentCameraImageSpec____ = Result<std::shared_ptr<Promise<std::shared_ptr<HybridDocumentCameraImageSpec>>>>;
   inline Result_std__shared_ptr_Promise_std__shared_ptr_HybridDocumentCameraImageSpec____ create_Result_std__shared_ptr_Promise_std__shared_ptr_HybridDocumentCameraImageSpec____(const std::shared_ptr<Promise<std::shared_ptr<HybridDocumentCameraImageSpec>>>& value) noexcept {
@@ -2803,7 +2820,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__shared_ptr_HybridDocumentCameraImageSpec____ create_Result_std__shared_ptr_Promise_std__shared_ptr_HybridDocumentCameraImageSpec____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::shared_ptr<HybridDocumentCameraImageSpec>>>>::withError(error);
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<DeviceInfo>>
   /**
    * Specialized version of `std::shared_ptr<Promise<DeviceInfo>>`.
@@ -2815,7 +2832,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<DeviceInfo> wrap_std__shared_ptr_Promise_DeviceInfo__(std::shared_ptr<Promise<DeviceInfo>> promise) noexcept {
     return PromiseHolder<DeviceInfo>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const DeviceInfo& /* result */)>
   /**
    * Specialized version of `std::function<void(const DeviceInfo&)>`.
@@ -2837,7 +2854,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_DeviceInfo_Wrapper wrap_Func_void_DeviceInfo(Func_void_DeviceInfo value) noexcept {
     return Func_void_DeviceInfo_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<LocalizationInfo>>
   /**
    * Specialized version of `std::shared_ptr<Promise<LocalizationInfo>>`.
@@ -2849,7 +2866,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<LocalizationInfo> wrap_std__shared_ptr_Promise_LocalizationInfo__(std::shared_ptr<Promise<LocalizationInfo>> promise) noexcept {
     return PromiseHolder<LocalizationInfo>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const LocalizationInfo& /* result */)>
   /**
    * Specialized version of `std::function<void(const LocalizationInfo&)>`.
@@ -2871,7 +2888,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_LocalizationInfo_Wrapper wrap_Func_void_LocalizationInfo(Func_void_LocalizationInfo value) noexcept {
     return Func_void_LocalizationInfo_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<LocaleInfo>
   /**
    * Specialized version of `std::vector<LocaleInfo>`.
@@ -2882,7 +2899,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::vector<CalendarInfo>
   /**
    * Specialized version of `std::vector<CalendarInfo>`.
@@ -2893,7 +2910,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneDeviceSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneDeviceSpec>`.
@@ -2901,11 +2918,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneDeviceSpec_ = std::shared_ptr<HybridOneDeviceSpec>;
   std::shared_ptr<HybridOneDeviceSpec> create_std__shared_ptr_HybridOneDeviceSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneDeviceSpec_(std__shared_ptr_HybridOneDeviceSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneDeviceSpec>
   using std__weak_ptr_HybridOneDeviceSpec_ = std::weak_ptr<HybridOneDeviceSpec>;
   inline std__weak_ptr_HybridOneDeviceSpec_ weakify_std__shared_ptr_HybridOneDeviceSpec_(const std::shared_ptr<HybridOneDeviceSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<DeviceInfo>>>
   using Result_std__shared_ptr_Promise_DeviceInfo___ = Result<std::shared_ptr<Promise<DeviceInfo>>>;
   inline Result_std__shared_ptr_Promise_DeviceInfo___ create_Result_std__shared_ptr_Promise_DeviceInfo___(const std::shared_ptr<Promise<DeviceInfo>>& value) noexcept {
@@ -2914,7 +2931,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_DeviceInfo___ create_Result_std__shared_ptr_Promise_DeviceInfo___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<DeviceInfo>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<LocalizationInfo>>>
   using Result_std__shared_ptr_Promise_LocalizationInfo___ = Result<std::shared_ptr<Promise<LocalizationInfo>>>;
   inline Result_std__shared_ptr_Promise_LocalizationInfo___ create_Result_std__shared_ptr_Promise_LocalizationInfo___(const std::shared_ptr<Promise<LocalizationInfo>>& value) noexcept {
@@ -2923,7 +2940,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_LocalizationInfo___ create_Result_std__shared_ptr_Promise_LocalizationInfo___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<LocalizationInfo>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::vector<LocaleInfo>>
   using Result_std__vector_LocaleInfo__ = Result<std::vector<LocaleInfo>>;
   inline Result_std__vector_LocaleInfo__ create_Result_std__vector_LocaleInfo__(const std::vector<LocaleInfo>& value) noexcept {
@@ -2932,7 +2949,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__vector_LocaleInfo__ create_Result_std__vector_LocaleInfo__(const std::exception_ptr& error) noexcept {
     return Result<std::vector<LocaleInfo>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::vector<CalendarInfo>>
   using Result_std__vector_CalendarInfo__ = Result<std::vector<CalendarInfo>>;
   inline Result_std__vector_CalendarInfo__ create_Result_std__vector_CalendarInfo__(const std::vector<CalendarInfo>& value) noexcept {
@@ -2941,7 +2958,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__vector_CalendarInfo__ create_Result_std__vector_CalendarInfo__(const std::exception_ptr& error) noexcept {
     return Result<std::vector<CalendarInfo>>::withError(error);
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneDeviceAttestationSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneDeviceAttestationSpec>`.
@@ -2949,11 +2966,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneDeviceAttestationSpec_ = std::shared_ptr<HybridOneDeviceAttestationSpec>;
   std::shared_ptr<HybridOneDeviceAttestationSpec> create_std__shared_ptr_HybridOneDeviceAttestationSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneDeviceAttestationSpec_(std__shared_ptr_HybridOneDeviceAttestationSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneDeviceAttestationSpec>
   using std__weak_ptr_HybridOneDeviceAttestationSpec_ = std::weak_ptr<HybridOneDeviceAttestationSpec>;
   inline std__weak_ptr_HybridOneDeviceAttestationSpec_ weakify_std__shared_ptr_HybridOneDeviceAttestationSpec_(const std::shared_ptr<HybridOneDeviceAttestationSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<DeviceAttestationAvailability>
   using Result_DeviceAttestationAvailability_ = Result<DeviceAttestationAvailability>;
   inline Result_DeviceAttestationAvailability_ create_Result_DeviceAttestationAvailability_(const DeviceAttestationAvailability& value) noexcept {
@@ -2962,7 +2979,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_DeviceAttestationAvailability_ create_Result_DeviceAttestationAvailability_(const std::exception_ptr& error) noexcept {
     return Result<DeviceAttestationAvailability>::withError(error);
   }
-  
+
   // pragma MARK: std::optional<std::shared_ptr<ArrayBuffer>>
   /**
    * Specialized version of `std::optional<std::shared_ptr<ArrayBuffer>>`.
@@ -2977,7 +2994,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::shared_ptr<ArrayBuffer> get_std__optional_std__shared_ptr_ArrayBuffer__(const std::optional<std::shared_ptr<ArrayBuffer>>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: Result<std::optional<std::shared_ptr<ArrayBuffer>>>
   using Result_std__optional_std__shared_ptr_ArrayBuffer___ = Result<std::optional<std::shared_ptr<ArrayBuffer>>>;
   inline Result_std__optional_std__shared_ptr_ArrayBuffer___ create_Result_std__optional_std__shared_ptr_ArrayBuffer___(const std::optional<std::shared_ptr<ArrayBuffer>>& value) noexcept {
@@ -2986,7 +3003,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__optional_std__shared_ptr_ArrayBuffer___ create_Result_std__optional_std__shared_ptr_ArrayBuffer___(const std::exception_ptr& error) noexcept {
     return Result<std::optional<std::shared_ptr<ArrayBuffer>>>::withError(error);
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridDocumentCameraScanSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridDocumentCameraScanSpec>`.
@@ -2994,11 +3011,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridDocumentCameraScanSpec_ = std::shared_ptr<HybridDocumentCameraScanSpec>;
   std::shared_ptr<HybridDocumentCameraScanSpec> create_std__shared_ptr_HybridDocumentCameraScanSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridDocumentCameraScanSpec_(std__shared_ptr_HybridDocumentCameraScanSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridDocumentCameraScanSpec>
   using std__weak_ptr_HybridDocumentCameraScanSpec_ = std::weak_ptr<HybridDocumentCameraScanSpec>;
   inline std__weak_ptr_HybridDocumentCameraScanSpec_ weakify_std__shared_ptr_HybridDocumentCameraScanSpec_(const std::shared_ptr<HybridDocumentCameraScanSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<HybridDocumentCameraImageSpec>>
   using Result_std__shared_ptr_HybridDocumentCameraImageSpec__ = Result<std::shared_ptr<HybridDocumentCameraImageSpec>>;
   inline Result_std__shared_ptr_HybridDocumentCameraImageSpec__ create_Result_std__shared_ptr_HybridDocumentCameraImageSpec__(const std::shared_ptr<HybridDocumentCameraImageSpec>& value) noexcept {
@@ -3007,7 +3024,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_HybridDocumentCameraImageSpec__ create_Result_std__shared_ptr_HybridDocumentCameraImageSpec__(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<HybridDocumentCameraImageSpec>>::withError(error);
   }
-  
+
   // pragma MARK: std::function<void(const std::shared_ptr<HybridDocumentCameraScanSpec>& /* scan */)>
   /**
    * Specialized version of `std::function<void(const std::shared_ptr<HybridDocumentCameraScanSpec>&)>`.
@@ -3029,7 +3046,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__shared_ptr_HybridDocumentCameraScanSpec__Wrapper wrap_Func_void_std__shared_ptr_HybridDocumentCameraScanSpec_(Func_void_std__shared_ptr_HybridDocumentCameraScanSpec_ value) noexcept {
     return Func_void_std__shared_ptr_HybridDocumentCameraScanSpec__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void(const DocumentCameraError& /* error */)>
   /**
    * Specialized version of `std::function<void(const DocumentCameraError&)>`.
@@ -3051,7 +3068,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_DocumentCameraError_Wrapper wrap_Func_void_DocumentCameraError(Func_void_DocumentCameraError value) noexcept {
     return Func_void_DocumentCameraError_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneDocumentCameraSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneDocumentCameraSpec>`.
@@ -3059,11 +3076,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneDocumentCameraSpec_ = std::shared_ptr<HybridOneDocumentCameraSpec>;
   std::shared_ptr<HybridOneDocumentCameraSpec> create_std__shared_ptr_HybridOneDocumentCameraSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneDocumentCameraSpec_(std__shared_ptr_HybridOneDocumentCameraSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneDocumentCameraSpec>
   using std__weak_ptr_HybridOneDocumentCameraSpec_ = std::weak_ptr<HybridOneDocumentCameraSpec>;
   inline std__weak_ptr_HybridOneDocumentCameraSpec_ weakify_std__shared_ptr_HybridOneDocumentCameraSpec_(const std::shared_ptr<HybridOneDocumentCameraSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: std::vector<FetchHeader>
   /**
    * Specialized version of `std::vector<FetchHeader>`.
@@ -3074,7 +3091,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::optional<FetchBlobRef>
   /**
    * Specialized version of `std::optional<FetchBlobRef>`.
@@ -3089,7 +3106,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline FetchBlobRef get_std__optional_FetchBlobRef_(const std::optional<FetchBlobRef>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::vector<FetchFormPart>
   /**
    * Specialized version of `std::vector<FetchFormPart>`.
@@ -3100,7 +3117,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::optional<std::vector<FetchFormPart>>
   /**
    * Specialized version of `std::optional<std::vector<FetchFormPart>>`.
@@ -3115,7 +3132,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::vector<FetchFormPart> get_std__optional_std__vector_FetchFormPart__(const std::optional<std::vector<FetchFormPart>>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::function<void(const FetchNativeResponse& /* response */)>
   /**
    * Specialized version of `std::function<void(const FetchNativeResponse&)>`.
@@ -3137,7 +3154,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_FetchNativeResponse_Wrapper wrap_Func_void_FetchNativeResponse(Func_void_FetchNativeResponse value) noexcept {
     return Func_void_FetchNativeResponse_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>
   /**
    * Specialized version of `std::function<void(const std::shared_ptr<ArrayBuffer>&)>`.
@@ -3159,7 +3176,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__shared_ptr_ArrayBuffer__Wrapper wrap_Func_void_std__shared_ptr_ArrayBuffer_(Func_void_std__shared_ptr_ArrayBuffer_ value) noexcept {
     return Func_void_std__shared_ptr_ArrayBuffer__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneFetchSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneFetchSpec>`.
@@ -3167,11 +3184,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneFetchSpec_ = std::shared_ptr<HybridOneFetchSpec>;
   std::shared_ptr<HybridOneFetchSpec> create_std__shared_ptr_HybridOneFetchSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneFetchSpec_(std__shared_ptr_HybridOneFetchSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneFetchSpec>
   using std__weak_ptr_HybridOneFetchSpec_ = std::weak_ptr<HybridOneFetchSpec>;
   inline std__weak_ptr_HybridOneFetchSpec_ weakify_std__shared_ptr_HybridOneFetchSpec_(const std::shared_ptr<HybridOneFetchSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: std::shared_ptr<Promise<FileInfo>>
   /**
    * Specialized version of `std::shared_ptr<Promise<FileInfo>>`.
@@ -3183,7 +3200,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<FileInfo> wrap_std__shared_ptr_Promise_FileInfo__(std::shared_ptr<Promise<FileInfo>> promise) noexcept {
     return PromiseHolder<FileInfo>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const FileInfo& /* result */)>
   /**
    * Specialized version of `std::function<void(const FileInfo&)>`.
@@ -3205,7 +3222,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_FileInfo_Wrapper wrap_Func_void_FileInfo(Func_void_FileInfo value) noexcept {
     return Func_void_FileInfo_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<FileEntry>
   /**
    * Specialized version of `std::vector<FileEntry>`.
@@ -3216,7 +3233,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::vector<FileEntry>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<FileEntry>>>`.
@@ -3228,7 +3245,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<FileEntry>> wrap_std__shared_ptr_Promise_std__vector_FileEntry___(std::shared_ptr<Promise<std::vector<FileEntry>>> promise) noexcept {
     return PromiseHolder<std::vector<FileEntry>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::vector<FileEntry>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<FileEntry>&)>`.
@@ -3250,7 +3267,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_FileEntry__Wrapper wrap_Func_void_std__vector_FileEntry_(Func_void_std__vector_FileEntry_ value) noexcept {
     return Func_void_std__vector_FileEntry__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>`.
@@ -3262,7 +3279,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::shared_ptr<ArrayBuffer>> wrap_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer___(std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> promise) noexcept {
     return PromiseHolder<std::shared_ptr<ArrayBuffer>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::vector<ListedEntry>
   /**
    * Specialized version of `std::vector<ListedEntry>`.
@@ -3273,7 +3290,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneFileSystemSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneFileSystemSpec>`.
@@ -3281,11 +3298,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneFileSystemSpec_ = std::shared_ptr<HybridOneFileSystemSpec>;
   std::shared_ptr<HybridOneFileSystemSpec> create_std__shared_ptr_HybridOneFileSystemSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneFileSystemSpec_(std__shared_ptr_HybridOneFileSystemSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneFileSystemSpec>
   using std__weak_ptr_HybridOneFileSystemSpec_ = std::weak_ptr<HybridOneFileSystemSpec>;
   inline std__weak_ptr_HybridOneFileSystemSpec_ weakify_std__shared_ptr_HybridOneFileSystemSpec_(const std::shared_ptr<HybridOneFileSystemSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<FileDirectories>
   using Result_FileDirectories_ = Result<FileDirectories>;
   inline Result_FileDirectories_ create_Result_FileDirectories_(const FileDirectories& value) noexcept {
@@ -3294,7 +3311,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_FileDirectories_ create_Result_FileDirectories_(const std::exception_ptr& error) noexcept {
     return Result<FileDirectories>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<FileInfo>>>
   using Result_std__shared_ptr_Promise_FileInfo___ = Result<std::shared_ptr<Promise<FileInfo>>>;
   inline Result_std__shared_ptr_Promise_FileInfo___ create_Result_std__shared_ptr_Promise_FileInfo___(const std::shared_ptr<Promise<FileInfo>>& value) noexcept {
@@ -3303,7 +3320,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_FileInfo___ create_Result_std__shared_ptr_Promise_FileInfo___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<FileInfo>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<FileEntry>>>>
   using Result_std__shared_ptr_Promise_std__vector_FileEntry____ = Result<std::shared_ptr<Promise<std::vector<FileEntry>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_FileEntry____ create_Result_std__shared_ptr_Promise_std__vector_FileEntry____(const std::shared_ptr<Promise<std::vector<FileEntry>>>& value) noexcept {
@@ -3312,7 +3329,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_FileEntry____ create_Result_std__shared_ptr_Promise_std__vector_FileEntry____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<FileEntry>>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<DiskSpace>
   using Result_DiskSpace_ = Result<DiskSpace>;
   inline Result_DiskSpace_ create_Result_DiskSpace_(const DiskSpace& value) noexcept {
@@ -3321,7 +3338,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_DiskSpace_ create_Result_DiskSpace_(const std::exception_ptr& error) noexcept {
     return Result<DiskSpace>::withError(error);
   }
-  
+
   // pragma MARK: Result<PathStat>
   using Result_PathStat_ = Result<PathStat>;
   inline Result_PathStat_ create_Result_PathStat_(const PathStat& value) noexcept {
@@ -3330,7 +3347,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_PathStat_ create_Result_PathStat_(const std::exception_ptr& error) noexcept {
     return Result<PathStat>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<ArrayBuffer>>
   using Result_std__shared_ptr_ArrayBuffer__ = Result<std::shared_ptr<ArrayBuffer>>;
   inline Result_std__shared_ptr_ArrayBuffer__ create_Result_std__shared_ptr_ArrayBuffer__(const std::shared_ptr<ArrayBuffer>& value) noexcept {
@@ -3339,7 +3356,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_ArrayBuffer__ create_Result_std__shared_ptr_ArrayBuffer__(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<ArrayBuffer>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>>
   using Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____ = Result<std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>>;
   inline Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____ create_Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____(const std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>& value) noexcept {
@@ -3348,7 +3365,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____ create_Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::vector<ListedEntry>>
   using Result_std__vector_ListedEntry__ = Result<std::vector<ListedEntry>>;
   inline Result_std__vector_ListedEntry__ create_Result_std__vector_ListedEntry__(const std::vector<ListedEntry>& value) noexcept {
@@ -3357,7 +3374,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__vector_ListedEntry__ create_Result_std__vector_ListedEntry__(const std::exception_ptr& error) noexcept {
     return Result<std::vector<ListedEntry>>::withError(error);
   }
-  
+
   // pragma MARK: Result<DetailedFileInfo>
   using Result_DetailedFileInfo_ = Result<DetailedFileInfo>;
   inline Result_DetailedFileInfo_ create_Result_DetailedFileInfo_(const DetailedFileInfo& value) noexcept {
@@ -3366,7 +3383,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_DetailedFileInfo_ create_Result_DetailedFileInfo_(const std::exception_ptr& error) noexcept {
     return Result<DetailedFileInfo>::withError(error);
   }
-  
+
   // pragma MARK: Result<DetailedDirectoryInfo>
   using Result_DetailedDirectoryInfo_ = Result<DetailedDirectoryInfo>;
   inline Result_DetailedDirectoryInfo_ create_Result_DetailedDirectoryInfo_(const DetailedDirectoryInfo& value) noexcept {
@@ -3375,7 +3392,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_DetailedDirectoryInfo_ create_Result_DetailedDirectoryInfo_(const std::exception_ptr& error) noexcept {
     return Result<DetailedDirectoryInfo>::withError(error);
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneFontsSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneFontsSpec>`.
@@ -3383,11 +3400,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneFontsSpec_ = std::shared_ptr<HybridOneFontsSpec>;
   std::shared_ptr<HybridOneFontsSpec> create_std__shared_ptr_HybridOneFontsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneFontsSpec_(std__shared_ptr_HybridOneFontsSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneFontsSpec>
   using std__weak_ptr_HybridOneFontsSpec_ = std::weak_ptr<HybridOneFontsSpec>;
   inline std__weak_ptr_HybridOneFontsSpec_ weakify_std__shared_ptr_HybridOneFontsSpec_(const std::shared_ptr<HybridOneFontsSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneHapticsSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneHapticsSpec>`.
@@ -3395,11 +3412,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneHapticsSpec_ = std::shared_ptr<HybridOneHapticsSpec>;
   std::shared_ptr<HybridOneHapticsSpec> create_std__shared_ptr_HybridOneHapticsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneHapticsSpec_(std__shared_ptr_HybridOneHapticsSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneHapticsSpec>
   using std__weak_ptr_HybridOneHapticsSpec_ = std::weak_ptr<HybridOneHapticsSpec>;
   inline std__weak_ptr_HybridOneHapticsSpec_ weakify_std__shared_ptr_HybridOneHapticsSpec_(const std::shared_ptr<HybridOneHapticsSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: std::shared_ptr<Promise<ImageTransformResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<ImageTransformResult>>`.
@@ -3411,7 +3428,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<ImageTransformResult> wrap_std__shared_ptr_Promise_ImageTransformResult__(std::shared_ptr<Promise<ImageTransformResult>> promise) noexcept {
     return PromiseHolder<ImageTransformResult>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const ImageTransformResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const ImageTransformResult&)>`.
@@ -3433,7 +3450,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_ImageTransformResult_Wrapper wrap_Func_void_ImageTransformResult(Func_void_ImageTransformResult value) noexcept {
     return Func_void_ImageTransformResult_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::optional<ImageCrop>
   /**
    * Specialized version of `std::optional<ImageCrop>`.
@@ -3448,7 +3465,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline ImageCrop get_std__optional_ImageCrop_(const std::optional<ImageCrop>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::optional<ImageResize>
   /**
    * Specialized version of `std::optional<ImageResize>`.
@@ -3463,7 +3480,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline ImageResize get_std__optional_ImageResize_(const std::optional<ImageResize>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::optional<OneImageFlip>
   /**
    * Specialized version of `std::optional<OneImageFlip>`.
@@ -3478,7 +3495,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline OneImageFlip get_std__optional_OneImageFlip_(const std::optional<OneImageFlip>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneImageManipulatorSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneImageManipulatorSpec>`.
@@ -3486,11 +3503,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneImageManipulatorSpec_ = std::shared_ptr<HybridOneImageManipulatorSpec>;
   std::shared_ptr<HybridOneImageManipulatorSpec> create_std__shared_ptr_HybridOneImageManipulatorSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneImageManipulatorSpec_(std__shared_ptr_HybridOneImageManipulatorSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneImageManipulatorSpec>
   using std__weak_ptr_HybridOneImageManipulatorSpec_ = std::weak_ptr<HybridOneImageManipulatorSpec>;
   inline std__weak_ptr_HybridOneImageManipulatorSpec_ weakify_std__shared_ptr_HybridOneImageManipulatorSpec_(const std::shared_ptr<HybridOneImageManipulatorSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<ImageTransformResult>>>
   using Result_std__shared_ptr_Promise_ImageTransformResult___ = Result<std::shared_ptr<Promise<ImageTransformResult>>>;
   inline Result_std__shared_ptr_Promise_ImageTransformResult___ create_Result_std__shared_ptr_Promise_ImageTransformResult___(const std::shared_ptr<Promise<ImageTransformResult>>& value) noexcept {
@@ -3499,7 +3516,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_ImageTransformResult___ create_Result_std__shared_ptr_Promise_ImageTransformResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<ImageTransformResult>>>::withError(error);
   }
-  
+
   // pragma MARK: std::optional<ImagePickerAssetType>
   /**
    * Specialized version of `std::optional<ImagePickerAssetType>`.
@@ -3514,7 +3531,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline ImagePickerAssetType get_std__optional_ImagePickerAssetType_(const std::optional<ImagePickerAssetType>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::vector<ImagePickerAsset>
   /**
    * Specialized version of `std::vector<ImagePickerAsset>`.
@@ -3525,7 +3542,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::optional<std::vector<ImagePickerAsset>>
   /**
    * Specialized version of `std::optional<std::vector<ImagePickerAsset>>`.
@@ -3540,7 +3557,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::vector<ImagePickerAsset> get_std__optional_std__vector_ImagePickerAsset__(const std::optional<std::vector<ImagePickerAsset>>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<ImagePickerNativeResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<ImagePickerNativeResult>>`.
@@ -3552,7 +3569,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<ImagePickerNativeResult> wrap_std__shared_ptr_Promise_ImagePickerNativeResult__(std::shared_ptr<Promise<ImagePickerNativeResult>> promise) noexcept {
     return PromiseHolder<ImagePickerNativeResult>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const ImagePickerNativeResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const ImagePickerNativeResult&)>`.
@@ -3574,7 +3591,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_ImagePickerNativeResult_Wrapper wrap_Func_void_ImagePickerNativeResult(Func_void_ImagePickerNativeResult value) noexcept {
     return Func_void_ImagePickerNativeResult_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<ImagePickerMediaType>
   /**
    * Specialized version of `std::vector<ImagePickerMediaType>`.
@@ -3585,7 +3602,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::optional<ImagePickerCropAspect>
   /**
    * Specialized version of `std::optional<ImagePickerCropAspect>`.
@@ -3600,7 +3617,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline ImagePickerCropAspect get_std__optional_ImagePickerCropAspect_(const std::optional<ImagePickerCropAspect>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<CameraPermissionResponse>>
   /**
    * Specialized version of `std::shared_ptr<Promise<CameraPermissionResponse>>`.
@@ -3612,7 +3629,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<CameraPermissionResponse> wrap_std__shared_ptr_Promise_CameraPermissionResponse__(std::shared_ptr<Promise<CameraPermissionResponse>> promise) noexcept {
     return PromiseHolder<CameraPermissionResponse>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const CameraPermissionResponse& /* result */)>
   /**
    * Specialized version of `std::function<void(const CameraPermissionResponse&)>`.
@@ -3634,7 +3651,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_CameraPermissionResponse_Wrapper wrap_Func_void_CameraPermissionResponse(Func_void_CameraPermissionResponse value) noexcept {
     return Func_void_CameraPermissionResponse_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneImagePickerSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneImagePickerSpec>`.
@@ -3642,11 +3659,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneImagePickerSpec_ = std::shared_ptr<HybridOneImagePickerSpec>;
   std::shared_ptr<HybridOneImagePickerSpec> create_std__shared_ptr_HybridOneImagePickerSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneImagePickerSpec_(std__shared_ptr_HybridOneImagePickerSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneImagePickerSpec>
   using std__weak_ptr_HybridOneImagePickerSpec_ = std::weak_ptr<HybridOneImagePickerSpec>;
   inline std__weak_ptr_HybridOneImagePickerSpec_ weakify_std__shared_ptr_HybridOneImagePickerSpec_(const std::shared_ptr<HybridOneImagePickerSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<ImagePickerNativeResult>>>
   using Result_std__shared_ptr_Promise_ImagePickerNativeResult___ = Result<std::shared_ptr<Promise<ImagePickerNativeResult>>>;
   inline Result_std__shared_ptr_Promise_ImagePickerNativeResult___ create_Result_std__shared_ptr_Promise_ImagePickerNativeResult___(const std::shared_ptr<Promise<ImagePickerNativeResult>>& value) noexcept {
@@ -3655,7 +3672,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_ImagePickerNativeResult___ create_Result_std__shared_ptr_Promise_ImagePickerNativeResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<ImagePickerNativeResult>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<CameraPermissionResponse>>>
   using Result_std__shared_ptr_Promise_CameraPermissionResponse___ = Result<std::shared_ptr<Promise<CameraPermissionResponse>>>;
   inline Result_std__shared_ptr_Promise_CameraPermissionResponse___ create_Result_std__shared_ptr_Promise_CameraPermissionResponse___(const std::shared_ptr<Promise<CameraPermissionResponse>>& value) noexcept {
@@ -3664,7 +3681,128 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_CameraPermissionResponse___ create_Result_std__shared_ptr_Promise_CameraPermissionResponse___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<CameraPermissionResponse>>>::withError(error);
   }
-  
+
+  // pragma MARK: std::shared_ptr<Promise<OneKeyboardFrame>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<OneKeyboardFrame>>`.
+   */
+  using std__shared_ptr_Promise_OneKeyboardFrame__ = std::shared_ptr<Promise<OneKeyboardFrame>>;
+  inline std::shared_ptr<Promise<OneKeyboardFrame>> create_std__shared_ptr_Promise_OneKeyboardFrame__() noexcept {
+    return Promise<OneKeyboardFrame>::create();
+  }
+  inline PromiseHolder<OneKeyboardFrame> wrap_std__shared_ptr_Promise_OneKeyboardFrame__(std::shared_ptr<Promise<OneKeyboardFrame>> promise) noexcept {
+    return PromiseHolder<OneKeyboardFrame>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const OneKeyboardFrame& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const OneKeyboardFrame&)>`.
+   */
+  using Func_void_OneKeyboardFrame = std::function<void(const OneKeyboardFrame& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const OneKeyboardFrame& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_OneKeyboardFrame_Wrapper final {
+  public:
+    explicit Func_void_OneKeyboardFrame_Wrapper(std::function<void(const OneKeyboardFrame& /* result */)>&& func): _function(std::make_unique<std::function<void(const OneKeyboardFrame& /* result */)>>(std::move(func))) {}
+    inline void call(OneKeyboardFrame result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const OneKeyboardFrame& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_OneKeyboardFrame create_Func_void_OneKeyboardFrame(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_OneKeyboardFrame_Wrapper wrap_Func_void_OneKeyboardFrame(Func_void_OneKeyboardFrame value) noexcept {
+    return Func_void_OneKeyboardFrame_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::function<void(OneKeyboardEventName /* name */, const OneKeyboardEvent& /* event */)>
+  /**
+   * Specialized version of `std::function<void(OneKeyboardEventName, const OneKeyboardEvent&)>`.
+   */
+  using Func_void_OneKeyboardEventName_OneKeyboardEvent = std::function<void(OneKeyboardEventName /* name */, const OneKeyboardEvent& /* event */)>;
+  /**
+   * Wrapper class for a `std::function<void(OneKeyboardEventName / * name * /, const OneKeyboardEvent& / * event * /)>`, this can be used from Swift.
+   */
+  class Func_void_OneKeyboardEventName_OneKeyboardEvent_Wrapper final {
+  public:
+    explicit Func_void_OneKeyboardEventName_OneKeyboardEvent_Wrapper(std::function<void(OneKeyboardEventName /* name */, const OneKeyboardEvent& /* event */)>&& func): _function(std::make_unique<std::function<void(OneKeyboardEventName /* name */, const OneKeyboardEvent& /* event */)>>(std::move(func))) {}
+    inline void call(int name, OneKeyboardEvent event) const noexcept {
+      _function->operator()(static_cast<OneKeyboardEventName>(name), event);
+    }
+  private:
+    std::unique_ptr<std::function<void(OneKeyboardEventName /* name */, const OneKeyboardEvent& /* event */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_OneKeyboardEventName_OneKeyboardEvent create_Func_void_OneKeyboardEventName_OneKeyboardEvent(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_OneKeyboardEventName_OneKeyboardEvent_Wrapper wrap_Func_void_OneKeyboardEventName_OneKeyboardEvent(Func_void_OneKeyboardEventName_OneKeyboardEvent value) noexcept {
+    return Func_void_OneKeyboardEventName_OneKeyboardEvent_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::function<void(const OneKeyboardFocus& /* event */)>
+  /**
+   * Specialized version of `std::function<void(const OneKeyboardFocus&)>`.
+   */
+  using Func_void_OneKeyboardFocus = std::function<void(const OneKeyboardFocus& /* event */)>;
+  /**
+   * Wrapper class for a `std::function<void(const OneKeyboardFocus& / * event * /)>`, this can be used from Swift.
+   */
+  class Func_void_OneKeyboardFocus_Wrapper final {
+  public:
+    explicit Func_void_OneKeyboardFocus_Wrapper(std::function<void(const OneKeyboardFocus& /* event */)>&& func): _function(std::make_unique<std::function<void(const OneKeyboardFocus& /* event */)>>(std::move(func))) {}
+    inline void call(OneKeyboardFocus event) const noexcept {
+      _function->operator()(event);
+    }
+  private:
+    std::unique_ptr<std::function<void(const OneKeyboardFocus& /* event */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_OneKeyboardFocus create_Func_void_OneKeyboardFocus(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_OneKeyboardFocus_Wrapper wrap_Func_void_OneKeyboardFocus(Func_void_OneKeyboardFocus value) noexcept {
+    return Func_void_OneKeyboardFocus_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::function<void(double /* width */, double /* height */)>
+  /**
+   * Specialized version of `std::function<void(double, double)>`.
+   */
+  using Func_void_double_double = std::function<void(double /* width */, double /* height */)>;
+  /**
+   * Wrapper class for a `std::function<void(double / * width * /, double / * height * /)>`, this can be used from Swift.
+   */
+  class Func_void_double_double_Wrapper final {
+  public:
+    explicit Func_void_double_double_Wrapper(std::function<void(double /* width */, double /* height */)>&& func): _function(std::make_unique<std::function<void(double /* width */, double /* height */)>>(std::move(func))) {}
+    inline void call(double width, double height) const noexcept {
+      _function->operator()(width, height);
+    }
+  private:
+    std::unique_ptr<std::function<void(double /* width */, double /* height */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_double_double create_Func_void_double_double(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_double_double_Wrapper wrap_Func_void_double_double(Func_void_double_double value) noexcept {
+    return Func_void_double_double_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneKeyboardSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneKeyboardSpec>`.
+   */
+  using std__shared_ptr_HybridOneKeyboardSpec_ = std::shared_ptr<HybridOneKeyboardSpec>;
+  std::shared_ptr<HybridOneKeyboardSpec> create_std__shared_ptr_HybridOneKeyboardSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneKeyboardSpec_(std__shared_ptr_HybridOneKeyboardSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneKeyboardSpec>
+  using std__weak_ptr_HybridOneKeyboardSpec_ = std::weak_ptr<HybridOneKeyboardSpec>;
+  inline std__weak_ptr_HybridOneKeyboardSpec_ weakify_std__shared_ptr_HybridOneKeyboardSpec_(const std::shared_ptr<HybridOneKeyboardSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<OneKeyboardFrame>>>
+  using Result_std__shared_ptr_Promise_OneKeyboardFrame___ = Result<std::shared_ptr<Promise<OneKeyboardFrame>>>;
+  inline Result_std__shared_ptr_Promise_OneKeyboardFrame___ create_Result_std__shared_ptr_Promise_OneKeyboardFrame___(const std::shared_ptr<Promise<OneKeyboardFrame>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<OneKeyboardFrame>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_OneKeyboardFrame___ create_Result_std__shared_ptr_Promise_OneKeyboardFrame___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<OneKeyboardFrame>>>::withError(error);
+  }
+
   // pragma MARK: std::shared_ptr<HybridOneLaunchScreenSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneLaunchScreenSpec>`.
@@ -3672,11 +3810,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneLaunchScreenSpec_ = std::shared_ptr<HybridOneLaunchScreenSpec>;
   std::shared_ptr<HybridOneLaunchScreenSpec> create_std__shared_ptr_HybridOneLaunchScreenSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneLaunchScreenSpec_(std__shared_ptr_HybridOneLaunchScreenSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneLaunchScreenSpec>
   using std__weak_ptr_HybridOneLaunchScreenSpec_ = std::weak_ptr<HybridOneLaunchScreenSpec>;
   inline std__weak_ptr_HybridOneLaunchScreenSpec_ weakify_std__shared_ptr_HybridOneLaunchScreenSpec_(const std::shared_ptr<HybridOneLaunchScreenSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: std::function<void(const LightSensorMeasurement& /* event */)>
   /**
    * Specialized version of `std::function<void(const LightSensorMeasurement&)>`.
@@ -3698,7 +3836,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_LightSensorMeasurement_Wrapper wrap_Func_void_LightSensorMeasurement(Func_void_LightSensorMeasurement value) noexcept {
     return Func_void_LightSensorMeasurement_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneLightSensorSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneLightSensorSpec>`.
@@ -3706,11 +3844,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneLightSensorSpec_ = std::shared_ptr<HybridOneLightSensorSpec>;
   std::shared_ptr<HybridOneLightSensorSpec> create_std__shared_ptr_HybridOneLightSensorSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneLightSensorSpec_(std__shared_ptr_HybridOneLightSensorSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneLightSensorSpec>
   using std__weak_ptr_HybridOneLightSensorSpec_ = std::weak_ptr<HybridOneLightSensorSpec>;
   inline std__weak_ptr_HybridOneLightSensorSpec_ weakify_std__shared_ptr_HybridOneLightSensorSpec_(const std::shared_ptr<HybridOneLightSensorSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: std::shared_ptr<Promise<LocationPermissionStatus>>
   /**
    * Specialized version of `std::shared_ptr<Promise<LocationPermissionStatus>>`.
@@ -3722,7 +3860,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<LocationPermissionStatus> wrap_std__shared_ptr_Promise_LocationPermissionStatus__(std::shared_ptr<Promise<LocationPermissionStatus>> promise) noexcept {
     return PromiseHolder<LocationPermissionStatus>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(LocationPermissionStatus /* result */)>
   /**
    * Specialized version of `std::function<void(LocationPermissionStatus)>`.
@@ -3744,7 +3882,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_LocationPermissionStatus_Wrapper wrap_Func_void_LocationPermissionStatus(Func_void_LocationPermissionStatus value) noexcept {
     return Func_void_LocationPermissionStatus_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<LocationPosition>>
   /**
    * Specialized version of `std::shared_ptr<Promise<LocationPosition>>`.
@@ -3756,7 +3894,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<LocationPosition> wrap_std__shared_ptr_Promise_LocationPosition__(std::shared_ptr<Promise<LocationPosition>> promise) noexcept {
     return PromiseHolder<LocationPosition>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const LocationPosition& /* result */)>
   /**
    * Specialized version of `std::function<void(const LocationPosition&)>`.
@@ -3778,7 +3916,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_LocationPosition_Wrapper wrap_Func_void_LocationPosition(Func_void_LocationPosition value) noexcept {
     return Func_void_LocationPosition_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void(const std::string& /* code */, const std::string& /* message */)>
   /**
    * Specialized version of `std::function<void(const std::string&, const std::string&)>`.
@@ -3800,7 +3938,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__string_std__string_Wrapper wrap_Func_void_std__string_std__string(Func_void_std__string_std__string value) noexcept {
     return Func_void_std__string_std__string_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<LocationPlace>
   /**
    * Specialized version of `std::vector<LocationPlace>`.
@@ -3811,7 +3949,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::vector<LocationPlace>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<LocationPlace>>>`.
@@ -3823,7 +3961,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<LocationPlace>> wrap_std__shared_ptr_Promise_std__vector_LocationPlace___(std::shared_ptr<Promise<std::vector<LocationPlace>>> promise) noexcept {
     return PromiseHolder<std::vector<LocationPlace>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::vector<LocationPlace>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<LocationPlace>&)>`.
@@ -3845,7 +3983,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_LocationPlace__Wrapper wrap_Func_void_std__vector_LocationPlace_(Func_void_std__vector_LocationPlace_ value) noexcept {
     return Func_void_std__vector_LocationPlace__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::optional<RegionState>
   /**
    * Specialized version of `std::optional<RegionState>`.
@@ -3860,7 +3998,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline RegionState get_std__optional_RegionState_(const std::optional<RegionState>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::vector<LocationRegion>
   /**
    * Specialized version of `std::vector<LocationRegion>`.
@@ -3871,7 +4009,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<RegionState>>
   /**
    * Specialized version of `std::shared_ptr<Promise<RegionState>>`.
@@ -3883,7 +4021,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<RegionState> wrap_std__shared_ptr_Promise_RegionState__(std::shared_ptr<Promise<RegionState>> promise) noexcept {
     return PromiseHolder<RegionState>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(RegionState /* result */)>
   /**
    * Specialized version of `std::function<void(RegionState)>`.
@@ -3905,7 +4043,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_RegionState_Wrapper wrap_Func_void_RegionState(Func_void_RegionState value) noexcept {
     return Func_void_RegionState_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void(const LocationRegion& /* region */)>
   /**
    * Specialized version of `std::function<void(const LocationRegion&)>`.
@@ -3927,7 +4065,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_LocationRegion_Wrapper wrap_Func_void_LocationRegion(Func_void_LocationRegion value) noexcept {
     return Func_void_LocationRegion_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneLocationSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneLocationSpec>`.
@@ -3935,11 +4073,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneLocationSpec_ = std::shared_ptr<HybridOneLocationSpec>;
   std::shared_ptr<HybridOneLocationSpec> create_std__shared_ptr_HybridOneLocationSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneLocationSpec_(std__shared_ptr_HybridOneLocationSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneLocationSpec>
   using std__weak_ptr_HybridOneLocationSpec_ = std::weak_ptr<HybridOneLocationSpec>;
   inline std__weak_ptr_HybridOneLocationSpec_ weakify_std__shared_ptr_HybridOneLocationSpec_(const std::shared_ptr<HybridOneLocationSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<LocationPermissionStatus>
   using Result_LocationPermissionStatus_ = Result<LocationPermissionStatus>;
   inline Result_LocationPermissionStatus_ create_Result_LocationPermissionStatus_(LocationPermissionStatus value) noexcept {
@@ -3948,7 +4086,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_LocationPermissionStatus_ create_Result_LocationPermissionStatus_(const std::exception_ptr& error) noexcept {
     return Result<LocationPermissionStatus>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<LocationPermissionStatus>>>
   using Result_std__shared_ptr_Promise_LocationPermissionStatus___ = Result<std::shared_ptr<Promise<LocationPermissionStatus>>>;
   inline Result_std__shared_ptr_Promise_LocationPermissionStatus___ create_Result_std__shared_ptr_Promise_LocationPermissionStatus___(const std::shared_ptr<Promise<LocationPermissionStatus>>& value) noexcept {
@@ -3957,7 +4095,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_LocationPermissionStatus___ create_Result_std__shared_ptr_Promise_LocationPermissionStatus___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<LocationPermissionStatus>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<LocationPosition>>>
   using Result_std__shared_ptr_Promise_LocationPosition___ = Result<std::shared_ptr<Promise<LocationPosition>>>;
   inline Result_std__shared_ptr_Promise_LocationPosition___ create_Result_std__shared_ptr_Promise_LocationPosition___(const std::shared_ptr<Promise<LocationPosition>>& value) noexcept {
@@ -3966,7 +4104,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_LocationPosition___ create_Result_std__shared_ptr_Promise_LocationPosition___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<LocationPosition>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>
   using Result_std__shared_ptr_Promise_std__vector_LocationPlace____ = Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_LocationPlace____ create_Result_std__shared_ptr_Promise_std__vector_LocationPlace____(const std::shared_ptr<Promise<std::vector<LocationPlace>>>& value) noexcept {
@@ -3975,7 +4113,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_LocationPlace____ create_Result_std__shared_ptr_Promise_std__vector_LocationPlace____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::vector<LocationRegion>>
   using Result_std__vector_LocationRegion__ = Result<std::vector<LocationRegion>>;
   inline Result_std__vector_LocationRegion__ create_Result_std__vector_LocationRegion__(const std::vector<LocationRegion>& value) noexcept {
@@ -3984,7 +4122,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__vector_LocationRegion__ create_Result_std__vector_LocationRegion__(const std::exception_ptr& error) noexcept {
     return Result<std::vector<LocationRegion>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<RegionState>>>
   using Result_std__shared_ptr_Promise_RegionState___ = Result<std::shared_ptr<Promise<RegionState>>>;
   inline Result_std__shared_ptr_Promise_RegionState___ create_Result_std__shared_ptr_Promise_RegionState___(const std::shared_ptr<Promise<RegionState>>& value) noexcept {
@@ -3993,7 +4131,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_RegionState___ create_Result_std__shared_ptr_Promise_RegionState___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<RegionState>>>::withError(error);
   }
-  
+
   // pragma MARK: std::vector<MapPlace>
   /**
    * Specialized version of `std::vector<MapPlace>`.
@@ -4004,7 +4142,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::vector<MapPlace>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<MapPlace>>>`.
@@ -4016,7 +4154,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<MapPlace>> wrap_std__shared_ptr_Promise_std__vector_MapPlace___(std::shared_ptr<Promise<std::vector<MapPlace>>> promise) noexcept {
     return PromiseHolder<std::vector<MapPlace>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::vector<MapPlace>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<MapPlace>&)>`.
@@ -4038,7 +4176,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_MapPlace__Wrapper wrap_Func_void_std__vector_MapPlace_(Func_void_std__vector_MapPlace_ value) noexcept {
     return Func_void_std__vector_MapPlace__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<MapSuggestion>
   /**
    * Specialized version of `std::vector<MapSuggestion>`.
@@ -4049,7 +4187,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::vector<MapSuggestion>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<MapSuggestion>>>`.
@@ -4061,7 +4199,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<MapSuggestion>> wrap_std__shared_ptr_Promise_std__vector_MapSuggestion___(std::shared_ptr<Promise<std::vector<MapSuggestion>>> promise) noexcept {
     return PromiseHolder<std::vector<MapSuggestion>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::vector<MapSuggestion>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<MapSuggestion>&)>`.
@@ -4083,7 +4221,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_MapSuggestion__Wrapper wrap_Func_void_std__vector_MapSuggestion_(Func_void_std__vector_MapSuggestion_ value) noexcept {
     return Func_void_std__vector_MapSuggestion__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<MapPlace>>
   /**
    * Specialized version of `std::shared_ptr<Promise<MapPlace>>`.
@@ -4095,7 +4233,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<MapPlace> wrap_std__shared_ptr_Promise_MapPlace__(std::shared_ptr<Promise<MapPlace>> promise) noexcept {
     return PromiseHolder<MapPlace>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const MapPlace& /* result */)>
   /**
    * Specialized version of `std::function<void(const MapPlace&)>`.
@@ -4117,7 +4255,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_MapPlace_Wrapper wrap_Func_void_MapPlace(Func_void_MapPlace value) noexcept {
     return Func_void_MapPlace_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<MapCoordinate>
   /**
    * Specialized version of `std::vector<MapCoordinate>`.
@@ -4128,7 +4266,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::vector<MapRouteStep>
   /**
    * Specialized version of `std::vector<MapRouteStep>`.
@@ -4139,7 +4277,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<MapRoute>>
   /**
    * Specialized version of `std::shared_ptr<Promise<MapRoute>>`.
@@ -4151,7 +4289,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<MapRoute> wrap_std__shared_ptr_Promise_MapRoute__(std::shared_ptr<Promise<MapRoute>> promise) noexcept {
     return PromiseHolder<MapRoute>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const MapRoute& /* result */)>
   /**
    * Specialized version of `std::function<void(const MapRoute&)>`.
@@ -4173,7 +4311,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_MapRoute_Wrapper wrap_Func_void_MapRoute(Func_void_MapRoute value) noexcept {
     return Func_void_MapRoute_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneMapServicesSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneMapServicesSpec>`.
@@ -4181,11 +4319,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneMapServicesSpec_ = std::shared_ptr<HybridOneMapServicesSpec>;
   std::shared_ptr<HybridOneMapServicesSpec> create_std__shared_ptr_HybridOneMapServicesSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneMapServicesSpec_(std__shared_ptr_HybridOneMapServicesSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneMapServicesSpec>
   using std__weak_ptr_HybridOneMapServicesSpec_ = std::weak_ptr<HybridOneMapServicesSpec>;
   inline std__weak_ptr_HybridOneMapServicesSpec_ weakify_std__shared_ptr_HybridOneMapServicesSpec_(const std::shared_ptr<HybridOneMapServicesSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<MapPlace>>>>
   using Result_std__shared_ptr_Promise_std__vector_MapPlace____ = Result<std::shared_ptr<Promise<std::vector<MapPlace>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_MapPlace____ create_Result_std__shared_ptr_Promise_std__vector_MapPlace____(const std::shared_ptr<Promise<std::vector<MapPlace>>>& value) noexcept {
@@ -4194,7 +4332,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_MapPlace____ create_Result_std__shared_ptr_Promise_std__vector_MapPlace____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<MapPlace>>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<MapSuggestion>>>>
   using Result_std__shared_ptr_Promise_std__vector_MapSuggestion____ = Result<std::shared_ptr<Promise<std::vector<MapSuggestion>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_MapSuggestion____ create_Result_std__shared_ptr_Promise_std__vector_MapSuggestion____(const std::shared_ptr<Promise<std::vector<MapSuggestion>>>& value) noexcept {
@@ -4203,7 +4341,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_MapSuggestion____ create_Result_std__shared_ptr_Promise_std__vector_MapSuggestion____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<MapSuggestion>>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<MapPlace>>>
   using Result_std__shared_ptr_Promise_MapPlace___ = Result<std::shared_ptr<Promise<MapPlace>>>;
   inline Result_std__shared_ptr_Promise_MapPlace___ create_Result_std__shared_ptr_Promise_MapPlace___(const std::shared_ptr<Promise<MapPlace>>& value) noexcept {
@@ -4212,7 +4350,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_MapPlace___ create_Result_std__shared_ptr_Promise_MapPlace___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<MapPlace>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<MapRoute>>>
   using Result_std__shared_ptr_Promise_MapRoute___ = Result<std::shared_ptr<Promise<MapRoute>>>;
   inline Result_std__shared_ptr_Promise_MapRoute___ create_Result_std__shared_ptr_Promise_MapRoute___(const std::shared_ptr<Promise<MapRoute>>& value) noexcept {
@@ -4221,7 +4359,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_MapRoute___ create_Result_std__shared_ptr_Promise_MapRoute___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<MapRoute>>>::withError(error);
   }
-  
+
   // pragma MARK: std::optional<DocumentCameraError>
   /**
    * Specialized version of `std::optional<DocumentCameraError>`.
@@ -4236,7 +4374,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline DocumentCameraError get_std__optional_DocumentCameraError_(const std::optional<DocumentCameraError>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::function<void(MailComposeResult /* result */, const std::optional<DocumentCameraError>& /* error */)>
   /**
    * Specialized version of `std::function<void(MailComposeResult, const std::optional<DocumentCameraError>&)>`.
@@ -4258,7 +4396,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_MailComposeResult_std__optional_DocumentCameraError__Wrapper wrap_Func_void_MailComposeResult_std__optional_DocumentCameraError_(Func_void_MailComposeResult_std__optional_DocumentCameraError_ value) noexcept {
     return Func_void_MailComposeResult_std__optional_DocumentCameraError__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneMailComposeSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneMailComposeSpec>`.
@@ -4266,11 +4404,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneMailComposeSpec_ = std::shared_ptr<HybridOneMailComposeSpec>;
   std::shared_ptr<HybridOneMailComposeSpec> create_std__shared_ptr_HybridOneMailComposeSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneMailComposeSpec_(std__shared_ptr_HybridOneMailComposeSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneMailComposeSpec>
   using std__weak_ptr_HybridOneMailComposeSpec_ = std::weak_ptr<HybridOneMailComposeSpec>;
   inline std__weak_ptr_HybridOneMailComposeSpec_ weakify_std__shared_ptr_HybridOneMailComposeSpec_(const std::shared_ptr<HybridOneMailComposeSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: std::vector<MessageAttachment>
   /**
    * Specialized version of `std::vector<MessageAttachment>`.
@@ -4281,7 +4419,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::function<void(MessageComposeResult /* result */)>
   /**
    * Specialized version of `std::function<void(MessageComposeResult)>`.
@@ -4303,7 +4441,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_MessageComposeResult_Wrapper wrap_Func_void_MessageComposeResult(Func_void_MessageComposeResult value) noexcept {
     return Func_void_MessageComposeResult_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneMessageComposeSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneMessageComposeSpec>`.
@@ -4311,11 +4449,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneMessageComposeSpec_ = std::shared_ptr<HybridOneMessageComposeSpec>;
   std::shared_ptr<HybridOneMessageComposeSpec> create_std__shared_ptr_HybridOneMessageComposeSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneMessageComposeSpec_(std__shared_ptr_HybridOneMessageComposeSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneMessageComposeSpec>
   using std__weak_ptr_HybridOneMessageComposeSpec_ = std::weak_ptr<HybridOneMessageComposeSpec>;
   inline std__weak_ptr_HybridOneMessageComposeSpec_ weakify_std__shared_ptr_HybridOneMessageComposeSpec_(const std::shared_ptr<HybridOneMessageComposeSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: std::optional<MotionVector>
   /**
    * Specialized version of `std::optional<MotionVector>`.
@@ -4330,7 +4468,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline MotionVector get_std__optional_MotionVector_(const std::optional<MotionVector>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::function<void(const MotionReading& /* reading */)>
   /**
    * Specialized version of `std::function<void(const MotionReading&)>`.
@@ -4352,7 +4490,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_MotionReading_Wrapper wrap_Func_void_MotionReading(Func_void_MotionReading value) noexcept {
     return Func_void_MotionReading_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneMotionSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneMotionSpec>`.
@@ -4360,11 +4498,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneMotionSpec_ = std::shared_ptr<HybridOneMotionSpec>;
   std::shared_ptr<HybridOneMotionSpec> create_std__shared_ptr_HybridOneMotionSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneMotionSpec_(std__shared_ptr_HybridOneMotionSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneMotionSpec>
   using std__weak_ptr_HybridOneMotionSpec_ = std::weak_ptr<HybridOneMotionSpec>;
   inline std__weak_ptr_HybridOneMotionSpec_ weakify_std__shared_ptr_HybridOneMotionSpec_(const std::shared_ptr<HybridOneMotionSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<MotionAvailability>
   using Result_MotionAvailability_ = Result<MotionAvailability>;
   inline Result_MotionAvailability_ create_Result_MotionAvailability_(const MotionAvailability& value) noexcept {
@@ -4373,7 +4511,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_MotionAvailability_ create_Result_MotionAvailability_(const std::exception_ptr& error) noexcept {
     return Result<MotionAvailability>::withError(error);
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneNativeModulesSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneNativeModulesSpec>`.
@@ -4381,11 +4519,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneNativeModulesSpec_ = std::shared_ptr<HybridOneNativeModulesSpec>;
   std::shared_ptr<HybridOneNativeModulesSpec> create_std__shared_ptr_HybridOneNativeModulesSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneNativeModulesSpec_(std__shared_ptr_HybridOneNativeModulesSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneNativeModulesSpec>
   using std__weak_ptr_HybridOneNativeModulesSpec_ = std::weak_ptr<HybridOneNativeModulesSpec>;
   inline std__weak_ptr_HybridOneNativeModulesSpec_ weakify_std__shared_ptr_HybridOneNativeModulesSpec_(const std::shared_ptr<HybridOneNativeModulesSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: std::optional<NativeIosPermission>
   /**
    * Specialized version of `std::optional<NativeIosPermission>`.
@@ -4400,7 +4538,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline NativeIosPermission get_std__optional_NativeIosPermission_(const std::optional<NativeIosPermission>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<NativePermissionResponse>>
   /**
    * Specialized version of `std::shared_ptr<Promise<NativePermissionResponse>>`.
@@ -4412,7 +4550,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<NativePermissionResponse> wrap_std__shared_ptr_Promise_NativePermissionResponse__(std::shared_ptr<Promise<NativePermissionResponse>> promise) noexcept {
     return PromiseHolder<NativePermissionResponse>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const NativePermissionResponse& /* result */)>
   /**
    * Specialized version of `std::function<void(const NativePermissionResponse&)>`.
@@ -4434,7 +4572,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_NativePermissionResponse_Wrapper wrap_Func_void_NativePermissionResponse(Func_void_NativePermissionResponse value) noexcept {
     return Func_void_NativePermissionResponse_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::optional<NativeIosPermissionRequest>
   /**
    * Specialized version of `std::optional<NativeIosPermissionRequest>`.
@@ -4449,7 +4587,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline NativeIosPermissionRequest get_std__optional_NativeIosPermissionRequest_(const std::optional<NativeIosPermissionRequest>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::vector<NativeNotificationAction>
   /**
    * Specialized version of `std::vector<NativeNotificationAction>`.
@@ -4460,7 +4598,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::optional<NativeNotificationCategoryOptions>
   /**
    * Specialized version of `std::optional<NativeNotificationCategoryOptions>`.
@@ -4475,7 +4613,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline NativeNotificationCategoryOptions get_std__optional_NativeNotificationCategoryOptions_(const std::optional<NativeNotificationCategoryOptions>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<NativeNotificationCategory>>
   /**
    * Specialized version of `std::shared_ptr<Promise<NativeNotificationCategory>>`.
@@ -4487,7 +4625,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<NativeNotificationCategory> wrap_std__shared_ptr_Promise_NativeNotificationCategory__(std::shared_ptr<Promise<NativeNotificationCategory>> promise) noexcept {
     return PromiseHolder<NativeNotificationCategory>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const NativeNotificationCategory& /* result */)>
   /**
    * Specialized version of `std::function<void(const NativeNotificationCategory&)>`.
@@ -4509,7 +4647,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_NativeNotificationCategory_Wrapper wrap_Func_void_NativeNotificationCategory(Func_void_NativeNotificationCategory value) noexcept {
     return Func_void_NativeNotificationCategory_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<NativeNotificationCategory>
   /**
    * Specialized version of `std::vector<NativeNotificationCategory>`.
@@ -4520,7 +4658,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::vector<NativeNotificationCategory>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<NativeNotificationCategory>>>`.
@@ -4532,7 +4670,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<NativeNotificationCategory>> wrap_std__shared_ptr_Promise_std__vector_NativeNotificationCategory___(std::shared_ptr<Promise<std::vector<NativeNotificationCategory>>> promise) noexcept {
     return PromiseHolder<std::vector<NativeNotificationCategory>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::vector<NativeNotificationCategory>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<NativeNotificationCategory>&)>`.
@@ -4554,7 +4692,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_NativeNotificationCategory__Wrapper wrap_Func_void_std__vector_NativeNotificationCategory_(Func_void_std__vector_NativeNotificationCategory_ value) noexcept {
     return Func_void_std__vector_NativeNotificationCategory__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<double>
   /**
    * Specialized version of `std::vector<double>`.
@@ -4565,7 +4703,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::optional<std::vector<double>>
   /**
    * Specialized version of `std::optional<std::vector<double>>`.
@@ -4580,7 +4718,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::vector<double> get_std__optional_std__vector_double__(const std::optional<std::vector<double>>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::optional<NativeChannel>
   /**
    * Specialized version of `std::optional<NativeChannel>`.
@@ -4595,7 +4733,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline NativeChannel get_std__optional_NativeChannel_(const std::optional<NativeChannel>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::optional<NativeChannel>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::optional<NativeChannel>>>`.
@@ -4607,7 +4745,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::optional<NativeChannel>> wrap_std__shared_ptr_Promise_std__optional_NativeChannel___(std::shared_ptr<Promise<std::optional<NativeChannel>>> promise) noexcept {
     return PromiseHolder<std::optional<NativeChannel>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::optional<NativeChannel>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::optional<NativeChannel>&)>`.
@@ -4629,7 +4767,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__optional_NativeChannel__Wrapper wrap_Func_void_std__optional_NativeChannel_(Func_void_std__optional_NativeChannel_ value) noexcept {
     return Func_void_std__optional_NativeChannel__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<NativeChannel>
   /**
    * Specialized version of `std::vector<NativeChannel>`.
@@ -4640,7 +4778,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::vector<NativeChannel>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<NativeChannel>>>`.
@@ -4652,7 +4790,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<NativeChannel>> wrap_std__shared_ptr_Promise_std__vector_NativeChannel___(std::shared_ptr<Promise<std::vector<NativeChannel>>> promise) noexcept {
     return PromiseHolder<std::vector<NativeChannel>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::vector<NativeChannel>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<NativeChannel>&)>`.
@@ -4674,7 +4812,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_NativeChannel__Wrapper wrap_Func_void_std__vector_NativeChannel_(Func_void_std__vector_NativeChannel_ value) noexcept {
     return Func_void_std__vector_NativeChannel__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::optional<std::shared_ptr<AnyMap>>
   /**
    * Specialized version of `std::optional<std::shared_ptr<AnyMap>>`.
@@ -4689,7 +4827,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::shared_ptr<AnyMap> get_std__optional_std__shared_ptr_AnyMap__(const std::optional<std::shared_ptr<AnyMap>>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::optional<NativeTriggerInput>
   /**
    * Specialized version of `std::optional<NativeTriggerInput>`.
@@ -4704,7 +4842,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline NativeTriggerInput get_std__optional_NativeTriggerInput_(const std::optional<NativeTriggerInput>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::vector<NativeNotificationRequest>
   /**
    * Specialized version of `std::vector<NativeNotificationRequest>`.
@@ -4715,7 +4853,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>`.
@@ -4727,7 +4865,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<NativeNotificationRequest>> wrap_std__shared_ptr_Promise_std__vector_NativeNotificationRequest___(std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>> promise) noexcept {
     return PromiseHolder<std::vector<NativeNotificationRequest>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::vector<NativeNotificationRequest>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<NativeNotificationRequest>&)>`.
@@ -4749,7 +4887,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_NativeNotificationRequest__Wrapper wrap_Func_void_std__vector_NativeNotificationRequest_(Func_void_std__vector_NativeNotificationRequest_ value) noexcept {
     return Func_void_std__vector_NativeNotificationRequest__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<NativeNotification>
   /**
    * Specialized version of `std::vector<NativeNotification>`.
@@ -4760,7 +4898,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::vector<NativeNotification>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<NativeNotification>>>`.
@@ -4772,7 +4910,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<NativeNotification>> wrap_std__shared_ptr_Promise_std__vector_NativeNotification___(std::shared_ptr<Promise<std::vector<NativeNotification>>> promise) noexcept {
     return PromiseHolder<std::vector<NativeNotification>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::vector<NativeNotification>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<NativeNotification>&)>`.
@@ -4794,7 +4932,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_NativeNotification__Wrapper wrap_Func_void_std__vector_NativeNotification_(Func_void_std__vector_NativeNotification_ value) noexcept {
     return Func_void_std__vector_NativeNotification__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<NativePushToken>>
   /**
    * Specialized version of `std::shared_ptr<Promise<NativePushToken>>`.
@@ -4806,7 +4944,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<NativePushToken> wrap_std__shared_ptr_Promise_NativePushToken__(std::shared_ptr<Promise<NativePushToken>> promise) noexcept {
     return PromiseHolder<NativePushToken>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const NativePushToken& /* result */)>
   /**
    * Specialized version of `std::function<void(const NativePushToken&)>`.
@@ -4828,7 +4966,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_NativePushToken_Wrapper wrap_Func_void_NativePushToken(Func_void_NativePushToken value) noexcept {
     return Func_void_NativePushToken_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void(const std::string& /* requestId */, const NativeNotification& /* notification */)>
   /**
    * Specialized version of `std::function<void(const std::string&, const NativeNotification&)>`.
@@ -4850,7 +4988,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__string_NativeNotification_Wrapper wrap_Func_void_std__string_NativeNotification(Func_void_std__string_NativeNotification value) noexcept {
     return Func_void_std__string_NativeNotification_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void(const NativeNotificationResponse& /* response */)>
   /**
    * Specialized version of `std::function<void(const NativeNotificationResponse&)>`.
@@ -4872,7 +5010,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_NativeNotificationResponse_Wrapper wrap_Func_void_NativeNotificationResponse(Func_void_NativeNotificationResponse value) noexcept {
     return Func_void_NativeNotificationResponse_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::optional<NativeNotificationResponse>
   /**
    * Specialized version of `std::optional<NativeNotificationResponse>`.
@@ -4887,7 +5025,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline NativeNotificationResponse get_std__optional_NativeNotificationResponse_(const std::optional<NativeNotificationResponse>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::vector<NativeNotificationResponse>
   /**
    * Specialized version of `std::vector<NativeNotificationResponse>`.
@@ -4906,11 +5044,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneNotificationsSpec_ = std::shared_ptr<HybridOneNotificationsSpec>;
   std::shared_ptr<HybridOneNotificationsSpec> create_std__shared_ptr_HybridOneNotificationsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneNotificationsSpec_(std__shared_ptr_HybridOneNotificationsSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneNotificationsSpec>
   using std__weak_ptr_HybridOneNotificationsSpec_ = std::weak_ptr<HybridOneNotificationsSpec>;
   inline std__weak_ptr_HybridOneNotificationsSpec_ weakify_std__shared_ptr_HybridOneNotificationsSpec_(const std::shared_ptr<HybridOneNotificationsSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<NativePermissionResponse>>>
   using Result_std__shared_ptr_Promise_NativePermissionResponse___ = Result<std::shared_ptr<Promise<NativePermissionResponse>>>;
   inline Result_std__shared_ptr_Promise_NativePermissionResponse___ create_Result_std__shared_ptr_Promise_NativePermissionResponse___(const std::shared_ptr<Promise<NativePermissionResponse>>& value) noexcept {
@@ -4919,7 +5057,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_NativePermissionResponse___ create_Result_std__shared_ptr_Promise_NativePermissionResponse___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<NativePermissionResponse>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<NativeNotificationCategory>>>
   using Result_std__shared_ptr_Promise_NativeNotificationCategory___ = Result<std::shared_ptr<Promise<NativeNotificationCategory>>>;
   inline Result_std__shared_ptr_Promise_NativeNotificationCategory___ create_Result_std__shared_ptr_Promise_NativeNotificationCategory___(const std::shared_ptr<Promise<NativeNotificationCategory>>& value) noexcept {
@@ -4928,7 +5066,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_NativeNotificationCategory___ create_Result_std__shared_ptr_Promise_NativeNotificationCategory___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<NativeNotificationCategory>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<NativeNotificationCategory>>>>
   using Result_std__shared_ptr_Promise_std__vector_NativeNotificationCategory____ = Result<std::shared_ptr<Promise<std::vector<NativeNotificationCategory>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_NativeNotificationCategory____ create_Result_std__shared_ptr_Promise_std__vector_NativeNotificationCategory____(const std::shared_ptr<Promise<std::vector<NativeNotificationCategory>>>& value) noexcept {
@@ -4937,7 +5075,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_NativeNotificationCategory____ create_Result_std__shared_ptr_Promise_std__vector_NativeNotificationCategory____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<NativeNotificationCategory>>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::optional<NativeChannel>>>>
   using Result_std__shared_ptr_Promise_std__optional_NativeChannel____ = Result<std::shared_ptr<Promise<std::optional<NativeChannel>>>>;
   inline Result_std__shared_ptr_Promise_std__optional_NativeChannel____ create_Result_std__shared_ptr_Promise_std__optional_NativeChannel____(const std::shared_ptr<Promise<std::optional<NativeChannel>>>& value) noexcept {
@@ -4946,7 +5084,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__optional_NativeChannel____ create_Result_std__shared_ptr_Promise_std__optional_NativeChannel____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::optional<NativeChannel>>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<NativeChannel>>>>
   using Result_std__shared_ptr_Promise_std__vector_NativeChannel____ = Result<std::shared_ptr<Promise<std::vector<NativeChannel>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_NativeChannel____ create_Result_std__shared_ptr_Promise_std__vector_NativeChannel____(const std::shared_ptr<Promise<std::vector<NativeChannel>>>& value) noexcept {
@@ -4955,7 +5093,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_NativeChannel____ create_Result_std__shared_ptr_Promise_std__vector_NativeChannel____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<NativeChannel>>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>>
   using Result_std__shared_ptr_Promise_std__vector_NativeNotificationRequest____ = Result<std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_NativeNotificationRequest____ create_Result_std__shared_ptr_Promise_std__vector_NativeNotificationRequest____(const std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>& value) noexcept {
@@ -4964,7 +5102,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_NativeNotificationRequest____ create_Result_std__shared_ptr_Promise_std__vector_NativeNotificationRequest____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<NativeNotification>>>>
   using Result_std__shared_ptr_Promise_std__vector_NativeNotification____ = Result<std::shared_ptr<Promise<std::vector<NativeNotification>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_NativeNotification____ create_Result_std__shared_ptr_Promise_std__vector_NativeNotification____(const std::shared_ptr<Promise<std::vector<NativeNotification>>>& value) noexcept {
@@ -4973,7 +5111,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_NativeNotification____ create_Result_std__shared_ptr_Promise_std__vector_NativeNotification____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<NativeNotification>>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<NativePushToken>>>
   using Result_std__shared_ptr_Promise_NativePushToken___ = Result<std::shared_ptr<Promise<NativePushToken>>>;
   inline Result_std__shared_ptr_Promise_NativePushToken___ create_Result_std__shared_ptr_Promise_NativePushToken___(const std::shared_ptr<Promise<NativePushToken>>& value) noexcept {
@@ -4982,7 +5120,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_NativePushToken___ create_Result_std__shared_ptr_Promise_NativePushToken___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<NativePushToken>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::optional<NativeNotificationResponse>>
   using Result_std__optional_NativeNotificationResponse__ = Result<std::optional<NativeNotificationResponse>>;
   inline Result_std__optional_NativeNotificationResponse__ create_Result_std__optional_NativeNotificationResponse__(const std::optional<NativeNotificationResponse>& value) noexcept {
@@ -4991,7 +5129,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__optional_NativeNotificationResponse__ create_Result_std__optional_NativeNotificationResponse__(const std::exception_ptr& error) noexcept {
     return Result<std::optional<NativeNotificationResponse>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::vector<NativeNotificationResponse>>
   using Result_std__vector_NativeNotificationResponse__ = Result<std::vector<NativeNotificationResponse>>;
   inline Result_std__vector_NativeNotificationResponse__ create_Result_std__vector_NativeNotificationResponse__(const std::vector<NativeNotificationResponse>& value) noexcept {
@@ -5022,7 +5160,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_PedometerResult_Wrapper wrap_Func_void_PedometerResult(Func_void_PedometerResult value) noexcept {
     return Func_void_PedometerResult_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<PedometerResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<PedometerResult>>`.
@@ -5034,7 +5172,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<PedometerResult> wrap_std__shared_ptr_Promise_PedometerResult__(std::shared_ptr<Promise<PedometerResult>> promise) noexcept {
     return PromiseHolder<PedometerResult>(std::move(promise));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<PedometerPermissionResponse>>
   /**
    * Specialized version of `std::shared_ptr<Promise<PedometerPermissionResponse>>`.
@@ -5046,7 +5184,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<PedometerPermissionResponse> wrap_std__shared_ptr_Promise_PedometerPermissionResponse__(std::shared_ptr<Promise<PedometerPermissionResponse>> promise) noexcept {
     return PromiseHolder<PedometerPermissionResponse>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const PedometerPermissionResponse& /* result */)>
   /**
    * Specialized version of `std::function<void(const PedometerPermissionResponse&)>`.
@@ -5068,7 +5206,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_PedometerPermissionResponse_Wrapper wrap_Func_void_PedometerPermissionResponse(Func_void_PedometerPermissionResponse value) noexcept {
     return Func_void_PedometerPermissionResponse_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOnePedometerSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOnePedometerSpec>`.
@@ -5076,11 +5214,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOnePedometerSpec_ = std::shared_ptr<HybridOnePedometerSpec>;
   std::shared_ptr<HybridOnePedometerSpec> create_std__shared_ptr_HybridOnePedometerSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOnePedometerSpec_(std__shared_ptr_HybridOnePedometerSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOnePedometerSpec>
   using std__weak_ptr_HybridOnePedometerSpec_ = std::weak_ptr<HybridOnePedometerSpec>;
   inline std__weak_ptr_HybridOnePedometerSpec_ weakify_std__shared_ptr_HybridOnePedometerSpec_(const std::shared_ptr<HybridOnePedometerSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<PedometerResult>>>
   using Result_std__shared_ptr_Promise_PedometerResult___ = Result<std::shared_ptr<Promise<PedometerResult>>>;
   inline Result_std__shared_ptr_Promise_PedometerResult___ create_Result_std__shared_ptr_Promise_PedometerResult___(const std::shared_ptr<Promise<PedometerResult>>& value) noexcept {
@@ -5089,7 +5227,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_PedometerResult___ create_Result_std__shared_ptr_Promise_PedometerResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<PedometerResult>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<PedometerPermissionResponse>>>
   using Result_std__shared_ptr_Promise_PedometerPermissionResponse___ = Result<std::shared_ptr<Promise<PedometerPermissionResponse>>>;
   inline Result_std__shared_ptr_Promise_PedometerPermissionResponse___ create_Result_std__shared_ptr_Promise_PedometerPermissionResponse___(const std::shared_ptr<Promise<PedometerPermissionResponse>>& value) noexcept {
@@ -5098,7 +5236,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_PedometerPermissionResponse___ create_Result_std__shared_ptr_Promise_PedometerPermissionResponse___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<PedometerPermissionResponse>>>::withError(error);
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>
   /**
    * Specialized version of `std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>`.
@@ -5110,7 +5248,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<PhotoLibraryPermissionStatus> wrap_std__shared_ptr_Promise_PhotoLibraryPermissionStatus__(std::shared_ptr<Promise<PhotoLibraryPermissionStatus>> promise) noexcept {
     return PromiseHolder<PhotoLibraryPermissionStatus>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(PhotoLibraryPermissionStatus /* result */)>
   /**
    * Specialized version of `std::function<void(PhotoLibraryPermissionStatus)>`.
@@ -5132,7 +5270,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_PhotoLibraryPermissionStatus_Wrapper wrap_Func_void_PhotoLibraryPermissionStatus(Func_void_PhotoLibraryPermissionStatus value) noexcept {
     return Func_void_PhotoLibraryPermissionStatus_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::vector<std::string>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<std::string>>>`.
@@ -5144,7 +5282,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<std::string>> wrap_std__shared_ptr_Promise_std__vector_std__string___(std::shared_ptr<Promise<std::vector<std::string>>> promise) noexcept {
     return PromiseHolder<std::vector<std::string>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::vector<std::string>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<std::string>&)>`.
@@ -5166,7 +5304,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_std__string__Wrapper wrap_Func_void_std__vector_std__string_(Func_void_std__vector_std__string_ value) noexcept {
     return Func_void_std__vector_std__string__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<PhotoLibraryAsset>
   /**
    * Specialized version of `std::vector<PhotoLibraryAsset>`.
@@ -5177,7 +5315,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<PhotoLibraryAssetPage>>
   /**
    * Specialized version of `std::shared_ptr<Promise<PhotoLibraryAssetPage>>`.
@@ -5189,7 +5327,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<PhotoLibraryAssetPage> wrap_std__shared_ptr_Promise_PhotoLibraryAssetPage__(std::shared_ptr<Promise<PhotoLibraryAssetPage>> promise) noexcept {
     return PromiseHolder<PhotoLibraryAssetPage>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const PhotoLibraryAssetPage& /* result */)>
   /**
    * Specialized version of `std::function<void(const PhotoLibraryAssetPage&)>`.
@@ -5211,7 +5349,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_PhotoLibraryAssetPage_Wrapper wrap_Func_void_PhotoLibraryAssetPage(Func_void_PhotoLibraryAssetPage value) noexcept {
     return Func_void_PhotoLibraryAssetPage_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<PhotoLibraryAsset>>
   /**
    * Specialized version of `std::shared_ptr<Promise<PhotoLibraryAsset>>`.
@@ -5223,7 +5361,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<PhotoLibraryAsset> wrap_std__shared_ptr_Promise_PhotoLibraryAsset__(std::shared_ptr<Promise<PhotoLibraryAsset>> promise) noexcept {
     return PromiseHolder<PhotoLibraryAsset>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const PhotoLibraryAsset& /* result */)>
   /**
    * Specialized version of `std::function<void(const PhotoLibraryAsset&)>`.
@@ -5245,7 +5383,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_PhotoLibraryAsset_Wrapper wrap_Func_void_PhotoLibraryAsset(Func_void_PhotoLibraryAsset value) noexcept {
     return Func_void_PhotoLibraryAsset_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<PhotoLibraryAlbum>
   /**
    * Specialized version of `std::vector<PhotoLibraryAlbum>`.
@@ -5256,7 +5394,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<PhotoLibraryAlbumPage>>
   /**
    * Specialized version of `std::shared_ptr<Promise<PhotoLibraryAlbumPage>>`.
@@ -5268,7 +5406,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<PhotoLibraryAlbumPage> wrap_std__shared_ptr_Promise_PhotoLibraryAlbumPage__(std::shared_ptr<Promise<PhotoLibraryAlbumPage>> promise) noexcept {
     return PromiseHolder<PhotoLibraryAlbumPage>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const PhotoLibraryAlbumPage& /* result */)>
   /**
    * Specialized version of `std::function<void(const PhotoLibraryAlbumPage&)>`.
@@ -5290,7 +5428,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_PhotoLibraryAlbumPage_Wrapper wrap_Func_void_PhotoLibraryAlbumPage(Func_void_PhotoLibraryAlbumPage value) noexcept {
     return Func_void_PhotoLibraryAlbumPage_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<PhotoLibraryAlbum>>
   /**
    * Specialized version of `std::shared_ptr<Promise<PhotoLibraryAlbum>>`.
@@ -5302,7 +5440,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<PhotoLibraryAlbum> wrap_std__shared_ptr_Promise_PhotoLibraryAlbum__(std::shared_ptr<Promise<PhotoLibraryAlbum>> promise) noexcept {
     return PromiseHolder<PhotoLibraryAlbum>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const PhotoLibraryAlbum& /* result */)>
   /**
    * Specialized version of `std::function<void(const PhotoLibraryAlbum&)>`.
@@ -5324,7 +5462,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_PhotoLibraryAlbum_Wrapper wrap_Func_void_PhotoLibraryAlbum(Func_void_PhotoLibraryAlbum value) noexcept {
     return Func_void_PhotoLibraryAlbum_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOnePhotoLibrarySpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOnePhotoLibrarySpec>`.
@@ -5332,11 +5470,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOnePhotoLibrarySpec_ = std::shared_ptr<HybridOnePhotoLibrarySpec>;
   std::shared_ptr<HybridOnePhotoLibrarySpec> create_std__shared_ptr_HybridOnePhotoLibrarySpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOnePhotoLibrarySpec_(std__shared_ptr_HybridOnePhotoLibrarySpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOnePhotoLibrarySpec>
   using std__weak_ptr_HybridOnePhotoLibrarySpec_ = std::weak_ptr<HybridOnePhotoLibrarySpec>;
   inline std__weak_ptr_HybridOnePhotoLibrarySpec_ weakify_std__shared_ptr_HybridOnePhotoLibrarySpec_(const std::shared_ptr<HybridOnePhotoLibrarySpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<PhotoLibraryPermissionStatus>
   using Result_PhotoLibraryPermissionStatus_ = Result<PhotoLibraryPermissionStatus>;
   inline Result_PhotoLibraryPermissionStatus_ create_Result_PhotoLibraryPermissionStatus_(PhotoLibraryPermissionStatus value) noexcept {
@@ -5345,7 +5483,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_PhotoLibraryPermissionStatus_ create_Result_PhotoLibraryPermissionStatus_(const std::exception_ptr& error) noexcept {
     return Result<PhotoLibraryPermissionStatus>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>>
   using Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___ = Result<std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>>;
   inline Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___ create_Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___(const std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>& value) noexcept {
@@ -5354,7 +5492,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___ create_Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<std::string>>>>
   using Result_std__shared_ptr_Promise_std__vector_std__string____ = Result<std::shared_ptr<Promise<std::vector<std::string>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_std__string____ create_Result_std__shared_ptr_Promise_std__vector_std__string____(const std::shared_ptr<Promise<std::vector<std::string>>>& value) noexcept {
@@ -5363,7 +5501,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_std__string____ create_Result_std__shared_ptr_Promise_std__vector_std__string____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<std::string>>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<PhotoLibraryAssetPage>>>
   using Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___ = Result<std::shared_ptr<Promise<PhotoLibraryAssetPage>>>;
   inline Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___ create_Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___(const std::shared_ptr<Promise<PhotoLibraryAssetPage>>& value) noexcept {
@@ -5372,7 +5510,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___ create_Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<PhotoLibraryAssetPage>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<PhotoLibraryAsset>>>
   using Result_std__shared_ptr_Promise_PhotoLibraryAsset___ = Result<std::shared_ptr<Promise<PhotoLibraryAsset>>>;
   inline Result_std__shared_ptr_Promise_PhotoLibraryAsset___ create_Result_std__shared_ptr_Promise_PhotoLibraryAsset___(const std::shared_ptr<Promise<PhotoLibraryAsset>>& value) noexcept {
@@ -5381,7 +5519,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_PhotoLibraryAsset___ create_Result_std__shared_ptr_Promise_PhotoLibraryAsset___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<PhotoLibraryAsset>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<PhotoLibraryAlbumPage>>>
   using Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___ = Result<std::shared_ptr<Promise<PhotoLibraryAlbumPage>>>;
   inline Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___ create_Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___(const std::shared_ptr<Promise<PhotoLibraryAlbumPage>>& value) noexcept {
@@ -5390,7 +5528,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___ create_Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<PhotoLibraryAlbumPage>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<PhotoLibraryAlbum>>>
   using Result_std__shared_ptr_Promise_PhotoLibraryAlbum___ = Result<std::shared_ptr<Promise<PhotoLibraryAlbum>>>;
   inline Result_std__shared_ptr_Promise_PhotoLibraryAlbum___ create_Result_std__shared_ptr_Promise_PhotoLibraryAlbum___(const std::shared_ptr<Promise<PhotoLibraryAlbum>>& value) noexcept {
@@ -5399,7 +5537,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_PhotoLibraryAlbum___ create_Result_std__shared_ptr_Promise_PhotoLibraryAlbum___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<PhotoLibraryAlbum>>>::withError(error);
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::optional<std::string>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::optional<std::string>>>`.
@@ -5411,7 +5549,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::optional<std::string>> wrap_std__shared_ptr_Promise_std__optional_std__string___(std::shared_ptr<Promise<std::optional<std::string>>> promise) noexcept {
     return PromiseHolder<std::optional<std::string>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::optional<std::string>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::optional<std::string>&)>`.
@@ -5433,7 +5571,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__optional_std__string__Wrapper wrap_Func_void_std__optional_std__string_(Func_void_std__optional_std__string_ value) noexcept {
     return Func_void_std__optional_std__string__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneProtectedStoreSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneProtectedStoreSpec>`.
@@ -5441,11 +5579,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneProtectedStoreSpec_ = std::shared_ptr<HybridOneProtectedStoreSpec>;
   std::shared_ptr<HybridOneProtectedStoreSpec> create_std__shared_ptr_HybridOneProtectedStoreSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneProtectedStoreSpec_(std__shared_ptr_HybridOneProtectedStoreSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneProtectedStoreSpec>
   using std__weak_ptr_HybridOneProtectedStoreSpec_ = std::weak_ptr<HybridOneProtectedStoreSpec>;
   inline std__weak_ptr_HybridOneProtectedStoreSpec_ weakify_std__shared_ptr_HybridOneProtectedStoreSpec_(const std::shared_ptr<HybridOneProtectedStoreSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::optional<std::string>>>>
   using Result_std__shared_ptr_Promise_std__optional_std__string____ = Result<std::shared_ptr<Promise<std::optional<std::string>>>>;
   inline Result_std__shared_ptr_Promise_std__optional_std__string____ create_Result_std__shared_ptr_Promise_std__optional_std__string____(const std::shared_ptr<Promise<std::optional<std::string>>>& value) noexcept {
@@ -5454,7 +5592,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__optional_std__string____ create_Result_std__shared_ptr_Promise_std__optional_std__string____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::optional<std::string>>>>::withError(error);
   }
-  
+
   // pragma MARK: std::vector<PurchaseProduct>
   /**
    * Specialized version of `std::vector<PurchaseProduct>`.
@@ -5465,7 +5603,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::vector<PurchaseProduct>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<PurchaseProduct>>>`.
@@ -5477,7 +5615,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<PurchaseProduct>> wrap_std__shared_ptr_Promise_std__vector_PurchaseProduct___(std::shared_ptr<Promise<std::vector<PurchaseProduct>>> promise) noexcept {
     return PromiseHolder<std::vector<PurchaseProduct>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::vector<PurchaseProduct>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<PurchaseProduct>&)>`.
@@ -5499,7 +5637,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_PurchaseProduct__Wrapper wrap_Func_void_std__vector_PurchaseProduct_(Func_void_std__vector_PurchaseProduct_ value) noexcept {
     return Func_void_std__vector_PurchaseProduct__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::optional<PurchaseTransaction>
   /**
    * Specialized version of `std::optional<PurchaseTransaction>`.
@@ -5514,7 +5652,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PurchaseTransaction get_std__optional_PurchaseTransaction_(const std::optional<PurchaseTransaction>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<PurchaseResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<PurchaseResult>>`.
@@ -5526,7 +5664,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<PurchaseResult> wrap_std__shared_ptr_Promise_PurchaseResult__(std::shared_ptr<Promise<PurchaseResult>> promise) noexcept {
     return PromiseHolder<PurchaseResult>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const PurchaseResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const PurchaseResult&)>`.
@@ -5548,7 +5686,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_PurchaseResult_Wrapper wrap_Func_void_PurchaseResult(Func_void_PurchaseResult value) noexcept {
     return Func_void_PurchaseResult_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<PurchaseTransaction>
   /**
    * Specialized version of `std::vector<PurchaseTransaction>`.
@@ -5559,7 +5697,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>`.
@@ -5571,7 +5709,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<PurchaseTransaction>> wrap_std__shared_ptr_Promise_std__vector_PurchaseTransaction___(std::shared_ptr<Promise<std::vector<PurchaseTransaction>>> promise) noexcept {
     return PromiseHolder<std::vector<PurchaseTransaction>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::vector<PurchaseTransaction>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<PurchaseTransaction>&)>`.
@@ -5593,7 +5731,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_PurchaseTransaction__Wrapper wrap_Func_void_std__vector_PurchaseTransaction_(Func_void_std__vector_PurchaseTransaction_ value) noexcept {
     return Func_void_std__vector_PurchaseTransaction__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::function<void(const PurchaseUpdate& /* update */)>
   /**
    * Specialized version of `std::function<void(const PurchaseUpdate&)>`.
@@ -5615,7 +5753,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_PurchaseUpdate_Wrapper wrap_Func_void_PurchaseUpdate(Func_void_PurchaseUpdate value) noexcept {
     return Func_void_PurchaseUpdate_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOnePurchasesSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOnePurchasesSpec>`.
@@ -5623,11 +5761,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOnePurchasesSpec_ = std::shared_ptr<HybridOnePurchasesSpec>;
   std::shared_ptr<HybridOnePurchasesSpec> create_std__shared_ptr_HybridOnePurchasesSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOnePurchasesSpec_(std__shared_ptr_HybridOnePurchasesSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOnePurchasesSpec>
   using std__weak_ptr_HybridOnePurchasesSpec_ = std::weak_ptr<HybridOnePurchasesSpec>;
   inline std__weak_ptr_HybridOnePurchasesSpec_ weakify_std__shared_ptr_HybridOnePurchasesSpec_(const std::shared_ptr<HybridOnePurchasesSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<PurchaseProduct>>>>
   using Result_std__shared_ptr_Promise_std__vector_PurchaseProduct____ = Result<std::shared_ptr<Promise<std::vector<PurchaseProduct>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_PurchaseProduct____ create_Result_std__shared_ptr_Promise_std__vector_PurchaseProduct____(const std::shared_ptr<Promise<std::vector<PurchaseProduct>>>& value) noexcept {
@@ -5636,7 +5774,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_PurchaseProduct____ create_Result_std__shared_ptr_Promise_std__vector_PurchaseProduct____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<PurchaseProduct>>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<PurchaseResult>>>
   using Result_std__shared_ptr_Promise_PurchaseResult___ = Result<std::shared_ptr<Promise<PurchaseResult>>>;
   inline Result_std__shared_ptr_Promise_PurchaseResult___ create_Result_std__shared_ptr_Promise_PurchaseResult___(const std::shared_ptr<Promise<PurchaseResult>>& value) noexcept {
@@ -5645,7 +5783,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_PurchaseResult___ create_Result_std__shared_ptr_Promise_PurchaseResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<PurchaseResult>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>>
   using Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____ = Result<std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____ create_Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____(const std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>& value) noexcept {
@@ -5654,7 +5792,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____ create_Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>>::withError(error);
   }
-  
+
   // pragma MARK: std::vector<QuickActionItem>
   /**
    * Specialized version of `std::vector<QuickActionItem>`.
@@ -5665,7 +5803,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::vector<QuickActionItem>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<QuickActionItem>>>`.
@@ -5677,7 +5815,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<QuickActionItem>> wrap_std__shared_ptr_Promise_std__vector_QuickActionItem___(std::shared_ptr<Promise<std::vector<QuickActionItem>>> promise) noexcept {
     return PromiseHolder<std::vector<QuickActionItem>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::vector<QuickActionItem>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<QuickActionItem>&)>`.
@@ -5699,7 +5837,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_QuickActionItem__Wrapper wrap_Func_void_std__vector_QuickActionItem_(Func_void_std__vector_QuickActionItem_ value) noexcept {
     return Func_void_std__vector_QuickActionItem__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneQuickActionsSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneQuickActionsSpec>`.
@@ -5707,11 +5845,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneQuickActionsSpec_ = std::shared_ptr<HybridOneQuickActionsSpec>;
   std::shared_ptr<HybridOneQuickActionsSpec> create_std__shared_ptr_HybridOneQuickActionsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneQuickActionsSpec_(std__shared_ptr_HybridOneQuickActionsSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneQuickActionsSpec>
   using std__weak_ptr_HybridOneQuickActionsSpec_ = std::weak_ptr<HybridOneQuickActionsSpec>;
   inline std__weak_ptr_HybridOneQuickActionsSpec_ weakify_std__shared_ptr_HybridOneQuickActionsSpec_(const std::shared_ptr<HybridOneQuickActionsSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<QuickActionItem>>>>
   using Result_std__shared_ptr_Promise_std__vector_QuickActionItem____ = Result<std::shared_ptr<Promise<std::vector<QuickActionItem>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_QuickActionItem____ create_Result_std__shared_ptr_Promise_std__vector_QuickActionItem____(const std::shared_ptr<Promise<std::vector<QuickActionItem>>>& value) noexcept {
@@ -5720,7 +5858,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_QuickActionItem____ create_Result_std__shared_ptr_Promise_std__vector_QuickActionItem____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<QuickActionItem>>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::optional<std::string>>
   using Result_std__optional_std__string__ = Result<std::optional<std::string>>;
   inline Result_std__optional_std__string__ create_Result_std__optional_std__string__(const std::optional<std::string>& value) noexcept {
@@ -5729,7 +5867,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__optional_std__string__ create_Result_std__optional_std__string__(const std::exception_ptr& error) noexcept {
     return Result<std::optional<std::string>>::withError(error);
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<ScreenCaptureState>>
   /**
    * Specialized version of `std::shared_ptr<Promise<ScreenCaptureState>>`.
@@ -5741,7 +5879,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<ScreenCaptureState> wrap_std__shared_ptr_Promise_ScreenCaptureState__(std::shared_ptr<Promise<ScreenCaptureState>> promise) noexcept {
     return PromiseHolder<ScreenCaptureState>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(ScreenCaptureState /* result */)>
   /**
    * Specialized version of `std::function<void(ScreenCaptureState)>`.
@@ -5763,7 +5901,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_ScreenCaptureState_Wrapper wrap_Func_void_ScreenCaptureState(Func_void_ScreenCaptureState value) noexcept {
     return Func_void_ScreenCaptureState_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<ScreenCaptureResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<ScreenCaptureResult>>`.
@@ -5775,7 +5913,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<ScreenCaptureResult> wrap_std__shared_ptr_Promise_ScreenCaptureResult__(std::shared_ptr<Promise<ScreenCaptureResult>> promise) noexcept {
     return PromiseHolder<ScreenCaptureResult>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const ScreenCaptureResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const ScreenCaptureResult&)>`.
@@ -5797,7 +5935,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_ScreenCaptureResult_Wrapper wrap_Func_void_ScreenCaptureResult(Func_void_ScreenCaptureResult value) noexcept {
     return Func_void_ScreenCaptureResult_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneScreenCaptureSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneScreenCaptureSpec>`.
@@ -5805,11 +5943,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneScreenCaptureSpec_ = std::shared_ptr<HybridOneScreenCaptureSpec>;
   std::shared_ptr<HybridOneScreenCaptureSpec> create_std__shared_ptr_HybridOneScreenCaptureSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneScreenCaptureSpec_(std__shared_ptr_HybridOneScreenCaptureSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneScreenCaptureSpec>
   using std__weak_ptr_HybridOneScreenCaptureSpec_ = std::weak_ptr<HybridOneScreenCaptureSpec>;
   inline std__weak_ptr_HybridOneScreenCaptureSpec_ weakify_std__shared_ptr_HybridOneScreenCaptureSpec_(const std::shared_ptr<HybridOneScreenCaptureSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<ScreenCaptureState>>>
   using Result_std__shared_ptr_Promise_ScreenCaptureState___ = Result<std::shared_ptr<Promise<ScreenCaptureState>>>;
   inline Result_std__shared_ptr_Promise_ScreenCaptureState___ create_Result_std__shared_ptr_Promise_ScreenCaptureState___(const std::shared_ptr<Promise<ScreenCaptureState>>& value) noexcept {
@@ -5818,7 +5956,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_ScreenCaptureState___ create_Result_std__shared_ptr_Promise_ScreenCaptureState___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<ScreenCaptureState>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<ScreenCaptureResult>>>
   using Result_std__shared_ptr_Promise_ScreenCaptureResult___ = Result<std::shared_ptr<Promise<ScreenCaptureResult>>>;
   inline Result_std__shared_ptr_Promise_ScreenCaptureResult___ create_Result_std__shared_ptr_Promise_ScreenCaptureResult___(const std::shared_ptr<Promise<ScreenCaptureResult>>& value) noexcept {
@@ -5827,7 +5965,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_ScreenCaptureResult___ create_Result_std__shared_ptr_Promise_ScreenCaptureResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<ScreenCaptureResult>>>::withError(error);
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<ScreenOrientationValue>>
   /**
    * Specialized version of `std::shared_ptr<Promise<ScreenOrientationValue>>`.
@@ -5839,7 +5977,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<ScreenOrientationValue> wrap_std__shared_ptr_Promise_ScreenOrientationValue__(std::shared_ptr<Promise<ScreenOrientationValue>> promise) noexcept {
     return PromiseHolder<ScreenOrientationValue>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(ScreenOrientationValue /* result */)>
   /**
    * Specialized version of `std::function<void(ScreenOrientationValue)>`.
@@ -5861,7 +5999,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_ScreenOrientationValue_Wrapper wrap_Func_void_ScreenOrientationValue(Func_void_ScreenOrientationValue value) noexcept {
     return Func_void_ScreenOrientationValue_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneScreenOrientationSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneScreenOrientationSpec>`.
@@ -5869,11 +6007,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneScreenOrientationSpec_ = std::shared_ptr<HybridOneScreenOrientationSpec>;
   std::shared_ptr<HybridOneScreenOrientationSpec> create_std__shared_ptr_HybridOneScreenOrientationSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneScreenOrientationSpec_(std__shared_ptr_HybridOneScreenOrientationSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneScreenOrientationSpec>
   using std__weak_ptr_HybridOneScreenOrientationSpec_ = std::weak_ptr<HybridOneScreenOrientationSpec>;
   inline std__weak_ptr_HybridOneScreenOrientationSpec_ weakify_std__shared_ptr_HybridOneScreenOrientationSpec_(const std::shared_ptr<HybridOneScreenOrientationSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<ScreenOrientationValue>>>
   using Result_std__shared_ptr_Promise_ScreenOrientationValue___ = Result<std::shared_ptr<Promise<ScreenOrientationValue>>>;
   inline Result_std__shared_ptr_Promise_ScreenOrientationValue___ create_Result_std__shared_ptr_Promise_ScreenOrientationValue___(const std::shared_ptr<Promise<ScreenOrientationValue>>& value) noexcept {
@@ -5882,7 +6020,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_ScreenOrientationValue___ create_Result_std__shared_ptr_Promise_ScreenOrientationValue___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<ScreenOrientationValue>>>::withError(error);
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneSDKHandleSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneSDKHandleSpec>`.
@@ -5890,11 +6028,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneSDKHandleSpec_ = std::shared_ptr<HybridOneSDKHandleSpec>;
   std::shared_ptr<HybridOneSDKHandleSpec> create_std__shared_ptr_HybridOneSDKHandleSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneSDKHandleSpec_(std__shared_ptr_HybridOneSDKHandleSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneSDKHandleSpec>
   using std__weak_ptr_HybridOneSDKHandleSpec_ = std::weak_ptr<HybridOneSDKHandleSpec>;
   inline std__weak_ptr_HybridOneSDKHandleSpec_ weakify_std__shared_ptr_HybridOneSDKHandleSpec_(const std::shared_ptr<HybridOneSDKHandleSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>
   /**
    * Specialized version of `std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>`.
@@ -5905,7 +6043,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::vector<std::shared_ptr<ArrayBuffer>>
   /**
    * Specialized version of `std::vector<std::shared_ptr<ArrayBuffer>>`.
@@ -5916,7 +6054,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::optional<std::vector<std::shared_ptr<ArrayBuffer>>>
   /**
    * Specialized version of `std::optional<std::vector<std::shared_ptr<ArrayBuffer>>>`.
@@ -5931,7 +6069,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::vector<std::shared_ptr<ArrayBuffer>> get_std__optional_std__vector_std__shared_ptr_ArrayBuffer___(const std::optional<std::vector<std::shared_ptr<ArrayBuffer>>>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::function<void(const OneSDKResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const OneSDKResult&)>`.
@@ -5953,7 +6091,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_OneSDKResult_Wrapper wrap_Func_void_OneSDKResult(Func_void_OneSDKResult value) noexcept {
     return Func_void_OneSDKResult_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>
   /**
    * Wrapper struct for `std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>`.
@@ -6030,7 +6168,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_ create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(std::chrono::system_clock::time_point value) noexcept {
     return std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(value);
   }
-  
+
   // pragma MARK: std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>
   /**
    * Specialized version of `std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>`.
@@ -6045,7 +6183,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point> get_std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(const std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */, const std::vector<std::shared_ptr<ArrayBuffer>>& /* buffers */)>
   /**
    * Specialized version of `std::function<void(double, const std::shared_ptr<AnyMap>&, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>&, const std::vector<std::shared_ptr<ArrayBuffer>>&)>`.
@@ -6067,7 +6205,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___std__vector_std__shared_ptr_ArrayBuffer___Wrapper wrap_Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___std__vector_std__shared_ptr_ArrayBuffer__(Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___std__vector_std__shared_ptr_ArrayBuffer__ value) noexcept {
     return Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___std__vector_std__shared_ptr_ArrayBuffer___Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::optional<std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */, const std::vector<std::shared_ptr<ArrayBuffer>>& /* buffers */)>>
   /**
    * Specialized version of `std::optional<std::function<void(double / * index * /, const std::shared_ptr<AnyMap>& / * data * /, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& / * handles * /, const std::vector<std::shared_ptr<ArrayBuffer>>& / * buffers * /)>>`.
@@ -6082,7 +6220,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */, const std::vector<std::shared_ptr<ArrayBuffer>>& /* buffers */)> get_std__optional_std__function_void_double____index_____const_std__shared_ptr_AnyMap______data_____const_std__vector_std__shared_ptr_HybridOneSDKHandleSpec_______handles_____const_std__vector_std__shared_ptr_ArrayBuffer_______buffers______(const std::optional<std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */, const std::vector<std::shared_ptr<ArrayBuffer>>& /* buffers */)>>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::function<OneSDKResult(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */, const std::vector<std::shared_ptr<ArrayBuffer>>& /* buffers */)>
   /**
    * Specialized version of `std::function<OneSDKResult(double, const std::shared_ptr<AnyMap>&, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>&, const std::vector<std::shared_ptr<ArrayBuffer>>&)>`.
@@ -6105,7 +6243,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___std__vector_std__shared_ptr_ArrayBuffer___Wrapper wrap_Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___std__vector_std__shared_ptr_ArrayBuffer__(Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___std__vector_std__shared_ptr_ArrayBuffer__ value) noexcept {
     return Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___std__vector_std__shared_ptr_ArrayBuffer___Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>>`.
@@ -6117,7 +6255,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>> wrap_std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point___(std::shared_ptr<Promise<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>> promise) noexcept {
     return PromiseHolder<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>&)>`.
@@ -6139,7 +6277,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__Wrapper wrap_Func_void_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(Func_void_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_ value) noexcept {
     return Func_void_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneSDKSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneSDKSpec>`.
@@ -6147,11 +6285,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneSDKSpec_ = std::shared_ptr<HybridOneSDKSpec>;
   std::shared_ptr<HybridOneSDKSpec> create_std__shared_ptr_HybridOneSDKSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneSDKSpec_(std__shared_ptr_HybridOneSDKSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneSDKSpec>
   using std__weak_ptr_HybridOneSDKSpec_ = std::weak_ptr<HybridOneSDKSpec>;
   inline std__weak_ptr_HybridOneSDKSpec_ weakify_std__shared_ptr_HybridOneSDKSpec_(const std::shared_ptr<HybridOneSDKSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>
   using Result_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__ = Result<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>;
   inline Result_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__ create_Result_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(const std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>& value) noexcept {
@@ -6160,7 +6298,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__ create_Result_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(const std::exception_ptr& error) noexcept {
     return Result<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>>>
   using Result_std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point____ = Result<std::shared_ptr<Promise<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>>>;
   inline Result_std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point____ create_Result_std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point____(const std::shared_ptr<Promise<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>>& value) noexcept {
@@ -6169,7 +6307,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point____ create_Result_std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>>>::withError(error);
   }
-  
+
   // pragma MARK: std::optional<SecureStoreAccessibility>
   /**
    * Specialized version of `std::optional<SecureStoreAccessibility>`.
@@ -6184,7 +6322,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline SecureStoreAccessibility get_std__optional_SecureStoreAccessibility_(const std::optional<SecureStoreAccessibility>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneSecureStoreSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneSecureStoreSpec>`.
@@ -6192,11 +6330,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneSecureStoreSpec_ = std::shared_ptr<HybridOneSecureStoreSpec>;
   std::shared_ptr<HybridOneSecureStoreSpec> create_std__shared_ptr_HybridOneSecureStoreSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneSecureStoreSpec_(std__shared_ptr_HybridOneSecureStoreSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneSecureStoreSpec>
   using std__weak_ptr_HybridOneSecureStoreSpec_ = std::weak_ptr<HybridOneSecureStoreSpec>;
   inline std__weak_ptr_HybridOneSecureStoreSpec_ weakify_std__shared_ptr_HybridOneSecureStoreSpec_(const std::shared_ptr<HybridOneSecureStoreSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: std::shared_ptr<Promise<SpeechPermissionResponse>>
   /**
    * Specialized version of `std::shared_ptr<Promise<SpeechPermissionResponse>>`.
@@ -6208,7 +6346,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<SpeechPermissionResponse> wrap_std__shared_ptr_Promise_SpeechPermissionResponse__(std::shared_ptr<Promise<SpeechPermissionResponse>> promise) noexcept {
     return PromiseHolder<SpeechPermissionResponse>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const SpeechPermissionResponse& /* result */)>
   /**
    * Specialized version of `std::function<void(const SpeechPermissionResponse&)>`.
@@ -6230,7 +6368,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_SpeechPermissionResponse_Wrapper wrap_Func_void_SpeechPermissionResponse(Func_void_SpeechPermissionResponse value) noexcept {
     return Func_void_SpeechPermissionResponse_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::optional<SpeechErrorCode>
   /**
    * Specialized version of `std::optional<SpeechErrorCode>`.
@@ -6245,7 +6383,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline SpeechErrorCode get_std__optional_SpeechErrorCode_(const std::optional<SpeechErrorCode>& optional) noexcept {
     return optional.value();
   }
-  
+
   // pragma MARK: std::function<void(const SpeechEvent& /* event */)>
   /**
    * Specialized version of `std::function<void(const SpeechEvent&)>`.
@@ -6267,7 +6405,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_SpeechEvent_Wrapper wrap_Func_void_SpeechEvent(Func_void_SpeechEvent value) noexcept {
     return Func_void_SpeechEvent_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneSpeechSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneSpeechSpec>`.
@@ -6275,11 +6413,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneSpeechSpec_ = std::shared_ptr<HybridOneSpeechSpec>;
   std::shared_ptr<HybridOneSpeechSpec> create_std__shared_ptr_HybridOneSpeechSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneSpeechSpec_(std__shared_ptr_HybridOneSpeechSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneSpeechSpec>
   using std__weak_ptr_HybridOneSpeechSpec_ = std::weak_ptr<HybridOneSpeechSpec>;
   inline std__weak_ptr_HybridOneSpeechSpec_ weakify_std__shared_ptr_HybridOneSpeechSpec_(const std::shared_ptr<HybridOneSpeechSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<SpeechPermissionResponse>>>
   using Result_std__shared_ptr_Promise_SpeechPermissionResponse___ = Result<std::shared_ptr<Promise<SpeechPermissionResponse>>>;
   inline Result_std__shared_ptr_Promise_SpeechPermissionResponse___ create_Result_std__shared_ptr_Promise_SpeechPermissionResponse___(const std::shared_ptr<Promise<SpeechPermissionResponse>>& value) noexcept {
@@ -6288,7 +6426,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_SpeechPermissionResponse___ create_Result_std__shared_ptr_Promise_SpeechPermissionResponse___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<SpeechPermissionResponse>>>::withError(error);
   }
-  
+
   // pragma MARK: std::function<void(const SpeechSynthesisEvent& /* event */)>
   /**
    * Specialized version of `std::function<void(const SpeechSynthesisEvent&)>`.
@@ -6310,7 +6448,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_SpeechSynthesisEvent_Wrapper wrap_Func_void_SpeechSynthesisEvent(Func_void_SpeechSynthesisEvent value) noexcept {
     return Func_void_SpeechSynthesisEvent_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::vector<SpeechSynthesisVoice>
   /**
    * Specialized version of `std::vector<SpeechSynthesisVoice>`.
@@ -6321,7 +6459,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>`.
@@ -6333,7 +6471,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<SpeechSynthesisVoice>> wrap_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice___(std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>> promise) noexcept {
     return PromiseHolder<std::vector<SpeechSynthesisVoice>>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const std::vector<SpeechSynthesisVoice>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<SpeechSynthesisVoice>&)>`.
@@ -6355,7 +6493,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_SpeechSynthesisVoice__Wrapper wrap_Func_void_std__vector_SpeechSynthesisVoice_(Func_void_std__vector_SpeechSynthesisVoice_ value) noexcept {
     return Func_void_std__vector_SpeechSynthesisVoice__Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneSpeechSynthesisSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneSpeechSynthesisSpec>`.
@@ -6363,11 +6501,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneSpeechSynthesisSpec_ = std::shared_ptr<HybridOneSpeechSynthesisSpec>;
   std::shared_ptr<HybridOneSpeechSynthesisSpec> create_std__shared_ptr_HybridOneSpeechSynthesisSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneSpeechSynthesisSpec_(std__shared_ptr_HybridOneSpeechSynthesisSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneSpeechSynthesisSpec>
   using std__weak_ptr_HybridOneSpeechSynthesisSpec_ = std::weak_ptr<HybridOneSpeechSynthesisSpec>;
   inline std__weak_ptr_HybridOneSpeechSynthesisSpec_ weakify_std__shared_ptr_HybridOneSpeechSynthesisSpec_(const std::shared_ptr<HybridOneSpeechSynthesisSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>>
   using Result_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice____ = Result<std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice____ create_Result_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice____(const std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>& value) noexcept {
@@ -6376,7 +6514,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice____ create_Result_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>>::withError(error);
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneStoreReviewSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneStoreReviewSpec>`.
@@ -6384,11 +6522,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneStoreReviewSpec_ = std::shared_ptr<HybridOneStoreReviewSpec>;
   std::shared_ptr<HybridOneStoreReviewSpec> create_std__shared_ptr_HybridOneStoreReviewSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneStoreReviewSpec_(std__shared_ptr_HybridOneStoreReviewSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneStoreReviewSpec>
   using std__weak_ptr_HybridOneStoreReviewSpec_ = std::weak_ptr<HybridOneStoreReviewSpec>;
   inline std__weak_ptr_HybridOneStoreReviewSpec_ weakify_std__shared_ptr_HybridOneStoreReviewSpec_(const std::shared_ptr<HybridOneStoreReviewSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: std::shared_ptr<Promise<OneUpdatesCheckResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<OneUpdatesCheckResult>>`.
@@ -6400,7 +6538,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<OneUpdatesCheckResult> wrap_std__shared_ptr_Promise_OneUpdatesCheckResult__(std::shared_ptr<Promise<OneUpdatesCheckResult>> promise) noexcept {
     return PromiseHolder<OneUpdatesCheckResult>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const OneUpdatesCheckResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const OneUpdatesCheckResult&)>`.
@@ -6422,7 +6560,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_OneUpdatesCheckResult_Wrapper wrap_Func_void_OneUpdatesCheckResult(Func_void_OneUpdatesCheckResult value) noexcept {
     return Func_void_OneUpdatesCheckResult_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<Promise<OneUpdatesFetchResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<OneUpdatesFetchResult>>`.
@@ -6434,7 +6572,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<OneUpdatesFetchResult> wrap_std__shared_ptr_Promise_OneUpdatesFetchResult__(std::shared_ptr<Promise<OneUpdatesFetchResult>> promise) noexcept {
     return PromiseHolder<OneUpdatesFetchResult>(std::move(promise));
   }
-  
+
   // pragma MARK: std::function<void(const OneUpdatesFetchResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const OneUpdatesFetchResult&)>`.
@@ -6456,7 +6594,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_OneUpdatesFetchResult_Wrapper wrap_Func_void_OneUpdatesFetchResult(Func_void_OneUpdatesFetchResult value) noexcept {
     return Func_void_OneUpdatesFetchResult_Wrapper(std::move(value));
   }
-  
+
   // pragma MARK: std::shared_ptr<HybridOneUpdatesSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneUpdatesSpec>`.
@@ -6464,11 +6602,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneUpdatesSpec_ = std::shared_ptr<HybridOneUpdatesSpec>;
   std::shared_ptr<HybridOneUpdatesSpec> create_std__shared_ptr_HybridOneUpdatesSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneUpdatesSpec_(std__shared_ptr_HybridOneUpdatesSpec_ cppType);
-  
+
   // pragma MARK: std::weak_ptr<HybridOneUpdatesSpec>
   using std__weak_ptr_HybridOneUpdatesSpec_ = std::weak_ptr<HybridOneUpdatesSpec>;
   inline std__weak_ptr_HybridOneUpdatesSpec_ weakify_std__shared_ptr_HybridOneUpdatesSpec_(const std::shared_ptr<HybridOneUpdatesSpec>& strong) noexcept { return strong; }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<OneUpdatesCheckResult>>>
   using Result_std__shared_ptr_Promise_OneUpdatesCheckResult___ = Result<std::shared_ptr<Promise<OneUpdatesCheckResult>>>;
   inline Result_std__shared_ptr_Promise_OneUpdatesCheckResult___ create_Result_std__shared_ptr_Promise_OneUpdatesCheckResult___(const std::shared_ptr<Promise<OneUpdatesCheckResult>>& value) noexcept {
@@ -6477,7 +6615,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_OneUpdatesCheckResult___ create_Result_std__shared_ptr_Promise_OneUpdatesCheckResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<OneUpdatesCheckResult>>>::withError(error);
   }
-  
+
   // pragma MARK: Result<std::shared_ptr<Promise<OneUpdatesFetchResult>>>
   using Result_std__shared_ptr_Promise_OneUpdatesFetchResult___ = Result<std::shared_ptr<Promise<OneUpdatesFetchResult>>>;
   inline Result_std__shared_ptr_Promise_OneUpdatesFetchResult___ create_Result_std__shared_ptr_Promise_OneUpdatesFetchResult___(const std::shared_ptr<Promise<OneUpdatesFetchResult>>& value) noexcept {

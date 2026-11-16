@@ -52,6 +52,11 @@
 #include "JHybridOneImageManipulatorSpec.hpp"
 #include "JHybridOneImagePickerSpec.hpp"
 #include "JHybridOneKeepAwakeSpec.hpp"
+#include "JHybridOneKeyboardSpec.hpp"
+#include "JFunc_void_OneKeyboardEventName_OneKeyboardEvent.hpp"
+#include "JFunc_void_OneKeyboardFocus.hpp"
+#include "JFunc_void_double_double.hpp"
+#include "JFunc_void_double.hpp"
 #include "JHybridOneLaunchScreenSpec.hpp"
 #include "JHybridOneLightSensorSpec.hpp"
 #include "JFunc_void_LightSensorMeasurement.hpp"
@@ -78,7 +83,6 @@
 #include "JHybridOneQuickActionsSpec.hpp"
 #include "JHybridOneScreenCaptureSpec.hpp"
 #include "JFunc_void_ScreenCaptureState.hpp"
-#include "JFunc_void_double.hpp"
 #include "JHybridOneScreenOrientationSpec.hpp"
 #include "JFunc_void_ScreenOrientationValue.hpp"
 #include "JHybridOneSecureStoreSpec.hpp"
@@ -109,6 +113,14 @@ struct JHybridOneHapticsSpecImpl: public jni::JavaClass<JHybridOneHapticsSpecImp
     static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneHapticsSpecImpl::javaobject()>();
     jni::local_ref<JHybridOneHapticsSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
     return javaPart->getJHybridOneHapticsSpec();
+  }
+};
+struct JHybridOneKeyboardSpecImpl: public jni::JavaClass<JHybridOneKeyboardSpecImpl, JHybridOneKeyboardSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneKeyboard;";
+  static std::shared_ptr<JHybridOneKeyboardSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneKeyboardSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneKeyboardSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneKeyboardSpec();
   }
 };
 struct JHybridOneLaunchScreenSpecImpl: public jni::JavaClass<JHybridOneLaunchScreenSpecImpl, JHybridOneLaunchScreenSpec::JavaPart> {
@@ -498,6 +510,11 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneImageManipulatorSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneImagePickerSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneKeepAwakeSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneKeyboardSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_OneKeyboardEventName_OneKeyboardEvent_cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_OneKeyboardFocus_cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_double_double_cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_double_cxx::registerNatives();
   margelo::nitro::one::JHybridOneLaunchScreenSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneLightSensorSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_LightSensorMeasurement_cxx::registerNatives();
@@ -524,7 +541,6 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneQuickActionsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneScreenCaptureSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_ScreenCaptureState_cxx::registerNatives();
-  margelo::nitro::one::JFunc_void_double_cxx::registerNatives();
   margelo::nitro::one::JHybridOneScreenOrientationSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_ScreenOrientationValue_cxx::registerNatives();
   margelo::nitro::one::JHybridOneSecureStoreSpec::CxxPart::registerNatives();
@@ -542,6 +558,12 @@ void registerAllNatives() {
     "OneHaptics",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneHapticsSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneKeyboard",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneKeyboardSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(

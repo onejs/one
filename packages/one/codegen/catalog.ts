@@ -17,6 +17,13 @@ export const handwrittenComponents = [
   'OneNativeCamera',
   'OneNativeUIKitHost',
   'OneNativeContent',
+  'OneKeyboardControllerView',
+  'OneKeyboardGestureArea',
+  'OneOverKeyboardView',
+  'OneKeyboardBackgroundView',
+  'OneKeyboardExtender',
+  'OneClippingScrollViewDecoratorView',
+  'OneKeyboardToolbarGroupView',
 ] as const
 
 export const modifiers = [

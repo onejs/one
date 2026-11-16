@@ -1,0 +1,14 @@
+<resources>
+  <style name="one_keyboard_gboard_dark">
+    <item name="oneKeyboardColor">@android:color/system_neutral1_900</item>
+  </style>
+  <style name="one_keyboard_gboard_light">
+    <item name="oneKeyboardColor">@android:color/system_neutral1_50</item>
+  </style>
+  <style name="one_keyboard_yandex_dark">
+    <item name="oneKeyboardColor">@android:color/system_neutral2_900</item>
+  </style>
+  <style name="one_keyboard_yandex_light">
+    <item name="oneKeyboardColor">@android:color/system_neutral2_50</item>
+  </style>
+</resources>
