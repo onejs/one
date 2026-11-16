@@ -22,6 +22,7 @@ import { ScrollBehaviorRouteCommit } from '../views/ScrollBehavior'
 import { DevHead } from '../vite/DevHead'
 import { getServerContext, useServerContext } from '../vite/one-server-only'
 import { getReactNavigationRouteName } from '../getReactNavigationConfig'
+import { markLaunchSuccessful } from '../platform/updates/launchProof'
 import { filterRootHTML } from './filterRootHTML'
 import {
   type DynamicConvention,
@@ -432,6 +433,11 @@ function getRouteMatchesForProps() {
   return clientMatches.length ? clientMatches : serverMatches
 }
 
+function RootLayoutCommit() {
+  useEffect(() => markLaunchSuccessful(), [])
+  return null
+}
+
 /** Wrap the component with various enhancements and add access to child routes. */
 export function getQualifiedRouteComponent(value: RouteNode) {
   if (value && qualifiedStore.has(value)) {
@@ -602,6 +608,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       ref: any
     ) => {
       const InheritedSuspenseFallback = useContext(SuspenseFallbackContext)
+      const isRootLayout = useRouteNode() === null
 
       return (
         <Route route={route} node={value}>
@@ -617,6 +624,9 @@ export function getQualifiedRouteComponent(value: RouteNode) {
                     segment: value.route,
                   }}
                 />
+                {/* a sibling inside the same suspense boundary commits only with the
+                    layout itself, never with its fallback */}
+                {isRootLayout && <RootLayoutCommit />}
                 {process.env.VITE_ENVIRONMENT === 'client' &&
                   value.type !== 'layout' &&
                   navigation && <ScrollBehaviorRouteCommit />}

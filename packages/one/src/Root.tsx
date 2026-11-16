@@ -181,9 +181,8 @@ export function Root(props: RootProps) {
     }
   }, [])
 
-  // One.Updates counts a launch as good once react native shows its first
-  // native view, which is the shell below. load the root layout before it, so
-  // an update whose root layout cannot load fails first and rolls back.
+  // load the root layout before the shell commits, so an update whose root
+  // layout cannot load fails before any native view and One.Updates rolls it back.
   if (isNative && process.env.NODE_ENV === 'production' && store.routeNode) {
     const loadError = getRouteLoadError(store.routeNode.loadRoute())
     if (loadError) throw loadError

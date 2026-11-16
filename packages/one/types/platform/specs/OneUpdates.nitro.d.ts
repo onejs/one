@@ -24,5 +24,6 @@ export interface OneUpdates extends HybridObject<{
     getStagedJson(): string | undefined;
     addStagedListener(listener: (stagedJson: string | undefined) => void): () => void;
     reload(): Promise<void>;
+    markLaunchSuccessful(): void;
 }
 //# sourceMappingURL=OneUpdates.nitro.d.ts.map

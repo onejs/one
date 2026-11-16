@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 import { androidXmlAttributes as attributes } from './android-ui-xml'
-import { execFileSync } from 'node:child_process'
+import { execFileSync, spawnSync } from 'node:child_process'
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { stampAndroidDebugHost } from './android-debug-host'
@@ -7881,8 +7881,8 @@ async function runCompose(config: Config) {
 
 // the updates suite: the release apk baked the static server in at prebuild
 // time (10.0.2.2 reaches the host loopback). it starts from a fresh install
-// and walks eight publishes: cold launch, stage and launch, tamper, fatal
-// rollback, splash kill, in-session reloads, deleted bundle, the reaper, and
+// and walks nine publishes: cold launch, stage and launch, tamper, fatal
+// rollback, root render rollback, splash kill, in-session reloads, deleted bundle, the reaper, and
 // a foreign runtime version. the launcher's files are read through run-as,
 // so the apk is a release build made debuggable by
 // scripts/updates-suite-release.gradle (./gradlew assembleRelease
@@ -7890,7 +7890,8 @@ async function runCompose(config: Config) {
 async function runUpdates(config: Config) {
   mkdirSync(config.artifactDir, { recursive: true })
   preflight(config)
-  execFileSync('adb', ['-s', config.deviceId, 'uninstall', config.packageId], { stdio: 'ignore' })
+  // a fresh emulator has no copy to remove, and adb reports that as a failure
+  spawnSync('adb', ['-s', config.deviceId, 'uninstall', config.packageId], { stdio: 'ignore' })
   adbText(config, ['install', config.apkPath])
 
   const updatesDir = 'files/one-updates'
@@ -8037,6 +8038,30 @@ async function runUpdates(config: Config) {
     coldLaunch()
     await openFixture()
     await wait('failed update is never selected again', (n) => labelValue(n, 'UpdateId') === first.id)
+
+    // 4b. a root layout that loads but throws while it renders also rolls back
+    // in-session: the router's provider shell has already appeared, and only
+    // the committed root layout proves an update.
+    const rootFatal = publish('root-throws')
+    tap('one-native-updates-check')
+    await wait('root render fatal update checks available', (n) => labelValue(n, 'Check') === `available:${rootFatal.id}`)
+    tap('one-native-updates-fetch')
+    await wait('root render fatal update fetches', (n) => labelValue(n, 'Fetch') === `fetched:${rootFatal.id}`)
+    adbText(config, ['logcat', '-c'])
+    tap('one-native-updates-reload')
+    await wait('root render fatal update rolls back in-session', (n) => exactlyOneId(n, 'home-screen'))
+    const rootRollbackLine = adbText(config, ['logcat', '-d', '-s', 'OneUpdates'])
+      .split('\n')
+      .find((line) => line.includes(`update ${rootFatal.id} failed before first render`))
+    if (!rootRollbackLine?.includes('updates-suite-root-boom'))
+      throw new Error('the root render fatal update was skipped without rendering')
+    pass('root render fatal update rolls back')
+    await openFixture()
+    await wait('root render rollback runs the previous update', (n) =>
+      Boolean(labelValue(n, 'UpdateId') === first.id && labelValue(n, 'Marker') === 'v2')
+    )
+    if (readState().updates[rootFatal.id]?.successes)
+      throw new Error('the root render fatal update was marked successful')
 
     // 5. a proven update survives a kill during its splash: the kill lands
     // while launching is still recorded, and the relaunch selects it again.

@@ -32,7 +32,7 @@ export type {
 // old build) reads disabled and its calls reject like a disabled build.
 let hybrid: OneUpdates | undefined
 
-function native(): OneUpdates {
+export function native(): OneUpdates {
   hybrid ??= NitroModules.createHybridObject<OneUpdates>('OneUpdates')
   return hybrid
 }

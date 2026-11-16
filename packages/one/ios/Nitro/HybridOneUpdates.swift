@@ -48,4 +48,8 @@ final class HybridOneUpdates: HybridOneUpdatesSpec {
   func reload() throws -> Promise<Void> {
     OneUpdatesLauncher.reload()
   }
+
+  func markLaunchSuccessful() throws {
+    OneUpdatesLauncher.markLaunchSuccessful()
+  }
 }

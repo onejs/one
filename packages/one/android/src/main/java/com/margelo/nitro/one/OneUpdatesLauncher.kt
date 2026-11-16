@@ -9,11 +9,8 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Base64
 import android.util.Log
-import com.facebook.react.ReactActivity
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactHost
-import com.facebook.react.bridge.ReactMarker
-import com.facebook.react.bridge.ReactMarkerConstants
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.common.build.ReactBuildConfig
 import com.margelo.nitro.NitroModules
@@ -53,7 +50,7 @@ object OneUpdatesLauncher {
     private var installed = false
     private var runningId: String? = null
     private var runningEmbedded = true
-    private var contentAppeared = false
+    private var launchProven = false
     // the just-failed update the next selection skips once, so an in-session
     // rollback lands on the next candidate instead of reselecting a proven
     // update that stays a candidate.
@@ -140,23 +137,18 @@ object OneUpdatesLauncher {
 
     // MARK: - install
 
-    // runs from the patched MainApplication's host factory, before the first
-    // content can appear. the content marker and the activity tracker install
-    // once; without an updates url nothing installs and behavior is stock.
+    // runs from the patched MainApplication's host factory, before react
+    // native starts. the activity tracker installs once; without an updates
+    // url nothing installs and behavior is stock.
     fun install(context: Context) {
         synchronized(lock) {
             if (appContext == null) appContext = context.applicationContext
             if (installed) return
             installed = true
             if (!isEnabled()) return
-            ReactMarker.addListener(markerListener)
             val app = context.applicationContext as? Application ?: return
             app.registerActivityLifecycleCallbacks(activityCallbacks)
         }
-    }
-
-    private val markerListener = ReactMarker.MarkerListener { name, _, _ ->
-        if (name == ReactMarkerConstants.CONTENT_APPEARED) handleContentAppeared()
     }
 
     private val activityCallbacks =
@@ -396,7 +388,7 @@ object OneUpdatesLauncher {
             }
 
             // a cold launch that finds launching set covers a native crash, a
-            // hang, or a kill before content appeared. a proven update is
+            // hang, or a kill before the root layout rendered. a proven update is
             // selected again; an unproven one never is.
             if (!consumedLaunching) {
                 consumedLaunching = true
@@ -451,8 +443,7 @@ object OneUpdatesLauncher {
                 }
             }
 
-            contentAppeared = false
-            rearmContentAppeared()
+            launchProven = false
             if (winner != null) {
                 runningId = winner
                 runningEmbedded = false
@@ -467,27 +458,18 @@ object OneUpdatesLauncher {
         }
     }
 
-    // a root view logs CONTENT_APPEARED once, for its first child, and a
-    // reload keeps the same surface view, so a reloaded update would never
-    // record its first render. selection runs after the old surface stopped
-    // and before the new bundle loads, so the re-armed marker can only come
-    // from the selected update's content. a cold start's fresh view is
-    // already armed.
-    private fun rearmContentAppeared() {
-        val activity = currentActivity?.get() as? ReactActivity ?: return
-        Handler(Looper.getMainLooper()).post {
-            activity.reactDelegate?.reactRootView?.setShouldLogContentAppeared(true)
-        }
-    }
-
     // MARK: - launch hooks
 
-    fun handleContentAppeared() {
+    // the router calls this once its root layout commits. react native's
+    // first content is the router's provider shell, which appears before the
+    // root layout renders, so it cannot prove an update.
+    fun markLaunchSuccessful() {
+        if (!isEnabled()) return
         val pending =
             synchronized(lock) {
                 val pending = pendingReload
                 pendingReload = null
-                contentAppeared = true
+                launchProven = true
                 val state = loadState()
                 val launching = state.launching
                 if (launching != null) {
@@ -518,7 +500,7 @@ object OneUpdatesLauncher {
             synchronized(lock) {
                 val state = loadState()
                 val launching = state.launching
-                if (contentAppeared || launching == null) return false
+                if (launchProven || launching == null) return false
                 Log.e(
                     "OneUpdates",
                     "update $launching failed before first render, rolling back: ${error.message}"
@@ -528,7 +510,7 @@ object OneUpdatesLauncher {
                 state.launching = null
                 saveState(state)
                 skipOnce = launching
-                contentAppeared = false
+                launchProven = false
                 val pending = pendingReload
                 pendingReload = null
                 // the rollback starts a new js context; its listeners
@@ -1059,7 +1041,7 @@ object OneUpdatesLauncher {
                 return promise
             }
             select()
-            contentAppeared = false
+            launchProven = false
             pendingReload = promise
             // the reload starts a new js context; its listeners register
             // fresh.

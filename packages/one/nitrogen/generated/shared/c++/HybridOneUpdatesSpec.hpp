@@ -66,6 +66,7 @@ namespace margelo::nitro::one {
       virtual std::optional<std::string> getStagedJson() = 0;
       virtual std::function<void()> addStagedListener(const std::function<void(const std::optional<std::string>& /* stagedJson */)>& listener) = 0;
       virtual std::shared_ptr<Promise<void>> reload() = 0;
+      virtual void markLaunchSuccessful() = 0;
 
     protected:
       // Hybrid Setup

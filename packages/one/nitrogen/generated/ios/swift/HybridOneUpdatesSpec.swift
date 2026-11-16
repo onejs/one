@@ -23,6 +23,7 @@ public protocol HybridOneUpdatesSpec_protocol: HybridObject {
   func getStagedJson() throws -> String?
   func addStagedListener(listener: @escaping (_ stagedJson: String?) -> Void) throws -> () -> Void
   func reload() throws -> Promise<Void>
+  func markLaunchSuccessful() throws -> Void
 }
 
 public extension HybridOneUpdatesSpec_protocol {
