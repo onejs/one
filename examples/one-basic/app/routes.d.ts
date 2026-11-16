@@ -9,6 +9,7 @@ declare module 'one' {
       StaticRoutes:
         | `/`
         | `/_sitemap`
+        | `/keyboard`
         | `/native`
         | `/tabs`
         | `/tabs/`

@@ -20,9 +20,12 @@ export interface OneKeyboardFrame {
 }
 export interface OneKeyboard extends HybridObject<{
     ios: 'swift';
+    android: 'kotlin';
 }> {
     readonly keyboardBorderRadius: number;
     preload(): void;
+    setInputMode(mode: number): void;
+    setDefaultMode(): void;
     dismiss(keepFocus: boolean, animated: boolean): void;
     setFocusTo(direction: string): void;
     setTranslucent(translucent: boolean): void;
