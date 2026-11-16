@@ -861,6 +861,28 @@ function holdLaunchScreenInMainActivity(mainActivity) {
     )
 }
 
+// ios.viewCulling: react native's view culling, turned on through the
+// OneEnableViewCulling c entry point right after the app creates its factory,
+// which is after the factory installs its flags and before react native starts.
+const ONE_VIEW_CULLING = {
+  bridgingHeaderImport: '#import "OneViewCulling.h"',
+}
+
+const REACT_NATIVE_FACTORY = /^([ \t]*)let factory = (?:RCTReactNativeFactory|ExpoReactNativeFactory)\(delegate: delegate\)\n/m
+
+function enableViewCullingInAppDelegate(appDelegate) {
+  if (appDelegate.includes('OneEnableViewCulling()')) return appDelegate
+  if (!REACT_NATIVE_FACTORY.test(appDelegate)) {
+    throw new Error(
+      '[vxrn] AppDelegate.swift changed shape: cannot turn on view culling after the react native factory'
+    )
+  }
+  return appDelegate.replace(
+    REACT_NATIVE_FACTORY,
+    "$&$1// [vxrn/one] views outside a scroll view's visible area stay unmounted\n$1OneEnableViewCulling()\n"
+  )
+}
+
 // the bun engine (engine: 'bun'): a release build links bun's runtime into the
 // app executable, compiles its bundle ahead of time into the program the link
 // places in __TEXT,__bun, and runs it instead of hermes. debug builds stay on
@@ -1006,6 +1028,8 @@ function runBunEngineInAppDelegate(appDelegate) {
 }
 
 module.exports = {
+  ONE_VIEW_CULLING,
+  enableViewCullingInAppDelegate,
   ONE_BUN_ENGINE,
   injectBunEngineIntoPodfile,
   addBunEngineToBundleReactNativeShellScript,
