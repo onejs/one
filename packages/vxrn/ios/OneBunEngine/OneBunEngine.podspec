@@ -7,8 +7,8 @@ require 'tmpdir'
 # object the app links statically, and ios/BunEngine.tbd, its exports. a
 # compiled program only loads in the runtime it was compiled against, so the
 # release is pinned. ONE_BUN_ENGINE_DIR points at a local engine build instead.
-engine_version = '0.2.0'
-engine_sha256 = '44af4a3d3a6feb8074950c7f04cc9c49e542b228c6258f5aeec1f239336e0be1'
+engine_version = '0.2.1'
+engine_sha256 = '078c7d6a34f69ecff49198e468ae66a185f316b155333aff0d5a7fa1f0200292'
 
 # a lambda, since cocoapods evaluates podspecs where top-level methods are not reachable
 one_bun_engine_dir = lambda do
