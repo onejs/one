@@ -10,7 +10,8 @@ export function initScreensFeatureFlags() {
   hasInitialized = true
 
   try {
-    const { featureFlags } = require('react-native-screens')
+    // flags module alone: the package index pulls in ios-only view sources
+    const { featureFlags } = require('react-native-screens/src/flags')
     if (featureFlags?.experiment) {
       featureFlags.experiment.synchronousScreenUpdatesEnabled = true
       featureFlags.experiment.synchronousHeaderConfigUpdatesEnabled = true
