@@ -12,5 +12,7 @@ FOUNDATION_EXPORT void OneHoldLaunchScreen(UIView *rootView);
 // release it, optionally fading it out.
 FOUNDATION_EXPORT void OneLaunchScreenPreventAutoHide(void);
 FOUNDATION_EXPORT void OneLaunchScreenHide(BOOL fade);
+// runs the block on main once no launch screen is held, at once when none is.
+FOUNDATION_EXPORT void OneLaunchScreenAfterRelease(dispatch_block_t block);
 
 NS_ASSUME_NONNULL_END

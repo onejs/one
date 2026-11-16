@@ -19,6 +19,7 @@
 #include "HybridOneMessageComposeSpecSwift.hpp"
 #include "HybridOneDocumentCameraSpecSwift.hpp"
 #include "HybridOneHapticsSpecSwift.hpp"
+#include "HybridOneKeyboardSpecSwift.hpp"
 #include "HybridOneLaunchScreenSpecSwift.hpp"
 #include "HybridOneBatterySpecSwift.hpp"
 #include "HybridOneSpeechSynthesisSpecSwift.hpp"
@@ -140,6 +141,13 @@
     "OneHaptics",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneHapticsSpec> hybridObject = One::OneAutolinking::createOneHaptics();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneKeyboard",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneKeyboardSpec> hybridObject = One::OneAutolinking::createOneKeyboard();
       return hybridObject;
     }
   );

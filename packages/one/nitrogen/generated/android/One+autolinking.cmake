@@ -67,6 +67,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneImageManipulatorSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneImagePickerSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneKeepAwakeSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneKeyboardSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneLaunchScreenSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneLightSensorSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneLocalAuthenticationSpec.cpp

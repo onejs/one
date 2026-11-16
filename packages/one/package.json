@@ -175,6 +175,12 @@
       "import": "./dist/esm/image.mjs",
       "require": "./dist/cjs/image.cjs"
     },
+    "./keyboard": {
+      "react-native": "./dist/esm/keyboard.native.js",
+      "types": "./types/keyboard.d.ts",
+      "import": "./dist/esm/keyboard.mjs",
+      "require": "./dist/cjs/keyboard.cjs"
+    },
     "./drawer": {
       "react-native": "./dist/esm/drawer.native.js",
       "types": "./types/drawer.d.ts",
@@ -503,6 +509,13 @@
         "OneNativeCamera": "OneNativeCameraComponentView",
         "OneNativeUIKitHost": "OneNativeUIKitHostComponentView",
         "OneNativeContent": "OneNativeContentComponentView",
+        "OneKeyboardControllerView": "OneKeyboardControllerViewComponentView",
+        "OneKeyboardGestureArea": "OneKeyboardGestureAreaComponentView",
+        "OneOverKeyboardView": "OneOverKeyboardViewComponentView",
+        "OneKeyboardBackgroundView": "OneKeyboardBackgroundViewComponentView",
+        "OneKeyboardExtender": "OneKeyboardExtenderComponentView",
+        "OneClippingScrollViewDecoratorView": "OneClippingScrollViewDecoratorViewComponentView",
+        "OneKeyboardToolbarGroupView": "OneKeyboardToolbarGroupViewComponentView",
         "OneNativeMenu": "OneNativeMenuComponentView",
         "OneNativeTab": "OneNativeTabComponentView",
         "OneNativeList": "OneNativeListComponentView",
