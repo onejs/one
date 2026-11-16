@@ -3,9 +3,11 @@ title: Media viewer
 description: Preview images, videos, and documents with native iOS paging, filenames, sharing, and zoom transitions.
 ---
 
-`One.UI.MediaViewer` opens files in the iOS Quick Look viewer. It supports images,
-videos, PDFs, and other Quick Look formats. The system provides paging, zooming,
-playback, filenames, and a share sheet with the available save and export actions.
+`One.UI.MediaViewer` opens images, videos, PDFs, and other Quick Look formats in
+a native iOS viewer. Images fit the available space and support pinch and double
+tap zoom. Swipe horizontally to page between files. The filename, close button,
+and share button stay visible. The system share sheet offers save and export
+actions for the original file. Video and document pages use Quick Look.
 It requires an iOS native build.
 
 To offer saving images and videos to Photos, set
@@ -49,7 +51,7 @@ with a message and closes the presentation.
 
 `MediaViewer.Thumbnail` takes an item `index`, children, and React Native
 `Pressable` props except `onPress`, with a static view `style`. Its bounds define the source of the system
-Quick Look zoom transition. After paging, dismissal returns to the
+zoom transition on iOS 18 and later. After paging, dismissal returns to the
 current item's mounted thumbnail. Keep thumbnails mounted while viewing.
 
 For a controlled preview without thumbnail triggers, use the same underlying

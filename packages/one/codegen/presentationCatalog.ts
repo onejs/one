@@ -156,7 +156,7 @@ ${dialogButtons('presenting')}
   },
   {
     name: 'QuickLook',
-    imports: ['QuickLook', 'Foundation'],
+    imports: ['QuickLook', 'Foundation', 'ImageIO'],
     value: {
       type: 'boolean',
       prop: 'isPresented',
@@ -206,19 +206,210 @@ ${dialogButtons('presenting')}
   }
 
   final class Item: NSObject, QLPreviewItem {
-    let previewItemURL: URL?
-    let previewItemTitle: String?
+    let url: URL
+    let title: String
+    var previewItemURL: URL? { url }
+    var previewItemTitle: String? { title }
     let sourceIdentifier: String
     init(_ url: URL, title: String, sourceIdentifier: String) {
-      previewItemURL = url
-      previewItemTitle = title.isEmpty ? url.lastPathComponent : title
+      self.url = url
+      self.title = title.isEmpty ? url.lastPathComponent : title
       self.sourceIdentifier = sourceIdentifier
     }
   }
 
-  final class Coordinator: NSObject, QLPreviewControllerDataSource, QLPreviewControllerDelegate {
+  final class Page: UIViewController, UIScrollViewDelegate, QLPreviewControllerDataSource {
+    let item: Item
+    let index: Int
+    let image: UIImage?
+    let scroll = UIScrollView()
+    let imageView = UIImageView()
+    var viewport = CGSize.zero
+
+    init(_ item: Item, index: Int) {
+      self.item = item
+      self.index = index
+      if let source = CGImageSourceCreateWithURL(item.url as CFURL, nil), CGImageSourceGetCount(source) == 1 {
+        image = UIImage(contentsOfFile: item.url.path)
+      } else {
+        image = nil
+      }
+      super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+    override func viewDidLoad() {
+      super.viewDidLoad()
+      view.backgroundColor = .black
+      if let image {
+        scroll.delegate = self
+        scroll.showsHorizontalScrollIndicator = false
+        scroll.showsVerticalScrollIndicator = false
+        scroll.contentInsetAdjustmentBehavior = .never
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(scroll)
+        NSLayoutConstraint.activate([
+          scroll.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+          scroll.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+          scroll.topAnchor.constraint(equalTo: view.topAnchor),
+          scroll.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        imageView.image = image
+        imageView.frame = CGRect(origin: .zero, size: image.size)
+        imageView.isAccessibilityElement = true
+        imageView.accessibilityLabel = item.title
+        imageView.accessibilityIdentifier = "one-media-viewer-image"
+        scroll.addSubview(imageView)
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(zoom(_:)))
+        doubleTap.numberOfTapsRequired = 2
+        scroll.addGestureRecognizer(doubleTap)
+      } else {
+        let document = QLPreviewController()
+        document.dataSource = self
+        addChild(document)
+        document.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(document.view)
+        NSLayoutConstraint.activate([
+          document.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+          document.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+          document.view.topAnchor.constraint(equalTo: view.topAnchor),
+          document.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        document.didMove(toParent: self)
+      }
+    }
+    override func viewDidLayoutSubviews() {
+      super.viewDidLayoutSubviews()
+      guard let image, scroll.bounds.size != viewport, scroll.bounds.width > 0, scroll.bounds.height > 0 else { return }
+      viewport = scroll.bounds.size
+      let fit = min(viewport.width / image.size.width, viewport.height / image.size.height)
+      scroll.zoomScale = 1
+      imageView.frame = CGRect(origin: .zero, size: CGSize(width: image.size.width * fit, height: image.size.height * fit))
+      scroll.contentSize = imageView.bounds.size
+      scroll.minimumZoomScale = 1
+      scroll.maximumZoomScale = 5
+      centerImage()
+    }
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? { imageView }
+    func scrollViewDidZoom(_ scrollView: UIScrollView) { centerImage() }
+    func centerImage() {
+      scroll.contentInset = UIEdgeInsets(
+        top: max(0, (scroll.bounds.height - scroll.contentSize.height) / 2),
+        left: max(0, (scroll.bounds.width - scroll.contentSize.width) / 2),
+        bottom: 0, right: 0
+      )
+    }
+    @objc func zoom(_ gesture: UITapGestureRecognizer) {
+      if scroll.zoomScale > scroll.minimumZoomScale {
+        scroll.setZoomScale(scroll.minimumZoomScale, animated: true)
+      } else {
+        let location = gesture.location(in: imageView)
+        let scale = scroll.minimumZoomScale * 2
+        let size = CGSize(width: scroll.bounds.width / scale, height: scroll.bounds.height / scale)
+        scroll.zoom(to: CGRect(x: location.x - size.width / 2, y: location.y - size.height / 2, width: size.width, height: size.height), animated: true)
+      }
+    }
+    func numberOfPreviewItems(in controller: QLPreviewController) -> Int { 1 }
+    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem { item }
+  }
+
+  final class Viewer: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+    let items: [Item]
+    var index: Int
+    var onDismiss: (() -> Void)?
+    let pages = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+    let bar = UINavigationBar()
+    let barItem = UINavigationItem()
+    lazy var shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share))
+    var page: Page { pages.viewControllers![0] as! Page }
+
+    init(items: [Item], index: Int) {
+      self.items = items
+      self.index = index
+      super.init(nibName: nil, bundle: nil)
+      modalPresentationStyle = .fullScreen
+      overrideUserInterfaceStyle = .dark
+      if #available(iOS 18.0, *) {
+        let options = UIViewController.Transition.ZoomOptions()
+        options.alignmentRectProvider = { [weak self] context in
+          guard let self, self.isViewLoaded else { return nil }
+          let page = self.page
+          let target = page.image == nil ? page.view! : page.imageView
+          return target.convert(target.bounds, to: context.zoomedViewController.view)
+        }
+        options.interactiveDismissShouldBegin = { [weak self] context in
+          guard let self, self.isViewLoaded else { return context.willBegin }
+          return self.page.image == nil || self.page.scroll.zoomScale <= self.page.scroll.minimumZoomScale
+        }
+        preferredTransition = .zoom(options: options) { [weak self] _ in
+          guard let self else { return nil }
+          return OneZoomManager.shared.sourceRepository.getSource(identifier: self.items[self.index].sourceIdentifier)?.view
+        }
+      }
+    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
+    override func viewDidLoad() {
+      super.viewDidLoad()
+      view.backgroundColor = .black
+      view.accessibilityIdentifier = "OneMediaViewerView"
+      bar.translatesAutoresizingMaskIntoConstraints = false
+      let appearance = UINavigationBarAppearance()
+      appearance.configureWithTransparentBackground()
+      bar.standardAppearance = appearance
+      bar.scrollEdgeAppearance = appearance
+      barItem.title = items[index].title
+      barItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(close))
+      barItem.leftBarButtonItem?.accessibilityIdentifier = "one-media-viewer-close"
+      shareButton.accessibilityIdentifier = "one-media-viewer-share"
+      barItem.rightBarButtonItem = shareButton
+      bar.items = [barItem]
+      view.addSubview(bar)
+      pages.dataSource = self
+      pages.delegate = self
+      pages.setViewControllers([Page(items[index], index: index)], direction: .forward, animated: false)
+      addChild(pages)
+      pages.view.translatesAutoresizingMaskIntoConstraints = false
+      view.addSubview(pages.view)
+      NSLayoutConstraint.activate([
+        bar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        bar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        bar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+        bar.heightAnchor.constraint(equalToConstant: 44),
+        pages.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        pages.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        pages.view.topAnchor.constraint(equalTo: bar.bottomAnchor),
+        pages.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      ])
+      pages.didMove(toParent: self)
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+      super.viewDidDisappear(animated)
+      if isBeingDismissed || presentingViewController == nil { onDismiss?() }
+    }
+    @objc func close() { dismiss(animated: true) { [weak self] in self?.onDismiss?() } }
+    @objc func share() {
+      let sheet = UIActivityViewController(activityItems: [items[index].url], applicationActivities: nil)
+      sheet.popoverPresentationController?.barButtonItem = shareButton
+      present(sheet, animated: true)
+    }
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore controller: UIViewController) -> UIViewController? {
+      let previous = (controller as! Page).index - 1
+      return items.indices.contains(previous) ? Page(items[previous], index: previous) : nil
+    }
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter controller: UIViewController) -> UIViewController? {
+      let next = (controller as! Page).index + 1
+      return items.indices.contains(next) ? Page(items[next], index: next) : nil
+    }
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+      guard completed else { return }
+      index = page.index
+      barItem.title = items[index].title
+    }
+  }
+
+  final class Coordinator {
     let model: QuickLookModel
-    var preview: QLPreviewController?
+    var preview: Viewer?
     var loading: Task<Void, Never>?
     var items: [Item] = []
     var directory: URL?
@@ -279,11 +470,13 @@ ${dialogButtons('presenting')}
           }
           directory = folder
           items = resolved
-          let controller = QLPreviewController()
-          controller.dataSource = self
-          controller.delegate = self
-          controller.currentPreviewItemIndex = initialIndex
-          controller.modalPresentationStyle = .fullScreen
+          let controller = Viewer(items: resolved, index: initialIndex)
+          controller.onDismiss = { [weak self, weak controller] in
+            if let controller { self?.finish(controller) }
+          }
+          controller.loadViewIfNeeded()
+          controller.view.frame = anchor.view.window!.bounds
+          controller.view.layoutIfNeeded()
           preview = controller
           loading = nil
           anchor.present(controller, animated: true)
@@ -300,20 +493,7 @@ ${dialogButtons('presenting')}
       }
     }
 
-    func source(for item: QLPreviewItem) -> UIView? {
-      guard let item = item as? Item else { return nil }
-      let view = OneZoomManager.shared.sourceRepository.getSource(identifier: item.sourceIdentifier)?.view
-      return view?.superview == nil ? nil : view
-    }
-    func previewController(_ controller: QLPreviewController, transitionViewFor item: QLPreviewItem) -> UIView? { source(for: item) }
-    func previewController(_ controller: QLPreviewController, frameFor item: QLPreviewItem, inSourceView view: AutoreleasingUnsafeMutablePointer<UIView?>) -> CGRect {
-      guard let source = source(for: item) else { return .zero }
-      view.pointee = source
-      return source.bounds
-    }
-    func numberOfPreviewItems(in controller: QLPreviewController) -> Int { items.count }
-    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem { items[index] }
-    func previewControllerDidDismiss(_ controller: QLPreviewController) {
+    func finish(_ controller: Viewer) {
       guard preview === controller else { return }
       preview = nil
       dismissing = false
@@ -327,11 +507,7 @@ ${dialogButtons('presenting')}
       guard !dismissing else { return }
       guard let controller = preview else { cleanup(); return }
       dismissing = true
-      controller.dismiss(animated: true) { [self] in
-        preview = nil
-        dismissing = false
-        cleanup()
-      }
+      controller.dismiss(animated: true) { [self] in finish(controller) }
     }
     func cleanup() {
       items = []

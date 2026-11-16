@@ -1007,15 +1007,18 @@ disable every dialog button. Disable the control that opens the dialog instead.
 
 ## Quick Look
 
-`One.iOS.QuickLook` previews files with `QLPreviewController`. Like `One.iOS.Alert`,
+`One.iOS.QuickLook` previews files with a native UIKit image surface and embedded
+`QLPreviewController` pages for videos and documents. Like `One.iOS.Alert`,
 it is a zero-size presentation host. Use `url` for one file or `items` for a paged
 array of `{ url, title?, sourceIdentifier? }`, with `initialIndex` selecting the first
 page. Errors call `onError(message)` and dismiss the preview.
 
 `One.UI.MediaViewer` wraps this control with `MediaViewer.Thumbnail` triggers and
-registers each thumbnail with One's existing zoom source repository. Quick Look
-zooms to the current item's mounted thumbnail when dismissing.
-Quick Look supplies filenames and the system share and save actions.
+registers each thumbnail with One's existing zoom source repository. The system
+zoom transition on iOS 18 and later returns to the current item's mounted
+thumbnail when dismissing. Images fit the viewport and support pinch and double
+tap zoom. Native controls keep the filename, close, and share actions visible;
+the system share sheet exports the original file.
 
 ```tsx
 const [previewing, setPreviewing] = useState(false)
@@ -1026,11 +1029,10 @@ const [previewing, setPreviewing] = useState(false)
 />
 ```
 
-The SDK binds the previewed item rather than a boolean, so a nil url is the
-dismissed state: presenting hands Quick Look a url and a dismissal comes back as
-nil. `url` must be a `file://` URL, which is what `expo-file-system` returns;
-Quick Look previews local files and a remote url would silently preview nothing,
-so the adapter rejects one.
+URLs may use `file://`, `http://`, or `https://`. The control downloads remote files
+before presenting them and removes those copies after dismissal. Local files
+remain owned by the caller. Failed downloads and unsupported files call `onError`
+and set `isPresented` to false.
 
 ## Sheets
 

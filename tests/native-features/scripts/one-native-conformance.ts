@@ -358,6 +358,7 @@ function snapshot(
   const hasQuickLookHost = (node: Node): boolean =>
     node.AXUniqueId === 'QLOverlayDoneButtonAccessibilityIdentifier' ||
     node.AXUniqueId === 'QLPreviewControllerView' ||
+    node.AXUniqueId === 'OneMediaViewerView' ||
     ((node.children as Node[] | undefined)?.some(hasQuickLookHost) ?? false)
   if (foreign(center) && !hasQuickLookHost(app)) nodes.push({ ...app, children: [] })
   else visit(app)
@@ -883,7 +884,7 @@ const mediaLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-media-category-player')) &&
     has(nodes, 'Sources: ready')) ||
-    Boolean(id(nodes, 'QLOverlayDoneButtonAccessibilityIdentifier')))
+    Boolean(id(nodes, 'one-media-viewer-close')))
 const mapLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-map-place-ferry')) &&
@@ -1130,7 +1131,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'navigation-split-view': navigationSplitViewLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
-  'media-viewer': (nodes) => Boolean(id(nodes, 'media-viewer-toggle')) || Boolean(id(nodes, 'QLPreviewControllerView')),
+  'media-viewer': (nodes) => Boolean(id(nodes, 'media-viewer-toggle')) || Boolean(id(nodes, 'OneMediaViewerView')),
   map: mapLoaded,
   'map-services': (nodes) => Boolean(id(nodes, 'one-native-map-services-run')),
   'apple-file': appleFileLoaded,
@@ -11075,45 +11076,67 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     return
   }
   if (config.suite === 'media-viewer') {
-    const revealPreview = async () => {
-      const preview = await wait('Quick Look is presented', (nodes) =>
-        Boolean(id(nodes, 'QLPreviewControllerView'))
-      )
-      if (!id(preview, 'QLOverlayDoneButtonAccessibilityIdentifier')) {
-        const frame = preview.find((node) => node.type === 'Application')?.frame
-        if (!frame) throw new Error('Quick Look has no application frame')
-        point(frame.width / 2, frame.height / 2)
-      }
-    }
     const home = await wait('home screen mounted', () => true, true)
     if (id(home, 'index')) await tapNav('nav-one-native-media-viewer')
     else tap({ id: 'nav-one-native-media-viewer' })
     await wait('gallery mounted', (n) => Boolean(id(n, 'media-viewer-photo')))
     screenshot('media-viewer-thumbnails.png')
     tap({ id: 'media-viewer-photo' })
-    await revealPreview()
-    await wait(
-      'photo preview has filename and system actions',
-      (n) =>
-        Boolean(id(n, 'Pokai.jpg')) &&
-        Boolean(id(n, 'QLOverlayDoneButtonAccessibilityIdentifier')) &&
-        n.some((node) => /Share/.test(node.AXLabel ?? ''))
-    )
+    await wait('photo preview has filename and system actions', (n) => {
+      const image = id(n, 'one-media-viewer-image')?.frame
+      const viewer = id(n, 'OneMediaViewerView')?.frame
+      return Boolean(
+        id(n, 'Pokai.jpg') &&
+        id(n, 'one-media-viewer-close') &&
+        id(n, 'one-media-viewer-share') &&
+        image &&
+        viewer &&
+        Math.abs(image.width - viewer.width) < 1
+      )
+    })
     screenshot('media-viewer-open.png')
-    tap({ label: 'Share' })
+    const image = id(snapshot(config.simulatorId), 'one-media-viewer-image')!.frame!
+    const doubleTap = [
+      'batch',
+      '--step',
+      `touch -x ${Math.round(image.width / 2)} -y ${Math.round(image.y + image.height / 2)} --down --up --delay 0.03`,
+      '--step',
+      'sleep 0.05',
+      '--step',
+      `touch -x ${Math.round(image.width / 2)} -y ${Math.round(image.y + image.height / 2)} --down --up --delay 0.03`,
+    ]
+    axe(doubleTap, config.simulatorId)
+    await wait(
+      'double tap zooms image',
+      (n) => (id(n, 'one-media-viewer-image')?.frame?.width ?? 0) > image.width * 1.5
+    )
+    axe(doubleTap, config.simulatorId)
+    await wait(
+      'double tap restores fitted image',
+      (n) =>
+        Math.abs((id(n, 'one-media-viewer-image')?.frame?.width ?? 0) - image.width) < 1
+    )
+    tap({ id: 'one-media-viewer-share' })
     const share = await wait('system share sheet offers save', (nodes) => {
       const sheet = nativeActivitySheet(nodes)?.frame
       if (!sheet) return false
-      const actions = JSON.parse(axe(['describe-ui', '--point', `${Math.round(sheet.x + sheet.width / 2)},${Math.round(sheet.y + sheet.height - 1)}`], config.simulatorId)) as Node
+      const actions = JSON.parse(
+        axe(
+          [
+            'describe-ui',
+            '--point',
+            `${Math.round(sheet.x + sheet.width / 2)},${Math.round(sheet.y + sheet.height - 1)}`,
+          ],
+          config.simulatorId
+        )
+      ) as Node
       return Boolean(nativeActivityAction(nodes, actions, 'Save Image'))
     })
     screenshot('media-viewer-share.png', share)
     const dismiss = nativeActivityDismissPoint(share)
     if (!dismiss) throw new Error('share sheet has no outside dismissal region')
     point(dismiss.x, dismiss.y)
-    await wait('share sheet closed', (n) =>
-      Boolean(id(n, 'QLOverlayDoneButtonAccessibilityIdentifier'))
-    )
+    await wait('share sheet closed', (n) => Boolean(id(n, 'one-media-viewer-close')))
     const application = snapshot(config.simulatorId).find(
       (n) => n.type === 'Application'
     )?.frame
@@ -11135,26 +11158,49 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       config.simulatorId
     )
     await wait('paging reaches video filename', (n) => Boolean(id(n, 'Ocean.mp4')))
+    point(Math.round(application.width / 2), Math.round(application.height * 0.54))
+    await wait('video has native playback control', () => {
+      const control = JSON.parse(
+        axe(
+          [
+            'describe-ui',
+            '--point',
+            `${Math.round(application.width / 2)},${Math.round(application.height * 0.54)}`,
+          ],
+          config.simulatorId
+        )
+      ) as Node
+      return control.AXUniqueId === 'Play/Pause'
+    })
     screenshot('media-viewer-video.png')
-    tap({ id: 'QLOverlayDoneButtonAccessibilityIdentifier' })
+    tap({ id: 'one-media-viewer-close' })
     await wait(
       'dismiss returns to thumbnails',
-      (n) =>
-        Boolean(id(n, 'media-viewer-video')) &&
-        !id(n, 'QLOverlayDoneButtonAccessibilityIdentifier')
+      (n) => Boolean(id(n, 'media-viewer-video')) && !id(n, 'one-media-viewer-close')
     )
     tap({ id: 'media-viewer-document' })
-    await revealPreview()
     await wait(
       'initial index opens document',
       (n) =>
         Boolean(id(n, 'Notes.txt')) &&
-        Boolean(
-          id(n, 'QLTextItemViewControllerBarSearchRightButtonAccessibilityIdentifier')
-        )
+        (() => {
+          const frame = id(n, 'QLPreviewControllerView')?.frame
+          if (!frame) return false
+          const text = JSON.parse(
+            axe(
+              [
+                'describe-ui',
+                '--point',
+                `${Math.round(frame.x + frame.width / 2)},${Math.round(frame.y + 70)}`,
+              ],
+              config.simulatorId
+            )
+          ) as Node
+          return text.AXLabel === 'One Native Quick Look fixture.'
+        })()
     )
     screenshot('media-viewer-document.png')
-    tap({ id: 'QLOverlayDoneButtonAccessibilityIdentifier' })
+    tap({ id: 'one-media-viewer-close' })
     await wait('document dismissed', (n) => Boolean(id(n, 'media-viewer-missing')))
     tap({ id: 'media-viewer-missing' })
     await wait('missing file reports error', (n) =>
@@ -11165,12 +11211,29 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'media-viewer-toggle' })
     await wait('gallery remounted', (n) => Boolean(id(n, 'media-viewer-photo')))
     tap({ id: 'media-viewer-photo' })
-    await revealPreview()
-    await wait('remounted preview opens', (n) =>
-      Boolean(id(n, 'QLOverlayDoneButtonAccessibilityIdentifier'))
+    await wait('remounted preview opens', (n) => Boolean(id(n, 'one-media-viewer-close')))
+    axe(
+      [
+        'swipe',
+        '--start-x',
+        String(Math.round(application.width / 2)),
+        '--start-y',
+        String(Math.round(application.height * 0.4)),
+        '--end-x',
+        String(Math.round(application.width / 2)),
+        '--end-y',
+        String(Math.round(application.height * 0.89)),
+        '--duration',
+        '1',
+        '--delta',
+        '5',
+      ],
+      config.simulatorId
     )
-    tap({ id: 'QLOverlayDoneButtonAccessibilityIdentifier' })
-    await wait('remounted preview dismisses', (n) => Boolean(id(n, 'media-viewer-photo')))
+    await wait(
+      'gesture dismisses remounted preview',
+      (n) => Boolean(id(n, 'media-viewer-photo')) && !id(n, 'OneMediaViewerView')
+    )
     screenshot('media-viewer-dismissed.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -11351,13 +11414,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait(
       'QuickLook previews the file it was given',
       (n) =>
-        Boolean(id(n, 'QLOverlayDoneButtonAccessibilityIdentifier')) &&
+        Boolean(id(n, 'one-media-viewer-close')) &&
         Boolean(
           id(n, 'QLTextItemViewControllerBarSearchRightButtonAccessibilityIdentifier')
         )
     )
     screenshot('media-quicklook-open.png')
-    tap({ id: 'QLOverlayDoneButtonAccessibilityIdentifier' })
+    tap({ id: 'one-media-viewer-close' })
     // dismissal arrives as a nil url, which the control has to report as false rather than
     // leaving React thinking the preview is still up. reading the fixture again at all is
     // what proves the preview went away.
