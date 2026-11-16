@@ -1,4 +1,5 @@
 import type { PropsWithChildren } from 'react';
+import type { StyleProp, ViewStyle } from 'react-native';
 export interface SourceAlignmentRect {
     x: number;
     y: number;
@@ -13,6 +14,7 @@ export interface DismissalBoundsRect {
 }
 export interface ZoomTransitionSourceProps extends PropsWithChildren {
     identifier: string;
+    style?: StyleProp<ViewStyle>;
     alignment?: SourceAlignmentRect;
     animateAspectRatioChange?: boolean;
 }

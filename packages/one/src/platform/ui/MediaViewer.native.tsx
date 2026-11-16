@@ -34,18 +34,19 @@ function Frame({ items, children, onError }: MediaViewerProps) {
   )
 }
 
-function Thumbnail({ index, children, ...props }: MediaViewerThumbnailProps) {
+function Thumbnail({ index, children, style, ...props }: MediaViewerThumbnailProps) {
   const gallery = useContext(Gallery)
   if (!gallery) throw new Error('MediaViewer.Thumbnail requires a MediaViewer parent')
   if (!Number.isInteger(index) || index < 0 || index >= gallery.count) {
     throw new Error('MediaViewer.Thumbnail index must name an item')
   }
   return (
-    <ZoomTransitionSource identifier={`${gallery.id}:${index}`}>
+    <ZoomTransitionSource identifier={`${gallery.id}:${index}`} style={style}>
       <Pressable
         accessibilityRole="button"
         {...props}
         collapsable={false}
+        style={{ flexGrow: 1, flexShrink: 1 }}
         onPress={() => gallery.open(index)}
       >
         {children}

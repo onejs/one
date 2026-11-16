@@ -11082,17 +11082,22 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait(
       'photo preview has filename and system actions',
       (n) =>
-        labels(n).includes('Pokai.jpg') &&
+        Boolean(id(n, 'Pokai.jpg')) &&
         Boolean(id(n, 'QLOverlayDoneButtonAccessibilityIdentifier')) &&
         n.some((node) => /Share/.test(node.AXLabel ?? ''))
     )
     screenshot('media-viewer-open.png')
     tap({ label: 'Share' })
-    await wait('system share sheet offers save', (n) =>
-      labels(n).some((label) => /Save to Files|Save Image|Save to Photos/.test(label))
-    )
-    screenshot('media-viewer-share.png')
-    tap({ label: 'Close' })
+    const share = await wait('system share sheet offers save', (nodes) => {
+      const sheet = nativeActivitySheet(nodes)?.frame
+      if (!sheet) return false
+      const actions = JSON.parse(axe(['describe-ui', '--point', `${Math.round(sheet.x + sheet.width / 2)},${Math.round(sheet.y + sheet.height - 1)}`], config.simulatorId)) as Node
+      return Boolean(nativeActivityAction(nodes, actions, 'Save to Files'))
+    })
+    screenshot('media-viewer-share.png', share)
+    const dismiss = nativeActivityDismissPoint(share)
+    if (!dismiss) throw new Error('share sheet has no outside dismissal region')
+    point(dismiss.x, dismiss.y)
     await wait('share sheet closed', (n) =>
       Boolean(id(n, 'QLOverlayDoneButtonAccessibilityIdentifier'))
     )
@@ -11116,7 +11121,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       ],
       config.simulatorId
     )
-    await wait('paging reaches video filename', (n) => labels(n).includes('Ocean.mp4'))
+    await wait('paging reaches video filename', (n) => Boolean(id(n, 'Ocean.mp4')))
     screenshot('media-viewer-video.png')
     tap({ id: 'QLOverlayDoneButtonAccessibilityIdentifier' })
     await wait(
@@ -11129,7 +11134,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait(
       'initial index opens document',
       (n) =>
-        labels(n).includes('Notes.txt') &&
+        Boolean(id(n, 'Notes.txt')) &&
         Boolean(
           id(n, 'QLTextItemViewControllerBarSearchRightButtonAccessibilityIdentifier')
         )
