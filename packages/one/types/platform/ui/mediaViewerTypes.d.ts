@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import type { PressableProps, StyleProp, ViewStyle } from 'react-native';
 export type MediaViewerItem = {
+    id?: string;
     url: string;
     title?: string;
 };

@@ -34,7 +34,10 @@ export function Gallery() {
 }
 ```
 
-`items` is an array of `{ url, title? }`. URLs use `file://`, `https://`, or
+`items` is an array of `{ id?, url, title? }`. Give items stable, unique `id` values
+when URLs can change or repeat; otherwise each URL identifies its thumbnail. The
+viewer keeps the item list from the moment it opens, so cache updates and
+reordering do not change the preview or its dismissal target. URLs use `file://`, `https://`, or
 `http://`. Remote files are downloaded before presentation and removed when the
 viewer closes. Local files remain owned by the caller. Keep the files available
 while the viewer is open. A failed download or unsupported file calls `onError`
