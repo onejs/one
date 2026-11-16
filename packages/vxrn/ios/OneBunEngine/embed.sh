@@ -13,10 +13,14 @@ FLAGS=()
 [ "$PLATFORM_NAME" = iphoneos ] && FLAGS=(--aot-huge-heap)
 mkdir -p "$WORK/template" "$WORK/compiled" "$WORK/identity"
 
-# bun compile writes a program for an executable holding the runtime
-if [ ! -f "$WORK/template.linked" ] || [ "$ENGINE" -nt "$WORK/template.linked" ]; then
+# bun compile writes a program for an executable holding the runtime. the
+# template is keyed on the exact engine, since switching to an older engine
+# release must relink it too
+ENGINE_KEY="$ENGINE $(stat -f '%m %z' "$ENGINE")"
+if [ ! -f "$WORK/template.linked" ] || [ "$(cat "$WORK/template.engine" 2>/dev/null)" != "$ENGINE_KEY" ]; then
   echo 'int main(void) { return 0; }' | xcrun --sdk "$PLATFORM_NAME" clang -x c - -x none "$ENGINE" -lc++ \
     -target "arm64-apple-ios$IPHONEOS_DEPLOYMENT_TARGET${LLVM_TARGET_TRIPLE_SUFFIX:-}" -o "$WORK/template.linked"
+  printf '%s' "$ENGINE_KEY" > "$WORK/template.engine"
 fi
 compile() { # <entry> <template> <program out>
   local name
