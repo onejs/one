@@ -1955,24 +1955,29 @@ export function QuickLook({
   style,
   ...props
 }: Types.QuickLookProps) {
-  const sources = items.length ? items : [{ url }]
-  for (const item of sources) {
+  if (isPresented || items.length || url) {
+    const sources = items.length ? items : [{ url }]
+    for (const item of sources) {
+      if (
+        typeof item.url !== 'string' ||
+        !['file://', 'http://', 'https://'].some((prefix) => item.url.startsWith(prefix))
+      )
+        throw new Error('QuickLook items must use file, http, or https URLs')
+      if (item.title !== undefined && typeof item.title !== 'string')
+        throw new Error('QuickLook item title must be a string')
+      if (
+        item.sourceIdentifier !== undefined &&
+        typeof item.sourceIdentifier !== 'string'
+      )
+        throw new Error('QuickLook sourceIdentifier must be a string')
+    }
     if (
-      typeof item.url !== 'string' ||
-      !['file://', 'http://', 'https://'].some((prefix) => item.url.startsWith(prefix))
+      !Number.isInteger(initialIndex) ||
+      initialIndex < 0 ||
+      initialIndex >= sources.length
     )
-      throw new Error('QuickLook items must use file, http, or https URLs')
-    if (item.title !== undefined && typeof item.title !== 'string')
-      throw new Error('QuickLook item title must be a string')
-    if (item.sourceIdentifier !== undefined && typeof item.sourceIdentifier !== 'string')
-      throw new Error('QuickLook sourceIdentifier must be a string')
+      throw new Error('QuickLook initialIndex must name an item')
   }
-  if (
-    !Number.isInteger(initialIndex) ||
-    initialIndex < 0 ||
-    initialIndex >= sources.length
-  )
-    throw new Error('QuickLook initialIndex must name an item')
 
   const controlled = useControlled<{
     value: boolean

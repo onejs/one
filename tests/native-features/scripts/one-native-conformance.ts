@@ -11092,7 +11092,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const sheet = nativeActivitySheet(nodes)?.frame
       if (!sheet) return false
       const actions = JSON.parse(axe(['describe-ui', '--point', `${Math.round(sheet.x + sheet.width / 2)},${Math.round(sheet.y + sheet.height - 1)}`], config.simulatorId)) as Node
-      return Boolean(nativeActivityAction(nodes, actions, 'Save to Files'))
+      return Boolean(nativeActivityAction(nodes, actions, 'Save Image'))
     })
     screenshot('media-viewer-share.png', share)
     const dismiss = nativeActivityDismissPoint(share)

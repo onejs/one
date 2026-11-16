@@ -281,3 +281,22 @@ confirm the reading falls below the floor. Re-run `--swap-test` and `--cross-sub
 capture and record the new calibration instead of carrying numbers across a changed measurement.
 
 `media-viewer` covers the native gallery: titled image preview, the system share sheet and save actions, paging to video, direct document opening, dismissal, missing-file errors, and remounting thumbnail sources. The fixture is `one-native-media-viewer`.
+
+Its focused route graph avoids bundling the other native fixtures. From
+`tests/native-features`, prepare a Release build with:
+
+```sh
+ONE_ROUTER_ROOT=fixtures/media-viewer-app ONE_NATIVE_BUNDLER=rolldown \
+  bun run prebuild:native --platform ios --no-install
+pod install --project-directory=ios
+ONE_ROUTER_ROOT=fixtures/media-viewer-app ONE_NATIVE_BUNDLER=rolldown \
+  xcodebuild -workspace ios/NativeFeatureTests.xcworkspace \
+  -scheme NativeFeatureTests -configuration Release \
+  -destination 'platform=iOS Simulator,id=<SIMULATOR_UUID>' \
+  ONLY_ACTIVE_ARCH=YES ARCHS=arm64 CODE_SIGNING_ALLOWED=NO build
+```
+
+The architecture flags build only the arm64 simulator slice. Release otherwise
+also compiles x86_64, even when a specific simulator is selected. Install the
+resulting app on that simulator and run the conformance command above with
+`--suite media-viewer` and bundle id `dev.vxrn.native.tests`.
