@@ -24,6 +24,8 @@ export declare function shouldRestoreWarmRoute(): boolean;
  * hydrate synchronously on warm launch before first render.
  */
 export declare function registerWarmStateSource<T>(key: string, source: WarmStateSource<T>): () => void;
+/** mark the launch healthy so its saved state restores on the next launch. */
+export declare function settleWarmLaunch(): void;
 export declare function getHydratedWarmState(): WarmStateEnvelope | null;
 export declare function isWarmRoutePreloadPending(): boolean;
 export declare function waitForWarmRoutePreload(timeoutMs?: number): Promise<void>;

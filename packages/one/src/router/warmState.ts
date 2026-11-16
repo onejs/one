@@ -86,6 +86,9 @@ let restoredLaunch = false
 let restoredState: OneRouter.ResultState | undefined
 let restoredPathname: string | undefined
 let warmInitialRouteConsumed = false
+// set while a native launch that loaded saved state has not yet settled
+const RESTORE_GUARD_KEY = `${WARM_STATE_STORAGE_KEY}restoring`
+let restoreGuardSet = false
 
 let latestNavState: unknown
 let latestPathname: string | undefined
@@ -233,6 +236,14 @@ function ensureLoadedEnvelope(): WarmStateEnvelope | null {
   const raw = safeReadStorage(WARM_STATE_STORAGE_KEY)
   if (!raw) return null
 
+  // a launch that loaded saved state and died before settling would die the
+  // same way on every relaunch, so the next one starts fresh
+  if (isNativeRuntime() && safeReadStorage(RESTORE_GUARD_KEY)) {
+    safeRemoveStorage(WARM_STATE_STORAGE_KEY)
+    safeRemoveStorage(RESTORE_GUARD_KEY)
+    return null
+  }
+
   const parsed = parseWarmEnvelope(raw, {
     schemaVersion: config.schemaVersion,
     maxAgeMs: config.maxAgeMs,
@@ -246,7 +257,17 @@ function ensureLoadedEnvelope(): WarmStateEnvelope | null {
   }
 
   hydratedEnvelope = parsed
+  if (isNativeRuntime()) {
+    restoreGuardSet = safeWriteStorage(RESTORE_GUARD_KEY, '1')
+  }
   return hydratedEnvelope
+}
+
+/** mark the launch healthy so its saved state restores on the next launch. */
+export function settleWarmLaunch(): void {
+  if (!restoreGuardSet) return
+  restoreGuardSet = false
+  safeRemoveStorage(RESTORE_GUARD_KEY)
 }
 
 export function getHydratedWarmState(): WarmStateEnvelope | null {
@@ -617,6 +638,8 @@ export function flushWarmState(): boolean {
 /** clear persisted warm snapshot and reset cached boot state. */
 export function clearWarmState(options?: { keepConfig?: boolean }): void {
   safeRemoveStorage(WARM_STATE_STORAGE_KEY)
+  safeRemoveStorage(RESTORE_GUARD_KEY)
+  restoreGuardSet = false
   loadedFromStorage = false
   hydratedEnvelope = null
   hydratedSourceKeys.clear()

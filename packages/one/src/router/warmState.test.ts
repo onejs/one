@@ -20,6 +20,7 @@ import {
   reconcileNativeColdDeepLink,
   registerWarmStateSource,
   scheduleWarmStatePersist,
+  settleWarmLaunch,
   trackRestoredLaunch,
   waitForWarmRoutePreload,
   type WarmNavigationSnapshot,
@@ -622,6 +623,39 @@ describe('warmState', () => {
     const customAligned = consumeWarmInitialNavigationState(routeNode, linking as any)
     expect(customAligned).toEqual({ index: 0, routes: [{ name: 'settings', path: '/settings' }] })
     expect(consumeWarmRouteApplied()).toBe(true)
+  })
+
+  it('starts fresh after a launch that loaded saved state and never settled', () => {
+    const saved = JSON.stringify({
+      v: 1,
+      schemaVersion: 2,
+      updatedAt: nowMs,
+      pathname: '/inbox',
+      state: { index: 0, routes: [{ name: 'inbox' }] },
+      sources: {},
+    })
+    // relaunch keeps storage and drops everything held in memory
+    const relaunch = () => {
+      const kept = new Map(storage.raw)
+      clearWarmState({ keepConfig: true })
+      for (const [key, value] of kept) storage.raw.set(key, value)
+    }
+
+    storage.raw.set(WARM_STATE_STORAGE_KEY, saved)
+    expect(getHydratedWarmState()?.pathname).toBe('/inbox')
+    settleWarmLaunch()
+    relaunch()
+    expect(getHydratedWarmState()?.pathname).toBe('/inbox')
+
+    // this launch dies before settling, so the next one opens without saved state
+    relaunch()
+    expect(getHydratedWarmState()).toBeNull()
+    expect(storage.raw.has(WARM_STATE_STORAGE_KEY)).toBe(false)
+
+    // state saved during the fresh launch restores again afterwards
+    storage.raw.set(WARM_STATE_STORAGE_KEY, saved)
+    relaunch()
+    expect(getHydratedWarmState()?.pathname).toBe('/inbox')
   })
 
   it('lets a route restore export skip or redirect using the saved params', async () => {

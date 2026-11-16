@@ -28,6 +28,7 @@ import {
   isWarmRouteApplied,
   isWarmStateEnabled,
   reconcileNativeColdDeepLink,
+  settleWarmLaunch,
 } from './router/warmState'
 import {
   attachWarmStateLifecycle,
@@ -154,7 +155,10 @@ export function Root(props: RootProps) {
 
   useEffect(() => {
     if (!isWarmStateEnabled()) return
+    // a launch still running after a few seconds, or one the user left, did not crash
+    const settle = setTimeout(settleWarmLaunch, 5000)
     const detach = attachWarmStateLifecycle(() => {
+      settleWarmLaunch()
       flushWarmState()
     })
     const currentHref = store.routeInfo?.unstable_globalHref || store.routeInfo?.pathname
@@ -171,7 +175,10 @@ export function Root(props: RootProps) {
           setIsHoldingWarmReconcile(false)
         })
     }
-    return detach
+    return () => {
+      clearTimeout(settle)
+      detach()
+    }
   }, [])
 
   // One.Updates counts a launch as good once react native shows its first

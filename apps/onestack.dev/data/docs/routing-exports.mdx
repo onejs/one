@@ -79,7 +79,13 @@ export const restore: RouteRestore = ({ params }) =>
   hasDraft(params.id) ? true : '/inbox'
 ```
 
-The first `restore` export on the way from the root layout to the page decides. It runs synchronously during launch, so read only data that is already in memory.
+The first `restore` export on the way from the root layout to the page decides. It runs synchronously during launch, so read only data that is already in memory. A `restore` export on the root `_layout` is the switch for the whole app, for example to turn restore off from a feature flag your app has already loaded from disk:
+
+```tsx
+export const restore = () => !flags.restoreOff
+```
+
+Call `clearWarmState()` from `one` to forget the saved route, for example on logout. If a launch that reopened a saved route crashes before it has run for five seconds or gone to the background, the next launch opens normally and the saved route is dropped, so a broken screen can't trap the user in a crash loop.
 
 `useIsRestored()` returns `true` in screens that mounted as part of a restored launch and `false` in screens opened after that, so a screen can skip an entrance animation or autofocus when it reappears:
 
