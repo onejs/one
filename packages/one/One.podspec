@@ -119,7 +119,7 @@ Pod::Spec.new do |s|
   s.dependency 'op-sqlite'
   s.dependency 'RNWorklets'
   # webp encoding has no system encoder on ios; expo-image-manipulator uses the same coder.
-  s.dependency 'SDWebImageWebPCoder', '0.15.0'
+  s.dependency 'SDWebImageWebPCoder', '>= 0.14.6', '< 0.16'
 
   install_modules_dependencies(s)
 end
