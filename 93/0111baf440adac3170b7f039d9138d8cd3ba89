@@ -42,3 +42,5 @@
 {"id":"00000001794823049219:66a811ec33aeabb5677ae8bdd1f8a6d6","text":"cage fix done by f2762: bun 732d8d0527, bun-engine static-object 8b0dabc, prerelease v0.2.1 sha 078c7d6a... (new compiler, programs recompile). RAN sim: v021-wide 9.1G total vs narrow 41.1G (31.9G cage gone). One tm/bun-ios-static-cage 3cb666050b (podspec pin, from release/v2.20.0). TM sim build against it running on pro-128; plan 2.20.1 patch after 2.20.0."}
 
 {"id":"00000001794834133978:174ec2c89d4b80c79e2f13124573b78d","text":"route restore per Nate: feat/route-restore acf1f603b (router.restore + route export restore: false | fn({pathname,params}) => false|href|true; no state store). tsc + warmState tests pass. TM sim release build on pro-128 running for validation. 2.20.0 release run 43869799484 waiting on ensure-ci."}
+
+{"id":"00000001794836740626:6f1f999ce426244e20df14b485ebd381","text":"2.20.0 published (v2.20.0 d97358abe on fbf62b6cf). #1268 merged 40c9c29be (engine 0.2.1 + template relink fix), patch release run 43878755646 dispatched. Route restore #1269 ready (head c7f9c7692), validated in TM sim; goes to 2.21.0 after 2.20.1. Next: TM pin 2.20.1 + runtimeVersion 88 + TestFlight."}
