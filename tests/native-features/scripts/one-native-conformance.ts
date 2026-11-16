@@ -353,12 +353,13 @@ function snapshot(
     }
     for (const child of (node.children as Node[] | undefined) ?? []) visit(child)
   }
-  // quick look's document body can run in another process while its close and search
-  // controls still belong to this app. keep that overlay visible to the media gate.
-  const hasQuickLookOverlay = (node: Node): boolean =>
+  // quick look hosts preview content in another process, even when its controls hide.
+  // keep its app host so the suite can reveal and exercise the native controls.
+  const hasQuickLookHost = (node: Node): boolean =>
     node.AXUniqueId === 'QLOverlayDoneButtonAccessibilityIdentifier' ||
-    ((node.children as Node[] | undefined)?.some(hasQuickLookOverlay) ?? false)
-  if (foreign(center) && !hasQuickLookOverlay(app)) nodes.push({ ...app, children: [] })
+    node.AXUniqueId === 'QLPreviewControllerView' ||
+    ((node.children as Node[] | undefined)?.some(hasQuickLookHost) ?? false)
+  if (foreign(center) && !hasQuickLookHost(app)) nodes.push({ ...app, children: [] })
   else visit(app)
   // sdk 27 hosts the color palette in another process. the calibrated point
   // probes observe its actual controls instead of treating a hidden app tree as proof.
@@ -521,8 +522,8 @@ export const nativeActivityAction = (nodes: Node[], actions: Node, label: string
     frame.height <= 0 ||
     frame.x < 0 ||
     frame.y < 0 ||
-    frame.x + frame.width > sheet.frame.width ||
-    frame.y + frame.height > sheet.frame.height
+    Math.round((frame.x + frame.width) * 1e6) > Math.round(sheet.frame.width * 1e6) ||
+    Math.round((frame.y + frame.height) * 1e6) > Math.round(sheet.frame.height * 1e6)
   )
     return undefined
   return {
@@ -1129,7 +1130,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'navigation-split-view': navigationSplitViewLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
-  'media-viewer': (nodes) => Boolean(id(nodes, 'media-viewer-photo')) || Boolean(id(nodes, 'QLOverlayDoneButtonAccessibilityIdentifier')),
+  'media-viewer': (nodes) => Boolean(id(nodes, 'media-viewer-toggle')) || Boolean(id(nodes, 'QLPreviewControllerView')),
   map: mapLoaded,
   'map-services': (nodes) => Boolean(id(nodes, 'one-native-map-services-run')),
   'apple-file': appleFileLoaded,
@@ -11074,12 +11075,23 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     return
   }
   if (config.suite === 'media-viewer') {
+    const revealPreview = async () => {
+      const preview = await wait('Quick Look is presented', (nodes) =>
+        Boolean(id(nodes, 'QLPreviewControllerView'))
+      )
+      if (!id(preview, 'QLOverlayDoneButtonAccessibilityIdentifier')) {
+        const frame = preview.find((node) => node.type === 'Application')?.frame
+        if (!frame) throw new Error('Quick Look has no application frame')
+        point(frame.width / 2, frame.height / 2)
+      }
+    }
     const home = await wait('home screen mounted', () => true, true)
     if (id(home, 'index')) await tapNav('nav-one-native-media-viewer')
     else tap({ id: 'nav-one-native-media-viewer' })
     await wait('gallery mounted', (n) => Boolean(id(n, 'media-viewer-photo')))
     screenshot('media-viewer-thumbnails.png')
     tap({ id: 'media-viewer-photo' })
+    await revealPreview()
     await wait(
       'photo preview has filename and system actions',
       (n) =>
@@ -11132,6 +11144,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         !id(n, 'QLOverlayDoneButtonAccessibilityIdentifier')
     )
     tap({ id: 'media-viewer-document' })
+    await revealPreview()
     await wait(
       'initial index opens document',
       (n) =>
@@ -11152,6 +11165,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'media-viewer-toggle' })
     await wait('gallery remounted', (n) => Boolean(id(n, 'media-viewer-photo')))
     tap({ id: 'media-viewer-photo' })
+    await revealPreview()
     await wait('remounted preview opens', (n) =>
       Boolean(id(n, 'QLOverlayDoneButtonAccessibilityIdentifier'))
     )
