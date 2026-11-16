@@ -68,6 +68,19 @@ Export a `validateParams` schema to validate route params on the client before n
 
 Export an async `validateRoute` function for checks like resource existence before navigation. See [Route Validation](/docs/routing-loader#route-validation).
 
+### restore
+
+With [`router.restore`](/docs/configuration) on, a native app reopens on the route the user last had open. Export `restore` to control that for a route or a whole layout. `false` never reopens it. A function receives the saved `pathname` and `params` and returns `false` to skip, an href to open instead, or `true` to reopen as saved.
+
+```tsx
+import type { RouteRestore } from 'one'
+
+export const restore: RouteRestore = ({ params }) =>
+  hasDraft(params.id) ? true : '/inbox'
+```
+
+The first `restore` export on the way from the root layout to the page decides. It runs synchronously during launch, so read only data that is already in memory.
+
 ### generateStaticParams
 
 This export is needed for "ssg" type pages that use dynamic path segments (for example, `[id].tsx`). At build-time, One will expand the id segment into multiple pages, using the values you return from `generateStaticParams`.

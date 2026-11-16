@@ -622,6 +622,49 @@ describe('warmState', () => {
     expect(consumeWarmRouteApplied()).toBe(true)
   })
 
+  it('lets a route restore export skip or redirect using the saved params', () => {
+    const seen: unknown[] = []
+    const files: Record<string, any> = {
+      './inbox.tsx': { default: () => null, restore: false },
+      './post/[id].tsx': {
+        default: () => null,
+        restore: (saved: { pathname: string; params: Record<string, unknown> }) => {
+          seen.push(saved)
+          return saved.params.id === 'gone' ? '/inbox' : true
+        },
+      },
+    }
+    const ctx = ((id: string) => files[id]) as any
+    ctx.keys = () => Object.keys(files)
+    ctx.resolve = (id: string) => id
+    ctx.id = 'test'
+    const routeNode = getRoutes(ctx)
+    const linking = { prefixes: [], config: { screens: { inbox: 'inbox', 'post/[id]': 'post/:id' } } }
+    const save = (pathname: string, state: WarmNavigationSnapshot) => {
+      clearWarmState({ keepConfig: true })
+      storage.raw.set(
+        WARM_STATE_STORAGE_KEY,
+        JSON.stringify({ v: 1, schemaVersion: 2, updatedAt: nowMs, pathname, state, sources: {} })
+      )
+    }
+
+    save('/post/1', { index: 0, routes: [{ name: 'post/[id]', params: { id: '1' } }] })
+    expect(consumeWarmInitialNavigationState(routeNode, linking as any)).toEqual({
+      index: 0,
+      routes: [{ name: 'post/[id]', params: { id: '1' } }],
+    })
+    expect(seen).toEqual([{ pathname: '/post/1', params: { id: '1' } }])
+
+    save('/post/gone', { index: 0, routes: [{ name: 'post/[id]', params: { id: 'gone' } }] })
+    expect(consumeWarmInitialNavigationState(routeNode, linking as any)).toMatchObject({
+      routes: [{ name: 'inbox' }],
+    })
+    expect(getHydratedWarmState()?.pathname).toBe('/inbox')
+
+    save('/inbox', { index: 0, routes: [{ name: 'inbox' }] })
+    expect(consumeWarmInitialNavigationState(routeNode, linking as any)).toBeUndefined()
+  })
+
   it('coordinates LaunchScreen hold timing until cold deep link reconciliation completes', async () => {
     const routeNode = makeTestRouteNode()
     const linking = {

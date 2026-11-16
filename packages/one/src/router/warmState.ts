@@ -6,6 +6,7 @@ import type { OneRouter } from '../interfaces/router'
 import { Storage } from '../platform/storage'
 import type { One } from '../vite/types'
 import type { OneLinkingOptions } from './getLinkingConfig'
+import { extractParamsFromState, findAllRouteNodesFromState } from './findRouteNode'
 import type { RouteNode } from './Route'
 import { preloadRouteModules } from './useViteRoutes'
 import { createWarmSerializer } from './warmStateSerialize'
@@ -385,6 +386,36 @@ function routesMatchLinkingConfig(
   return true
 }
 
+function getStateFromHref(
+  href: string,
+  linking?: OneLinkingOptions
+): WarmNavigationSnapshot | undefined {
+  const parsed = (linking?.getStateFromPath ?? getStateFromPath)(href, linking?.config)
+  if (!parsed?.routes?.length) return undefined
+  return parsed as WarmNavigationSnapshot
+}
+
+// the first `restore` export along the focused chain, layouts first, decides
+function evaluateRouteRestore(
+  state: WarmNavigationSnapshot,
+  routeNode: RouteNode,
+  pathname: string
+): boolean | string {
+  const nodes = findAllRouteNodesFromState(state as any, routeNode)
+  if (nodes[0] !== routeNode) nodes.unshift(routeNode)
+  let params: Record<string, string | string[]> | undefined
+  for (const node of nodes) {
+    const restore = node.loadRoute?.()?.restore
+    if (restore === undefined || restore === true) continue
+    if (restore === false) return false
+    params ??= extractParamsFromState(state as any)
+    const result = restore({ pathname, params })
+    if (result === false || result === null) return false
+    if (typeof result === 'string') return result
+  }
+  return true
+}
+
 /** consume validated initial navigation state for instant first-frame mount. */
 export function consumeWarmInitialNavigationState(
   routeNode: RouteNode | null,
@@ -428,12 +459,9 @@ export function consumeWarmInitialNavigationState(
     }
 
     if (typeof aligned === 'string') {
-      const getParsedState = linking?.getStateFromPath ?? getStateFromPath
-      const parsed = getParsedState(aligned, linking?.config)
-      if (!parsed || !parsed.routes || parsed.routes.length === 0) {
-        return undefined
-      }
-      targetState = parsed as WarmNavigationSnapshot
+      const parsed = getStateFromHref(aligned, linking)
+      if (!parsed) return undefined
+      targetState = parsed
       envelope.pathname = aligned
     } else if (typeof aligned === 'object' && aligned !== null) {
       if (!aligned.routes || !Array.isArray(aligned.routes) || aligned.routes.length === 0) {
@@ -445,6 +473,15 @@ export function consumeWarmInitialNavigationState(
         envelope.pathname = derivedPath
       }
     }
+  }
+
+  const restore = evaluateRouteRestore(targetState, routeNode, envelope.pathname || '/')
+  if (restore === false) return undefined
+  if (typeof restore === 'string') {
+    const parsed = getStateFromHref(restore, linking)
+    if (!parsed) return undefined
+    targetState = parsed
+    envelope.pathname = restore
   }
 
   if (!routesMatchLinkingConfig(targetState.routes, linking?.config?.screens)) {
