@@ -1,6 +1,6 @@
-#import "NSObject+SafeKVC.h"
+#import "NSObject+OneKCSafeKVC.h"
 
-@implementation NSObject (SafeKVC)
+@implementation NSObject (OneKCSafeKVC)
 - (id)oneKC_safeValueForKey:(NSString *)key
 {
   @try {

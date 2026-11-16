@@ -1,12 +1,12 @@
 #import <UIKit/UIKit.h>
 
-@interface UITextView (DelegateManager)
+@interface UITextView (OneKCDelegateManager)
 
 - (void)oneKC_setForceDelegate:(id<UITextViewDelegate>)delegate;
 
 @end
 
-@interface UITextField (DelegateManager)
+@interface UITextField (OneKCDelegateManager)
 
 - (void)oneKC_setForceDelegate:(id<UITextFieldDelegate>)delegate;
 
