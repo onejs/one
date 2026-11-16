@@ -833,7 +833,7 @@ std::string JSCRuntime::symbolToString(const jsi::Symbol& sym) {
 
 // bun exports the BigInt readers but not JSBigIntCreate*, so BigInts are made
 // by the global BigInt function and printed by BigInt.prototype.toString.
-// bun.framework provides these symbols whatever the ios version.
+// the bun runtime provides these symbols whatever the ios version.
 #pragma clang diagnostic ignored "-Wunguarded-availability-new"
 JSValueRef JSCRuntime::bigintRef(const jsi::BigInt& b) {
   return static_cast<const JSCSymbolValue*>(getPointerValue(b))->sym_;

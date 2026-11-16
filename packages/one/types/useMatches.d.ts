@@ -59,6 +59,8 @@ export declare function updateMatchLoaderData(routeId: string, loaderData: unkno
  * ```
  */
 export declare function useMatches(): RouteMatch[];
+/** matches before loader jsx revival, for useLoader's own revival pass. @internal */
+export declare function useRawMatches(): RouteMatch[];
 /**
  * Find a specific match by route ID.
  *

@@ -225,6 +225,9 @@ export interface NativeAppManifest {
     // instead of hermes; debug builds stay on hermes. pod install downloads
     // the engine from an onejs/bun-engine release.
     engine?: 'hermes' | 'bun'
+    // turns on react native's view culling: views outside a scroll view's
+    // visible area stay unmounted instead of being mounted and clipped.
+    viewCulling?: boolean
     usesNonExemptEncryption?: boolean
     appTransportSecurity?: Record<string, PlistValue>
     // the tint the system gives the app's controls, tab selection and text
@@ -730,6 +733,9 @@ export function validateNativeApp(
     manifest.ios.engine !== 'bun'
   ) {
     fail(`ios.engine must be 'hermes' or 'bun'`)
+  }
+  if (manifest.ios?.viewCulling !== undefined && typeof manifest.ios.viewCulling !== 'boolean') {
+    fail('ios.viewCulling must be a boolean')
   }
   if (manifest.updates !== undefined) {
     if (

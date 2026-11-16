@@ -1,0 +1,5 @@
+<resources>
+  <style name="one_keyboard_gboard_tts_light">
+    <item name="oneKeyboardColor">#ebeff1</item>
+  </style>
+</resources>

@@ -129,7 +129,7 @@ one({
 
 Apps on `expo prebuild` pass the same option to the plugin: `['vxrn/expo-plugin', { engine: 'bun' }]`.
 
-`pod install` downloads the engine from a pinned [onejs/bun-engine](https://github.com/onejs/bun-engine) release into `~/Library/Caches/one/bun-engine`, checks its checksum, and reuses it after that. Set `ONE_BUN_ENGINE_DIR` to use a local engine build instead. The bundle phase compiles `main.jsbundle` on every Release build and links the program into `BunCompat.framework`, since an App Store binary may have only one executable segment.
+`pod install` downloads the engine from a pinned [onejs/bun-engine](https://github.com/onejs/bun-engine) release into `~/Library/Caches/one/bun-engine`, checks its checksum, and reuses it after that. Set `ONE_BUN_ENGINE_DIR` to use a local engine build instead. The app executable links the runtime statically, so no Bun framework loads before `main`. The bundle phase compiles `main.jsbundle` on every Release build and the link places the program in the executable's `__TEXT` segment, since an App Store binary may have only one executable segment.
 
 Limits:
 
@@ -141,6 +141,22 @@ Limits:
 * The runtime leaves out Bun and Node APIs that Hermes lacks too, such as servers, databases, sockets and child processes.
 
 Remove `engine: 'bun'` and prebuild again to go back to Hermes.
+
+### View culling
+
+`viewCulling: true` turns on React Native's view culling. Views outside a scroll view's visible area stay unmounted, where React Native otherwise mounts them and walks every view under the scroll view after each update to clip them. Long lists and feeds spend less time on the main thread, with either engine.
+
+```ts
+one({
+  native: {
+    app: {
+      ios: { bundleId: 'com.example.app', viewCulling: true },
+    },
+  },
+})
+```
+
+Apps on `expo prebuild` pass `['vxrn/expo-plugin', { viewCulling: true }]`. React Native still marks view culling experimental, so check views that draw outside their bounds, such as shadows and overflowing children, inside scroll views.
 
 
 ## Project Setup
