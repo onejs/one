@@ -14,7 +14,7 @@ else
   ReactNativeCoreUtils.setup_rncore(File.dirname(rn_manifest), rn_package['version'])
   ReactNativeDependenciesUtils.setup_react_native_dependencies(File.dirname(rn_manifest), rn_package['version'])
   rn_mode = !ReactNativeCoreUtils.build_rncore_from_source() && !ReactNativeDependenciesUtils.build_react_native_deps_from_source() ? 'prebuilt' : 'source'
-  prebuilt = JSON.parse(Pod::Executable.execute_command('node', [File.join(__dir__, 'ios/prebuilt.ts'), 'resolve', Pod::Config.instance.installation_root.to_s, rn_mode]))
+  prebuilt = JSON.parse(Pod::Executable.execute_command('node', [File.join(__dir__, 'ios/prebuilt.mjs'), 'resolve', Pod::Config.instance.installation_root.to_s, rn_mode]))
 end
 
 Pod::Spec.new do |s|
@@ -73,7 +73,7 @@ Pod::Spec.new do |s|
   if prebuilt['path']
     Pod::UI.puts "[One] Using precompiled iOS libraries (#{File.basename(prebuilt['path'])[0, 12]})"
     s.vendored_frameworks = "#{prebuilt['path']}/Debug/One.xcframework"
-    s.preserve_paths = ['ios/prebuilt.ts', "#{prebuilt['path']}/**/*"]
+    s.preserve_paths = ['ios/prebuilt.mjs', "#{prebuilt['path']}/**/*"]
     s.module_map = false
     s.dependency 'NitroModules'
     s.script_phase = {
@@ -83,7 +83,7 @@ Pod::Spec.new do |s|
       :script => <<~SCRIPT
         set -e
         . "$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh"
-        "$NODE_BINARY" "$PODS_TARGET_SRCROOT/ios/prebuilt.ts" select "$PODS_TARGET_SRCROOT/#{prebuilt['path']}" "$PODS_XCFRAMEWORKS_BUILD_DIR/One"
+        "$NODE_BINARY" "$PODS_TARGET_SRCROOT/ios/prebuilt.mjs" select "$PODS_TARGET_SRCROOT/#{prebuilt['path']}" "$PODS_XCFRAMEWORKS_BUILD_DIR/One"
       SCRIPT
     }
   else

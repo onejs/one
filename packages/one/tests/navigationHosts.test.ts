@@ -141,8 +141,7 @@ describe('navigation host generation', () => {
     const styleAt = swift.indexOf('.oneNativeStyle(model.swiftStyle')
     const toolbarAt = swift.indexOf('.toolbar {')
     expect(toolbarAt).toBeGreaterThan(styleAt)
-    expect(swift).toContain('ForEach(model.toolbarEntries) { entry in')
-    expect(swift).toContain('OneNativeToolbarEntryContent(entry: entry)')
+    expect(swift).toContain('OneNativeToolbarEntries(entries: model.toolbarEntries)')
   })
 
   it('propagates activation into toolbars and tears everything down on reset', () => {
@@ -452,8 +451,7 @@ describe('navigation split host generation', () => {
     // column content fills its slot against the split window with its own bar.
     expect(swift).toContain('layoutHost: host,\n          onLayout: { frame in column.updateNativeFrame(frame) }')
     expect(swift).toContain('.toolbar {')
-    expect(swift).toContain('ForEach(column.toolbarEntries) { entry in')
-    expect(swift).toContain('OneNativeToolbarEntryContent(entry: entry)')
+    expect(swift).toContain('OneNativeToolbarEntries(entries: column.toolbarEntries)')
     expect(swift).toContain('fileprivate func updateNativeFrame(_ frame: CGRect) { onLayout?(frame) }')
   })
 

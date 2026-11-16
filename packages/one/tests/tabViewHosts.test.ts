@@ -358,8 +358,7 @@ describe('tab view host generation', () => {
     expect(swift).toContain('.oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)')
     expect(swift).toContain('.oneNativeStyle(page.style, emit: page.emit)')
     expect(swift).toContain('if active { onSDKEvent?(name, value) }')
-    expect(swift).toContain('ForEach(model.toolbarEntries) { entry in')
-    expect(swift).toContain('OneNativeToolbarEntryContent(entry: entry)')
+    expect(swift).toContain('OneNativeToolbarEntries(entries: model.toolbarEntries)')
   })
 
   it('attaches the controller on window with weak callbacks and resets clean', () => {

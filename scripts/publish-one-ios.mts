@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
-import type { Manifest } from '../packages/one/ios/prebuilt.ts'
+import type { Manifest } from '../packages/one/ios/prebuilt.mjs'
 
 const directory = resolve(process.argv[2]!)
 const debug = JSON.parse(readFileSync(join(directory, 'Debug.json'), 'utf8'))

@@ -224,6 +224,7 @@ public final class OneAutolinking {
     return HybridOneNotifications.self is any RecyclableView.Type
   }
   
+#if ONE_GROUP_BIOMETRICS
   public static func createOneSecureStore() -> bridge.std__shared_ptr_HybridOneSecureStoreSpec_ {
     let hybridObject = HybridOneSecureStore()
     return { () -> bridge.std__shared_ptr_HybridOneSecureStoreSpec_ in
@@ -235,6 +236,7 @@ public final class OneAutolinking {
   public static func isOneSecureStoreRecyclable() -> Bool {
     return HybridOneSecureStore.self is any RecyclableView.Type
   }
+#endif
   
   public static func createOneAdaptive() -> bridge.std__shared_ptr_HybridOneAdaptiveSpec_ {
     let hybridObject = HybridOneAdaptive()
@@ -288,6 +290,7 @@ public final class OneAutolinking {
   }
 #endif
   
+#if ONE_GROUP_BIOMETRICS
   public static func createOneProtectedStore() -> bridge.std__shared_ptr_HybridOneProtectedStoreSpec_ {
     let hybridObject = HybridOneProtectedStore()
     return { () -> bridge.std__shared_ptr_HybridOneProtectedStoreSpec_ in
@@ -299,6 +302,7 @@ public final class OneAutolinking {
   public static func isOneProtectedStoreRecyclable() -> Bool {
     return HybridOneProtectedStore.self is any RecyclableView.Type
   }
+#endif
   
 #if ONE_GROUP_STORE
   public static func createOneStoreReview() -> bridge.std__shared_ptr_HybridOneStoreReviewSpec_ {
@@ -530,6 +534,7 @@ public final class OneAutolinking {
     return HybridOneNativeModules.self is any RecyclableView.Type
   }
   
+#if ONE_GROUP_FITNESS
   public static func createOneBarometer() -> bridge.std__shared_ptr_HybridOneBarometerSpec_ {
     let hybridObject = HybridOneBarometer()
     return { () -> bridge.std__shared_ptr_HybridOneBarometerSpec_ in
@@ -541,6 +546,7 @@ public final class OneAutolinking {
   public static func isOneBarometerRecyclable() -> Bool {
     return HybridOneBarometer.self is any RecyclableView.Type
   }
+#endif
   
   public static func createOneLightSensor() -> bridge.std__shared_ptr_HybridOneLightSensorSpec_ {
     let hybridObject = HybridOneLightSensor()
@@ -554,6 +560,7 @@ public final class OneAutolinking {
     return HybridOneLightSensor.self is any RecyclableView.Type
   }
   
+#if ONE_GROUP_FITNESS
   public static func createOnePedometer() -> bridge.std__shared_ptr_HybridOnePedometerSpec_ {
     let hybridObject = HybridOnePedometer()
     return { () -> bridge.std__shared_ptr_HybridOnePedometerSpec_ in
@@ -565,4 +572,5 @@ public final class OneAutolinking {
   public static func isOnePedometerRecyclable() -> Bool {
     return HybridOnePedometer.self is any RecyclableView.Type
   }
+#endif
 }

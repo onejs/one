@@ -23,7 +23,7 @@ import {
   publishedManifest,
   sha256,
   type Archive,
-} from '../packages/one/ios/prebuilt.ts'
+} from '../packages/one/ios/prebuilt.mjs'
 
 const { values } = parseArgs({
   options: {

@@ -165,7 +165,7 @@ dependencies {
     implementation "com.google.android.play:review:2.0.1"
     // WorkManager for One.BackgroundTasks on Android, matching Expo's
     // Android backing for background tasks.
-    implementation "androidx.work:work-runtime-ktx:2.9.0"
+    implementation "androidx.work:work-runtime-ktx:2.12.0"
     // CameraX preview plus ML Kit barcode scanning for the CameraView
     // embedded preview, matching Expo's CameraX-based Android camera.
     implementation "androidx.camera:camera-core:1.6.2"

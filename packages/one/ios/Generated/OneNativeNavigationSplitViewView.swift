@@ -202,9 +202,7 @@ private struct NavigationSplitViewColumnContent: View {
     }
     .oneNativeStyle(column.swiftStyle, emit: column.emitSDKEvent)
     .toolbar {
-      ForEach(column.toolbarEntries) { entry in
-        OneNativeToolbarEntryContent(entry: entry)
-      }
+      OneNativeToolbarEntries(entries: column.toolbarEntries)
     }
   }
 }

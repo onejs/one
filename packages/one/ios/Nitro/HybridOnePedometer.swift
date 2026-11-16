@@ -1,3 +1,4 @@
+#if ONE_GROUP_FITNESS
 import CoreMotion
 import NitroModules
 
@@ -169,3 +170,5 @@ final class HybridOnePedometer: HybridOnePedometerSpec {
     }
   }
 }
+
+#endif
