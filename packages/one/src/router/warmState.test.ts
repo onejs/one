@@ -8,6 +8,8 @@ import {
   configureWarmState,
   consumeWarmInitialNavigationState,
   consumeWarmRouteApplied,
+  endRestoredLaunch,
+  isRestoredLaunch,
   flushWarmState,
   getHydratedWarmState,
   hydrateWarmInitialLoad,
@@ -654,6 +656,9 @@ describe('warmState', () => {
       routes: [{ name: 'post/[id]', params: { id: '1' } }],
     })
     expect(seen).toEqual([{ pathname: '/post/1', params: { id: '1' } }])
+    expect(isRestoredLaunch()).toBe(true)
+    endRestoredLaunch()
+    expect(isRestoredLaunch()).toBe(false)
 
     save('/post/gone', { index: 0, routes: [{ name: 'post/[id]', params: { id: 'gone' } }] })
     expect(consumeWarmInitialNavigationState(routeNode, linking as any)).toMatchObject({

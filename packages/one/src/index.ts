@@ -357,6 +357,7 @@ export { SourceInspector, type SourceInspectorProps } from './views/SourceInspec
 export type { SuspenseFallbackProps } from './views/SuspenseFallback'
 export type { ErrorBoundaryProps, ErrorRouteInfo } from './views/Try'
 export type { RouteRestore } from './router/Route'
+export { useIsRestored } from './useIsRestored'
 // scroll position groups
 export { useScrollGroup } from './useScrollGroup'
 // server

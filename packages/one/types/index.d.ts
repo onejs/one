@@ -116,6 +116,7 @@ export { SourceInspector, type SourceInspectorProps } from './views/SourceInspec
 export type { SuspenseFallbackProps } from './views/SuspenseFallback.js';
 export type { ErrorBoundaryProps, ErrorRouteInfo } from './views/Try.js';
 export type { RouteRestore } from './router/Route.js';
+export { useIsRestored } from './useIsRestored.js';
 export { useScrollGroup } from './useScrollGroup.js';
 export { getServerData, setResponseHeaders, setServerData } from './vite/one-server-only.js';
 export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerScrollStateEvent } from './platform/ui/pagerTypes.js';

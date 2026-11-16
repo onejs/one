@@ -81,6 +81,14 @@ export const restore: RouteRestore = ({ params }) =>
 
 The first `restore` export on the way from the root layout to the page decides. It runs synchronously during launch, so read only data that is already in memory.
 
+`useIsRestored()` returns `true` in screens that mounted as part of a restored launch and `false` in screens opened after that, so a screen can skip an entrance animation or autofocus when it reappears:
+
+```tsx
+import { useIsRestored } from 'one'
+
+const restored = useIsRestored()
+```
+
 ### generateStaticParams
 
 This export is needed for "ssg" type pages that use dynamic path segments (for example, `[id].tsx`). At build-time, One will expand the id segment into multiple pages, using the values you return from `generateStaticParams`.

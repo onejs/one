@@ -81,6 +81,8 @@ const hydratedSourceKeys = new Set<string>()
 let loadedFromStorage = false
 let hydratedEnvelope: WarmStateEnvelope | null = null
 let warmRouteApplied = false
+// true from a restored launch until the first navigation
+let restoredLaunch = false
 let warmInitialRouteConsumed = false
 
 let latestNavState: unknown
@@ -506,6 +508,7 @@ export function consumeWarmInitialNavigationState(
   }
 
   warmRouteApplied = true
+  restoredLaunch = true
   return targetState as unknown as OneRouter.ResultState
 }
 
@@ -525,6 +528,14 @@ export function isWarmWebRestoreEligible(initialLocation?: URL): boolean {
 
 export function isWarmRouteApplied(): boolean {
   return warmRouteApplied
+}
+
+export function isRestoredLaunch(): boolean {
+  return restoredLaunch
+}
+
+export function endRestoredLaunch(): void {
+  restoredLaunch = false
 }
 
 export function consumeWarmRouteApplied(): boolean {
@@ -590,6 +601,7 @@ export function clearWarmState(options?: { keepConfig?: boolean }): void {
   hydratedEnvelope = null
   hydratedSourceKeys.clear()
   warmRouteApplied = false
+  restoredLaunch = false
   warmInitialRouteConsumed = false
   latestNavState = undefined
   latestPathname = undefined
