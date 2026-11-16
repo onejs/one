@@ -204,6 +204,12 @@ export namespace One {
          */
         prefixes?: string[]
       }
+      /**
+       * Reopen native apps on the screen they left, restoring the saved
+       * navigation state before the first frame. The plugin inlines this as
+       * JSON, so `alignRoute` must be set with `configureWarmState` instead.
+       */
+      warmStart?: boolean | Omit<WarmStartOptions, 'alignRoute'>
       experimental?: {
         /**
          * Auto-generate route type helpers in route files.

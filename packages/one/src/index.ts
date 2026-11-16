@@ -154,7 +154,11 @@ export { SafeAreaView, useSafeAreaFrame, useSafeAreaInsets } from './safe-area-c
 export { onClientLoaderResolve } from './clientLoaderResolver'
 
 // middleware
-export { createMiddleware, type Middleware, type MiddlewareContext } from './createMiddleware'
+export {
+  createMiddleware,
+  type Middleware,
+  type MiddlewareContext,
+} from './createMiddleware'
 // api routes
 export {
   createAPIRoute,
@@ -273,6 +277,7 @@ export {
   type WarmStateSource,
   type WarmStateStorage,
 } from './router/warmState'
+export { useWarmState } from './router/useWarmState'
 export type { Endpoint, LoaderProps } from './types'
 // navigation blocking
 export {
@@ -323,12 +328,7 @@ export {
   reviveLoaderJSX,
   type LoaderJSXSlots,
 } from './loaderJSX'
-export {
-  ClientFallback,
-  JSXSlot,
-  renderJSX,
-  type JSXEnvelope,
-} from './server/renderJSX'
+export { ClientFallback, JSXSlot, renderJSX, type JSXEnvelope } from './server/renderJSX'
 export {
   setClientMatches,
   useMatch,
@@ -361,4 +361,10 @@ export { useScrollGroup } from './useScrollGroup'
 // server
 export { getServerData, setResponseHeaders, setServerData } from './vite/one-server-only'
 
-export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerScrollStateEvent } from './platform/ui/pagerTypes'
+export type {
+  PagerProps,
+  PagerRef,
+  PagerScrollEvent,
+  PagerSelectedEvent,
+  PagerScrollStateEvent,
+} from './platform/ui/pagerTypes'
