@@ -8,6 +8,10 @@ videos, PDFs, and other Quick Look formats. The system provides paging, zooming,
 playback, filenames, and a share sheet with the available save and export actions.
 It requires an iOS native build.
 
+To offer saving images and videos to Photos, set
+`native.app.photoLibrary.addOnly` in your One configuration to the permission
+message shown by iOS. Saving to Files and sharing use the system share sheet.
+
 ```tsx
 import { One } from 'one'
 import { Image } from 'react-native'
