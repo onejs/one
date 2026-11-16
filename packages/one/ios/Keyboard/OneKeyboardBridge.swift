@@ -32,6 +32,8 @@ public final class OneKeyboardBridge: NSObject {
     UIResponder.current
   }
 
+  @objc public static var topWindow: UIWindow? { UIWindow.topWindow }
+
   @objc public static func reactTag(_ view: UIView) -> NSNumber {
     view.reactNativeTag
   }

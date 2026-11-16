@@ -127,7 +127,7 @@ using namespace facebook::react;
     return;
   }
 
-  UIWindow *topWindow = [UIWindow topWindow];
+  UIWindow *topWindow = [OneKCBridge topWindow];
   _visible = true;
   _contentView.frame = topWindow.bounds;
   _contentView.autoresizingMask =
