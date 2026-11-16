@@ -242,6 +242,9 @@ export async function writeAppSdkPod(root: string, log = console.info, releaseFr
   # the tables import One with c++ interop, which reaches react's headers, so
   # they need One's module policy
   s.pod_target_xcconfig = {
+    # whole-module release builds type check and optimize every table on one
+    # core; the tables share nothing, so compile them as separate files in parallel
+    'SWIFT_COMPILATION_MODE' => 'singlefile',
     'ONE_IOS_SDK_FRAMEWORKS' => '${(releaseFrameworks ?? frameworks).join(' ')}',
     'SWIFT_ACTIVE_COMPILATION_CONDITIONS[config=Debug]' => '$(inherited) ONE_SDK_DEBUG',
     'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
