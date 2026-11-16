@@ -20,10 +20,12 @@ export function getNativeInitialURL(): Promise<string | null> {
   if (typeof Linking?.getInitialURL !== 'function') {
     return Promise.resolve(null)
   }
+  // the url arrives once the js thread is free after the first render, which
+  // took 379ms in a release app, so the bound only guards a call that never answers
   return Promise.race([
     Linking.getInitialURL(),
     new Promise<null>((resolve) => {
-      setTimeout(() => resolve(null), 150)
+      setTimeout(() => resolve(null), 3000)
     }),
   ])
 }

@@ -17,9 +17,9 @@ export function getInitialURL(): Promise<string | null> | string {
       return url ?? getRootURL()
     })(),
     new Promise<string>((resolve) =>
-      // Timeout in 150ms if `getInitialState` doesn't resolve
-      // Workaround for https://github.com/facebook/react-native/issues/25675
-      setTimeout(() => resolve(getRootURL()), 150)
+      // bounds a getInitialURL that never answers (react-native#25675). a cold
+      // deep link answers once the first render frees the js thread, often past 150ms
+      setTimeout(() => resolve(getRootURL()), 3000)
     ),
   ])
 }

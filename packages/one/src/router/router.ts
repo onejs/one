@@ -63,8 +63,9 @@ import {
   consumeWarmInitialNavigationState,
   isWarmStateEnabled,
   isWarmWebRestoreEligible,
-  shouldAttemptWarmRouteRestore,
   scheduleWarmStatePersist,
+  shouldAttemptWarmRouteRestore,
+  trackRestoredLaunch,
 } from './warmState'
 import {
   getSafeWindowPath,
@@ -444,6 +445,7 @@ export function handleNavigationContainerStateChange(
     updateState(state, undefined)
     shouldUpdateSubscribers = true
     if (isWarmStateEnabled()) {
+      trackRestoredLaunch(routeInfo?.pathname)
       scheduleWarmStatePersist(state, routeInfo?.pathname)
     }
   }
