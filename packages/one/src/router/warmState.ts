@@ -83,6 +83,7 @@ let hydratedEnvelope: WarmStateEnvelope | null = null
 let warmRouteApplied = false
 // true from a restored launch until the first navigation
 let restoredLaunch = false
+let restoredState: OneRouter.ResultState | undefined
 let warmInitialRouteConsumed = false
 
 let latestNavState: unknown
@@ -427,7 +428,12 @@ export function consumeWarmInitialNavigationState(
   if (typeof globalThis !== 'undefined' && (globalThis as any).__oneWarmStartOptions) {
     configureWarmState((globalThis as any).__oneWarmStartOptions)
   }
-  if (warmInitialRouteConsumed || !shouldRestoreWarmRoute()) {
+  // the router can initialize again before the first commit (a root render that
+  // suspends gets a new navigation ref), and must mount the same restored route
+  if (warmInitialRouteConsumed) {
+    return restoredLaunch ? restoredState : undefined
+  }
+  if (!shouldRestoreWarmRoute()) {
     return undefined
   }
   warmInitialRouteConsumed = true
@@ -509,7 +515,8 @@ export function consumeWarmInitialNavigationState(
 
   warmRouteApplied = true
   restoredLaunch = true
-  return targetState as unknown as OneRouter.ResultState
+  restoredState = targetState as unknown as OneRouter.ResultState
+  return restoredState
 }
 
 /** check whether web SPA root is eligible to mount directly into saved warm route. */
@@ -536,6 +543,7 @@ export function isRestoredLaunch(): boolean {
 
 export function endRestoredLaunch(): void {
   restoredLaunch = false
+  restoredState = undefined
 }
 
 export function consumeWarmRouteApplied(): boolean {
@@ -602,6 +610,7 @@ export function clearWarmState(options?: { keepConfig?: boolean }): void {
   hydratedSourceKeys.clear()
   warmRouteApplied = false
   restoredLaunch = false
+  restoredState = undefined
   warmInitialRouteConsumed = false
   latestNavState = undefined
   latestPathname = undefined

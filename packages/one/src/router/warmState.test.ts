@@ -657,6 +657,10 @@ describe('warmState', () => {
     })
     expect(seen).toEqual([{ pathname: '/post/1', params: { id: '1' } }])
     expect(isRestoredLaunch()).toBe(true)
+    // a second router initialize in the same launch gets the same route
+    expect(consumeWarmInitialNavigationState(routeNode, linking as any)).toMatchObject({
+      routes: [{ name: 'post/[id]', params: { id: '1' } }],
+    })
     endRestoredLaunch()
     expect(isRestoredLaunch()).toBe(false)
 
