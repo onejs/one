@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Animated, Platform, StyleSheet } from 'react-native'
 import { controlEdgeToEdgeValues, isEdgeToEdge } from 'react-native-is-edge-to-edge'
-import Reanimated, { useSharedValue } from 'react-native-reanimated'
+import { useSharedValue } from 'react-native-reanimated'
 
 import {
   FocusedInputEvents,
@@ -24,10 +24,6 @@ import type {
 import type { ViewStyle } from 'react-native'
 
 const IS_EDGE_TO_EDGE = isEdgeToEdge()
-
-const KeyboardControllerViewAnimated = Reanimated.createAnimatedComponent(
-  Animated.createAnimatedComponent(KeyboardControllerView)
-)
 
 type Styles = {
   container: ViewStyle
@@ -126,8 +122,10 @@ export const KeyboardProvider = (props: KeyboardProviderProps) => {
             },
           },
         ],
-        // Setting useNativeDriver to true on web triggers a warning due to the absence of a native driver for web. Therefore, it is set to false.
-        { useNativeDriver: Platform.OS !== 'web' }
+        // the controller view renders without animated wrappers, so this
+        // legacy Animated.Value context is js driven; the reanimated values
+        // register by view tag below.
+        { useNativeDriver: false }
       ),
     []
   )
@@ -182,6 +180,16 @@ export const KeyboardProvider = (props: KeyboardProviderProps) => {
   )
 
   useEffect(() => {
+    const detachKeyboardHandler = setKeyboardHandlers(keyboardHandler)
+    const detachInputLayoutHandler = setInputHandlers(inputLayoutHandler)
+
+    return () => {
+      detachKeyboardHandler()
+      detachInputLayoutHandler()
+    }
+  }, [keyboardHandler, inputLayoutHandler])
+
+  useEffect(() => {
     if (preload) {
       KeyboardController.preload()
     }
@@ -197,23 +205,20 @@ export const KeyboardProvider = (props: KeyboardProviderProps) => {
 
   return (
     <KeyboardContext.Provider value={context}>
-      <KeyboardControllerViewAnimated
+      <KeyboardControllerView
         ref={viewRef}
         enabled={enabled}
         navigationBarTranslucent={IS_EDGE_TO_EDGE || navigationBarTranslucent}
         statusBarTranslucent={IS_EDGE_TO_EDGE || statusBarTranslucent}
         preserveEdgeToEdge={IS_EDGE_TO_EDGE || preserveEdgeToEdge}
         style={styles.container}
-        // on*Reanimated prop must precede animated handlers to work correctly
-        onKeyboardMoveReanimated={keyboardHandler}
         onKeyboardMoveStart={OS === 'ios' ? onKeyboardMove : undefined}
         onKeyboardMove={OS === 'android' ? onKeyboardMove : undefined}
         onKeyboardMoveInteractive={onKeyboardMove}
         onKeyboardMoveEnd={OS === 'android' ? onKeyboardMove : undefined}
-        onFocusedInputLayoutChangedReanimated={inputLayoutHandler}
       >
         {children}
-      </KeyboardControllerViewAnimated>
+      </KeyboardControllerView>
       <Animated.View
         // we are using this small hack, because if the component (where
         // animated value has been used) is unmounted, then animation will
