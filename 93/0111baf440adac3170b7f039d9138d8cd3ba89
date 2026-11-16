@@ -57,3 +57,5 @@
 {"id":"00000001794813687751:0f41087e38e8cee870a36c0c3d2488fd","text":"keyboard merged build (ios+android, tmp/kb-warm-test af0122aec) built on pro-128 and RAN on sim 8CCC71C9: composer on keyboard, draft restore, interactive drag dismiss tracks frame by frame"}
 
 {"id":"00000001794813744815:62846745521bec6f19680c3c3009f2e7","text":"staffed one-keyboard-android-check (p269687, md, pro-128) to exercise gesture area, OverKeyboardView, KeyboardAwareScrollView, toolbar on Android emulator; fixes push to feat/one-keyboard. One 2.19.0 share sent to Nate with warmStart, static bun and keyboard merge questions."}
+
+{"id":"00000001794814959707:a1801a7f15d4a1033e6198e081b8fb46","text":"RAN Android emulator: gesture swipe dismiss, over-keyboard overlay show/close with keyboard open, keyboard-aware scroll, toolbar next/previous/done. Toolbar Android StrictMode warning fix committed bfd4b9b6b9; push pending. Captures on pro-128 in /Users/n8/builders/.scratch/one-keyboard-p269687."}
