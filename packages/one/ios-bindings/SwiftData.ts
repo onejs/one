@@ -155,17 +155,17 @@ export class DataStoreBatchDeleteRequest<T = unknown> extends SDKHandle {
    * let editingState: EditingState
    * @availability iOS 18.0+
    */
-  get editingState(): EditingState { return callSDK<EditingState>("SwiftData_d04ad79e98d4fc54", 551710727902063, this, []); }
+  get editingState(): EditingState { return callSDK<EditingState>("SwiftData_b0e1456fef7e4b05", 551710727902063, this, []); }
   /**
    * let includeSubclasses: Bool
    * @availability iOS 18.0+
    */
-  get includeSubclasses(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 2768345264020489, this, []); }
+  get includeSubclasses(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 2768345264020489, this, []); }
   /**
    * let predicate: Predicate<T>?
    * @availability iOS 18.0+
    */
-  get predicate(): $SDK6 { return callSDK<$SDK6>("SwiftData_d04ad79e98d4fc54", 3525486533145191, this, []); }
+  get predicate(): $SDK6 { return callSDK<$SDK6>("SwiftData_b0e1456fef7e4b05", 3525486533145191, this, []); }
   declare readonly $type: { "s:9SwiftData0B23StoreBatchDeleteRequestV": true };
 }
 
@@ -253,12 +253,12 @@ export class DataStoreFetchRequest<T = unknown> extends SDKHandle {
    * let descriptor: FetchDescriptor<T>
    * @availability iOS 18.0+
    */
-  get descriptor(): $SDK8 { return callSDK<$SDK8>("SwiftData_d04ad79e98d4fc54", 734964190983284, this, []); }
+  get descriptor(): $SDK8 { return callSDK<$SDK8>("SwiftData_b0e1456fef7e4b05", 734964190983284, this, []); }
   /**
    * let editingState: EditingState
    * @availability iOS 18.0+
    */
-  get editingState(): EditingState { return callSDK<EditingState>("SwiftData_d04ad79e98d4fc54", 1854963124808144, this, []); }
+  get editingState(): EditingState { return callSDK<EditingState>("SwiftData_b0e1456fef7e4b05", 1854963124808144, this, []); }
   declare readonly $type: { "s:9SwiftData0B17StoreFetchRequestV": true };
 }
 
@@ -271,17 +271,17 @@ export class DataStoreFetchResult<ModelType = unknown, SnapshotType = unknown> e
    * let descriptor: FetchDescriptor<ModelType>
    * @availability iOS 18.0+
    */
-  get descriptor(): $SDK8 { return callSDK<$SDK8>("SwiftData_d04ad79e98d4fc54", 4294407903478986, this, []); }
+  get descriptor(): $SDK8 { return callSDK<$SDK8>("SwiftData_b0e1456fef7e4b05", 4294407903478986, this, []); }
   /**
    * let fetchedSnapshots: [SnapshotType]
    * @availability iOS 18.0+
    */
-  get fetchedSnapshots(): Array<DefaultSnapshot> { return callSDK<Array<DefaultSnapshot>>("SwiftData_d04ad79e98d4fc54", 4358720566892973, this, []); }
+  get fetchedSnapshots(): Array<DefaultSnapshot> { return callSDK<Array<DefaultSnapshot>>("SwiftData_b0e1456fef7e4b05", 4358720566892973, this, []); }
   /**
    * let relatedSnapshots: [PersistentIdentifier : SnapshotType]
    * @availability iOS 18.0+
    */
-  get relatedSnapshots(): $SDK9 { return callSDK<$SDK9>("SwiftData_d04ad79e98d4fc54", 2119076391576747, this, []); }
+  get relatedSnapshots(): $SDK9 { return callSDK<$SDK9>("SwiftData_b0e1456fef7e4b05", 2119076391576747, this, []); }
   declare readonly $type: { "s:9SwiftData0B16StoreFetchResultV": true };
 }
 
@@ -294,22 +294,22 @@ export class DataStoreSaveChangesRequest<SnapshotType = unknown> extends SDKHand
    * let editingState: EditingState
    * @availability iOS 18.0+
    */
-  get editingState(): EditingState { return callSDK<EditingState>("SwiftData_d04ad79e98d4fc54", 2156506566753732, this, []); }
+  get editingState(): EditingState { return callSDK<EditingState>("SwiftData_b0e1456fef7e4b05", 2156506566753732, this, []); }
   /**
    * let deleted: [SnapshotType]
    * @availability iOS 18.0+
    */
-  get deleted(): Array<DefaultSnapshot> { return callSDK<Array<DefaultSnapshot>>("SwiftData_d04ad79e98d4fc54", 183072390468939, this, []); }
+  get deleted(): Array<DefaultSnapshot> { return callSDK<Array<DefaultSnapshot>>("SwiftData_b0e1456fef7e4b05", 183072390468939, this, []); }
   /**
    * let updated: [SnapshotType]
    * @availability iOS 18.0+
    */
-  get updated(): Array<DefaultSnapshot> { return callSDK<Array<DefaultSnapshot>>("SwiftData_d04ad79e98d4fc54", 4029497315094647, this, []); }
+  get updated(): Array<DefaultSnapshot> { return callSDK<Array<DefaultSnapshot>>("SwiftData_b0e1456fef7e4b05", 4029497315094647, this, []); }
   /**
    * let inserted: [SnapshotType]
    * @availability iOS 18.0+
    */
-  get inserted(): Array<DefaultSnapshot> { return callSDK<Array<DefaultSnapshot>>("SwiftData_d04ad79e98d4fc54", 3961127809682228, this, []); }
+  get inserted(): Array<DefaultSnapshot> { return callSDK<Array<DefaultSnapshot>>("SwiftData_b0e1456fef7e4b05", 3961127809682228, this, []); }
   declare readonly $type: { "s:9SwiftData0B23StoreSaveChangesRequestV": true };
 }
 
@@ -322,32 +322,32 @@ export class DataStoreSaveChangesResult<T = unknown> extends SDKHandle {
    * final let historyToken: (any HistoryToken)?
    * @availability iOS 27.0+
    */
-  get historyToken(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SwiftData_d04ad79e98d4fc54", 2645385693252024, this, []); }
+  get historyToken(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SwiftData_b0e1456fef7e4b05", 2645385693252024, this, []); }
   /**
    * final let storeIdentifier: String
    * @availability iOS 18.0+
    */
-  get storeIdentifier(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 1055273481411393, this, []); }
+  get storeIdentifier(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 1055273481411393, this, []); }
   /**
    * final let remappedIdentifiers: [PersistentIdentifier : PersistentIdentifier]
    * @availability iOS 18.0+
    */
-  get remappedIdentifiers(): $SDK10 { return callSDK<$SDK10>("SwiftData_d04ad79e98d4fc54", 3387267489647181, this, []); }
+  get remappedIdentifiers(): $SDK10 { return callSDK<$SDK10>("SwiftData_b0e1456fef7e4b05", 3387267489647181, this, []); }
   /**
    * final let snapshotsToReregister: [PersistentIdentifier : T]
    * @availability iOS 18.0+
    */
-  get snapshotsToReregister(): $SDK9 { return callSDK<$SDK9>("SwiftData_d04ad79e98d4fc54", 2128587444488789, this, []); }
+  get snapshotsToReregister(): $SDK9 { return callSDK<$SDK9>("SwiftData_b0e1456fef7e4b05", 2128587444488789, this, []); }
   /**
    * init(for storeIdentifier: String, remappedIdentifiers: [PersistentIdentifier : PersistentIdentifier] = [:], snapshotsToReregister: [PersistentIdentifier : T] = [:], historyToken: (any HistoryToken)?)
    * @availability iOS 27.0+
    */
-  static initForRemappedIdentifiersSnapshotsToReregisterHistoryToken(storeIdentifier: string, remappedIdentifiers?: $SDK10, snapshotsToReregister?: $SDK9, historyToken?: (SDKHandle) | null): $SDK11 { return callSDK<$SDK11>("SwiftData_d04ad79e98d4fc54", 1776710988913583, undefined, [storeIdentifier, remappedIdentifiers, snapshotsToReregister, historyToken]); }
+  static initForRemappedIdentifiersSnapshotsToReregisterHistoryToken(storeIdentifier: string, remappedIdentifiers?: $SDK10, snapshotsToReregister?: $SDK9, historyToken?: (SDKHandle) | null): $SDK11 { return callSDK<$SDK11>("SwiftData_b0e1456fef7e4b05", 1776710988913583, undefined, [storeIdentifier, remappedIdentifiers, snapshotsToReregister, historyToken]); }
   /**
    * init(for storeIdentifier: String, remappedIdentifiers: [PersistentIdentifier : PersistentIdentifier] = [:], snapshotsToReregister: [PersistentIdentifier : T] = [:])
    * @availability iOS 18.0+
    */
-  static initForRemappedIdentifiersSnapshotsToReregister(storeIdentifier: string, remappedIdentifiers?: $SDK10, snapshotsToReregister?: $SDK9): $SDK11 { return callSDK<$SDK11>("SwiftData_d04ad79e98d4fc54", 895674739186136, undefined, [storeIdentifier, remappedIdentifiers, snapshotsToReregister]); }
+  static initForRemappedIdentifiersSnapshotsToReregister(storeIdentifier: string, remappedIdentifiers?: $SDK10, snapshotsToReregister?: $SDK9): $SDK11 { return callSDK<$SDK11>("SwiftData_b0e1456fef7e4b05", 895674739186136, undefined, [storeIdentifier, remappedIdentifiers, snapshotsToReregister]); }
   declare readonly $type: { "s:9SwiftData0B22StoreSaveChangesResultC": true };
 }
 
@@ -377,22 +377,22 @@ export class DataStoreSnapshotCodingKey extends SDKHandle {
    * init?(stringValue: String)
    * @availability iOS 18.0+
    */
-  static initStringValue(stringValue: string): (DataStoreSnapshotCodingKey) | null { return callSDK<(DataStoreSnapshotCodingKey) | null>("SwiftData_d04ad79e98d4fc54", 1569025934113999, undefined, [stringValue]); }
+  static initStringValue(stringValue: string): (DataStoreSnapshotCodingKey) | null { return callSDK<(DataStoreSnapshotCodingKey) | null>("SwiftData_b0e1456fef7e4b05", 1569025934113999, undefined, [stringValue]); }
   /**
    * var stringValue: String { get }
    * @availability iOS 18.0+
    */
-  get stringValue(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 1850997738014908, this, []); }
+  get stringValue(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 1850997738014908, this, []); }
   /**
    * init?(intValue: Int)
    * @availability iOS 18.0+
    */
-  static initIntValue(intValue: number): (DataStoreSnapshotCodingKey) | null { return callSDK<(DataStoreSnapshotCodingKey) | null>("SwiftData_d04ad79e98d4fc54", 3169236600393466, undefined, [intValue]); }
+  static initIntValue(intValue: number): (DataStoreSnapshotCodingKey) | null { return callSDK<(DataStoreSnapshotCodingKey) | null>("SwiftData_b0e1456fef7e4b05", 3169236600393466, undefined, [intValue]); }
   /**
    * var intValue: Int? { get }
    * @availability iOS 18.0+
    */
-  get intValue(): (number) | null { return callSDK<(number) | null>("SwiftData_d04ad79e98d4fc54", 1163872841173623, this, []); }
+  get intValue(): (number) | null { return callSDK<(number) | null>("SwiftData_b0e1456fef7e4b05", 1163872841173623, this, []); }
   declare readonly $type: { "s:9SwiftData0B22StoreSnapshotCodingKeyO": true };
 }
 
@@ -411,22 +411,22 @@ export class DefaultHistoryDelete<Model = unknown> extends SDKHandle {
    * let changeIdentifier: DefaultHistoryDelete<Model>.ChangeIdentifier
    * @availability iOS 18.0+
    */
-  get changeIdentifier(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 2797664629302647, this, []); }
+  get changeIdentifier(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 2797664629302647, this, []); }
   /**
    * let transactionIdentifier: DefaultHistoryDelete<Model>.TransactionIdentifier
    * @availability iOS 18.0+
    */
-  get transactionIdentifier(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 333059574676035, this, []); }
+  get transactionIdentifier(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 333059574676035, this, []); }
   /**
    * let changedPersistentIdentifier: PersistentIdentifier
    * @availability iOS 18.0+
    */
-  get changedPersistentIdentifier(): PersistentIdentifier { return callSDK<PersistentIdentifier>("SwiftData_d04ad79e98d4fc54", 3666997158319254, this, []); }
+  get changedPersistentIdentifier(): PersistentIdentifier { return callSDK<PersistentIdentifier>("SwiftData_b0e1456fef7e4b05", 3666997158319254, this, []); }
   /**
    * let tombstone: HistoryTombstone<Model>
    * @availability iOS 18.0+
    */
-  get tombstone(): HistoryTombstone<SDKHandle> { return callSDK<HistoryTombstone<SDKHandle>>("SwiftData_d04ad79e98d4fc54", 2981255389784975, this, []); }
+  get tombstone(): HistoryTombstone<SDKHandle> { return callSDK<HistoryTombstone<SDKHandle>>("SwiftData_b0e1456fef7e4b05", 2981255389784975, this, []); }
   declare readonly $type: { "s:9SwiftData20DefaultHistoryDeleteV": true };
 }
 
@@ -451,17 +451,17 @@ export class DefaultHistoryInsert<Model = unknown> extends SDKHandle {
    * let changeIdentifier: DefaultHistoryInsert<Model>.ChangeIdentifier
    * @availability iOS 18.0+
    */
-  get changeIdentifier(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 4181545601330683, this, []); }
+  get changeIdentifier(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 4181545601330683, this, []); }
   /**
    * let transactionIdentifier: DefaultHistoryInsert<Model>.TransactionIdentifier
    * @availability iOS 18.0+
    */
-  get transactionIdentifier(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 2473931582504100, this, []); }
+  get transactionIdentifier(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 2473931582504100, this, []); }
   /**
    * let changedPersistentIdentifier: PersistentIdentifier
    * @availability iOS 18.0+
    */
-  get changedPersistentIdentifier(): PersistentIdentifier { return callSDK<PersistentIdentifier>("SwiftData_d04ad79e98d4fc54", 34221634104610, this, []); }
+  get changedPersistentIdentifier(): PersistentIdentifier { return callSDK<PersistentIdentifier>("SwiftData_b0e1456fef7e4b05", 34221634104610, this, []); }
   declare readonly $type: { "s:9SwiftData20DefaultHistoryInsertV": true };
 }
 
@@ -486,17 +486,17 @@ export class DefaultHistoryToken extends SDKHandle {
    * var tokenValue: DefaultHistoryToken.TokenType? { get }
    * @availability iOS 18.0+
    */
-  get tokenValue(): (Record<string, number>) | null { return callSDK<(Record<string, number>) | null>("SwiftData_d04ad79e98d4fc54", 2213936405683226, this, []); }
+  get tokenValue(): (Record<string, number>) | null { return callSDK<(Record<string, number>) | null>("SwiftData_b0e1456fef7e4b05", 2213936405683226, this, []); }
   /**
    * var storeIdentifier: String { get }
    * @availability iOS 27.0+
    */
-  get storeIdentifier(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 1608697246735736, this, []); }
+  get storeIdentifier(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 1608697246735736, this, []); }
   /**
    * var id: Int { get }
    * @availability iOS 18.0+
    */
-  get id(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 365343685184264, this, []); }
+  get id(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 365343685184264, this, []); }
   declare readonly $type: { "s:9SwiftData19DefaultHistoryTokenV": true };
 }
 
@@ -521,47 +521,47 @@ export class DefaultHistoryTransaction extends SDKHandle {
    * let storeIdentifier: String
    * @availability iOS 18.0+
    */
-  get storeIdentifier(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 1656838480242918, this, []); }
+  get storeIdentifier(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 1656838480242918, this, []); }
   /**
    * let bundleIdentifier: String
    * @availability iOS 18.0+
    */
-  get bundleIdentifier(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 3445592477698433, this, []); }
+  get bundleIdentifier(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 3445592477698433, this, []); }
   /**
    * let processIdentifier: String
    * @availability iOS 18.0+
    */
-  get processIdentifier(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 101063337106313, this, []); }
+  get processIdentifier(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 101063337106313, this, []); }
   /**
    * let transactionIdentifier: DefaultHistoryTransaction.TransactionIdentifier
    * @availability iOS 18.0+
    */
-  get transactionIdentifier(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 4125130089508460, this, []); }
+  get transactionIdentifier(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 4125130089508460, this, []); }
   /**
    * var id: Int64 { get }
    * @availability iOS 18.0+
    */
-  get id(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 1734515285685147, this, []); }
+  get id(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 1734515285685147, this, []); }
   /**
    * let token: DefaultHistoryTransaction.TokenType
    * @availability iOS 18.0+
    */
-  get token(): DefaultHistoryToken { return callSDK<DefaultHistoryToken>("SwiftData_d04ad79e98d4fc54", 2082731823587455, this, []); }
+  get token(): DefaultHistoryToken { return callSDK<DefaultHistoryToken>("SwiftData_b0e1456fef7e4b05", 2082731823587455, this, []); }
   /**
    * let author: String?
    * @availability iOS 18.0+
    */
-  get author(): (string) | null { return callSDK<(string) | null>("SwiftData_d04ad79e98d4fc54", 2987276161967393, this, []); }
+  get author(): (string) | null { return callSDK<(string) | null>("SwiftData_b0e1456fef7e4b05", 2987276161967393, this, []); }
   /**
    * let changes: [HistoryChange]
    * @availability iOS 18.0+
    */
-  get changes(): Array<HistoryChange> { return callSDK<Array<HistoryChange>>("SwiftData_d04ad79e98d4fc54", 2231735252525653, this, []); }
+  get changes(): Array<HistoryChange> { return callSDK<Array<HistoryChange>>("SwiftData_b0e1456fef7e4b05", 2231735252525653, this, []); }
   /**
    * let timestamp: Date
    * @availability iOS 18.0+
    */
-  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("SwiftData_d04ad79e98d4fc54", 2671850417731728, this, []); }
+  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("SwiftData_b0e1456fef7e4b05", 2671850417731728, this, []); }
   declare readonly $type: { "s:9SwiftData25DefaultHistoryTransactionV": true };
 }
 
@@ -592,22 +592,22 @@ export class DefaultHistoryUpdate<Model = unknown> extends SDKHandle {
    * let changeIdentifier: DefaultHistoryUpdate<Model>.ChangeIdentifier
    * @availability iOS 18.0+
    */
-  get changeIdentifier(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 2517135191968442, this, []); }
+  get changeIdentifier(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 2517135191968442, this, []); }
   /**
    * let updatedAttributes: [any PartialKeyPath<Model> & Sendable]
    * @availability iOS 18.0+
    */
-  get updatedAttributes(): Array<(SDKHandle) & (SDKHandle)> { return callSDK<Array<(SDKHandle) & (SDKHandle)>>("SwiftData_d04ad79e98d4fc54", 3251082317235845, this, []); }
+  get updatedAttributes(): Array<(SDKHandle) & (SDKHandle)> { return callSDK<Array<(SDKHandle) & (SDKHandle)>>("SwiftData_b0e1456fef7e4b05", 3251082317235845, this, []); }
   /**
    * let transactionIdentifier: DefaultHistoryUpdate<Model>.TransactionIdentifier
    * @availability iOS 18.0+
    */
-  get transactionIdentifier(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 664042107832127, this, []); }
+  get transactionIdentifier(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 664042107832127, this, []); }
   /**
    * let changedPersistentIdentifier: PersistentIdentifier
    * @availability iOS 18.0+
    */
-  get changedPersistentIdentifier(): PersistentIdentifier { return callSDK<PersistentIdentifier>("SwiftData_d04ad79e98d4fc54", 4254420913476666, this, []); }
+  get changedPersistentIdentifier(): PersistentIdentifier { return callSDK<PersistentIdentifier>("SwiftData_b0e1456fef7e4b05", 4254420913476666, this, []); }
   declare readonly $type: { "s:9SwiftData20DefaultHistoryUpdateV": true };
 }
 
@@ -638,17 +638,17 @@ export class DefaultSerialModelExecutor extends SDKHandle {
    * func asUnownedSerialExecutor() -> UnownedSerialExecutor
    * @availability iOS 17.0+
    */
-  asUnownedSerialExecutor(): SDKHandle { return callSDK<SDKHandle>("SwiftData_d04ad79e98d4fc54", 1723468813893006, this, []); }
+  asUnownedSerialExecutor(): SDKHandle { return callSDK<SDKHandle>("SwiftData_b0e1456fef7e4b05", 1723468813893006, this, []); }
   /**
    * final let modelContext: ModelContext
    * @availability iOS 17.0+
    */
-  get modelContext(): ModelContext { return callSDK<ModelContext>("SwiftData_d04ad79e98d4fc54", 397087670021602, this, []); }
+  get modelContext(): ModelContext { return callSDK<ModelContext>("SwiftData_b0e1456fef7e4b05", 397087670021602, this, []); }
   /**
    * init(modelContext: ModelContext)
    * @availability iOS 17.0+
    */
-  static init(modelContext: ModelContext): DefaultSerialModelExecutor { return callSDK<DefaultSerialModelExecutor>("SwiftData_d04ad79e98d4fc54", 1196942282197978, undefined, [modelContext]); }
+  static init(modelContext: ModelContext): DefaultSerialModelExecutor { return callSDK<DefaultSerialModelExecutor>("SwiftData_b0e1456fef7e4b05", 1196942282197978, undefined, [modelContext]); }
   declare readonly $type: { "s:9SwiftData26DefaultSerialModelExecutorC": true };
 }
 
@@ -661,17 +661,17 @@ export class DefaultSnapshot extends SDKHandle {
    * let persistentIdentifier: PersistentIdentifier
    * @availability iOS 18.0+
    */
-  get persistentIdentifier(): PersistentIdentifier { return callSDK<PersistentIdentifier>("SwiftData_d04ad79e98d4fc54", 3650323565729521, this, []); }
+  get persistentIdentifier(): PersistentIdentifier { return callSDK<PersistentIdentifier>("SwiftData_b0e1456fef7e4b05", 3650323565729521, this, []); }
   /**
    * func copy(persistentIdentifier: PersistentIdentifier, remappedIdentifiers: [PersistentIdentifier : PersistentIdentifier]? = [:]) -> DefaultSnapshot
    * @availability iOS 18.0+
    */
-  copy(persistentIdentifier: PersistentIdentifier, remappedIdentifiers?: $SDK13): DefaultSnapshot { return callSDK<DefaultSnapshot>("SwiftData_d04ad79e98d4fc54", 836847183493935, this, [persistentIdentifier, remappedIdentifiers]); }
+  copy(persistentIdentifier: PersistentIdentifier, remappedIdentifiers?: $SDK13): DefaultSnapshot { return callSDK<DefaultSnapshot>("SwiftData_b0e1456fef7e4b05", 836847183493935, this, [persistentIdentifier, remappedIdentifiers]); }
   /**
    * init(from backingData: any BackingData, relatedBackingDatas: inout [PersistentIdentifier : any BackingData])
    * @availability iOS 18.0+
    */
-  static init(backingData: SDKHandle, relatedBackingDatas: $SDK12): { $ret: DefaultSnapshot; $out: { "relatedBackingDatas": $SDK12 } } { return callSDK<{ $ret: DefaultSnapshot; $out: { "relatedBackingDatas": $SDK12 } }>("SwiftData_d04ad79e98d4fc54", 3495297367339944, undefined, [backingData, relatedBackingDatas]); }
+  static init(backingData: SDKHandle, relatedBackingDatas: $SDK12): { $ret: DefaultSnapshot; $out: { "relatedBackingDatas": $SDK12 } } { return callSDK<{ $ret: DefaultSnapshot; $out: { "relatedBackingDatas": $SDK12 } }>("SwiftData_b0e1456fef7e4b05", 3495297367339944, undefined, [backingData, relatedBackingDatas]); }
   declare readonly $type: { "s:9SwiftData15DefaultSnapshotV": true };
 }
 
@@ -684,62 +684,62 @@ export class DefaultStore extends SDKHandle {
    * final var identifier: String { get }
    * @availability iOS 18.0+
    */
-  get identifier(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 1383283905414278, this, []); }
+  get identifier(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 1383283905414278, this, []); }
   /**
    * final func fetchHistory(_ descriptor: HistoryDescriptor<DefaultHistoryTransaction>) throws -> [DefaultHistoryTransaction]
    * @availability iOS 18.0+
    */
-  fetchHistory(descriptor: $SDK19): $SDK18 { return callSDK<$SDK18>("SwiftData_d04ad79e98d4fc54", 2174812870013411, this, [descriptor]); }
+  fetchHistory(descriptor: $SDK19): $SDK18 { return callSDK<$SDK18>("SwiftData_b0e1456fef7e4b05", 2174812870013411, this, [descriptor]); }
   /**
    * final let configuration: ModelConfiguration
    * @availability iOS 18.0+
    */
-  get configuration(): ModelConfiguration { return callSDK<ModelConfiguration>("SwiftData_d04ad79e98d4fc54", 65129374459746, this, []); }
+  get configuration(): ModelConfiguration { return callSDK<ModelConfiguration>("SwiftData_b0e1456fef7e4b05", 65129374459746, this, []); }
   /**
    * final func deleteHistory(_ descriptor: HistoryDescriptor<DefaultHistoryTransaction>) throws
    * @availability iOS 18.0+
    */
-  deleteHistory(descriptor: $SDK19): void { return callSDK<void>("SwiftData_d04ad79e98d4fc54", 4220145891233917, this, [descriptor]); }
+  deleteHistory(descriptor: $SDK19): void { return callSDK<void>("SwiftData_b0e1456fef7e4b05", 4220145891233917, this, [descriptor]); }
   /**
    * final func cachedSnapshots(for persistentIdentifiers: [PersistentIdentifier], editingState: EditingState) throws -> [PersistentIdentifier : DefaultStore.Snapshot]
    * @availability iOS 18.0+
    */
-  cachedSnapshots(persistentIdentifiers: $SDK2, editingState: EditingState): $SDK9 { return callSDK<$SDK9>("SwiftData_d04ad79e98d4fc54", 589886145122399, this, [persistentIdentifiers, editingState]); }
+  cachedSnapshots(persistentIdentifiers: $SDK2, editingState: EditingState): $SDK9 { return callSDK<$SDK9>("SwiftData_b0e1456fef7e4b05", 589886145122399, this, [persistentIdentifiers, editingState]); }
   /**
    * final func initializeState(for editingState: EditingState)
    * @availability iOS 18.0+
    */
-  initializeState(editingState: EditingState): void { return callSDK<void>("SwiftData_d04ad79e98d4fc54", 598939149405290, this, [editingState]); }
+  initializeState(editingState: EditingState): void { return callSDK<void>("SwiftData_b0e1456fef7e4b05", 598939149405290, this, [editingState]); }
   /**
    * final func invalidateState(for editingState: EditingState)
    * @availability iOS 18.0+
    */
-  invalidateState(editingState: EditingState): void { return callSDK<void>("SwiftData_d04ad79e98d4fc54", 2995284316432182, this, [editingState]); }
+  invalidateState(editingState: EditingState): void { return callSDK<void>("SwiftData_b0e1456fef7e4b05", 2995284316432182, this, [editingState]); }
   /**
    * final let name: String
    * @availability iOS 18.0+
    */
-  get name(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 515966051898991, this, []); }
+  get name(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 515966051898991, this, []); }
   /**
    * final func save(_ request: DataStoreSaveChangesRequest<DefaultStore.Snapshot>) throws -> DataStoreSaveChangesResult<DefaultStore.Snapshot>
    * @availability iOS 18.0+
    */
-  save(request: DataStoreSaveChangesRequest<DefaultSnapshot>): $SDK11 { return callSDK<$SDK11>("SwiftData_d04ad79e98d4fc54", 1466488903461294, this, [request]); }
+  save(request: DataStoreSaveChangesRequest<DefaultSnapshot>): $SDK11 { return callSDK<$SDK11>("SwiftData_b0e1456fef7e4b05", 1466488903461294, this, [request]); }
   /**
    * final func erase() throws
    * @availability iOS 18.0+
    */
-  erase(): void { return callSDK<void>("SwiftData_d04ad79e98d4fc54", 1184794970109346, this, []); }
+  erase(): void { return callSDK<void>("SwiftData_b0e1456fef7e4b05", 1184794970109346, this, []); }
   /**
    * final let schema: Schema
    * @availability iOS 18.0+
    */
-  get schema(): Schema { return callSDK<Schema>("SwiftData_d04ad79e98d4fc54", 1486052288705845, this, []); }
+  get schema(): Schema { return callSDK<Schema>("SwiftData_b0e1456fef7e4b05", 1486052288705845, this, []); }
   /**
    * convenience init(_ configuration: ModelConfiguration, migrationPlan: (any SchemaMigrationPlan.Type)? = nil) throws
    * @availability iOS 18.0+
    */
-  static init(configuration: ModelConfiguration): DefaultStore { return callSDK<DefaultStore>("SwiftData_d04ad79e98d4fc54", 180824598417922, undefined, [configuration]); }
+  static init(configuration: ModelConfiguration): DefaultStore { return callSDK<DefaultStore>("SwiftData_b0e1456fef7e4b05", 180824598417922, undefined, [configuration]); }
   declare readonly $type: { "s:9SwiftData12DefaultStoreC": true };
 }
 
@@ -776,13 +776,13 @@ export class EditingState extends SDKHandle {
    * let id: UUID
    * @availability iOS 18.0+
    */
-  get id(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 1675290001886517, this, []); }
+  get id(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 1675290001886517, this, []); }
   /**
    * var author: String?
    * @availability iOS 18.0+
    */
-  get author(): (string) | null { return callSDK<(string) | null>("SwiftData_d04ad79e98d4fc54", 2203922555086947, this, []); }
-  set author(value: (string) | null) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 4301566086154919, this, [value]); }
+  get author(): (string) | null { return callSDK<(string) | null>("SwiftData_b0e1456fef7e4b05", 2203922555086947, this, []); }
+  set author(value: (string) | null) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 4301566086154919, this, [value]); }
   declare readonly $type: { "s:9SwiftData12EditingStateV": true };
 }
 
@@ -801,32 +801,32 @@ export class FetchDescriptor<T = unknown> extends SDKHandle {
    * var fetchLimit: Int?
    * @availability iOS 17.0+
    */
-  get fetchLimit(): (number) | null { return callSDK<(number) | null>("SwiftData_d04ad79e98d4fc54", 1351640193861051, this, []); }
-  set fetchLimit(value: (number) | null) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 1076614673172571, this, [value]); }
+  get fetchLimit(): (number) | null { return callSDK<(number) | null>("SwiftData_b0e1456fef7e4b05", 1351640193861051, this, []); }
+  set fetchLimit(value: (number) | null) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 1076614673172571, this, [value]); }
   /**
    * var fetchOffset: Int?
    * @availability iOS 17.0+
    */
-  get fetchOffset(): (number) | null { return callSDK<(number) | null>("SwiftData_d04ad79e98d4fc54", 937801368145379, this, []); }
-  set fetchOffset(value: (number) | null) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 3118842958942074, this, [value]); }
+  get fetchOffset(): (number) | null { return callSDK<(number) | null>("SwiftData_b0e1456fef7e4b05", 937801368145379, this, []); }
+  set fetchOffset(value: (number) | null) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 3118842958942074, this, [value]); }
   /**
    * var includePendingChanges: Bool
    * @availability iOS 17.0+
    */
-  get includePendingChanges(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 3369522634859492, this, []); }
-  set includePendingChanges(value: boolean) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 2744403925665, this, [value]); }
+  get includePendingChanges(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 3369522634859492, this, []); }
+  set includePendingChanges(value: boolean) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 2744403925665, this, [value]); }
   /**
    * var sortBy: [SortDescriptor<T>]
    * @availability iOS 17.0+
    */
-  get sortBy(): $SDK21 { return callSDK<$SDK21>("SwiftData_d04ad79e98d4fc54", 3393383175077269, this, []); }
-  set sortBy(value: $SDK21) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 3361786226693353, this, [value]); }
+  get sortBy(): $SDK21 { return callSDK<$SDK21>("SwiftData_b0e1456fef7e4b05", 3393383175077269, this, []); }
+  set sortBy(value: $SDK21) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 3361786226693353, this, [value]); }
   /**
    * var predicate: Predicate<T>?
    * @availability iOS 17.0+
    */
-  get predicate(): $SDK6 { return callSDK<$SDK6>("SwiftData_d04ad79e98d4fc54", 384620269647396, this, []); }
-  set predicate(value: $SDK6) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 154622211652150, this, [value]); }
+  get predicate(): $SDK6 { return callSDK<$SDK6>("SwiftData_b0e1456fef7e4b05", 384620269647396, this, []); }
+  set predicate(value: $SDK6) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 154622211652150, this, [value]); }
   declare readonly $type: { "s:9SwiftData15FetchDescriptorV": true };
 }
 
@@ -839,17 +839,17 @@ export class FetchResultsCollection<Element = unknown> extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 17.0+
    */
-  get startIndex(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 2011040295498911, this, []); }
+  get startIndex(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 2011040295498911, this, []); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 17.0+
    */
-  get endIndex(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 3234424736300622, this, []); }
+  get endIndex(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 3234424736300622, this, []); }
   /**
    * subscript(position: Int) -> Element { get }
    * @availability iOS 17.0+
    */
-  subscript(position: number): unknown { return callSDK<unknown>("SwiftData_d04ad79e98d4fc54", 137318845127833, this, [position]); }
+  subscript(position: number): unknown { return callSDK<unknown>("SwiftData_b0e1456fef7e4b05", 137318845127833, this, [position]); }
   declare readonly $type: { "s:9SwiftData22FetchResultsCollectionV": true };
 }
 
@@ -886,7 +886,7 @@ export class HistoryChange extends SDKHandle {
    * var changedPersistentIdentifier: PersistentIdentifier { get }
    * @availability iOS 18.0+
    */
-  get changedPersistentIdentifier(): PersistentIdentifier { return callSDK<PersistentIdentifier>("SwiftData_d04ad79e98d4fc54", 2766350913436256, this, []); }
+  get changedPersistentIdentifier(): PersistentIdentifier { return callSDK<PersistentIdentifier>("SwiftData_b0e1456fef7e4b05", 2766350913436256, this, []); }
   declare readonly $type: { "s:9SwiftData13HistoryChangeO": true };
 }
 
@@ -907,30 +907,30 @@ export class HistoryDescriptor<TransactionType = unknown> extends SDKHandle {
    * var fetchLimit: UInt64
    * @availability iOS 18.0+
    */
-  get fetchLimit(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 1975259827054950, this, []); }
-  set fetchLimit(value: number) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 2460304155889460, this, [value]); }
+  get fetchLimit(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 1975259827054950, this, []); }
+  set fetchLimit(value: number) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 2460304155889460, this, [value]); }
   /**
    * var sortBy: [SortDescriptor<TransactionType>]
    * @availability iOS 26.0+
    */
-  get sortBy(): $SDK22 { return callSDK<$SDK22>("SwiftData_d04ad79e98d4fc54", 258199094344639, this, []); }
-  set sortBy(value: $SDK22) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 2380880944484619, this, [value]); }
+  get sortBy(): $SDK22 { return callSDK<$SDK22>("SwiftData_b0e1456fef7e4b05", 258199094344639, this, []); }
+  set sortBy(value: $SDK22) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 2380880944484619, this, [value]); }
   /**
    * var predicate: Predicate<TransactionType>?
    * @availability iOS 18.0+
    */
-  get predicate(): $SDK23 { return callSDK<$SDK23>("SwiftData_d04ad79e98d4fc54", 1826328040833041, this, []); }
-  set predicate(value: $SDK23) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 633304112059510, this, [value]); }
+  get predicate(): $SDK23 { return callSDK<$SDK23>("SwiftData_b0e1456fef7e4b05", 1826328040833041, this, []); }
+  set predicate(value: $SDK23) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 633304112059510, this, [value]); }
   /**
    * init(predicate: Predicate<TransactionType>? = nil, sortBy: [SortDescriptor<TransactionType>] = [])
    * @availability iOS 26.0+
    */
-  static initPredicateSortBy(predicate?: $SDK23, sortBy?: $SDK22): $SDK19 { return callSDK<$SDK19>("SwiftData_d04ad79e98d4fc54", 114285292560429, undefined, [predicate, sortBy]); }
+  static initPredicateSortBy(predicate?: $SDK23, sortBy?: $SDK22): $SDK19 { return callSDK<$SDK19>("SwiftData_b0e1456fef7e4b05", 114285292560429, undefined, [predicate, sortBy]); }
   /**
    * init(predicate: Predicate<TransactionType>? = nil)
    * @availability iOS 18.0+
    */
-  static initPredicate(predicate?: $SDK23): $SDK19 { return callSDK<$SDK19>("SwiftData_d04ad79e98d4fc54", 2860339162623312, undefined, [predicate]); }
+  static initPredicate(predicate?: $SDK23): $SDK19 { return callSDK<$SDK19>("SwiftData_b0e1456fef7e4b05", 2860339162623312, undefined, [predicate]); }
   declare readonly $type: { "s:9SwiftData17HistoryDescriptorV": true };
 }
 
@@ -951,22 +951,22 @@ export class HistoryObserver extends SDKHandle {
    * final var eventCounter: Int { get }
    * @availability iOS 27.0+
    */
-  get eventCounter(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 2387471193995494, this, []); }
+  get eventCounter(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 2387471193995494, this, []); }
   /**
    * convenience init(historyTokens: [String : any HistoryToken]? = nil, observedModels: [any PersistentModel.Type] = [], authors: Set<String> = [], modelContainer: ModelContainer, isolation: isolated (any Actor)? = #isolation) throws
    * @availability iOS 27.0+
    */
-  static init(historyTokens: (Record<string, SDKHandle>) | null, authors: Array<string>, modelContainer: ModelContainer): HistoryObserver { return callSDK<HistoryObserver>("SwiftData_d04ad79e98d4fc54", 911946932189000, undefined, [historyTokens, authors, modelContainer]); }
+  static init(historyTokens: (Record<string, SDKHandle>) | null, authors: Array<string>, modelContainer: ModelContainer): HistoryObserver { return callSDK<HistoryObserver>("SwiftData_b0e1456fef7e4b05", 911946932189000, undefined, [historyTokens, authors, modelContainer]); }
   /**
    * final let modelContainer: ModelContainer
    * @availability iOS 27.0+
    */
-  get modelContainer(): ModelContainer { return callSDK<ModelContainer>("SwiftData_d04ad79e98d4fc54", 3364496217146471, this, []); }
+  get modelContainer(): ModelContainer { return callSDK<ModelContainer>("SwiftData_b0e1456fef7e4b05", 3364496217146471, this, []); }
   /**
    * final let authors: Set<String>
    * @availability iOS 27.0+
    */
-  get authors(): Array<string> { return callSDK<Array<string>>("SwiftData_d04ad79e98d4fc54", 2061695012334867, this, []); }
+  get authors(): Array<string> { return callSDK<Array<string>>("SwiftData_b0e1456fef7e4b05", 2061695012334867, this, []); }
   declare readonly $type: { "s:9SwiftData15HistoryObserverC": true };
   declare readonly $observable: { "eventCounter": true; "modelContainer": true; "authors": true };
 }
@@ -1005,7 +1005,7 @@ export class HistoryTombstone<Model = unknown> extends SDKHandle {
    * func makeIterator() -> HistoryTombstone<Model>.Iterator
    * @availability iOS 18.0+
    */
-  makeIterator(): HistoryTombstone_Iterator<SDKHandle> { return callSDK<HistoryTombstone_Iterator<SDKHandle>>("SwiftData_d04ad79e98d4fc54", 3597339059532318, this, []); }
+  makeIterator(): HistoryTombstone_Iterator<SDKHandle> { return callSDK<HistoryTombstone_Iterator<SDKHandle>>("SwiftData_b0e1456fef7e4b05", 3597339059532318, this, []); }
   declare readonly $type: { "s:9SwiftData16HistoryTombstoneV": true };
 }
 
@@ -1024,7 +1024,7 @@ export class HistoryTombstone_Iterator<Model = unknown> extends SDKHandle {
    * mutating func next() -> Any?
    * @availability iOS 18.0+
    */
-  next(): (unknown) | null { return callSDK<(unknown) | null>("SwiftData_d04ad79e98d4fc54", 2541645372379277, this, []); }
+  next(): (unknown) | null { return callSDK<(unknown) | null>("SwiftData_b0e1456fef7e4b05", 2541645372379277, this, []); }
   declare readonly $type: { "s:9SwiftData16HistoryTombstoneV8IteratorV": true };
 }
 
@@ -1081,78 +1081,78 @@ export class ModelConfiguration extends SDKHandle {
    * let allowsSave: Bool
    * @availability iOS 17.0+
    */
-  get allowsSave(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 3913189355308516, this, []); }
+  get allowsSave(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 3913189355308516, this, []); }
   /**
    * let groupContainer: ModelConfiguration.GroupContainer
    * @availability iOS 17.0+
    */
-  get groupContainer(): ModelConfiguration_GroupContainer { return callSDK<ModelConfiguration_GroupContainer>("SwiftData_d04ad79e98d4fc54", 3090702332630312, this, []); }
+  get groupContainer(): ModelConfiguration_GroupContainer { return callSDK<ModelConfiguration_GroupContainer>("SwiftData_b0e1456fef7e4b05", 3090702332630312, this, []); }
   /**
    * let cloudKitDatabase: ModelConfiguration.CloudKitDatabase
    * @availability iOS 17.0+
    */
-  get cloudKitDatabase(): ModelConfiguration_CloudKitDatabase { return callSDK<ModelConfiguration_CloudKitDatabase>("SwiftData_d04ad79e98d4fc54", 1325938756057675, this, []); }
+  get cloudKitDatabase(): ModelConfiguration_CloudKitDatabase { return callSDK<ModelConfiguration_CloudKitDatabase>("SwiftData_b0e1456fef7e4b05", 1325938756057675, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  get debugDescription(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 1089935801305057, this, []); }
+  get debugDescription(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 1089935801305057, this, []); }
   /**
    * init(isStoredInMemoryOnly: Bool = false)
    * @availability iOS 17.0+
    */
-  static initIsStoredInMemoryOnly(isStoredInMemoryOnly?: boolean): ModelConfiguration { return callSDK<ModelConfiguration>("SwiftData_d04ad79e98d4fc54", 2938090289811371, undefined, [isStoredInMemoryOnly]); }
+  static initIsStoredInMemoryOnly(isStoredInMemoryOnly?: boolean): ModelConfiguration { return callSDK<ModelConfiguration>("SwiftData_b0e1456fef7e4b05", 2938090289811371, undefined, [isStoredInMemoryOnly]); }
   /**
    * let isStoredInMemoryOnly: Bool
    * @availability iOS 17.0+
    */
-  get isStoredInMemoryOnly(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 4257780012924929, this, []); }
+  get isStoredInMemoryOnly(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 4257780012924929, this, []); }
   /**
    * let cloudKitContainerIdentifier: String?
    * @availability iOS 17.0+
    */
-  get cloudKitContainerIdentifier(): (string) | null { return callSDK<(string) | null>("SwiftData_d04ad79e98d4fc54", 949751638205327, this, []); }
+  get cloudKitContainerIdentifier(): (string) | null { return callSDK<(string) | null>("SwiftData_b0e1456fef7e4b05", 949751638205327, this, []); }
   /**
    * let groupAppContainerIdentifier: String?
    * @availability iOS 17.0+
    */
-  get groupAppContainerIdentifier(): (string) | null { return callSDK<(string) | null>("SwiftData_d04ad79e98d4fc54", 1230309746636345, this, []); }
+  get groupAppContainerIdentifier(): (string) | null { return callSDK<(string) | null>("SwiftData_b0e1456fef7e4b05", 1230309746636345, this, []); }
   /**
    * var id: URL { get }
    * @availability iOS 17.0+
    */
-  get id(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 3678494689303965, this, []); }
+  get id(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 3678494689303965, this, []); }
   /**
    * let url: URL
    * @availability iOS 17.0+
    */
-  get url(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 2924951171235031, this, []); }
+  get url(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 2924951171235031, this, []); }
   /**
    * let name: String
    * @availability iOS 17.0+
    */
-  get name(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 3462444240559102, this, []); }
+  get name(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 3462444240559102, this, []); }
   /**
    * var schema: Schema?
    * @availability iOS 17.0+
    */
-  get schema(): (Schema) | null { return callSDK<(Schema) | null>("SwiftData_d04ad79e98d4fc54", 1473802199750861, this, []); }
-  set schema(value: (Schema) | null) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 3010306104435274, this, [value]); }
+  get schema(): (Schema) | null { return callSDK<(Schema) | null>("SwiftData_b0e1456fef7e4b05", 1473802199750861, this, []); }
+  set schema(value: (Schema) | null) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 3010306104435274, this, [value]); }
   /**
    * func validate() throws
    * @availability iOS 18.0+
    */
-  validate(): void { return callSDK<void>("SwiftData_d04ad79e98d4fc54", 4145195578471688, this, []); }
+  validate(): void { return callSDK<void>("SwiftData_b0e1456fef7e4b05", 4145195578471688, this, []); }
   /**
    * init(_ name: String? = nil, schema: Schema? = nil, isStoredInMemoryOnly: Bool = false, allowsSave: Bool = true, groupContainer: ModelConfiguration.GroupContainer = .automatic, cloudKitDatabase: ModelConfiguration.CloudKitDatabase = .automatic)
    * @availability iOS 17.0+
    */
-  static initSchemaIsStoredInMemoryOnlyAllowsSaveGroupContainerCloudKitDatabase(name?: (string) | null, schema?: (Schema) | null, isStoredInMemoryOnly?: boolean, allowsSave?: boolean, groupContainer?: ModelConfiguration_GroupContainer, cloudKitDatabase?: ModelConfiguration_CloudKitDatabase): ModelConfiguration { return callSDK<ModelConfiguration>("SwiftData_d04ad79e98d4fc54", 2095498536078375, undefined, [name, schema, isStoredInMemoryOnly, allowsSave, groupContainer, cloudKitDatabase]); }
+  static initSchemaIsStoredInMemoryOnlyAllowsSaveGroupContainerCloudKitDatabase(name?: (string) | null, schema?: (Schema) | null, isStoredInMemoryOnly?: boolean, allowsSave?: boolean, groupContainer?: ModelConfiguration_GroupContainer, cloudKitDatabase?: ModelConfiguration_CloudKitDatabase): ModelConfiguration { return callSDK<ModelConfiguration>("SwiftData_b0e1456fef7e4b05", 2095498536078375, undefined, [name, schema, isStoredInMemoryOnly, allowsSave, groupContainer, cloudKitDatabase]); }
   /**
    * init(_ name: String? = nil, schema: Schema? = nil, url: URL, allowsSave: Bool = true, cloudKitDatabase: ModelConfiguration.CloudKitDatabase = .automatic)
    * @availability iOS 17.0+
    */
-  static initSchemaUrlAllowsSaveCloudKitDatabase(name: (string) | null, schema: (Schema) | null, url: string, allowsSave?: boolean, cloudKitDatabase?: ModelConfiguration_CloudKitDatabase): ModelConfiguration { return callSDK<ModelConfiguration>("SwiftData_d04ad79e98d4fc54", 1494945274129319, undefined, [name, schema, url, allowsSave, cloudKitDatabase]); }
+  static initSchemaUrlAllowsSaveCloudKitDatabase(name: (string) | null, schema: (Schema) | null, url: string, allowsSave?: boolean, cloudKitDatabase?: ModelConfiguration_CloudKitDatabase): ModelConfiguration { return callSDK<ModelConfiguration>("SwiftData_b0e1456fef7e4b05", 1494945274129319, undefined, [name, schema, url, allowsSave, cloudKitDatabase]); }
   declare readonly $type: { "s:9SwiftData18ModelConfigurationV": true };
 }
 
@@ -1165,17 +1165,17 @@ export class ModelConfiguration_CloudKitDatabase extends SDKHandle {
    * static var none: ModelConfiguration.CloudKitDatabase { get }
    * @availability iOS 17.0+
    */
-  static get none(): ModelConfiguration_CloudKitDatabase { return callSDK<ModelConfiguration_CloudKitDatabase>("SwiftData_d04ad79e98d4fc54", 3082725355127558, undefined, []); }
+  static get none(): ModelConfiguration_CloudKitDatabase { return callSDK<ModelConfiguration_CloudKitDatabase>("SwiftData_b0e1456fef7e4b05", 3082725355127558, undefined, []); }
   /**
    * static func `private`(_ privateDBName: String) -> ModelConfiguration.CloudKitDatabase
    * @availability iOS 17.0+
    */
-  static private(privateDBName: string): ModelConfiguration_CloudKitDatabase { return callSDK<ModelConfiguration_CloudKitDatabase>("SwiftData_d04ad79e98d4fc54", 2940879334224710, undefined, [privateDBName]); }
+  static private(privateDBName: string): ModelConfiguration_CloudKitDatabase { return callSDK<ModelConfiguration_CloudKitDatabase>("SwiftData_b0e1456fef7e4b05", 2940879334224710, undefined, [privateDBName]); }
   /**
    * static var automatic: ModelConfiguration.CloudKitDatabase { get }
    * @availability iOS 17.0+
    */
-  static get automatic(): ModelConfiguration_CloudKitDatabase { return callSDK<ModelConfiguration_CloudKitDatabase>("SwiftData_d04ad79e98d4fc54", 3710111031602257, undefined, []); }
+  static get automatic(): ModelConfiguration_CloudKitDatabase { return callSDK<ModelConfiguration_CloudKitDatabase>("SwiftData_b0e1456fef7e4b05", 3710111031602257, undefined, []); }
   declare readonly $type: { "s:9SwiftData18ModelConfigurationV16CloudKitDatabaseV": true };
 }
 
@@ -1188,17 +1188,17 @@ export class ModelConfiguration_GroupContainer extends SDKHandle {
    * static func identifier(_ groupName: String) -> ModelConfiguration.GroupContainer
    * @availability iOS 17.0+
    */
-  static identifier(groupName: string): ModelConfiguration_GroupContainer { return callSDK<ModelConfiguration_GroupContainer>("SwiftData_d04ad79e98d4fc54", 59000147997774, undefined, [groupName]); }
+  static identifier(groupName: string): ModelConfiguration_GroupContainer { return callSDK<ModelConfiguration_GroupContainer>("SwiftData_b0e1456fef7e4b05", 59000147997774, undefined, [groupName]); }
   /**
    * static var none: ModelConfiguration.GroupContainer { get }
    * @availability iOS 17.0+
    */
-  static get none(): ModelConfiguration_GroupContainer { return callSDK<ModelConfiguration_GroupContainer>("SwiftData_d04ad79e98d4fc54", 4299871212354706, undefined, []); }
+  static get none(): ModelConfiguration_GroupContainer { return callSDK<ModelConfiguration_GroupContainer>("SwiftData_b0e1456fef7e4b05", 4299871212354706, undefined, []); }
   /**
    * static var automatic: ModelConfiguration.GroupContainer { get }
    * @availability iOS 17.0+
    */
-  static get automatic(): ModelConfiguration_GroupContainer { return callSDK<ModelConfiguration_GroupContainer>("SwiftData_d04ad79e98d4fc54", 4227419249129531, undefined, []); }
+  static get automatic(): ModelConfiguration_GroupContainer { return callSDK<ModelConfiguration_GroupContainer>("SwiftData_b0e1456fef7e4b05", 4227419249129531, undefined, []); }
   declare readonly $type: { "s:9SwiftData18ModelConfigurationV14GroupContainerV": true };
 }
 
@@ -1224,48 +1224,48 @@ export class ModelContainer extends SDKHandle {
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  deleteAllData(): void { return callSDK<void>("SwiftData_d04ad79e98d4fc54", 3500206786302891, this, []); }
+  deleteAllData(): void { return callSDK<void>("SwiftData_b0e1456fef7e4b05", 3500206786302891, this, []); }
   /**
    * @MainActor var mainContext: ModelContext { get }
    * @availability iOS 17.0+
    */
-  get mainContext(): Promise<ModelContext> { return callSDKAsync<ModelContext>("SwiftData_d04ad79e98d4fc54", 3237486830609668, this, []); }
+  get mainContext(): Promise<ModelContext> { return callSDKAsync<ModelContext>("SwiftData_b0e1456fef7e4b05", 3237486830609668, this, []); }
   /**
    * var configurations: Set<ModelConfiguration> { get set }
    * @availability iOS 17.0+
    */
-  get configurations(): $SDK27 { return callSDK<$SDK27>("SwiftData_d04ad79e98d4fc54", 2517015958681428, this, []); }
-  set configurations(value: $SDK27) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 1041559584034678, this, [value]); }
+  get configurations(): $SDK27 { return callSDK<$SDK27>("SwiftData_b0e1456fef7e4b05", 2517015958681428, this, []); }
+  set configurations(value: $SDK27) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 1041559584034678, this, [value]); }
   /**
    * func storeIdentifier(forConfigurationNamed name: String) -> String?
    * @availability iOS 27.0+
    */
-  storeIdentifier(name: string): (string) | null { return callSDK<(string) | null>("SwiftData_d04ad79e98d4fc54", 4166040350705863, this, [name]); }
+  storeIdentifier(name: string): (string) | null { return callSDK<(string) | null>("SwiftData_b0e1456fef7e4b05", 4166040350705863, this, [name]); }
   /**
    * func configurationName(forStoreIdentifier identifier: String) -> String?
    * @availability iOS 27.0+
    */
-  configurationName(identifier: string): (string) | null { return callSDK<(string) | null>("SwiftData_d04ad79e98d4fc54", 2202390465134674, this, [identifier]); }
+  configurationName(identifier: string): (string) | null { return callSDK<(string) | null>("SwiftData_b0e1456fef7e4b05", 2202390465134674, this, [identifier]); }
   /**
    * init(for givenSchema: Schema, migrationPlan: (any SchemaMigrationPlan.Type)? = nil, configurations: [ModelConfiguration]) throws
    * @availability iOS 17.0+
    */
-  static initForConfigurations(givenSchema: Schema, configurations: $SDK27): ModelContainer { return callSDK<ModelContainer>("SwiftData_d04ad79e98d4fc54", 129210676727556, undefined, [givenSchema, configurations]); }
+  static initForConfigurations(givenSchema: Schema, configurations: $SDK27): ModelContainer { return callSDK<ModelContainer>("SwiftData_b0e1456fef7e4b05", 129210676727556, undefined, [givenSchema, configurations]); }
   /**
    * init(for givenSchema: Schema, configurations: [any DataStoreConfiguration]) throws
    * @availability iOS 18.0+
    */
-  static initForConfigurations77162(givenSchema: Schema, configurations: Array<SDKHandle>): ModelContainer { return callSDK<ModelContainer>("SwiftData_d04ad79e98d4fc54", 614451078603378, undefined, [givenSchema, configurations]); }
+  static initForConfigurations77162(givenSchema: Schema, configurations: Array<SDKHandle>): ModelContainer { return callSDK<ModelContainer>("SwiftData_b0e1456fef7e4b05", 614451078603378, undefined, [givenSchema, configurations]); }
   /**
    * func erase() throws
    * @availability iOS 18.0+
    */
-  erase(): void { return callSDK<void>("SwiftData_d04ad79e98d4fc54", 282414672849800, this, []); }
+  erase(): void { return callSDK<void>("SwiftData_b0e1456fef7e4b05", 282414672849800, this, []); }
   /**
    * final let schema: Schema
    * @availability iOS 17.0+
    */
-  get schema(): Schema { return callSDK<Schema>("SwiftData_d04ad79e98d4fc54", 1549422462403379, this, []); }
+  get schema(): Schema { return callSDK<Schema>("SwiftData_b0e1456fef7e4b05", 1549422462403379, this, []); }
   declare readonly $type: { "s:9SwiftData14ModelContainerC": true };
 }
 
@@ -1278,101 +1278,101 @@ export class ModelContext extends SDKHandle {
    * var hasChanges: Bool { get }
    * @availability iOS 17.0+
    */
-  get hasChanges(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 4387425920928233, this, []); }
+  get hasChanges(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 4387425920928233, this, []); }
   /**
    * func transaction(block: () throws -> Void) throws
    * @availability iOS 17.0+
    */
-  transaction(block: (() => void)): void { return callSDK<void>("SwiftData_d04ad79e98d4fc54", 3453899948716881, this, [block], [{"callback":{"out":[]}}], true); }
+  transaction(block: (() => void)): void { return callSDK<void>("SwiftData_b0e1456fef7e4b05", 3453899948716881, this, [block], [{"callback":{"out":[]}}], true); }
   /**
    * var undoManager: UndoManager? { get set }
    * @availability iOS 17.0+
    */
-  get undoManager(): $SDK28 { return callSDK<$SDK28>("SwiftData_d04ad79e98d4fc54", 2792120904812312, this, []); }
-  set undoManager(value: $SDK28) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 2669580189893921, this, [value]); }
+  get undoManager(): $SDK28 { return callSDK<$SDK28>("SwiftData_b0e1456fef7e4b05", 2792120904812312, this, []); }
+  set undoManager(value: $SDK28) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 2669580189893921, this, [value]); }
   /**
    * var editingState: EditingState
    * @availability iOS 18.0+
    */
-  get editingState(): EditingState { return callSDK<EditingState>("SwiftData_d04ad79e98d4fc54", 4297479179317550, this, []); }
-  set editingState(value: EditingState) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 3160221610661929, this, [value]); }
+  get editingState(): EditingState { return callSDK<EditingState>("SwiftData_b0e1456fef7e4b05", 4297479179317550, this, []); }
+  set editingState(value: EditingState) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 3160221610661929, this, [value]); }
   /**
    * func fetchHistory<T>(_ descriptor: HistoryDescriptor<T>) throws -> [T] where T : HistoryTransaction
    * @availability iOS 18.0+
    */
-  fetchHistory(descriptor: $SDK19): $SDK18 { return callSDK<$SDK18>("SwiftData_d04ad79e98d4fc54", 2332351628126889, this, [descriptor]); }
+  fetchHistory(descriptor: $SDK19): $SDK18 { return callSDK<$SDK18>("SwiftData_b0e1456fef7e4b05", 2332351628126889, this, [descriptor]); }
   /**
    * func deleteHistory<T>(_ descriptor: HistoryDescriptor<T>) throws where T : HistoryTransaction
    * @availability iOS 18.0+
    */
-  deleteHistory(descriptor: $SDK19): void { return callSDK<void>("SwiftData_d04ad79e98d4fc54", 3412830306530608, this, [descriptor]); }
+  deleteHistory(descriptor: $SDK19): void { return callSDK<void>("SwiftData_b0e1456fef7e4b05", 3412830306530608, this, [descriptor]); }
   /**
    * var autosaveEnabled: Bool { get set }
    * @availability iOS 17.0+
    */
-  get autosaveEnabled(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 3360288700612481, this, []); }
-  set autosaveEnabled(value: boolean) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 883239824036322, this, [value]); }
+  get autosaveEnabled(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 3360288700612481, this, []); }
+  set autosaveEnabled(value: boolean) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 883239824036322, this, [value]); }
   /**
    * var changedModelsArray: [any PersistentModel] { get }
    * @availability iOS 17.0+
    */
-  get changedModelsArray(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("SwiftData_d04ad79e98d4fc54", 4106684202632328, this, []); }
+  get changedModelsArray(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("SwiftData_b0e1456fef7e4b05", 4106684202632328, this, []); }
   /**
    * var deletedModelsArray: [any PersistentModel] { get }
    * @availability iOS 17.0+
    */
-  get deletedModelsArray(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("SwiftData_d04ad79e98d4fc54", 2942662645974304, this, []); }
+  get deletedModelsArray(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("SwiftData_b0e1456fef7e4b05", 2942662645974304, this, []); }
   /**
    * var insertedModelsArray: [any PersistentModel] { get }
    * @availability iOS 17.0+
    */
-  get insertedModelsArray(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("SwiftData_d04ad79e98d4fc54", 2877366221861223, this, []); }
+  get insertedModelsArray(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("SwiftData_b0e1456fef7e4b05", 2877366221861223, this, []); }
   /**
    * func processPendingChanges()
    * @availability iOS 17.0+
    */
-  processPendingChanges(): void { return callSDK<void>("SwiftData_d04ad79e98d4fc54", 859440244870367, this, []); }
+  processPendingChanges(): void { return callSDK<void>("SwiftData_b0e1456fef7e4b05", 859440244870367, this, []); }
   /**
    * func save() throws
    * @availability iOS 17.0+
    */
-  save(): void { return callSDK<void>("SwiftData_d04ad79e98d4fc54", 503487199131088, this, []); }
+  save(): void { return callSDK<void>("SwiftData_b0e1456fef7e4b05", 503487199131088, this, []); }
   /**
    * func model(for persistentModelID: PersistentIdentifier) -> any PersistentModel
    * @availability iOS 17.0+
    */
-  model(persistentModelID: PersistentIdentifier): SDKHandle { return callSDK<SDKHandle>("SwiftData_d04ad79e98d4fc54", 2849403534389724, this, [persistentModelID]); }
+  model(persistentModelID: PersistentIdentifier): SDKHandle { return callSDK<SDKHandle>("SwiftData_b0e1456fef7e4b05", 2849403534389724, this, [persistentModelID]); }
   /**
    * var author: String? { get set }
    * @availability iOS 18.0+
    */
-  get author(): (string) | null { return callSDK<(string) | null>("SwiftData_d04ad79e98d4fc54", 3548213892200910, this, []); }
-  set author(value: (string) | null) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 2387751281492159, this, [value]); }
+  get author(): (string) | null { return callSDK<(string) | null>("SwiftData_b0e1456fef7e4b05", 3548213892200910, this, []); }
+  set author(value: (string) | null) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 2387751281492159, this, [value]); }
   /**
    * static let didSave: Notification.Name
    * @availability iOS 17.0+
    */
-  static get didSave(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("SwiftData_d04ad79e98d4fc54", 2604837081934167, undefined, []); }
+  static get didSave(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("SwiftData_b0e1456fef7e4b05", 2604837081934167, undefined, []); }
   /**
    * func rollback()
    * @availability iOS 17.0+
    */
-  rollback(): void { return callSDK<void>("SwiftData_d04ad79e98d4fc54", 2240032568974201, this, []); }
+  rollback(): void { return callSDK<void>("SwiftData_b0e1456fef7e4b05", 2240032568974201, this, []); }
   /**
    * static let willSave: Notification.Name
    * @availability iOS 17.0+
    */
-  static get willSave(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("SwiftData_d04ad79e98d4fc54", 625655082878708, undefined, []); }
+  static get willSave(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("SwiftData_b0e1456fef7e4b05", 625655082878708, undefined, []); }
   /**
    * var container: ModelContainer { get }
    * @availability iOS 17.0+
    */
-  get container(): ModelContainer { return callSDK<ModelContainer>("SwiftData_d04ad79e98d4fc54", 2288570632856876, this, []); }
+  get container(): ModelContainer { return callSDK<ModelContainer>("SwiftData_b0e1456fef7e4b05", 2288570632856876, this, []); }
   /**
    * init(_ container: ModelContainer)
    * @availability iOS 17.0+
    */
-  static init(container: ModelContainer): ModelContext { return callSDK<ModelContext>("SwiftData_d04ad79e98d4fc54", 835661702347653, undefined, [container]); }
+  static init(container: ModelContainer): ModelContext { return callSDK<ModelContext>("SwiftData_b0e1456fef7e4b05", 835661702347653, undefined, [container]); }
   declare readonly $type: { "s:9SwiftData12ModelContextC": true };
 }
 
@@ -1387,12 +1387,12 @@ export const ModelContext_NotificationKey = {
    * init?(rawValue: String)
    * @availability iOS 17.0+
    */
-  init(rawValue: string): (ModelContext_NotificationKey) | null { return callSDK<(ModelContext_NotificationKey) | null>("SwiftData_d04ad79e98d4fc54", 5596628410561, undefined, [rawValue]); },
+  init(rawValue: string): (ModelContext_NotificationKey) | null { return callSDK<(ModelContext_NotificationKey) | null>("SwiftData_b0e1456fef7e4b05", 5596628410561, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 17.0+
    */
-  getRawValue($self: ModelContext_NotificationKey): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 509100573826763, $self, []); }
+  getRawValue($self: ModelContext_NotificationKey): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 509100573826763, $self, []); }
 };
 
 /**
@@ -1424,22 +1424,22 @@ export class PersistentIdentifier extends SDKHandle {
    * var storeIdentifier: String? { get }
    * @availability iOS 16.0+
    */
-  get storeIdentifier(): (string) | null { return callSDK<(string) | null>("SwiftData_d04ad79e98d4fc54", 2886599987699749, this, []); }
+  get storeIdentifier(): (string) | null { return callSDK<(string) | null>("SwiftData_b0e1456fef7e4b05", 2886599987699749, this, []); }
   /**
    * var entityName: String { get }
    * @availability iOS 16.0+
    */
-  get entityName(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 4163361159325751, this, []); }
+  get entityName(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 4163361159325751, this, []); }
   /**
    * var isTemporary: Bool { get }
    * @availability iOS 27.0+
    */
-  get isTemporary(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 2392194173935481, this, []); }
+  get isTemporary(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 2392194173935481, this, []); }
   /**
    * let id: PersistentIdentifier.ID
    * @availability iOS 16.0+
    */
-  get id(): PersistentIdentifier_ID { return callSDK<PersistentIdentifier_ID>("SwiftData_d04ad79e98d4fc54", 2040608602002424, this, []); }
+  get id(): PersistentIdentifier_ID { return callSDK<PersistentIdentifier_ID>("SwiftData_b0e1456fef7e4b05", 2040608602002424, this, []); }
   declare readonly $type: { "s:9SwiftData20PersistentIdentifierV": true };
 }
 
@@ -1480,41 +1480,41 @@ export class ResultsObserver<Element = unknown, SectionTitle = unknown> extends 
    * final let modelContext: ModelContext
    * @availability iOS 27.0+
    */
-  get modelContext(): ModelContext { return callSDK<ModelContext>("SwiftData_d04ad79e98d4fc54", 1901079599073105, this, []); }
+  get modelContext(): ModelContext { return callSDK<ModelContext>("SwiftData_b0e1456fef7e4b05", 1901079599073105, this, []); }
   /**
    * final var fetchDescriptor: FetchDescriptor<Element> { get }
    * @availability iOS 27.0+
    */
-  get fetchDescriptor(): $SDK8 { return callSDK<$SDK8>("SwiftData_d04ad79e98d4fc54", 421992187839384, this, []); }
+  get fetchDescriptor(): $SDK8 { return callSDK<$SDK8>("SwiftData_b0e1456fef7e4b05", 421992187839384, this, []); }
   /**
    * final var debugDescription: String { get }
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 921045779480516, this, []); }
+  get debugDescription(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 921045779480516, this, []); }
   /**
    * final var sortBy: [SortDescriptor<Element>] { get set }
    * @availability iOS 27.0+
    */
-  get sortBy(): $SDK21 { return callSDK<$SDK21>("SwiftData_d04ad79e98d4fc54", 2640515748357100, this, []); }
-  set sortBy(value: $SDK21) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 3759333097044900, this, [value]); }
+  get sortBy(): $SDK21 { return callSDK<$SDK21>("SwiftData_b0e1456fef7e4b05", 2640515748357100, this, []); }
+  set sortBy(value: $SDK21) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 3759333097044900, this, [value]); }
   /**
    * final var results: FetchResultsCollection<Element> { get set }
    * @availability iOS 27.0+
    */
-  get results(): $SDK29 { return callSDK<$SDK29>("SwiftData_d04ad79e98d4fc54", 2471351842328929, this, []); }
-  set results(value: $SDK29) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 3942119880459043, this, [value]); }
+  get results(): $SDK29 { return callSDK<$SDK29>("SwiftData_b0e1456fef7e4b05", 2471351842328929, this, []); }
+  set results(value: $SDK29) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 3942119880459043, this, [value]); }
   /**
    * final var filterBy: Predicate<Element>? { get set }
    * @availability iOS 27.0+
    */
-  get filterBy(): $SDK6 { return callSDK<$SDK6>("SwiftData_d04ad79e98d4fc54", 2402910112471653, this, []); }
-  set filterBy(value: $SDK6) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 1118926533791524, this, [value]); }
+  get filterBy(): $SDK6 { return callSDK<$SDK6>("SwiftData_b0e1456fef7e4b05", 2402910112471653, this, []); }
+  set filterBy(value: $SDK6) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 1118926533791524, this, [value]); }
   /**
    * final var sections: SectionedResults<Element, SectionTitle>? { get set }
    * @availability iOS 27.0+
    */
-  get sections(): $SDK30 { return callSDK<$SDK30>("SwiftData_d04ad79e98d4fc54", 1179426504504963, this, []); }
-  set sections(value: $SDK30) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 2268033228436072, this, [value]); }
+  get sections(): $SDK30 { return callSDK<$SDK30>("SwiftData_b0e1456fef7e4b05", 1179426504504963, this, []); }
+  set sections(value: $SDK30) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 2268033228436072, this, [value]); }
   declare readonly $type: { "s:9SwiftData15ResultsObserverC": true };
 }
 
@@ -1527,22 +1527,22 @@ export class ResultsSection<Element = unknown, SectionTitle = unknown> extends S
    * var startIndex: Int { get }
    * @availability iOS 27.0+
    */
-  get startIndex(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 2867654025116083, this, []); }
+  get startIndex(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 2867654025116083, this, []); }
   /**
    * var id: SectionTitle { get }
    * @availability iOS 27.0+
    */
-  get id(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 1578313738732619, this, []); }
+  get id(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 1578313738732619, this, []); }
   /**
    * let title: SectionTitle
    * @availability iOS 27.0+
    */
-  get title(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 906792956324950, this, []); }
+  get title(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 906792956324950, this, []); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 27.0+
    */
-  get endIndex(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 1809485847596859, this, []); }
+  get endIndex(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 1809485847596859, this, []); }
   declare readonly $type: { "s:9SwiftData14ResultsSectionV": true };
 }
 
@@ -1585,47 +1585,47 @@ export class Schema extends SDKHandle {
    * final let entitiesByName: [String : Schema.Entity]
    * @availability iOS 17.0+
    */
-  get entitiesByName(): Record<string, Schema_Entity> { return callSDK<Record<string, Schema_Entity>>("SwiftData_d04ad79e98d4fc54", 3378381991532892, this, []); }
+  get entitiesByName(): Record<string, Schema_Entity> { return callSDK<Record<string, Schema_Entity>>("SwiftData_b0e1456fef7e4b05", 3378381991532892, this, []); }
   /**
    * final let encodingVersion: Schema.Version
    * @availability iOS 17.0+
    */
-  get encodingVersion(): Schema_Version { return callSDK<Schema_Version>("SwiftData_d04ad79e98d4fc54", 908291680550751, this, []); }
+  get encodingVersion(): Schema_Version { return callSDK<Schema_Version>("SwiftData_b0e1456fef7e4b05", 908291680550751, this, []); }
   /**
    * final var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  get debugDescription(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 334582559957088, this, []); }
+  get debugDescription(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 334582559957088, this, []); }
   /**
    * static let schemaEncodingVersion: Schema.Version
    * @availability iOS 17.0+
    */
-  static get schemaEncodingVersion(): Schema_Version { return callSDK<Schema_Version>("SwiftData_d04ad79e98d4fc54", 3520589643296715, undefined, []); }
+  static get schemaEncodingVersion(): Schema_Version { return callSDK<Schema_Version>("SwiftData_b0e1456fef7e4b05", 3520589643296715, undefined, []); }
   /**
    * static func load(from fromURL: URL) throws -> Schema
    * @availability iOS 17.0+
    */
-  static load(fromURL: string): Schema { return callSDK<Schema>("SwiftData_d04ad79e98d4fc54", 4474148624289387, undefined, [fromURL]); }
+  static load(fromURL: string): Schema { return callSDK<Schema>("SwiftData_b0e1456fef7e4b05", 4474148624289387, undefined, [fromURL]); }
   /**
    * final func save(to toURL: URL) throws
    * @availability iOS 17.0+
    */
-  save(toURL: string): void { return callSDK<void>("SwiftData_d04ad79e98d4fc54", 2979603531819430, this, [toURL]); }
+  save(toURL: string): void { return callSDK<void>("SwiftData_b0e1456fef7e4b05", 2979603531819430, this, [toURL]); }
   /**
    * final let version: Schema.Version
    * @availability iOS 17.0+
    */
-  get version(): Schema_Version { return callSDK<Schema_Version>("SwiftData_d04ad79e98d4fc54", 561968371667091, this, []); }
+  get version(): Schema_Version { return callSDK<Schema_Version>("SwiftData_b0e1456fef7e4b05", 561968371667091, this, []); }
   /**
    * final let entities: [Schema.Entity]
    * @availability iOS 17.0+
    */
-  get entities(): Array<Schema_Entity> { return callSDK<Array<Schema_Entity>>("SwiftData_d04ad79e98d4fc54", 2978624518700378, this, []); }
+  get entities(): Array<Schema_Entity> { return callSDK<Array<Schema_Entity>>("SwiftData_b0e1456fef7e4b05", 2978624518700378, this, []); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): Schema { return callSDK<Schema>("SwiftData_d04ad79e98d4fc54", 513825679810938, undefined, []); }
+  static init(): Schema { return callSDK<Schema>("SwiftData_b0e1456fef7e4b05", 513825679810938, undefined, []); }
   declare readonly $type: { "s:9SwiftData6SchemaC": true };
 }
 
@@ -1638,73 +1638,73 @@ export class Schema_Attribute extends SDKHandle {
    * var isAttribute: Bool { get }
    * @availability iOS 17.0+
    */
-  get isAttribute(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 791915165510220, this, []); }
+  get isAttribute(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 791915165510220, this, []); }
   /**
    * var isOptional: Bool
    * @availability iOS 17.0+
    */
-  get isOptional(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 2069871289504889, this, []); }
-  set isOptional(value: boolean) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 1113774663956742, this, [value]); }
+  get isOptional(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 2069871289504889, this, []); }
+  set isOptional(value: boolean) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 1113774663956742, this, [value]); }
   /**
    * var isTransient: Bool { get }
    * @availability iOS 17.0+
    */
-  get isTransient(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 368962004263581, this, []); }
+  get isTransient(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 368962004263581, this, []); }
   /**
    * var defaultValue: Any?
    * @availability iOS 17.0+
    */
-  get defaultValue(): (unknown) | null { return callSDK<(unknown) | null>("SwiftData_d04ad79e98d4fc54", 1911520618777986, this, []); }
-  set defaultValue(value: (unknown) | null) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 3713554014240181, this, [value]); }
+  get defaultValue(): (unknown) | null { return callSDK<(unknown) | null>("SwiftData_b0e1456fef7e4b05", 1911520618777986, this, []); }
+  set defaultValue(value: (unknown) | null) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 3713554014240181, this, [value]); }
   /**
    * var hashModifier: String?
    * @availability iOS 17.0+
    */
-  get hashModifier(): (string) | null { return callSDK<(string) | null>("SwiftData_d04ad79e98d4fc54", 498539243676498, this, []); }
-  set hashModifier(value: (string) | null) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 1198444625920780, this, [value]); }
+  get hashModifier(): (string) | null { return callSDK<(string) | null>("SwiftData_b0e1456fef7e4b05", 498539243676498, this, []); }
+  set hashModifier(value: (string) | null) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 1198444625920780, this, [value]); }
   /**
    * var originalName: String
    * @availability iOS 17.0+
    */
-  get originalName(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 2101959193111218, this, []); }
-  set originalName(value: string) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 340204724377216, this, [value]); }
+  get originalName(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 2101959193111218, this, []); }
+  set originalName(value: string) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 340204724377216, this, [value]); }
   /**
    * var isRelationship: Bool { get }
    * @availability iOS 17.0+
    */
-  get isRelationship(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 3725074722568394, this, []); }
+  get isRelationship(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 3725074722568394, this, []); }
   /**
    * var isTransformable: Bool { get }
    * @availability iOS 17.0+
    */
-  get isTransformable(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 1246733650323420, this, []); }
+  get isTransformable(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 1246733650323420, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  get debugDescription(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 1033130326031958, this, []); }
+  get debugDescription(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 1033130326031958, this, []); }
   /**
    * var name: String
    * @availability iOS 17.0+
    */
-  get name(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 1405368507159740, this, []); }
-  set name(value: string) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 4195958248702714, this, [value]); }
+  get name(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 1405368507159740, this, []); }
+  set name(value: string) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 4195958248702714, this, [value]); }
   /**
    * var options: [Schema.Attribute.Option]
    * @availability iOS 17.0+
    */
-  get options(): $SDK32 { return callSDK<$SDK32>("SwiftData_d04ad79e98d4fc54", 307104343604866, this, []); }
-  set options(value: $SDK32) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 2557166100712919, this, [value]); }
+  get options(): $SDK32 { return callSDK<$SDK32>("SwiftData_b0e1456fef7e4b05", 307104343604866, this, []); }
+  set options(value: $SDK32) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 2557166100712919, this, [value]); }
   /**
    * var isUnique: Bool { get }
    * @availability iOS 17.0+
    */
-  get isUnique(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 2557622330265450, this, []); }
+  get isUnique(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 2557622330265450, this, []); }
   /**
    * var isCodable: Bool { get }
    * @availability iOS 27.0+
    */
-  get isCodable(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 2494670475902987, this, []); }
+  get isCodable(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 2494670475902987, this, []); }
   declare readonly $type: { "s:9SwiftData6SchemaC9AttributeC": true };
 }
 
@@ -1717,52 +1717,52 @@ export class Schema_Attribute_Option extends SDKHandle {
    * static func transformable(by transformerName: String) -> Schema.Attribute.Option
    * @availability iOS 17.0+
    */
-  static transformableBy(transformerName: string): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_d04ad79e98d4fc54", 283464121330981, undefined, [transformerName]); }
+  static transformableBy(transformerName: string): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_b0e1456fef7e4b05", 283464121330981, undefined, [transformerName]); }
   /**
    * static func transformable(by transformerType: ValueTransformer.Type) -> Schema.Attribute.Option
    * @availability iOS 17.0+
    */
-  static transformableBy3509(transformerType: string): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_d04ad79e98d4fc54", 2180633963789417, undefined, [transformerType]); }
+  static transformableBy3509(transformerType: string): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_b0e1456fef7e4b05", 2180633963789417, undefined, [transformerType]); }
   /**
    * static var externalStorage: Schema.Attribute.Option { get }
    * @availability iOS 17.0+
    */
-  static get externalStorage(): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_d04ad79e98d4fc54", 3867565174893912, undefined, []); }
+  static get externalStorage(): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_b0e1456fef7e4b05", 3867565174893912, undefined, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  get debugDescription(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 197206824589842, this, []); }
+  get debugDescription(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 197206824589842, this, []); }
   /**
    * static var allowsCloudEncryption: Schema.Attribute.Option { get }
    * @availability iOS 17.0+
    */
-  static get allowsCloudEncryption(): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_d04ad79e98d4fc54", 3781827485888460, undefined, []); }
+  static get allowsCloudEncryption(): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_b0e1456fef7e4b05", 3781827485888460, undefined, []); }
   /**
    * static var preserveValueOnDeletion: Schema.Attribute.Option { get }
    * @availability iOS 17.0+
    */
-  static get preserveValueOnDeletion(): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_d04ad79e98d4fc54", 1240780980962654, undefined, []); }
+  static get preserveValueOnDeletion(): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_b0e1456fef7e4b05", 1240780980962654, undefined, []); }
   /**
    * static var unique: Schema.Attribute.Option { get }
    * @availability iOS 17.0+
    */
-  static get unique(): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_d04ad79e98d4fc54", 3655602662704786, undefined, []); }
+  static get unique(): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_b0e1456fef7e4b05", 3655602662704786, undefined, []); }
   /**
    * static var codable: Schema.Attribute.Option { get }
    * @availability iOS 27.0+
    */
-  static get codable(): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_d04ad79e98d4fc54", 3456216988532455, undefined, []); }
+  static get codable(): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_b0e1456fef7e4b05", 3456216988532455, undefined, []); }
   /**
    * static var ephemeral: Schema.Attribute.Option { get }
    * @availability iOS 17.0+
    */
-  static get ephemeral(): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_d04ad79e98d4fc54", 36462756146131, undefined, []); }
+  static get ephemeral(): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_b0e1456fef7e4b05", 36462756146131, undefined, []); }
   /**
    * static var spotlight: Schema.Attribute.Option { get }
    * @availability iOS 17.0+
    */
-  static get spotlight(): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_d04ad79e98d4fc54", 1715377040354051, undefined, []); }
+  static get spotlight(): Schema_Attribute_Option { return callSDK<Schema_Attribute_Option>("SwiftData_b0e1456fef7e4b05", 1715377040354051, undefined, []); }
   declare readonly $type: { "s:9SwiftData6SchemaC9AttributeC6OptionV": true };
 }
 
@@ -1775,13 +1775,13 @@ export class Schema_CompositeAttribute extends (Schema_Attribute as unknown as O
    * final var properties: [Schema.Attribute]
    * @availability iOS 17.0+
    */
-  get properties(): Array<Schema_Attribute> { return callSDK<Array<Schema_Attribute>>("SwiftData_d04ad79e98d4fc54", 2106827855680125, this, []); }
-  set properties(value: Array<Schema_Attribute>) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 1356499006251529, this, [value]); }
+  get properties(): Array<Schema_Attribute> { return callSDK<Array<Schema_Attribute>>("SwiftData_b0e1456fef7e4b05", 2106827855680125, this, []); }
+  set properties(value: Array<Schema_Attribute>) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 1356499006251529, this, [value]); }
   /**
    * override final var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  get debugDescription(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 2919979526172811, this, []); }
+  get debugDescription(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 2919979526172811, this, []); }
   declare readonly $type: { "s:9SwiftData6SchemaC18CompositeAttributeC": true; "s:9SwiftData6SchemaC9AttributeC": true };
 }
 
@@ -1794,101 +1794,101 @@ export class Schema_Entity extends SDKHandle {
    * final var attributes: Set<Schema.Attribute>
    * @availability iOS 17.0+
    */
-  get attributes(): Array<Schema_Attribute> { return callSDK<Array<Schema_Attribute>>("SwiftData_d04ad79e98d4fc54", 3462793570525913, this, []); }
-  set attributes(value: Array<Schema_Attribute>) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 3636264727440756, this, [value]); }
+  get attributes(): Array<Schema_Attribute> { return callSDK<Array<Schema_Attribute>>("SwiftData_b0e1456fef7e4b05", 3462793570525913, this, []); }
+  set attributes(value: Array<Schema_Attribute>) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 3636264727440756, this, [value]); }
   /**
    * final var properties: [any SchemaProperty] { get }
    * @availability iOS 17.0+
    */
-  get properties(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("SwiftData_d04ad79e98d4fc54", 2464581254005274, this, []); }
+  get properties(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("SwiftData_b0e1456fef7e4b05", 2464581254005274, this, []); }
   /**
    * final var subentities: Set<Schema.Entity>
    * @availability iOS 17.0+
    */
-  get subentities(): Array<Schema_Entity> { return callSDK<Array<Schema_Entity>>("SwiftData_d04ad79e98d4fc54", 3494490996356905, this, []); }
-  set subentities(value: Array<Schema_Entity>) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 1309398293526420, this, [value]); }
+  get subentities(): Array<Schema_Entity> { return callSDK<Array<Schema_Entity>>("SwiftData_b0e1456fef7e4b05", 3494490996356905, this, []); }
+  set subentities(value: Array<Schema_Entity>) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 1309398293526420, this, [value]); }
   /**
    * final var superentity: Schema.Entity? { get set }
    * @availability iOS 17.0+
    */
-  get superentity(): (Schema_Entity) | null { return callSDK<(Schema_Entity) | null>("SwiftData_d04ad79e98d4fc54", 3018675944856949, this, []); }
-  set superentity(value: (Schema_Entity) | null) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 768609379763919, this, [value]); }
+  get superentity(): (Schema_Entity) | null { return callSDK<(Schema_Entity) | null>("SwiftData_b0e1456fef7e4b05", 3018675944856949, this, []); }
+  set superentity(value: (Schema_Entity) | null) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 768609379763919, this, [value]); }
   /**
    * final var relationships: Set<Schema.Relationship>
    * @availability iOS 17.0+
    */
-  get relationships(): Array<Schema_Relationship> { return callSDK<Array<Schema_Relationship>>("SwiftData_d04ad79e98d4fc54", 3394219879995367, this, []); }
-  set relationships(value: Array<Schema_Relationship>) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 775372797219712, this, [value]); }
+  get relationships(): Array<Schema_Relationship> { return callSDK<Array<Schema_Relationship>>("SwiftData_b0e1456fef7e4b05", 3394219879995367, this, []); }
+  set relationships(value: Array<Schema_Relationship>) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 775372797219712, this, [value]); }
   /**
    * final var superentityName: String?
    * @availability iOS 17.0+
    */
-  get superentityName(): (string) | null { return callSDK<(string) | null>("SwiftData_d04ad79e98d4fc54", 542915577235211, this, []); }
-  set superentityName(value: (string) | null) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 1973426689696255, this, [value]); }
+  get superentityName(): (string) | null { return callSDK<(string) | null>("SwiftData_b0e1456fef7e4b05", 542915577235211, this, []); }
+  set superentityName(value: (string) | null) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 1973426689696255, this, [value]); }
   /**
    * final var attributesByName: [String : Schema.Attribute]
    * @availability iOS 17.0+
    */
-  get attributesByName(): $SDK34 { return callSDK<$SDK34>("SwiftData_d04ad79e98d4fc54", 2450569983310261, this, []); }
-  set attributesByName(value: $SDK34) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 2940353638069988, this, [value]); }
+  get attributesByName(): $SDK34 { return callSDK<$SDK34>("SwiftData_b0e1456fef7e4b05", 2450569983310261, this, []); }
+  set attributesByName(value: $SDK34) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 2940353638069988, this, [value]); }
   /**
    * final var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  get debugDescription(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 1768265081399337, this, []); }
+  get debugDescription(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 1768265081399337, this, []); }
   /**
    * final var storedProperties: [any SchemaProperty] { get set }
    * @availability iOS 17.0+
    */
-  get storedProperties(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("SwiftData_d04ad79e98d4fc54", 926613474251520, this, []); }
-  set storedProperties(value: Array<SDKHandle>) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 246374546941162, this, [value]); }
+  get storedProperties(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("SwiftData_b0e1456fef7e4b05", 926613474251520, this, []); }
+  set storedProperties(value: Array<SDKHandle>) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 246374546941162, this, [value]); }
   /**
    * final var inheritedProperties: [any SchemaProperty] { get set }
    * @availability iOS 17.0+
    */
-  get inheritedProperties(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("SwiftData_d04ad79e98d4fc54", 3642227973630708, this, []); }
-  set inheritedProperties(value: Array<SDKHandle>) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 627826347739301, this, [value]); }
+  get inheritedProperties(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("SwiftData_b0e1456fef7e4b05", 3642227973630708, this, []); }
+  set inheritedProperties(value: Array<SDKHandle>) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 627826347739301, this, [value]); }
   /**
    * final var relationshipsByName: [String : Schema.Relationship]
    * @availability iOS 17.0+
    */
-  get relationshipsByName(): $SDK35 { return callSDK<$SDK35>("SwiftData_d04ad79e98d4fc54", 1343607036836611, this, []); }
-  set relationshipsByName(value: $SDK35) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 3206598080142507, this, [value]); }
+  get relationshipsByName(): $SDK35 { return callSDK<$SDK35>("SwiftData_b0e1456fef7e4b05", 1343607036836611, this, []); }
+  set relationshipsByName(value: $SDK35) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 3206598080142507, this, [value]); }
   /**
    * final var uniquenessConstraints: [[String]]
    * @availability iOS 17.0+
    */
-  get uniquenessConstraints(): Array<Array<string>> { return callSDK<Array<Array<string>>>("SwiftData_d04ad79e98d4fc54", 2382108429860591, this, []); }
-  set uniquenessConstraints(value: Array<Array<string>>) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 1899575930436826, this, [value]); }
+  get uniquenessConstraints(): Array<Array<string>> { return callSDK<Array<Array<string>>>("SwiftData_b0e1456fef7e4b05", 2382108429860591, this, []); }
+  set uniquenessConstraints(value: Array<Array<string>>) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 1899575930436826, this, [value]); }
   /**
    * final var storedPropertiesByName: [String : any SchemaProperty]
    * @availability iOS 17.0+
    */
-  get storedPropertiesByName(): $SDK36 { return callSDK<$SDK36>("SwiftData_d04ad79e98d4fc54", 2270683138168948, this, []); }
-  set storedPropertiesByName(value: $SDK36) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 1241889782239783, this, [value]); }
+  get storedPropertiesByName(): $SDK36 { return callSDK<$SDK36>("SwiftData_b0e1456fef7e4b05", 2270683138168948, this, []); }
+  set storedPropertiesByName(value: $SDK36) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 1241889782239783, this, [value]); }
   /**
    * final var inheritedPropertiesByName: [String : any SchemaProperty]
    * @availability iOS 17.0+
    */
-  get inheritedPropertiesByName(): $SDK36 { return callSDK<$SDK36>("SwiftData_d04ad79e98d4fc54", 739086658906715, this, []); }
-  set inheritedPropertiesByName(value: $SDK36) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 2148219127500638, this, [value]); }
+  get inheritedPropertiesByName(): $SDK36 { return callSDK<$SDK36>("SwiftData_b0e1456fef7e4b05", 739086658906715, this, []); }
+  set inheritedPropertiesByName(value: $SDK36) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 2148219127500638, this, [value]); }
   /**
    * final var name: String
    * @availability iOS 17.0+
    */
-  get name(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 1718560013014635, this, []); }
-  set name(value: string) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 3914231044377612, this, [value]); }
+  get name(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 1718560013014635, this, []); }
+  set name(value: string) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 3914231044377612, this, [value]); }
   /**
    * final var indices: [[String]]
    * @availability iOS 18.0+
    */
-  get indices(): Array<Array<string>> { return callSDK<Array<Array<string>>>("SwiftData_d04ad79e98d4fc54", 4179774010681323, this, []); }
-  set indices(value: Array<Array<string>>) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 136696748055782, this, [value]); }
+  get indices(): Array<Array<string>> { return callSDK<Array<Array<string>>>("SwiftData_b0e1456fef7e4b05", 4179774010681323, this, []); }
+  set indices(value: Array<Array<string>>) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 136696748055782, this, [value]); }
   /**
    * init(_ name: String)
    * @availability iOS 17.0+
    */
-  static init(name: string): Schema_Entity { return callSDK<Schema_Entity>("SwiftData_d04ad79e98d4fc54", 4322764132856138, undefined, [name]); }
+  static init(name: string): Schema_Entity { return callSDK<Schema_Entity>("SwiftData_b0e1456fef7e4b05", 4322764132856138, undefined, [name]); }
   declare readonly $type: { "s:9SwiftData6SchemaC6EntityC": true };
 }
 
@@ -1901,29 +1901,29 @@ export class Schema_Index<T = unknown> extends SDKHandle {
    * final var originalName: String { get set }
    * @availability iOS 18.0+
    */
-  get originalName(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 3060409624052987, this, []); }
-  set originalName(value: string) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 3306233817297411, this, [value]); }
+  get originalName(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 3060409624052987, this, []); }
+  set originalName(value: string) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 3306233817297411, this, [value]); }
   /**
    * final var debugDescription: String { get }
    * @availability iOS 18.0+
    */
-  get debugDescription(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 3587572976704505, this, []); }
+  get debugDescription(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 3587572976704505, this, []); }
   /**
    * final var name: String { get set }
    * @availability iOS 18.0+
    */
-  get name(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 3593113393025532, this, []); }
-  set name(value: string) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 1781114823578085, this, [value]); }
+  get name(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 3593113393025532, this, []); }
+  set name(value: string) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 1781114823578085, this, [value]); }
   /**
    * final let indices: [Schema.Index<T>.Types<T>]
    * @availability iOS 18.0+
    */
-  get indices(): Array<Schema_Index_Types<SDKHandle, SDKHandle>> { return callSDK<Array<Schema_Index_Types<SDKHandle, SDKHandle>>>("SwiftData_d04ad79e98d4fc54", 1539941583754088, this, []); }
+  get indices(): Array<Schema_Index_Types<SDKHandle, SDKHandle>> { return callSDK<Array<Schema_Index_Types<SDKHandle, SDKHandle>>>("SwiftData_b0e1456fef7e4b05", 1539941583754088, this, []); }
   /**
    * final var isUnique: Bool { get }
    * @availability iOS 18.0+
    */
-  get isUnique(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 749458085450936, this, []); }
+  get isUnique(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 749458085450936, this, []); }
   declare readonly $type: { "s:9SwiftData6SchemaC5IndexC": true };
 }
 
@@ -1938,12 +1938,12 @@ export const Schema_Index_CodingKeys = {
    * var stringValue: String { get }
    * @availability iOS 18.0+
    */
-  getStringValue($self: Schema_Index_CodingKeys): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 3079975638775250, $self, []); },
+  getStringValue($self: Schema_Index_CodingKeys): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 3079975638775250, $self, []); },
   /**
    * var intValue: Int? { get }
    * @availability iOS 18.0+
    */
-  getIntValue($self: Schema_Index_CodingKeys): (number) | null { return callSDK<(number) | null>("SwiftData_d04ad79e98d4fc54", 1626374195950980, $self, []); }
+  getIntValue($self: Schema_Index_CodingKeys): (number) | null { return callSDK<(number) | null>("SwiftData_b0e1456fef7e4b05", 1626374195950980, $self, []); }
 };
 
 /**
@@ -1963,7 +1963,7 @@ export class Schema_PropertyMetadata extends SDKHandle {
    * init(name: String, keypath: AnyKeyPath, defaultValue: Any? = nil, metadata: (any SchemaProperty)? = nil)
    * @availability iOS 17.0+
    */
-  static init(name: string, keypath: SDKHandle, defaultValue?: (unknown) | null, metadata?: (SDKHandle) | null): Schema_PropertyMetadata { return callSDK<Schema_PropertyMetadata>("SwiftData_d04ad79e98d4fc54", 3684050019498273, undefined, [name, keypath, defaultValue, metadata]); }
+  static init(name: string, keypath: SDKHandle, defaultValue?: (unknown) | null, metadata?: (SDKHandle) | null): Schema_PropertyMetadata { return callSDK<Schema_PropertyMetadata>("SwiftData_b0e1456fef7e4b05", 3684050019498273, undefined, [name, keypath, defaultValue, metadata]); }
   declare readonly $type: { "s:9SwiftData6SchemaC16PropertyMetadataV": true };
 }
 
@@ -1976,93 +1976,93 @@ export class Schema_Relationship extends SDKHandle {
    * final var isToOneRelationship: Bool { get }
    * @availability iOS 17.0+
    */
-  get isToOneRelationship(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 3740820967407871, this, []); }
+  get isToOneRelationship(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 3740820967407871, this, []); }
   /**
    * final var deleteRule: Schema.Relationship.DeleteRule
    * @availability iOS 17.0+
    */
-  get deleteRule(): Schema_Relationship_DeleteRule { return callSDK<Schema_Relationship_DeleteRule>("SwiftData_d04ad79e98d4fc54", 864009785612033, this, []); }
-  set deleteRule(value: Schema_Relationship_DeleteRule) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 1226123243882630, this, [value]); }
+  get deleteRule(): Schema_Relationship_DeleteRule { return callSDK<Schema_Relationship_DeleteRule>("SwiftData_b0e1456fef7e4b05", 864009785612033, this, []); }
+  set deleteRule(value: Schema_Relationship_DeleteRule) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 1226123243882630, this, [value]); }
   /**
    * final var destination: String
    * @availability iOS 17.0+
    */
-  get destination(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 1204206907002851, this, []); }
-  set destination(value: string) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 2237790705514427, this, [value]); }
+  get destination(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 1204206907002851, this, []); }
+  set destination(value: string) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 2237790705514427, this, [value]); }
   /**
    * final var inverseName: String?
    * @availability iOS 17.0+
    */
-  get inverseName(): (string) | null { return callSDK<(string) | null>("SwiftData_d04ad79e98d4fc54", 2577257856761603, this, []); }
-  set inverseName(value: (string) | null) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 70761823300334, this, [value]); }
+  get inverseName(): (string) | null { return callSDK<(string) | null>("SwiftData_b0e1456fef7e4b05", 2577257856761603, this, []); }
+  set inverseName(value: (string) | null) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 70761823300334, this, [value]); }
   /**
    * final var isAttribute: Bool { get }
    * @availability iOS 17.0+
    */
-  get isAttribute(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 1896709604562046, this, []); }
+  get isAttribute(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 1896709604562046, this, []); }
   /**
    * final var isTransient: Bool { get }
    * @availability iOS 17.0+
    */
-  get isTransient(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 751756991451693, this, []); }
+  get isTransient(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 751756991451693, this, []); }
   /**
    * final var hashModifier: String?
    * @availability iOS 17.0+
    */
-  get hashModifier(): (string) | null { return callSDK<(string) | null>("SwiftData_d04ad79e98d4fc54", 2657117444117106, this, []); }
-  set hashModifier(value: (string) | null) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 1934176907766649, this, [value]); }
+  get hashModifier(): (string) | null { return callSDK<(string) | null>("SwiftData_b0e1456fef7e4b05", 2657117444117106, this, []); }
+  set hashModifier(value: (string) | null) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 1934176907766649, this, [value]); }
   /**
    * final var originalName: String
    * @availability iOS 17.0+
    */
-  get originalName(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 4022602784665372, this, []); }
-  set originalName(value: string) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 2986279777705097, this, [value]); }
+  get originalName(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 4022602784665372, this, []); }
+  set originalName(value: string) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 2986279777705097, this, [value]); }
   /**
    * final var inverseKeyPath: AnyKeyPath?
    * @availability iOS 17.0+
    */
-  get inverseKeyPath(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SwiftData_d04ad79e98d4fc54", 4398987009662346, this, []); }
-  set inverseKeyPath(value: (SDKHandle) | null) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 2496115770850980, this, [value]); }
+  get inverseKeyPath(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SwiftData_b0e1456fef7e4b05", 4398987009662346, this, []); }
+  set inverseKeyPath(value: (SDKHandle) | null) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 2496115770850980, this, [value]); }
   /**
    * final var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  get debugDescription(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 592793071413601, this, []); }
+  get debugDescription(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 592793071413601, this, []); }
   /**
    * final var maximumModelCount: Int?
    * @availability iOS 17.0+
    */
-  get maximumModelCount(): (number) | null { return callSDK<(number) | null>("SwiftData_d04ad79e98d4fc54", 875579818182909, this, []); }
-  set maximumModelCount(value: (number) | null) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 487640219073211, this, [value]); }
+  get maximumModelCount(): (number) | null { return callSDK<(number) | null>("SwiftData_b0e1456fef7e4b05", 875579818182909, this, []); }
+  set maximumModelCount(value: (number) | null) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 487640219073211, this, [value]); }
   /**
    * final var minimumModelCount: Int?
    * @availability iOS 17.0+
    */
-  get minimumModelCount(): (number) | null { return callSDK<(number) | null>("SwiftData_d04ad79e98d4fc54", 3515307473980169, this, []); }
-  set minimumModelCount(value: (number) | null) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 4334564691471100, this, [value]); }
+  get minimumModelCount(): (number) | null { return callSDK<(number) | null>("SwiftData_b0e1456fef7e4b05", 3515307473980169, this, []); }
+  set minimumModelCount(value: (number) | null) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 4334564691471100, this, [value]); }
   /**
    * final var name: String
    * @availability iOS 17.0+
    */
-  get name(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 2101663837639494, this, []); }
-  set name(value: string) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 4462021637722379, this, [value]); }
+  get name(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 2101663837639494, this, []); }
+  set name(value: string) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 4462021637722379, this, [value]); }
   /**
    * final var keypath: AnyKeyPath?
    * @availability iOS 17.0+
    */
-  get keypath(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SwiftData_d04ad79e98d4fc54", 4085726949336754, this, []); }
-  set keypath(value: (SDKHandle) | null) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 1466209211471551, this, [value]); }
+  get keypath(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SwiftData_b0e1456fef7e4b05", 4085726949336754, this, []); }
+  set keypath(value: (SDKHandle) | null) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 1466209211471551, this, [value]); }
   /**
    * final var options: [Schema.Relationship.Option]
    * @availability iOS 17.0+
    */
-  get options(): $SDK38 { return callSDK<$SDK38>("SwiftData_d04ad79e98d4fc54", 2760186494357847, this, []); }
-  set options(value: $SDK38) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 788223535998586, this, [value]); }
+  get options(): $SDK38 { return callSDK<$SDK38>("SwiftData_b0e1456fef7e4b05", 2760186494357847, this, []); }
+  set options(value: $SDK38) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 788223535998586, this, [value]); }
   /**
    * final var isUnique: Bool { get }
    * @availability iOS 17.0+
    */
-  get isUnique(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 4026520152475826, this, []); }
+  get isUnique(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 4026520152475826, this, []); }
   declare readonly $type: { "s:9SwiftData6SchemaC12RelationshipC": true };
 }
 
@@ -2077,12 +2077,12 @@ export const Schema_Relationship_DeleteRule = {
    * init?(rawValue: String)
    * @availability iOS 17.0+
    */
-  init(rawValue: string): (Schema_Relationship_DeleteRule) | null { return callSDK<(Schema_Relationship_DeleteRule) | null>("SwiftData_d04ad79e98d4fc54", 2529803629762636, undefined, [rawValue]); },
+  init(rawValue: string): (Schema_Relationship_DeleteRule) | null { return callSDK<(Schema_Relationship_DeleteRule) | null>("SwiftData_b0e1456fef7e4b05", 2529803629762636, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 17.0+
    */
-  getRawValue($self: Schema_Relationship_DeleteRule): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 3279492526574650, $self, []); }
+  getRawValue($self: Schema_Relationship_DeleteRule): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 3279492526574650, $self, []); }
 };
 
 /**
@@ -2100,12 +2100,12 @@ export class Schema_Relationship_Option extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  get debugDescription(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 2942188682496060, this, []); }
+  get debugDescription(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 2942188682496060, this, []); }
   /**
    * static var unique: Schema.Relationship.Option { get }
    * @availability iOS 17.0+
    */
-  static get unique(): Schema_Relationship_Option { return callSDK<Schema_Relationship_Option>("SwiftData_d04ad79e98d4fc54", 3521852548525475, undefined, []); }
+  static get unique(): Schema_Relationship_Option { return callSDK<Schema_Relationship_Option>("SwiftData_b0e1456fef7e4b05", 3521852548525475, undefined, []); }
   declare readonly $type: { "s:9SwiftData6SchemaC12RelationshipC6OptionV": true };
 }
 
@@ -2118,24 +2118,24 @@ export class Schema_Unique<T = unknown> extends SDKHandle {
    * final var isUnique: Bool { get }
    * @availability iOS 18.0+
    */
-  get isUnique(): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 206313290727897, this, []); }
+  get isUnique(): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 206313290727897, this, []); }
   /**
    * final var originalName: String { get set }
    * @availability iOS 18.0+
    */
-  get originalName(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 3676891011169286, this, []); }
-  set originalName(value: string) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 1385857205191719, this, [value]); }
+  get originalName(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 3676891011169286, this, []); }
+  set originalName(value: string) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 1385857205191719, this, [value]); }
   /**
    * final var debugDescription: String { get }
    * @availability iOS 18.0+
    */
-  get debugDescription(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 2776575124261494, this, []); }
+  get debugDescription(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 2776575124261494, this, []); }
   /**
    * final var name: String { get set }
    * @availability iOS 18.0+
    */
-  get name(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 2511140373396671, this, []); }
-  set name(value: string) { callSDK<void>("SwiftData_d04ad79e98d4fc54", 1837363596104907, this, [value]); }
+  get name(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 2511140373396671, this, []); }
+  set name(value: string) { callSDK<void>("SwiftData_b0e1456fef7e4b05", 1837363596104907, this, [value]); }
   declare readonly $type: { "s:9SwiftData6SchemaC6UniqueC": true };
 }
 
@@ -2150,12 +2150,12 @@ export const Schema_Unique_CodingKeys = {
    * var stringValue: String { get }
    * @availability iOS 18.0+
    */
-  getStringValue($self: Schema_Unique_CodingKeys): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 264787841310384, $self, []); },
+  getStringValue($self: Schema_Unique_CodingKeys): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 264787841310384, $self, []); },
   /**
    * var intValue: Int? { get }
    * @availability iOS 18.0+
    */
-  getIntValue($self: Schema_Unique_CodingKeys): (number) | null { return callSDK<(number) | null>("SwiftData_d04ad79e98d4fc54", 1623445490822705, $self, []); }
+  getIntValue($self: Schema_Unique_CodingKeys): (number) | null { return callSDK<(number) | null>("SwiftData_b0e1456fef7e4b05", 1623445490822705, $self, []); }
 };
 
 /**
@@ -2167,27 +2167,27 @@ export class Schema_Version extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("SwiftData_d04ad79e98d4fc54", 4019289827671994, this, []); }
+  get description(): string { return callSDK<string>("SwiftData_b0e1456fef7e4b05", 4019289827671994, this, []); }
   /**
    * let major: Int
    * @availability iOS 17.0+
    */
-  get major(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 270804997689740, this, []); }
+  get major(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 270804997689740, this, []); }
   /**
    * let minor: Int
    * @availability iOS 17.0+
    */
-  get minor(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 2075012528525013, this, []); }
+  get minor(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 2075012528525013, this, []); }
   /**
    * let patch: Int
    * @availability iOS 17.0+
    */
-  get patch(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 3458915965525000, this, []); }
+  get patch(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 3458915965525000, this, []); }
   /**
    * init(_ major: Int, _ minor: Int, _ patch: Int)
    * @availability iOS 17.0+
    */
-  static init(major: number, minor: number, patch: number): Schema_Version { return callSDK<Schema_Version>("SwiftData_d04ad79e98d4fc54", 414305608863795, undefined, [major, minor, patch]); }
+  static init(major: number, minor: number, patch: number): Schema_Version { return callSDK<Schema_Version>("SwiftData_b0e1456fef7e4b05", 414305608863795, undefined, [major, minor, patch]); }
   declare readonly $type: { "s:9SwiftData6SchemaC7VersionV": true };
 }
 
@@ -2216,37 +2216,37 @@ export class SectionedResults<Element = unknown, SectionTitle = unknown> extends
    * var startIndex: Int { get }
    * @availability iOS 27.0+
    */
-  get startIndex(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 3375827372412083, this, []); }
+  get startIndex(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 3375827372412083, this, []); }
   /**
    * subscript(sectionTitle title: SectionTitle) -> ResultsSection<Element, SectionTitle>? { get }
    * @availability iOS 27.0+
    */
-  subscriptSectionTitle(title: number): (ResultsSection<SDKHandle, number>) | null { return callSDK<(ResultsSection<SDKHandle, number>) | null>("SwiftData_d04ad79e98d4fc54", 3190952889228537, this, [title]); }
+  subscriptSectionTitle(title: number): (ResultsSection<SDKHandle, number>) | null { return callSDK<(ResultsSection<SDKHandle, number>) | null>("SwiftData_b0e1456fef7e4b05", 3190952889228537, this, [title]); }
   /**
    * var sectionTitles: [SectionTitle] { get }
    * @availability iOS 27.0+
    */
-  get sectionTitles(): Array<number> { return callSDK<Array<number>>("SwiftData_d04ad79e98d4fc54", 3841966338396323, this, []); }
+  get sectionTitles(): Array<number> { return callSDK<Array<number>>("SwiftData_b0e1456fef7e4b05", 3841966338396323, this, []); }
   /**
    * func index(ofSectionTitled title: SectionTitle) -> Int?
    * @availability iOS 27.0+
    */
-  index(title: number): (number) | null { return callSDK<(number) | null>("SwiftData_d04ad79e98d4fc54", 3434889523096543, this, [title]); }
+  index(title: number): (number) | null { return callSDK<(number) | null>("SwiftData_b0e1456fef7e4b05", 3434889523096543, this, [title]); }
   /**
    * func contains(sectionTitle title: SectionTitle) -> Bool
    * @availability iOS 27.0+
    */
-  contains(title: number): boolean { return callSDK<boolean>("SwiftData_d04ad79e98d4fc54", 3150028277170340, this, [title]); }
+  contains(title: number): boolean { return callSDK<boolean>("SwiftData_b0e1456fef7e4b05", 3150028277170340, this, [title]); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 27.0+
    */
-  get endIndex(): number { return callSDK<number>("SwiftData_d04ad79e98d4fc54", 4143373946130203, this, []); }
+  get endIndex(): number { return callSDK<number>("SwiftData_b0e1456fef7e4b05", 4143373946130203, this, []); }
   /**
    * subscript(position: Int) -> ResultsSection<Element, SectionTitle> { get }
    * @availability iOS 27.0+
    */
-  subscript(position: number): ResultsSection<SDKHandle, number> { return callSDK<ResultsSection<SDKHandle, number>>("SwiftData_d04ad79e98d4fc54", 4135779813296711, this, [position]); }
+  subscript(position: number): ResultsSection<SDKHandle, number> { return callSDK<ResultsSection<SDKHandle, number>>("SwiftData_b0e1456fef7e4b05", 4135779813296711, this, [position]); }
   declare readonly $type: { "s:9SwiftData16SectionedResultsV": true };
 }
 
@@ -2291,87 +2291,87 @@ export class SwiftDataError extends SDKHandle {
    * static let configurationSchemaNotFoundInContainerSchema: SwiftDataError
    * @availability iOS 17.0+
    */
-  static get configurationSchemaNotFoundInContainerSchema(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_d04ad79e98d4fc54", 2838125468639937, undefined, []); }
+  static get configurationSchemaNotFoundInContainerSchema(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_b0e1456fef7e4b05", 2838125468639937, undefined, []); }
   /**
    * static let unknownDataStoreSchema: SwiftDataError
    * @availability iOS 27.0+
    */
-  static get unknownDataStoreSchema(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_d04ad79e98d4fc54", 954421726981506, undefined, []); }
+  static get unknownDataStoreSchema(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_b0e1456fef7e4b05", 954421726981506, undefined, []); }
   /**
    * static let unknownSchema: SwiftDataError
    * @availability iOS 17.0+
    */
-  static get unknownSchema(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_d04ad79e98d4fc54", 2515932995015208, undefined, []); }
+  static get unknownSchema(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_b0e1456fef7e4b05", 2515932995015208, undefined, []); }
   /**
    * static let backwardMigration: SwiftDataError
    * @availability iOS 17.0+
    */
-  static get backwardMigration(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_d04ad79e98d4fc54", 2003037177523134, undefined, []); }
+  static get backwardMigration(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_b0e1456fef7e4b05", 2003037177523134, undefined, []); }
   /**
    * static let unsupportedKeyPath: SwiftDataError
    * @availability iOS 17.0+
    */
-  static get unsupportedKeyPath(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_d04ad79e98d4fc54", 2792618248771922, undefined, []); }
+  static get unsupportedKeyPath(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_b0e1456fef7e4b05", 2792618248771922, undefined, []); }
   /**
    * static let historyTokenExpired: SwiftDataError
    * @availability iOS 18.0+
    */
-  static get historyTokenExpired(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_d04ad79e98d4fc54", 1562143887679277, undefined, []); }
+  static get historyTokenExpired(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_b0e1456fef7e4b05", 1562143887679277, undefined, []); }
   /**
    * static let missingModelContext: SwiftDataError
    * @availability iOS 17.0+
    */
-  static get missingModelContext(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_d04ad79e98d4fc54", 1034376122477139, undefined, []); }
+  static get missingModelContext(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_b0e1456fef7e4b05", 1034376122477139, undefined, []); }
   /**
    * static let unsupportedPredicate: SwiftDataError
    * @availability iOS 17.0+
    */
-  static get unsupportedPredicate(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_d04ad79e98d4fc54", 3123247279534597, undefined, []); }
+  static get unsupportedPredicate(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_b0e1456fef7e4b05", 3123247279534597, undefined, []); }
   /**
    * static let duplicateConfiguration: SwiftDataError
    * @availability iOS 17.0+
    */
-  static get duplicateConfiguration(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_d04ad79e98d4fc54", 3067481691941607, undefined, []); }
+  static get duplicateConfiguration(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_b0e1456fef7e4b05", 3067481691941607, undefined, []); }
   /**
    * static let modelValidationFailure: SwiftDataError
    * @availability iOS 17.0+
    */
-  static get modelValidationFailure(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_d04ad79e98d4fc54", 2476422578401509, undefined, []); }
+  static get modelValidationFailure(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_b0e1456fef7e4b05", 2476422578401509, undefined, []); }
   /**
    * static let loadIssueModelContainer: SwiftDataError
    * @availability iOS 17.0+
    */
-  static get loadIssueModelContainer(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_d04ad79e98d4fc54", 3135409916940243, undefined, []); }
+  static get loadIssueModelContainer(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_b0e1456fef7e4b05", 3135409916940243, undefined, []); }
   /**
    * static let unsupportedSortDescriptor: SwiftDataError
    * @availability iOS 17.0+
    */
-  static get unsupportedSortDescriptor(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_d04ad79e98d4fc54", 3697115013605284, undefined, []); }
+  static get unsupportedSortDescriptor(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_b0e1456fef7e4b05", 3697115013605284, undefined, []); }
   /**
    * static let configurationFileNameTooLong: SwiftDataError
    * @availability iOS 17.0+
    */
-  static get configurationFileNameTooLong(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_d04ad79e98d4fc54", 4080871075256167, undefined, []); }
+  static get configurationFileNameTooLong(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_b0e1456fef7e4b05", 4080871075256167, undefined, []); }
   /**
    * static let invalidTransactionFetchRequest: SwiftDataError
    * @availability iOS 18.0+
    */
-  static get invalidTransactionFetchRequest(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_d04ad79e98d4fc54", 3011260035413443, undefined, []); }
+  static get invalidTransactionFetchRequest(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_b0e1456fef7e4b05", 3011260035413443, undefined, []); }
   /**
    * static let includePendingChangesWithBatchSize: SwiftDataError
    * @availability iOS 17.0+
    */
-  static get includePendingChangesWithBatchSize(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_d04ad79e98d4fc54", 2141987013061489, undefined, []); }
+  static get includePendingChangesWithBatchSize(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_b0e1456fef7e4b05", 2141987013061489, undefined, []); }
   /**
    * static let sortingPendingChangesWithIdentifiers: SwiftDataError
    * @availability iOS 17.0+
    */
-  static get sortingPendingChangesWithIdentifiers(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_d04ad79e98d4fc54", 1387288162530995, undefined, []); }
+  static get sortingPendingChangesWithIdentifiers(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_b0e1456fef7e4b05", 1387288162530995, undefined, []); }
   /**
    * static let configurationFileNameContainsInvalidCharacters: SwiftDataError
    * @availability iOS 17.0+
    */
-  static get configurationFileNameContainsInvalidCharacters(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_d04ad79e98d4fc54", 3287608036081460, undefined, []); }
+  static get configurationFileNameContainsInvalidCharacters(): SwiftDataError { return callSDK<SwiftDataError>("SwiftData_b0e1456fef7e4b05", 3287608036081460, undefined, []); }
   declare readonly $type: { "s:9SwiftData0aB5ErrorV": true };
 }
 
@@ -2385,66 +2385,66 @@ export interface VersionedSchema {
 
 registerSDKProtocol("s:9SwiftData07BackingB0P", {"initFor":"init(for:)","getValueForKey":"getValue(forKey:)","getTransformableValueForKey":"getTransformableValue(forKey:)","setValueForKeyTo":"setValue(forKey:to:)","setTransformableValueForKeyTo":"setTransformableValue(forKey:to:)"});
 registerSDKProtocol("s:9SwiftData0B5StoreP", {"initMigrationPlan":"init(_:migrationPlan:)","erase":"erase()","fetch":"fetch(_:)","fetchCount":"fetchCount(_:)","fetchIdentifiers":"fetchIdentifiers(_:)","save":"save(_:)","initializeStateFor":"initializeState(for:)","invalidateStateFor":"invalidateState(for:)","cachedSnapshotsForEditingState":"cachedSnapshots(for:editingState:)"});
-registerSDKClass("SwiftData.DataStoreBatchDeleteRequest", DataStoreBatchDeleteRequest, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
+registerSDKClass("SwiftData.DataStoreBatchDeleteRequest", DataStoreBatchDeleteRequest, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
 registerSDKProtocol("s:9SwiftData0B13StoreBatchingP", {"initMigrationPlan":"init(_:migrationPlan:)","erase":"erase()","fetch":"fetch(_:)","fetchCount":"fetchCount(_:)","fetchIdentifiers":"fetchIdentifiers(_:)","save":"save(_:)","initializeStateFor":"initializeState(for:)","invalidateStateFor":"invalidateState(for:)","cachedSnapshotsForEditingState":"cachedSnapshots(for:editingState:)","delete":"delete(_:)"});
 registerSDKProtocol("s:9SwiftData0B18StoreConfigurationP", {"validate":"validate()"});
-registerSDKClass("SwiftData.DataStoreFetchRequest", DataStoreFetchRequest, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.DataStoreFetchResult", DataStoreFetchResult, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.DataStoreSaveChangesRequest", DataStoreSaveChangesRequest, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.DataStoreSaveChangesResult", DataStoreSaveChangesResult, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
+registerSDKClass("SwiftData.DataStoreFetchRequest", DataStoreFetchRequest, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.DataStoreFetchResult", DataStoreFetchResult, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.DataStoreSaveChangesRequest", DataStoreSaveChangesRequest, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.DataStoreSaveChangesResult", DataStoreSaveChangesResult, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
 registerSDKProtocol("s:9SwiftData0B13StoreSnapshotP", {"initFromRelatedBackingDatas":"init(from:relatedBackingDatas:)","copyPersistentIdentifierRemappedIdentifiers":"copy(persistentIdentifier:remappedIdentifiers:)"});
-registerSDKClass("SwiftData.DataStoreSnapshotCodingKey", DataStoreSnapshotCodingKey, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.DefaultHistoryDelete", DefaultHistoryDelete, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.DefaultHistoryInsert", DefaultHistoryInsert, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.DefaultHistoryToken", DefaultHistoryToken, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.DefaultHistoryTransaction", DefaultHistoryTransaction, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.DefaultHistoryUpdate", DefaultHistoryUpdate, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.DefaultSerialModelExecutor", DefaultSerialModelExecutor, { module: "SwiftData_d04ad79e98d4fc54", properties: {}, methods: {"asUnownedSerialExecutor":{"id":1723468813893006}} });
-registerSDKClass("SwiftData.DefaultSnapshot", DefaultSnapshot, { module: "SwiftData_d04ad79e98d4fc54", properties: {}, methods: {"copy":{"id":836847183493935}} });
-registerSDKClass("SwiftData.DefaultStore", DefaultStore, { module: "SwiftData_d04ad79e98d4fc54", properties: {}, methods: {"fetchHistory":{"id":2174812870013411},"deleteHistory":{"id":4220145891233917},"cachedSnapshots":{"id":589886145122399},"initializeState":{"id":598939149405290},"invalidateState":{"id":2995284316432182},"save":{"id":1466488903461294},"erase":{"id":1184794970109346}} });
-registerSDKClass("SwiftData.EditingState", EditingState, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.FetchDescriptor", FetchDescriptor, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.FetchResultsCollection", FetchResultsCollection, { module: "SwiftData_d04ad79e98d4fc54", properties: {}, methods: {"subscript":{"id":137318845127833}} });
-registerSDKClass("SwiftData.HistoryChange", HistoryChange, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
+registerSDKClass("SwiftData.DataStoreSnapshotCodingKey", DataStoreSnapshotCodingKey, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.DefaultHistoryDelete", DefaultHistoryDelete, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.DefaultHistoryInsert", DefaultHistoryInsert, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.DefaultHistoryToken", DefaultHistoryToken, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.DefaultHistoryTransaction", DefaultHistoryTransaction, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.DefaultHistoryUpdate", DefaultHistoryUpdate, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.DefaultSerialModelExecutor", DefaultSerialModelExecutor, { module: "SwiftData_b0e1456fef7e4b05", properties: {}, methods: {"asUnownedSerialExecutor":{"id":1723468813893006}} });
+registerSDKClass("SwiftData.DefaultSnapshot", DefaultSnapshot, { module: "SwiftData_b0e1456fef7e4b05", properties: {}, methods: {"copy":{"id":836847183493935}} });
+registerSDKClass("SwiftData.DefaultStore", DefaultStore, { module: "SwiftData_b0e1456fef7e4b05", properties: {}, methods: {"fetchHistory":{"id":2174812870013411},"deleteHistory":{"id":4220145891233917},"cachedSnapshots":{"id":589886145122399},"initializeState":{"id":598939149405290},"invalidateState":{"id":2995284316432182},"save":{"id":1466488903461294},"erase":{"id":1184794970109346}} });
+registerSDKClass("SwiftData.EditingState", EditingState, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.FetchDescriptor", FetchDescriptor, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.FetchResultsCollection", FetchResultsCollection, { module: "SwiftData_b0e1456fef7e4b05", properties: {}, methods: {"subscript":{"id":137318845127833}} });
+registerSDKClass("SwiftData.HistoryChange", HistoryChange, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
 registerSDKProtocol("s:9SwiftData13HistoryDeleteP", {});
-registerSDKClass("SwiftData.HistoryDescriptor", HistoryDescriptor, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
+registerSDKClass("SwiftData.HistoryDescriptor", HistoryDescriptor, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
 registerSDKProtocol("s:9SwiftData13HistoryInsertP", {});
-registerSDKClass("SwiftData.HistoryObserver", HistoryObserver, { module: "SwiftData_d04ad79e98d4fc54", properties: {"eventCounter":2387471193995494,"modelContainer":3364496217146471,"authors":2061695012334867} });
+registerSDKClass("SwiftData.HistoryObserver", HistoryObserver, { module: "SwiftData_b0e1456fef7e4b05", properties: {"eventCounter":2387471193995494,"modelContainer":3364496217146471,"authors":2061695012334867} });
 registerSDKProtocol("s:9SwiftData16HistoryProvidingP", {"fetchHistory":"fetchHistory(_:)","deleteHistory":"deleteHistory(_:)"});
 registerSDKProtocol("s:9SwiftData12HistoryTokenP", {});
-registerSDKClass("SwiftData.HistoryTombstone", HistoryTombstone, { module: "SwiftData_d04ad79e98d4fc54", properties: {}, methods: {"makeIterator":{"id":3597339059532318}} });
-registerSDKClass("SwiftData.HistoryTombstone.Iterator", HistoryTombstone_Iterator, { module: "SwiftData_d04ad79e98d4fc54", properties: {}, methods: {"next":{"id":2541645372379277}} });
+registerSDKClass("SwiftData.HistoryTombstone", HistoryTombstone, { module: "SwiftData_b0e1456fef7e4b05", properties: {}, methods: {"makeIterator":{"id":3597339059532318}} });
+registerSDKClass("SwiftData.HistoryTombstone.Iterator", HistoryTombstone_Iterator, { module: "SwiftData_b0e1456fef7e4b05", properties: {}, methods: {"next":{"id":2541645372379277}} });
 registerSDKProtocol("s:9SwiftData18HistoryTransactionP", {});
 registerSDKProtocol("s:9SwiftData13HistoryUpdateP", {});
-registerSDKClass("SwiftData.MigrationStage", MigrationStage, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
+registerSDKClass("SwiftData.MigrationStage", MigrationStage, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
 registerSDKProtocol("s:9SwiftData10ModelActorP", {});
-registerSDKClass("SwiftData.ModelConfiguration", ModelConfiguration, { module: "SwiftData_d04ad79e98d4fc54", properties: {}, methods: {"validate":{"id":4145195578471688}} });
-registerSDKClass("SwiftData.ModelConfiguration.CloudKitDatabase", ModelConfiguration_CloudKitDatabase, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.ModelConfiguration.GroupContainer", ModelConfiguration_GroupContainer, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.ModelContainer", ModelContainer, { module: "SwiftData_d04ad79e98d4fc54", properties: {}, methods: {"deleteAllData":{"id":3500206786302891},"storeIdentifier":{"id":4166040350705863},"configurationName":{"id":2202390465134674},"erase":{"id":282414672849800}} });
-registerSDKClass("SwiftData.ModelContext", ModelContext, { module: "SwiftData_d04ad79e98d4fc54", properties: {}, methods: {"fetchHistory":{"id":2332351628126889},"deleteHistory":{"id":3412830306530608},"processPendingChanges":{"id":859440244870367},"save":{"id":503487199131088},"model":{"id":2849403534389724},"rollback":{"id":2240032568974201}} });
+registerSDKClass("SwiftData.ModelConfiguration", ModelConfiguration, { module: "SwiftData_b0e1456fef7e4b05", properties: {}, methods: {"validate":{"id":4145195578471688}} });
+registerSDKClass("SwiftData.ModelConfiguration.CloudKitDatabase", ModelConfiguration_CloudKitDatabase, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.ModelConfiguration.GroupContainer", ModelConfiguration_GroupContainer, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.ModelContainer", ModelContainer, { module: "SwiftData_b0e1456fef7e4b05", properties: {}, methods: {"deleteAllData":{"id":3500206786302891},"storeIdentifier":{"id":4166040350705863},"configurationName":{"id":2202390465134674},"erase":{"id":282414672849800}} });
+registerSDKClass("SwiftData.ModelContext", ModelContext, { module: "SwiftData_b0e1456fef7e4b05", properties: {}, methods: {"fetchHistory":{"id":2332351628126889},"deleteHistory":{"id":3412830306530608},"processPendingChanges":{"id":859440244870367},"save":{"id":503487199131088},"model":{"id":2849403534389724},"rollback":{"id":2240032568974201}} });
 registerSDKProtocol("s:9SwiftData13ModelExecutorP", {});
-registerSDKClass("SwiftData.PersistentIdentifier", PersistentIdentifier, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.PersistentIdentifier.ID", PersistentIdentifier_ID, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
+registerSDKClass("SwiftData.PersistentIdentifier", PersistentIdentifier, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.PersistentIdentifier.ID", PersistentIdentifier_ID, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
 registerSDKProtocol("s:9SwiftData15PersistentModelP", {"initBackingData":"init(backingData:)"});
 registerSDKProtocol("s:9SwiftData22RelationshipCollectionP", {});
-registerSDKClass("SwiftData.ResultsObserver", ResultsObserver, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.ResultsSection", ResultsSection, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.Schema", Schema, { module: "SwiftData_d04ad79e98d4fc54", properties: {}, methods: {"save":{"id":2979603531819430}} });
-registerSDKClass("SwiftData.Schema.Attribute", Schema_Attribute, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.Schema.Attribute.Option", Schema_Attribute_Option, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.Schema.CompositeAttribute", Schema_CompositeAttribute, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.Schema.Entity", Schema_Entity, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.Schema.Index", Schema_Index, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.Schema.Index.Types", Schema_Index_Types, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.Schema.PropertyMetadata", Schema_PropertyMetadata, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.Schema.Relationship", Schema_Relationship, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.Schema.Relationship.Option", Schema_Relationship_Option, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.Schema.Unique", Schema_Unique, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
-registerSDKClass("SwiftData.Schema.Version", Schema_Version, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
+registerSDKClass("SwiftData.ResultsObserver", ResultsObserver, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.ResultsSection", ResultsSection, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.Schema", Schema, { module: "SwiftData_b0e1456fef7e4b05", properties: {}, methods: {"save":{"id":2979603531819430}} });
+registerSDKClass("SwiftData.Schema.Attribute", Schema_Attribute, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.Schema.Attribute.Option", Schema_Attribute_Option, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.Schema.CompositeAttribute", Schema_CompositeAttribute, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.Schema.Entity", Schema_Entity, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.Schema.Index", Schema_Index, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.Schema.Index.Types", Schema_Index_Types, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.Schema.PropertyMetadata", Schema_PropertyMetadata, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.Schema.Relationship", Schema_Relationship, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.Schema.Relationship.Option", Schema_Relationship_Option, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.Schema.Unique", Schema_Unique, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
+registerSDKClass("SwiftData.Schema.Version", Schema_Version, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
 registerSDKProtocol("s:9SwiftData19SchemaMigrationPlanP", {});
 registerSDKProtocol("s:9SwiftData14SchemaPropertyP", {});
-registerSDKClass("SwiftData.SectionedResults", SectionedResults, { module: "SwiftData_d04ad79e98d4fc54", properties: {}, methods: {"subscriptSectionTitle":{"id":3190952889228537},"index":{"id":3434889523096543},"contains":{"id":3150028277170340},"subscript":{"id":4135779813296711}} });
+registerSDKClass("SwiftData.SectionedResults", SectionedResults, { module: "SwiftData_b0e1456fef7e4b05", properties: {}, methods: {"subscriptSectionTitle":{"id":3190952889228537},"index":{"id":3434889523096543},"contains":{"id":3150028277170340},"subscript":{"id":4135779813296711}} });
 registerSDKProtocol("s:9SwiftData19SerialModelExecutorP", {});
-registerSDKClass("SwiftData.SwiftDataError", SwiftDataError, { module: "SwiftData_d04ad79e98d4fc54", properties: {} });
+registerSDKClass("SwiftData.SwiftDataError", SwiftDataError, { module: "SwiftData_b0e1456fef7e4b05", properties: {} });
 registerSDKProtocol("s:9SwiftData15VersionedSchemaP", {});
