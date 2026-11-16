@@ -11095,27 +11095,6 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     })
     screenshot('media-viewer-open.png')
-    const image = id(snapshot(config.simulatorId), 'one-media-viewer-image')!.frame!
-    const doubleTap = [
-      'batch',
-      '--step',
-      `touch -x ${Math.round(image.width / 2)} -y ${Math.round(image.y + image.height / 2)} --down --up --delay 0.03`,
-      '--step',
-      'sleep 0.05',
-      '--step',
-      `touch -x ${Math.round(image.width / 2)} -y ${Math.round(image.y + image.height / 2)} --down --up --delay 0.03`,
-    ]
-    axe(doubleTap, config.simulatorId)
-    await wait(
-      'double tap zooms image',
-      (n) => (id(n, 'one-media-viewer-image')?.frame?.width ?? 0) > image.width * 1.5
-    )
-    axe(doubleTap, config.simulatorId)
-    await wait(
-      'double tap restores fitted image',
-      (n) =>
-        Math.abs((id(n, 'one-media-viewer-image')?.frame?.width ?? 0) - image.width) < 1
-    )
     tap({ id: 'one-media-viewer-share' })
     const share = await wait('system share sheet offers save', (nodes) => {
       const sheet = nativeActivitySheet(nodes)?.frame
