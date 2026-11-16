@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-@objc(KeyboardControllerModuleImpl)
+@objc(OneKCModuleImpl)
 public class KeyboardControllerModuleImpl: NSObject {
   private static let keyboardRevealGestureName = "keyboardRevealGesture"
 
