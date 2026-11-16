@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 import { androidXmlAttributes as attributes } from './android-ui-xml'
-import { execFileSync } from 'node:child_process'
+import { execFileSync, spawnSync } from 'node:child_process'
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { stampAndroidDebugHost } from './android-debug-host'
@@ -7890,7 +7890,8 @@ async function runCompose(config: Config) {
 async function runUpdates(config: Config) {
   mkdirSync(config.artifactDir, { recursive: true })
   preflight(config)
-  execFileSync('adb', ['-s', config.deviceId, 'uninstall', config.packageId], { stdio: 'ignore' })
+  // a fresh emulator has no copy to remove, and adb reports that as a failure
+  spawnSync('adb', ['-s', config.deviceId, 'uninstall', config.packageId], { stdio: 'ignore' })
   adbText(config, ['install', config.apkPath])
 
   const updatesDir = 'files/one-updates'
