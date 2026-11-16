@@ -64,3 +64,5 @@
 {"id":"00000001794863808410:50cd9e639fa77a6fd92cd554d2009ddb","text":"From oss-fixer: #1281 (fixes #1276, #1272; TS7016 reproduced and fixed) joins 2.21.2; #1279 folded into #1275 at 09dec7a0c (facades b0e1456fef7e4b05). #1215 assessed: Contacts framework into contacts group is data; camera group needs code gating; EventKit and the other SDK frameworks are linked for every app because release SDK frameworks are the union of all One backend.sdk imports, not what the app uses. Defect: cold SDK generation held 8.7 GB on a 16 GB mini and swapped it out (b76331 report)."}
 
 {"id":"00000001794865002371:8844774eaf41a52b3afd5b4dc7cb8472","text":"Canary time: build is ~1 min; ~14 min is npm making the one@<canary> version readable (exact-version cache-busted reads already). Likely cause: one's packument holds thousands of canary versions. Not fixed."}
+
+{"id":"00000001794866650702:1e7859e66cf6f59cefe903f099de7124","text":"Merged #1246 (8866beb7f), #1271 (2d75a3c29), #1275 (0bbdaa25a). #1282 (pedometer probe -D ONE_GROUP_FITNESS; main iOS Native Tests red since ecf628294, diagnosed by p271894) on auto-merge. Waiting on #1273 and #1281 checks, then patch 2.21.2."}
