@@ -2,3 +2,4 @@
 // edit the generator or catalog, then regenerate.
 struct OneNativeDialogAction: Equatable { let id: String; let label: String; let role: String }
 struct OneNativeMapMarker: Equatable { let id: String; let label: String; let latitude: Double; let longitude: Double }
+struct OneNativeQuickLookItem: Equatable { let url: String; let title: String; let sourceIdentifier: String }

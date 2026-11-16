@@ -1,0 +1,64 @@
+---
+title: Media viewer
+description: Preview images, videos, and documents with native iOS paging, filenames, sharing, and zoom transitions.
+---
+
+`One.UI.MediaViewer` opens files in the iOS Quick Look viewer. It supports images,
+videos, PDFs, and other Quick Look formats. The system provides paging, zooming,
+playback, filenames, and a share sheet with the available save and export actions.
+It requires an iOS native build.
+
+```tsx
+import { One } from 'one'
+import { Image } from 'react-native'
+
+const items = [
+  { url: 'https://example.com/beach.jpg', title: 'Beach.jpg' },
+  { url: 'https://example.com/clip.mp4', title: 'Clip.mp4' },
+]
+
+export function Gallery() {
+  return (
+    <One.UI.MediaViewer items={items} onError={console.error}>
+      {items.map((item, index) => (
+        <One.UI.MediaViewer.Thumbnail
+          key={item.url}
+          index={index}
+          accessibilityLabel={`Open ${item.title}`}
+        >
+          <Image source={{ uri: item.url }} style={{ width: 160, height: 120 }} />
+        </One.UI.MediaViewer.Thumbnail>
+      ))}
+    </One.UI.MediaViewer>
+  )
+}
+```
+
+`items` is an array of `{ url, title? }`. URLs use `file://`, `https://`, or
+`http://`. Remote files are downloaded before presentation and removed when the
+viewer closes. Local files remain owned by the caller. Keep the files available
+while the viewer is open. A failed download or unsupported file calls `onError`
+with a message and closes the presentation.
+
+`MediaViewer.Thumbnail` takes an item `index`, children, and React Native
+`Pressable` props except `onPress`. Its bounds define the source of the system
+zoom transition on iOS 18 and later. After paging, dismissal returns to the
+current item's mounted thumbnail. Keep thumbnails mounted while viewing.
+Earlier iOS versions use Quick Look's standard presentation.
+
+For a controlled preview without thumbnail triggers, use the same underlying
+`One.iOS.QuickLook` control:
+
+```tsx
+<One.iOS.QuickLook
+  items={items}
+  initialIndex={0}
+  isPresented={open}
+  onIsPresentedChange={setOpen}
+  onError={console.error}
+/>
+```
+
+`initialIndex` selects the first displayed item. Each item may include a
+`sourceIdentifier` registered by `One.ZoomTransitionSource` to anchor its zoom
+transition. Existing single-file previews can keep using the `url` prop.

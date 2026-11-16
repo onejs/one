@@ -9,12 +9,13 @@
 #import <React/RCTConversions.h>
 #import "OneNativeStyleDictionary.h"
 using namespace facebook::react;
-@implementation OneNativeQuickLookComponentView { OneNativeQuickLookView *_nativeView; }
+@implementation OneNativeQuickLookComponentView { OneNativeQuickLookView *_nativeView; BOOL _itemsDirty; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeQuickLookComponentDescriptor>(); }
 - (NSObject *)accessibilityElement { return _nativeView; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeQuickLookProps>();
+    _itemsDirty = YES;
     _nativeView = [OneNativeQuickLookView new]; self.contentView = _nativeView;
     __weak OneNativeQuickLookComponentView *weakSelf = self;
     _nativeView.onSDKEvent = ^(NSString *name, NSString *value) {
@@ -29,12 +30,28 @@ using namespace facebook::react;
       auto emitter = std::static_pointer_cast<const OneNativeQuickLookEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeQuickLookValueChange({.value = (bool)value, .eventCount = (int)eventCount, .revision = (int)revision});
     };
+    _nativeView.onError = ^(NSString *message, NSInteger eventCount) {
+      OneNativeQuickLookComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeQuickLookEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeQuickLookError({.message = std::string(message.UTF8String), .eventCount = (int)eventCount});
+    };
   }
   return self;
 }
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeQuickLookProps>(props);
-
+  const auto &previous = *std::static_pointer_cast<const OneNativeQuickLookProps>(_props);
+  bool itemsChanged = _itemsDirty || previous.items.size() != next.items.size();
+  if (!itemsChanged) for (size_t i = 0; i < next.items.size(); i++) {
+    if (previous.items[i].url != next.items[i].url || previous.items[i].title != next.items[i].title || previous.items[i].sourceIdentifier != next.items[i].sourceIdentifier) { itemsChanged = true; break; }
+  }
+  if (itemsChanged) {
+    NSMutableArray *items = [NSMutableArray new];
+    for (const auto &item : next.items) [items addObject:@{@"url": RCTNSStringFromString(item.url), @"title": RCTNSStringFromString(item.title), @"sourceIdentifier": RCTNSStringFromString(item.sourceIdentifier)}];
+    [_nativeView setItems:items];
+    _itemsDirty = NO;
+  }
 
   [_nativeView configureAccessibility:RCTNSStringFromString(next.accessibilityLabel)
     hint:RCTNSStringFromString(next.accessibilityHint)
@@ -42,7 +59,7 @@ using namespace facebook::react;
     identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_nativeView configure:next.value
-    acknowledgedEvent:next.acknowledgedEvent revision:next.revision url:RCTNSStringFromString(next.url)];
+    acknowledgedEvent:next.acknowledgedEvent revision:next.revision url:RCTNSStringFromString(next.url) initialIndex:next.initialIndex];
 
   [super updateProps:props oldProps:oldProps];
   // the swiftui element that is the control carries testID (OneNativeAccessibility), so a test
@@ -51,7 +68,7 @@ using namespace facebook::react;
   self.accessibilityIdentifier = nil;
   _nativeView.accessibilityIdentifier = nil;
 }
-- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; }
+- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; _itemsDirty = YES; }
 @end
 
 #else

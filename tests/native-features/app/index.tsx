@@ -16,7 +16,11 @@ const testScreens = [
   { href: '/color-test', label: 'Color API', testID: 'nav-color-test' },
   { href: '/one-ui-pager', label: 'UI Pager', testID: 'nav-one-ui-pager' },
   { href: '/zoom-test', label: 'Zoom Transitions', testID: 'nav-zoom-test' },
-  { href: '/one-native-gestures', label: 'Native Gestures', testID: 'nav-one-native-gestures' },
+  {
+    href: '/one-native-gestures',
+    label: 'Native Gestures',
+    testID: 'nav-one-native-gestures',
+  },
   { href: '/toolbar-test', label: 'Toolbar', testID: 'nav-toolbar-test' },
   { href: '/menu-test', label: 'Menu Actions', testID: 'nav-menu-test' },
   { href: '/split-view-test', label: 'Split View', testID: 'nav-split-view-test' },
@@ -252,6 +256,11 @@ const testScreens = [
     href: '/one-native-accessibility',
     label: 'One Native Accessibility',
     testID: 'nav-one-native-accessibility',
+  },
+  {
+    href: '/one-native-media-viewer',
+    label: 'Media viewer',
+    testID: 'nav-one-native-media-viewer',
   },
   {
     href: '/one-native-media',

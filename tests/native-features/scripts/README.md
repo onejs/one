@@ -279,3 +279,5 @@ When adding or changing a check, do not tune a crop until only the positive pass
 erasing the subject in place: fill the declared region with a realistic null-state colour and
 confirm the reading falls below the floor. Re-run `--swap-test` and `--cross-sub` after the device
 capture and record the new calibration instead of carrying numbers across a changed measurement.
+
+`media-viewer` covers the native gallery: titled image preview, the system share sheet and save actions, paging to video, direct document opening, dismissal, missing-file errors, and remounting thumbnail sources. The fixture is `one-native-media-viewer`.

@@ -1,5 +1,10 @@
 import type { ProcessedColorValue, ViewProps } from 'react-native';
 import type { DirectEventHandler, Int32, Double, WithDefault } from 'react-native/Libraries/Types/CodegenTypes';
+type QuickLookItem = Readonly<{
+    url: string;
+    title?: string;
+    sourceIdentifier?: string;
+}>;
 type OneNativeStyleNative = Readonly<{
     fontSize?: WithDefault<Double, -1>;
     fontWeight?: string;
@@ -37,6 +42,8 @@ interface NativeProps extends ViewProps {
     acknowledgedEvent: Int32;
     revision: Int32;
     url: string;
+    items: ReadonlyArray<QuickLookItem>;
+    initialIndex: Double;
     swiftStyle?: OneNativeStyleNative;
     onNativeSDKEvent?: DirectEventHandler<Readonly<{
         name: string;
@@ -46,6 +53,10 @@ interface NativeProps extends ViewProps {
         value: boolean;
         eventCount: Int32;
         revision: Int32;
+    }>>;
+    onNativeQuickLookError?: DirectEventHandler<Readonly<{
+        message: string;
+        eventCount: Int32;
     }>>;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;

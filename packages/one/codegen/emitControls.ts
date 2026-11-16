@@ -440,7 +440,7 @@ ${
   focusRevision?: number
 `
         : ''
-    }${actions.map((action) => `  ${action.prop}?: ${callbackType(action)}\n`).join('')}${publicFields.map(([key, field]) => `  ${key}${field.type === 'objects' || field.required ? '' : '?'}: ${field.publicType ? `${field.publicType}${field.default === '' ? " | ''" : ''}` : field.enum ? `Styles.${field.enum}${optionalEnum(field) ? " | ''" : ''}` : tsType(field)}`).join('\n')}
+    }${actions.map((action) => `  ${action.prop}?: ${callbackType(action)}\n`).join('')}${publicFields.map(([key, field]) => `  ${key}${(field.type === 'objects' && field.jsDefault === undefined) || field.required ? '' : '?'}: ${field.publicType ? `${field.publicType}${field.default === '' ? " | ''" : ''}` : field.enum ? `Styles.${field.enum}${optionalEnum(field) ? " | ''" : ''}` : tsType(field)}`).join('\n')}
 }\n`
     const props = {
       ...(value
@@ -578,7 +578,7 @@ export default codegenNativeComponent<NativeProps>('${nativeName}'${measured ? '
       ...actions.map((action) => action.prop),
       ...publicFields.map(([key, field]) => {
         const binding = field.as ? `${key}: ${field.as}` : key
-        return field.type === 'objects' || field.required
+        return (field.type === 'objects' && field.jsDefault === undefined) || field.required
           ? binding
           : `${binding} = ${field.jsDefault ?? literal(field.default)}`
       }),

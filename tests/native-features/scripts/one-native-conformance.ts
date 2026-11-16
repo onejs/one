@@ -109,6 +109,7 @@ const suites = [
   'navigation-split-view',
   'accessibility',
   'media',
+  'media-viewer',
   'map',
   'map-services',
   'apple-file',
@@ -1128,6 +1129,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'navigation-split-view': navigationSplitViewLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
+  'media-viewer': (nodes) => Boolean(id(nodes, 'media-viewer-photo')) || Boolean(id(nodes, 'QLOverlayDoneButtonAccessibilityIdentifier')),
   map: mapLoaded,
   'map-services': (nodes) => Boolean(id(nodes, 'one-native-map-services-run')),
   'apple-file': appleFileLoaded,
@@ -1273,6 +1275,7 @@ const suiteHome: Record<Suite, string> = {
   'uikit-content': 'nav-one-native-uikit-content',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
+  'media-viewer': 'nav-one-native-media-viewer',
   map: 'nav-one-native-map',
   'map-services': 'nav-one-native-map-services',
   'apple-file': 'nav-one-native-apple-file',
@@ -11067,6 +11070,88 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('the fiber loop keeps rendering', (n) => ticks(n) > before)
     await wait('shader probe reached a verdict', (n) => shader(n) !== 'pending')
     console.log(`gpu probe: shader verdict ${shader(snapshot(config.simulatorId))}`)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'media-viewer') {
+    await wait('home screen mounted', () => true, true)
+    await tapNav('nav-one-native-media-viewer')
+    await wait('gallery mounted', (n) => Boolean(id(n, 'media-viewer-photo')))
+    screenshot('media-viewer-thumbnails.png')
+    tap({ id: 'media-viewer-photo' })
+    await wait(
+      'photo preview has filename and system actions',
+      (n) =>
+        labels(n).includes('Pokai.jpg') &&
+        Boolean(id(n, 'QLOverlayDoneButtonAccessibilityIdentifier')) &&
+        n.some((node) => /Share/.test(node.AXLabel ?? ''))
+    )
+    screenshot('media-viewer-open.png')
+    tap({ label: 'Share' })
+    await wait('system share sheet offers save', (n) =>
+      labels(n).some((label) => /Save to Files|Save Image|Save to Photos/.test(label))
+    )
+    screenshot('media-viewer-share.png')
+    tap({ label: 'Close' })
+    await wait('share sheet closed', (n) =>
+      Boolean(id(n, 'QLOverlayDoneButtonAccessibilityIdentifier'))
+    )
+    const application = snapshot(config.simulatorId).find(
+      (n) => n.type === 'Application'
+    )?.frame
+    if (!application) throw new Error('viewer has no application frame')
+    axe(
+      [
+        'swipe',
+        '--start-x',
+        String(Math.round(application.width * 0.8)),
+        '--start-y',
+        String(Math.round(application.height * 0.5)),
+        '--end-x',
+        String(Math.round(application.width * 0.2)),
+        '--end-y',
+        String(Math.round(application.height * 0.5)),
+        '--duration',
+        '0.8',
+      ],
+      config.simulatorId
+    )
+    await wait('paging reaches video filename', (n) => labels(n).includes('Ocean.mp4'))
+    screenshot('media-viewer-video.png')
+    tap({ id: 'QLOverlayDoneButtonAccessibilityIdentifier' })
+    await wait(
+      'dismiss returns to thumbnails',
+      (n) =>
+        Boolean(id(n, 'media-viewer-video')) &&
+        !id(n, 'QLOverlayDoneButtonAccessibilityIdentifier')
+    )
+    tap({ id: 'media-viewer-document' })
+    await wait(
+      'initial index opens document',
+      (n) =>
+        labels(n).includes('Notes.txt') &&
+        Boolean(
+          id(n, 'QLTextItemViewControllerBarSearchRightButtonAccessibilityIdentifier')
+        )
+    )
+    screenshot('media-viewer-document.png')
+    tap({ id: 'QLOverlayDoneButtonAccessibilityIdentifier' })
+    await wait('document dismissed', (n) => Boolean(id(n, 'media-viewer-missing')))
+    tap({ id: 'media-viewer-missing' })
+    await wait('missing file reports error', (n) =>
+      labels(n).some((label) => label.startsWith('Error: ') && label !== 'Error: none')
+    )
+    tap({ id: 'media-viewer-toggle' })
+    await wait('gallery unmounted', (n) => !id(n, 'media-viewer-photo'))
+    tap({ id: 'media-viewer-toggle' })
+    await wait('gallery remounted', (n) => Boolean(id(n, 'media-viewer-photo')))
+    tap({ id: 'media-viewer-photo' })
+    await wait('remounted preview opens', (n) =>
+      Boolean(id(n, 'QLOverlayDoneButtonAccessibilityIdentifier'))
+    )
+    tap({ id: 'QLOverlayDoneButtonAccessibilityIdentifier' })
+    await wait('remounted preview dismisses', (n) => Boolean(id(n, 'media-viewer-photo')))
+    screenshot('media-viewer-dismissed.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

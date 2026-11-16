@@ -196,3 +196,17 @@ lane and CI owner. No stable release is authorized.
 
 Option b is excluded. The exploratory root-edge pruning estimate is 7,504,327
 bytes with 347 modules removed. The class route retains One's root public API.
+
+---
+
+# Native media viewer
+
+Extend the existing QuickLook control with titled paged files and the system zoom
+transition into the current thumbnail. Expose One.UI.MediaViewer and replace
+Team Machine’s local tm-media-gallery module. Native filenames, sharing, and save
+actions remain provided by Quick Look.
+
+Ship docs and a media-viewer conformance suite. Validate a simulator release
+build, capture opening and dismissal at native pixels, and share the result for
+visual review before merging. Keep the preview API compatible with existing
+single-file QuickLook callers.

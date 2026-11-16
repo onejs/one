@@ -42,7 +42,7 @@ export declare function SecureField({ text, onTextChange, revision, focused, onF
 export declare function TextEditor({ text, onTextChange, revision, focused, onFocusChange, focusRevision, swiftStyle, style, ...props }: Types.TextEditorProps): import("react").JSX.Element;
 export declare function Alert({ isPresented, onIsPresentedChange, revision, onAction, title, message, presenting, actions, swiftStyle, style, ...props }: Types.AlertProps): import("react").JSX.Element;
 export declare function ConfirmationDialog({ isPresented, onIsPresentedChange, revision, onAction, title, message, presenting, actions, titleVisibility, swiftStyle, style, ...props }: Types.ConfirmationDialogProps): import("react").JSX.Element;
-export declare function QuickLook({ isPresented, onIsPresentedChange, revision, url, swiftStyle, style, ...props }: Types.QuickLookProps): import("react").JSX.Element;
+export declare function QuickLook({ isPresented, onIsPresentedChange, revision, onError, url, items, initialIndex, swiftStyle, style, ...props }: Types.QuickLookProps): import("react").JSX.Element;
 export declare function FileImporter({ isPresented, onIsPresentedChange, revision, onCompletion, allowedContentTypes, allowsMultipleSelection, swiftStyle, style, ...props }: Types.FileImporterProps): import("react").JSX.Element;
 export declare function Chart({ data, type, showGrid, animate, showLegend, referenceLines, lineStyle, pointStyle, areaStyle, barStyle, pieStyle, rectangleStyle, ruleStyle, swiftStyle, style, ...props }: Types.ChartProps): import("react").JSX.Element;
 export declare function AsyncImage({ url, scale, swiftStyle, style, ...props }: Types.AsyncImageProps): import("react").JSX.Element;

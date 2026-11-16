@@ -1007,9 +1007,15 @@ disable every dialog button. Disable the control that opens the dialog instead.
 
 ## Quick Look
 
-`One.iOS.QuickLook` previews a local file with the system's Quick Look sheet. It is
-SwiftUI's `quickLookPreview` from the `_QuickLook_SwiftUI` overlay module, and
-like `One.iOS.Alert` it is a zero-size presentation host that takes no layout space.
+`One.iOS.QuickLook` previews files with `QLPreviewController`. Like `One.iOS.Alert`,
+it is a zero-size presentation host. Use `url` for one file or `items` for a paged
+array of `{ url, title?, sourceIdentifier? }`, with `initialIndex` selecting the first
+page. Errors call `onError(message)` and dismiss the preview.
+
+`One.UI.MediaViewer` wraps this control with `MediaViewer.Thumbnail` triggers and
+registers each thumbnail with One's existing zoom source repository. On iOS 18 and
+later the system zooms to the current item's mounted thumbnail when dismissing.
+Quick Look supplies filenames and the system share and save actions.
 
 ```tsx
 const [previewing, setPreviewing] = useState(false)

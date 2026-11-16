@@ -155,11 +155,7 @@ ${dialogButtons('presenting')}
     layout: 'presentation',
   },
   {
-    // from _QuickLook_SwiftUI, one of the overlay modules. QLPreviewController previews a
-    // local file. release assets already resolve to file urls; dev-server assets are
-    // downloaded to a temporary file by the generated surface before presentation.
     name: 'QuickLook',
-    // importing QuickLook alongside SwiftUI is what loads the _QuickLook_SwiftUI overlay.
     imports: ['QuickLook', 'Foundation'],
     value: {
       type: 'boolean',
@@ -167,70 +163,188 @@ ${dialogButtons('presenting')}
       event: 'onIsPresentedChange',
       initial: false,
     },
-    fields: { url: { type: 'string', default: '' } },
-    constructors: [],
-    methods: [
-      {
-        name: 'quickLookPreview',
-        parameters: [{ label: '_', type: 'SwiftUICore.Binding<Foundation.URL?>' }],
-        requirements: [],
+    actions: [{ prop: 'onError', event: 'Error', payload: { message: 'string' } }],
+    fields: {
+      url: { type: 'string', default: '' },
+      items: {
+        type: 'objects',
+        default: '',
+        jsDefault: '[]',
+        payload: {
+          name: 'QuickLookItem',
+          element: { url: 'string', title: 'string', sourceIdentifier: 'string' },
+          optional: ['title', 'sourceIdentifier'],
+        },
       },
-    ],
-    // the SDK binds the previewed item, not a boolean: a nil url is the dismissed state, so
-    // presenting means handing it one and dismissal comes back as nil.
+      initialIndex: { type: 'Double', default: 0 },
+    },
+    constructors: [],
     swift: `QuickLookSurface(model: model)`,
-    extraSwift: `private struct QuickLookSurface: View {
+    extraSwift: `private struct QuickLookSurface: UIViewControllerRepresentable {
   @ObservedObject var model: QuickLookModel
-  @State private var resolvedURL: URL?
-  var body: some View {
-    Color.clear
-      .quickLookPreview(Binding(
-        get: { model.controlled.value ? resolvedURL : nil },
-        set: { value in
-          if value == nil, resolvedURL != nil { model.change(false) }
+  func makeCoordinator() -> Coordinator { Coordinator(model) }
+  func makeUIViewController(context: Context) -> Anchor {
+    let anchor = Anchor()
+    anchor.onAppear = { [weak coordinator = context.coordinator, weak anchor] in
+      if let anchor { coordinator?.update(anchor) }
+    }
+    return anchor
+  }
+  func updateUIViewController(_ anchor: Anchor, context: Context) {
+    context.coordinator.update(anchor)
+  }
+  static func dismantleUIViewController(_ anchor: Anchor, coordinator: Coordinator) {
+    coordinator.stop()
+  }
+
+  final class Anchor: UIViewController {
+    var onAppear: (() -> Void)?
+    override func viewDidAppear(_ animated: Bool) {
+      super.viewDidAppear(animated)
+      onAppear?()
+    }
+  }
+
+  final class Item: NSObject, QLPreviewItem {
+    let previewItemURL: URL?
+    let previewItemTitle: String?
+    let sourceIdentifier: String
+    init(_ url: URL, title: String, sourceIdentifier: String) {
+      previewItemURL = url
+      previewItemTitle = title.isEmpty ? url.lastPathComponent : title
+      self.sourceIdentifier = sourceIdentifier
+    }
+  }
+
+  final class Coordinator: NSObject, QLPreviewControllerDataSource, QLPreviewControllerDelegate {
+    let model: QuickLookModel
+    var preview: QLPreviewController?
+    var loading: Task<Void, Never>?
+    var items: [Item] = []
+    var directory: URL?
+    var dismissing = false
+    var request = UUID()
+    init(_ model: QuickLookModel) { self.model = model }
+
+    func update(_ anchor: Anchor) {
+      guard model.controlled.value else { stop(); return }
+      guard anchor.viewIfLoaded?.window != nil, preview == nil, loading == nil, !dismissing else { return }
+      let sources = model.items.isEmpty
+        ? [(url: model.url, title: "", sourceIdentifier: "")]
+        : model.items.map { (url: $0.url, title: $0.title, sourceIdentifier: $0.sourceIdentifier) }
+      let initialIndex = Int(model.initialIndex)
+      let request = UUID()
+      self.request = request
+      loading = Task { @MainActor [weak self, weak anchor] in
+        guard let self, let anchor else { return }
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent("one-preview-" + UUID().uuidString)
+        do {
+          try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+          var resolved: [Item] = []
+          for (index, source) in sources.enumerated() {
+            try Task.checkCancellation()
+            guard let url = URL(string: source.url) else {
+              throw NSError(domain: "One.QuickLook", code: 3, userInfo: [NSLocalizedDescriptionKey: "Invalid preview URL."])
+            }
+            let local: URL
+            if url.isFileURL {
+              local = url
+            } else {
+              let (temporary, response) = try await URLSession.shared.download(from: url)
+              guard let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) else {
+                throw NSError(domain: "One.QuickLook", code: 1, userInfo: [NSLocalizedDescriptionKey: "The preview could not be downloaded."])
+              }
+              try Task.checkCancellation()
+              let page = folder.appendingPathComponent(String(index))
+              try FileManager.default.createDirectory(at: page, withIntermediateDirectories: true)
+              let name = source.title.isEmpty ? (response.suggestedFilename ?? url.lastPathComponent) : source.title
+              var destination = page.appendingPathComponent(URL(fileURLWithPath: name).lastPathComponent)
+              if destination.pathExtension.isEmpty {
+                let ext = url.pathExtension.isEmpty ? URL(fileURLWithPath: response.suggestedFilename ?? "").pathExtension : url.pathExtension
+                if !ext.isEmpty { destination.appendPathExtension(ext) }
+              }
+              try FileManager.default.moveItem(at: temporary, to: destination)
+              local = destination
+            }
+            guard FileManager.default.isReadableFile(atPath: local.path), QLPreviewController.canPreview(local as NSURL) else {
+              throw NSError(domain: "One.QuickLook", code: 2, userInfo: [NSLocalizedDescriptionKey: "This file cannot be previewed."])
+            }
+            resolved.append(Item(local, title: source.title, sourceIdentifier: source.sourceIdentifier))
+          }
+          try Task.checkCancellation()
+          guard self.request == request, model.active, model.controlled.value, anchor.viewIfLoaded?.window != nil else {
+            try? FileManager.default.removeItem(at: folder)
+            if self.request == request { loading = nil }
+            return
+          }
+          directory = folder
+          items = resolved
+          let controller = QLPreviewController()
+          controller.dataSource = self
+          controller.delegate = self
+          controller.currentPreviewItemIndex = initialIndex
+          controller.modalPresentationStyle = .fullScreen
+          if #available(iOS 18.0, *) {
+            controller.preferredTransition = .zoom { [weak self] _ in
+              guard let self, let preview = self.preview, self.items.indices.contains(preview.currentPreviewItemIndex) else { return nil }
+              let identifier = self.items[preview.currentPreviewItemIndex].sourceIdentifier
+              let view = OneZoomManager.shared.sourceRepository.getSource(identifier: identifier)?.view
+              return view?.window == nil ? nil : view
+            }
+          }
+          preview = controller
+          loading = nil
+          anchor.present(controller, animated: true)
+        } catch {
+          let cancelled = Task.isCancelled
+          try? FileManager.default.removeItem(at: folder)
+          guard self.request == request else { return }
+          loading = nil
+          if !cancelled {
+            model.error(error.localizedDescription)
+            model.change(false)
+          }
         }
-      ))
-      .task(id: model.url) {
-        let previous = resolvedURL
-        resolvedURL = await oneNativeQuickLookURL(model.url)
-        oneNativeRemoveQuickLookURL(previous)
       }
-      .onDisappear {
-        oneNativeRemoveQuickLookURL(resolvedURL)
-        resolvedURL = nil
+    }
+
+    func numberOfPreviewItems(in controller: QLPreviewController) -> Int { items.count }
+    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem { items[index] }
+    func previewControllerDidDismiss(_ controller: QLPreviewController) {
+      guard preview === controller else { return }
+      preview = nil
+      dismissing = false
+      cleanup()
+      model.change(false)
+    }
+    func stop() {
+      request = UUID()
+      loading?.cancel()
+      loading = nil
+      guard !dismissing else { return }
+      guard let controller = preview else { cleanup(); return }
+      dismissing = true
+      controller.dismiss(animated: true) { [self] in
+        preview = nil
+        dismissing = false
+        cleanup()
       }
+    }
+    func cleanup() {
+      items = []
+      if let directory { try? FileManager.default.removeItem(at: directory) }
+      directory = nil
+    }
   }
-}
-
-private let oneNativeQuickLookPrefix = "one-native-quick-look-"
-
-private func oneNativeQuickLookURL(_ source: String) async -> URL? {
-  guard let url = URL(string: source) else { return nil }
-  if url.isFileURL { return url }
-  guard url.scheme == "http" || url.scheme == "https" else { return nil }
-  do {
-    let (temporary, response) = try await URLSession.shared.download(from: url)
-    let suggested = response.suggestedFilename.flatMap { URL(fileURLWithPath: $0).pathExtension }
-    let pathExtension = url.pathExtension.isEmpty ? (suggested ?? "") : url.pathExtension
-    var destination = FileManager.default.temporaryDirectory
-      .appendingPathComponent(oneNativeQuickLookPrefix + UUID().uuidString)
-    if !pathExtension.isEmpty { destination.appendPathExtension(pathExtension) }
-    try FileManager.default.moveItem(at: temporary, to: destination)
-    return destination
-  } catch {
-    return nil
-  }
-}
-
-private func oneNativeRemoveQuickLookURL(_ url: URL?) {
-  guard let url, url.isFileURL, url.lastPathComponent.hasPrefix(oneNativeQuickLookPrefix) else {
-    return
-  }
-  try? FileManager.default.removeItem(at: url)
 }
 `,
-    validate: `  if (typeof url !== 'string' || !url) throw new Error('QuickLook url must be a non-empty string')
-  if (!url.startsWith('file://') && !url.startsWith('http://') && !url.startsWith('https://')) throw new Error('QuickLook url must use file, http, or https')`,
+    validate: `  const sources = items.length ? items : [{ url }]
+  for (const item of sources) {
+    if (typeof item.url !== 'string' || !['file://', 'http://', 'https://'].some(prefix => item.url.startsWith(prefix))) throw new Error('QuickLook items must use file, http, or https URLs')
+    if (item.title !== undefined && typeof item.title !== 'string') throw new Error('QuickLook item title must be a string')
+    if (item.sourceIdentifier !== undefined && typeof item.sourceIdentifier !== 'string') throw new Error('QuickLook sourceIdentifier must be a string')
+  }
+  if (!Number.isInteger(initialIndex) || initialIndex < 0 || initialIndex >= sources.length) throw new Error('QuickLook initialIndex must name an item')`,
     layout: 'presentation',
   },
   {
