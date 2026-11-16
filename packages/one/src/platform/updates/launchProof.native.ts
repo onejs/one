@@ -7,7 +7,10 @@ let proven = false
 export function markLaunchSuccessful() {
   if (proven || !Updates.isEnabled) return
   proven = true
-  native().markLaunchSuccessful()
+  // an update on a binary from before this method, shipped without a new
+  // runtimeVersion, would otherwise throw on every launch after the binary
+  // already counted it as proven
+  native().markLaunchSuccessful?.()
 }
 
 export function launchCanRollBack() {
