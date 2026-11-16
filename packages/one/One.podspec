@@ -69,7 +69,7 @@ Pod::Spec.new do |s|
   # declared for both paths: the app's bridging header imports these C
   # entries without importing the One module, and the sources are present
   # in the pod either way.
-  s.public_header_files = 'ios/SDK/OneSDKBridge.h', 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h'
+  s.public_header_files = 'ios/SDK/OneSDKBridge.h', 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h', 'ios/Keyboard/objc/TextInput+DelegateManager.h'
   if prebuilt['path']
     Pod::UI.puts "[One] Using precompiled iOS libraries (#{File.basename(prebuilt['path'])[0, 12]})"
     s.vendored_frameworks = "#{prebuilt['path']}/Debug/One.xcframework"
