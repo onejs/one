@@ -7,9 +7,9 @@ export class NSPersistentCloudKitContainerOptions extends SDKHandle {
    * var databaseScope: CKDatabase.Scope { get set }
    * @availability iOS 14.0+
    */
-  get databaseScope(): _CloudKit_CKDatabase_Scope { return callSDK<_CloudKit_CKDatabase_Scope>("_CoreData_CloudKit_ccc31cdf66ba3af5", 3462272029444912, this, []); }
-  set databaseScope(value: _CloudKit_CKDatabase_Scope) { callSDK<void>("_CoreData_CloudKit_ccc31cdf66ba3af5", 438126774824372, this, [value]); }
+  get databaseScope(): _CloudKit_CKDatabase_Scope { return callSDK<_CloudKit_CKDatabase_Scope>("_CoreData_CloudKit_aed0a59b0b283436", 3462272029444912, this, []); }
+  set databaseScope(value: _CloudKit_CKDatabase_Scope) { callSDK<void>("_CoreData_CloudKit_aed0a59b0b283436", 438126774824372, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSPersistentCloudKitContainerOptions": true; "c:objc(cs)NSObject": true };
 }
 
-registerSDKClass("NSPersistentCloudKitContainerOptions", NSPersistentCloudKitContainerOptions, { module: "_CoreData_CloudKit_ccc31cdf66ba3af5", properties: {} }, true);
+registerSDKClass("NSPersistentCloudKitContainerOptions", NSPersistentCloudKitContainerOptions, { module: "_CoreData_CloudKit_aed0a59b0b283436", properties: {} }, true);

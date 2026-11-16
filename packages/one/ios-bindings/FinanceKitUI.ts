@@ -12,7 +12,7 @@ export class AddOrderToWalletButton extends SDKHandle {
    * @MainActor @preconcurrency init(signedArchive: Data, onCompletion: @escaping (Result<FinanceStore.SaveOrderResult, any Error>) -> Void)
    * @availability iOS 17.0+
    */
-  static init(signedArchive: ArrayBuffer, onCompletion: ((arg0: SDKHandle) => void)): Promise<AddOrderToWalletButton> { return callSDKAsync<AddOrderToWalletButton>("FinanceKitUI_ccc31cdf66ba3af5", 1570409027884909, undefined, [signedArchive, onCompletion], [null,{"callback":{"out":[]}}]); }
+  static init(signedArchive: ArrayBuffer, onCompletion: ((arg0: SDKHandle) => void)): Promise<AddOrderToWalletButton> { return callSDKAsync<AddOrderToWalletButton>("FinanceKitUI_aed0a59b0b283436", 1570409027884909, undefined, [signedArchive, onCompletion], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:12FinanceKitUI22AddOrderToWalletButtonV": true };
 }
 
@@ -31,12 +31,12 @@ export class AddOrderToWalletButtonStyle extends SDKHandle {
    * static let blackOutline: AddOrderToWalletButtonStyle
    * @availability iOS 17.0+
    */
-  static get blackOutline(): AddOrderToWalletButtonStyle { return callSDK<AddOrderToWalletButtonStyle>("FinanceKitUI_ccc31cdf66ba3af5", 4130101065305827, undefined, []); }
+  static get blackOutline(): AddOrderToWalletButtonStyle { return callSDK<AddOrderToWalletButtonStyle>("FinanceKitUI_aed0a59b0b283436", 4130101065305827, undefined, []); }
   /**
    * static let black: AddOrderToWalletButtonStyle
    * @availability iOS 17.0+
    */
-  static get black(): AddOrderToWalletButtonStyle { return callSDK<AddOrderToWalletButtonStyle>("FinanceKitUI_ccc31cdf66ba3af5", 4487058005418740, undefined, []); }
+  static get black(): AddOrderToWalletButtonStyle { return callSDK<AddOrderToWalletButtonStyle>("FinanceKitUI_aed0a59b0b283436", 4487058005418740, undefined, []); }
   declare readonly $type: { "s:12FinanceKitUI27AddOrderToWalletButtonStyleV": true };
 }
 
@@ -55,18 +55,18 @@ export class FinancialConnectionExtensionAuthorizationRequest extends SDKHandle 
    * var params: FinancialConnectionExtensionAuthorizationParams
    * @availability iOS 17.0+
    */
-  get params(): Record<string, string> { return callSDK<Record<string, string>>("FinanceKitUI_ccc31cdf66ba3af5", 4027490807229254, this, []); }
-  set params(value: Record<string, string>) { callSDK<void>("FinanceKitUI_ccc31cdf66ba3af5", 660880142039445, this, [value]); }
+  get params(): Record<string, string> { return callSDK<Record<string, string>>("FinanceKitUI_aed0a59b0b283436", 4027490807229254, this, []); }
+  set params(value: Record<string, string>) { callSDK<void>("FinanceKitUI_aed0a59b0b283436", 660880142039445, this, [value]); }
   /**
    * func complete(authorizationResult: FinancialConnectionExtensionAuthorizationResult)
    * @availability iOS 17.0+
    */
-  completeAuthorizationResult(authorizationResult: FinancialConnectionExtensionAuthorizationResult): void { return callSDK<void>("FinanceKitUI_ccc31cdf66ba3af5", 3909461057538549, this, [authorizationResult]); }
+  completeAuthorizationResult(authorizationResult: FinancialConnectionExtensionAuthorizationResult): void { return callSDK<void>("FinanceKitUI_aed0a59b0b283436", 3909461057538549, this, [authorizationResult]); }
   /**
    * func complete(error: any Error)
    * @availability iOS 17.0+
    */
-  completeError(error: NativeError): void { return callSDK<void>("FinanceKitUI_ccc31cdf66ba3af5", 1211217175662827, this, [error]); }
+  completeError(error: NativeError): void { return callSDK<void>("FinanceKitUI_aed0a59b0b283436", 1211217175662827, this, [error]); }
   declare readonly $type: { "s:12FinanceKitUI48FinancialConnectionExtensionAuthorizationRequestV": true };
 }
 
@@ -91,12 +91,12 @@ export class FinancialConnectionExtensionAuthorizationResult extends SDKHandle {
    * init(params: FinancialConnectionExtensionAuthorizationParams)
    * @availability iOS 17.0+
    */
-  static init(params: Record<string, string>): FinancialConnectionExtensionAuthorizationResult { return callSDK<FinancialConnectionExtensionAuthorizationResult>("FinanceKitUI_ccc31cdf66ba3af5", 3395630535605445, undefined, [params]); }
+  static init(params: Record<string, string>): FinancialConnectionExtensionAuthorizationResult { return callSDK<FinancialConnectionExtensionAuthorizationResult>("FinanceKitUI_aed0a59b0b283436", 3395630535605445, undefined, [params]); }
   /**
    * let params: FinancialConnectionExtensionAuthorizationParams
    * @availability iOS 17.0+
    */
-  get params(): Record<string, string> { return callSDK<Record<string, string>>("FinanceKitUI_ccc31cdf66ba3af5", 1524980785875299, this, []); }
+  get params(): Record<string, string> { return callSDK<Record<string, string>>("FinanceKitUI_aed0a59b0b283436", 1524980785875299, this, []); }
   declare readonly $type: { "s:12FinanceKitUI47FinancialConnectionExtensionAuthorizationResultV": true };
 }
 
@@ -161,12 +161,12 @@ export class TransactionPicker<Label = unknown> extends SDKHandle {
  */
 export type TransactionPicker_Body<Label = unknown> = SDKHandle;
 
-registerSDKClass("FinanceKitUI.AddOrderToWalletButton", AddOrderToWalletButton, { module: "FinanceKitUI_ccc31cdf66ba3af5", properties: {} });
-registerSDKClass("FinanceKitUI.AddOrderToWalletButtonStyle", AddOrderToWalletButtonStyle, { module: "FinanceKitUI_ccc31cdf66ba3af5", properties: {} });
-registerSDKClass("FinanceKitUI.FinancialConnectionExtensionAuthorizationRequest", FinancialConnectionExtensionAuthorizationRequest, { module: "FinanceKitUI_ccc31cdf66ba3af5", properties: {}, methods: {"completeAuthorizationResult":{"id":3909461057538549},"completeError":{"id":1211217175662827}} });
-registerSDKClass("FinanceKitUI.FinancialConnectionExtensionAuthorizationResult", FinancialConnectionExtensionAuthorizationResult, { module: "FinanceKitUI_ccc31cdf66ba3af5", properties: {} });
+registerSDKClass("FinanceKitUI.AddOrderToWalletButton", AddOrderToWalletButton, { module: "FinanceKitUI_aed0a59b0b283436", properties: {} });
+registerSDKClass("FinanceKitUI.AddOrderToWalletButtonStyle", AddOrderToWalletButtonStyle, { module: "FinanceKitUI_aed0a59b0b283436", properties: {} });
+registerSDKClass("FinanceKitUI.FinancialConnectionExtensionAuthorizationRequest", FinancialConnectionExtensionAuthorizationRequest, { module: "FinanceKitUI_aed0a59b0b283436", properties: {}, methods: {"completeAuthorizationResult":{"id":3909461057538549},"completeError":{"id":1211217175662827}} });
+registerSDKClass("FinanceKitUI.FinancialConnectionExtensionAuthorizationResult", FinancialConnectionExtensionAuthorizationResult, { module: "FinanceKitUI_aed0a59b0b283436", properties: {} });
 registerSDKProtocol("s:12FinanceKitUI30FinancialConnectionUIExtensionP", {"authorize":"authorize(_:)","init":"init()"});
-registerSDKClass("FinanceKitUI.FinancialConnectionUIExtensionAuthorizationScene", FinancialConnectionUIExtensionAuthorizationScene, { module: "FinanceKitUI_ccc31cdf66ba3af5", properties: {} });
+registerSDKClass("FinanceKitUI.FinancialConnectionUIExtensionAuthorizationScene", FinancialConnectionUIExtensionAuthorizationScene, { module: "FinanceKitUI_aed0a59b0b283436", properties: {} });
 registerSDKProtocol("s:12FinanceKitUI39FinancialConnectionUIExtensionProvidingP", {"authorize":"authorize(_:)"});
 registerSDKProtocol("s:12FinanceKitUI35FinancialConnectionUIExtensionSceneP", {});
-registerSDKClass("FinanceKitUI.TransactionPicker", TransactionPicker, { module: "FinanceKitUI_ccc31cdf66ba3af5", properties: {} });
+registerSDKClass("FinanceKitUI.TransactionPicker", TransactionPicker, { module: "FinanceKitUI_aed0a59b0b283436", properties: {} });

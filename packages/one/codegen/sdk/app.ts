@@ -30,7 +30,7 @@ export function writeSdkNativeSupport(dir: string, sdkRoot = sdkPath()) {
 }
 
 export { appSdkOptions, importedFrameworks } from './selection'
-import { importedFrameworks } from './selection'
+import { appSdkOptions, importedFrameworks } from './selection'
 
 // SDK-specific compiler outputs stay separate. the wire generation identifies
 // the generator/runtime; signature-based symbol ids remain stable across SDKs.
@@ -212,7 +212,9 @@ export async function writeAppSdkPod(root: string, log = console.info, releaseFr
     throw new Error('[one] installed iOS facades do not match the SDK generator; regenerate One SDK bindings before building')
   }
   const debug = await generateAppSdk(frameworks, log)
-  const release = releaseFrameworks === undefined ? debug : await generateAppSdk(releaseFrameworks, log)
+  // release keeps only the entries the app and One reach; debug keeps full tables
+  // so new calls work without another prebuild
+  const release = await generateAppSdk(releaseFrameworks ?? frameworks, log, appSdkOptions(root))
   const sdkRoots = SDKS.map((target) => ({ name: target.sdk, root: sdkPath(target.sdk) }))
   // keep the previous coherent pod if validation or generation fails.
   rmSync(podDir, { recursive: true, force: true })
@@ -242,6 +244,9 @@ export async function writeAppSdkPod(root: string, log = console.info, releaseFr
   # the tables import One with c++ interop, which reaches react's headers, so
   # they need One's module policy
   s.pod_target_xcconfig = {
+    # whole-module release builds type check and optimize every table on one
+    # core; the tables share nothing, so compile them as separate files in parallel
+    'SWIFT_COMPILATION_MODE' => 'singlefile',
     'ONE_IOS_SDK_FRAMEWORKS' => '${(releaseFrameworks ?? frameworks).join(' ')}',
     'SWIFT_ACTIVE_COMPILATION_CONDITIONS[config=Debug]' => '$(inherited) ONE_SDK_DEBUG',
     'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
