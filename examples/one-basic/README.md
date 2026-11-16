@@ -38,3 +38,17 @@ The [native setup guide](https://onestack.dev/docs/native-setup) covers permissi
 and adding One Native controls. The
 [platform support table](https://onestack.dev/native/platform-support) lists
 which services and components each platform supports.
+
+## Coding agents
+
+Install One's official skills from this app root before asking an agent to change
+routing, loaders, or native UI:
+
+```bash
+npx skills add onejs/skills
+```
+
+Select your agent, then start a fresh session and use `building-with-one`.
+[Agent setup](https://onestack.dev/docs/agents) covers installation, updates, and
+the topic skills. The app's `AGENTS.md` carries the same instructions into the
+Basic template created by `npx one`.

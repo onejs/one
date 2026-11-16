@@ -196,3 +196,37 @@ export function splitFacade(
   modules.set('index', barrel)
   return modules
 }
+
+export type SDKEntryGroup = { entries: number[]; dependencies: string[] }
+
+export function facadeEntryGroups(code: string): Record<string, SDKEntryGroup> {
+  const result: Record<string, SDKEntryGroup> = {}
+  for (const [name, source] of splitFacade(code)) {
+    const ast = parse(source, { sourceType: 'module' })
+    const entries = new Set<number>()
+    const dependencies = new Set<string>()
+    const dependency = (value: string) => {
+      const match = /^\.\/([^/]+)\.mjs$/.exec(value)
+      if (match) dependencies.add(match[1])
+    }
+    traverse(ast, {
+      ImportDeclaration({ node }) { dependency(node.source.value) },
+      ExportNamedDeclaration({ node }) { if (node.source) dependency(node.source.value) },
+      CallExpression(path) {
+        const { node } = path
+        if (node.callee.type !== 'Identifier') return
+        if (/^\$?callSDK(?:Async)?\d*$/.test(node.callee.name)) {
+          const id = node.arguments[node.callee.name.startsWith('$') ? 0 : 1]
+          if (id?.type === 'NumericLiteral') entries.add(id.value)
+        } else if (node.callee.name === 'registerSDKClass') {
+          const metadata = path.get('arguments')[2]
+          if (metadata?.isObjectExpression()) metadata.traverse({
+            NumericLiteral({ node }) { entries.add(node.value) },
+          })
+        }
+      },
+    })
+    result[name] = { entries: [...entries].sort((a, b) => a - b), dependencies: [...dependencies].sort() }
+  }
+  return result
+}

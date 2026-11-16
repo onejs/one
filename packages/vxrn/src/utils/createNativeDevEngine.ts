@@ -941,6 +941,34 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
   return code.slice(0, startIdx) + linePreservingRuntime + code.slice(runtimeEnd)
 }
 
+// rolldown's __toCommonJS builds a new object of live getters per call, and react
+// native's lazy `require` getters call it on every read. one copy per module is
+// enough; __reExport adds keys during init, so it drops the cached copy
+function memoizeToCommonJS(code: string): string {
+  const caches = new Set<string>()
+  let reExports = 0
+  const memoized = code
+    .replace(
+      /^([^\S\n]*)var (__toCommonJS[\w$]*) = \(mod\) => (__hasOwnProp[\w$]*)\.call\(mod, "module\.exports"\) \? mod\["module\.exports"\] : (__copyProps[\w$]*)\((__defProp[\w$]*)\(\{\}, "__esModule", \{ value: true \}\), mod\);$/gm,
+      (_, indent, name, has, copy, def) => {
+        caches.add(copy)
+        return `${indent}var ${copy}$cjs = new WeakMap(), ${name} = (mod) => { if (${has}.call(mod, "module.exports")) return mod["module.exports"]; var cjs = ${copy}$cjs.get(mod); if (!cjs) ${copy}$cjs.set(mod, (cjs = ${copy}(${def}({}, "__esModule", { value: true }), mod))); return cjs; };`
+      }
+    )
+    .replace(
+      /^([^\S\n]*)var (__reExport[\w$]*) = \(target, mod, secondTarget\) => \((__copyProps[\w$]*)\(target, mod, "default"\), secondTarget && \3\(secondTarget, mod, "default"\)\);$/gm,
+      (line, indent, name, copy) => {
+        if (!caches.has(copy)) return line
+        reExports++
+        return `${indent}var ${name} = (target, mod, secondTarget) => (${copy}$cjs.delete(target), ${copy}(target, mod, "default"), secondTarget && ${copy}(secondTarget, mod, "default"));`
+      }
+    )
+  // a cached view must drop keys that __reExport adds later, so an unrecognized
+  // __reExport leaves the bundle as rolldown wrote it
+  const declared = code.match(/^[^\S\n]*var __reExport[\w$]* = /gm)?.length ?? 0
+  return caches.size && reExports === declared ? memoized : code
+}
+
 /**
  * Run the native post-processing passes inside the bundle, where rolldown still
  * hands them unminified output.
@@ -956,11 +984,12 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
  * `map: null` records what the passes guarantee: they replace syntax in place
  * without moving a line, so rolldown's own map still describes the result.
  */
-function nativeBundlePostProcessPlugin(): Plugin {
+function nativeBundlePostProcessPlugin(memoizeInterop: boolean): Plugin {
   return {
     name: 'vxrn:native-post-process',
     renderChunk(code) {
-      const processed = postProcessNativeBundle(code)
+      let processed = postProcessNativeBundle(code)
+      if (memoizeInterop) processed = memoizeToCommonJS(processed)
       assertBundleLinesPreserved(code, processed, 'production')
       return { code: processed, map: null }
     },
@@ -1483,7 +1512,7 @@ export async function buildNativeBundle(
         'build'
       ),
       // last, so it sees what every other plugin produced
-      nativeBundlePostProcessPlugin(),
+      nativeBundlePostProcessPlugin(!dev && isBunIosEngine(root, platform)),
       ...(await bundleAnalysisPlugins(root, platform)),
     ],
     output: {
@@ -1719,10 +1748,29 @@ Object.keys(_routes).forEach(function(key) {
   routes['/' + normalizedKey] = _routes[key];
 });`
   const routeHmr = useDynamicRouteRegistry
-    ? `if (import.meta.hot) {
+    ? // a registry patch omits factories for routes unchanged since the full
+      // bundle. initialize those from their original loaders when needed.
+      `var currentRoutes = routes;
+if (import.meta.hot) {
   import.meta.hot.accept(${JSON.stringify(registrySpecifier)}, function(next) {
+    var merged = {};
+    var originals = {};
+    Object.keys(next.routes).forEach(function(key) {
+      var original = currentRoutes[key];
+      var updated = next.routes[key];
+      originals[key] = original || updated;
+      merged[key] = original
+        ? function() {
+            return Promise.resolve().then(updated).catch(function(error) {
+              if (!__rolldown_runtime__.isMissingFactory(error)) throw error;
+              return Promise.resolve().then(original).then(updated);
+            });
+          }
+        : updated;
+    });
+    currentRoutes = originals;
     if (globalThis.__VXRN_UPDATE_NATIVE_ROUTES__) {
-      globalThis.__VXRN_UPDATE_NATIVE_ROUTES__(next.routes);
+      globalThis.__VXRN_UPDATE_NATIVE_ROUTES__(merged);
     }
   });
 }`
@@ -2931,15 +2979,11 @@ export function hermesCompatSWCPlugin(
             const hasBlockScopedBinding = /\b(?:const|let)\s/.test(code)
             if (!hasClass && !hasAsync && !hasBlockScopedBinding) return
             let output: { code: string; map?: any } | undefined
-            // Keep the Oxc limit for other large prebuilt files. Class, lexical binding,
-            // and async lowering below have no size exemption for legacy Hermes.
-            if (code.length <= 500_000 || hasClass) {
+            const lang = /\.[cm]?ts$/.test(id) ? 'ts' : id.endsWith('.tsx') ? 'tsx' : 'jsx'
+            // Keep the Oxc limit for other large prebuilt javascript. TypeScript always
+            // goes through it, since the lowering below parses plain javascript.
+            if (code.length <= 500_000 || hasClass || lang !== 'jsx') {
               if (!oxc) oxc = await import('oxc-transform')
-              const lang = /\.[cm]?ts$/.test(id)
-                ? 'ts'
-                : id.endsWith('.tsx')
-                  ? 'tsx'
-                  : 'jsx'
               const result = oxc.transformSync(id, code, {
                 lang,
                 target: 'es2020',
@@ -3047,6 +3091,10 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
     this._socket = null;
     this.moduleHotContexts = {};
     this.lastSeq = 0;
+  }
+
+  isMissingFactory(error) {
+    return error instanceof MissingFactoryError;
   }
 
   createModuleHotContext(moduleId) {

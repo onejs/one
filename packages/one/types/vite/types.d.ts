@@ -167,6 +167,11 @@ export declare namespace One {
                  */
                 prefixes?: string[];
             };
+            /**
+             * On native, reopen the app on the route the user last had open, with
+             * its params. A route can opt out or redirect by exporting `restore`.
+             */
+            restore?: boolean;
             experimental?: {
                 /**
                  * Auto-generate route type helpers in route files.

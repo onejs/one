@@ -6,6 +6,7 @@ import type { OneRouter } from '../interfaces/router'
 import { Storage } from '../platform/storage'
 import type { One } from '../vite/types'
 import type { OneLinkingOptions } from './getLinkingConfig'
+import { extractParamsFromState, findAllRouteNodesFromState } from './findRouteNode'
 import type { RouteNode } from './Route'
 import { preloadRouteModules } from './useViteRoutes'
 import { createWarmSerializer } from './warmStateSerialize'
@@ -80,6 +81,10 @@ const hydratedSourceKeys = new Set<string>()
 let loadedFromStorage = false
 let hydratedEnvelope: WarmStateEnvelope | null = null
 let warmRouteApplied = false
+// true from a restored launch until the route moves off the restored pathname
+let restoredLaunch = false
+let restoredState: OneRouter.ResultState | undefined
+let restoredPathname: string | undefined
 let warmInitialRouteConsumed = false
 
 let latestNavState: unknown
@@ -385,6 +390,36 @@ function routesMatchLinkingConfig(
   return true
 }
 
+function getStateFromHref(
+  href: string,
+  linking?: OneLinkingOptions
+): WarmNavigationSnapshot | undefined {
+  const parsed = (linking?.getStateFromPath ?? getStateFromPath)(href, linking?.config)
+  if (!parsed?.routes?.length) return undefined
+  return parsed as WarmNavigationSnapshot
+}
+
+// the first `restore` export along the focused chain, layouts first, decides
+function evaluateRouteRestore(
+  state: WarmNavigationSnapshot,
+  routeNode: RouteNode,
+  pathname: string
+): boolean | string {
+  const nodes = findAllRouteNodesFromState(state as any, routeNode)
+  if (nodes[0] !== routeNode) nodes.unshift(routeNode)
+  let params: Record<string, string | string[]> | undefined
+  for (const node of nodes) {
+    const restore = node.loadRoute?.()?.restore
+    if (restore === undefined || restore === true) continue
+    if (restore === false) return false
+    params ??= extractParamsFromState(state as any)
+    const result = restore({ pathname, params })
+    if (result === false || result === null) return false
+    if (typeof result === 'string') return result
+  }
+  return true
+}
+
 /** consume validated initial navigation state for instant first-frame mount. */
 export function consumeWarmInitialNavigationState(
   routeNode: RouteNode | null,
@@ -394,7 +429,12 @@ export function consumeWarmInitialNavigationState(
   if (typeof globalThis !== 'undefined' && (globalThis as any).__oneWarmStartOptions) {
     configureWarmState((globalThis as any).__oneWarmStartOptions)
   }
-  if (warmInitialRouteConsumed || !shouldRestoreWarmRoute()) {
+  // the router can initialize again before the first commit (a root render that
+  // suspends gets a new navigation ref), and must mount the same restored route
+  if (warmInitialRouteConsumed) {
+    return restoredLaunch ? restoredState : undefined
+  }
+  if (!shouldRestoreWarmRoute()) {
     return undefined
   }
   warmInitialRouteConsumed = true
@@ -428,12 +468,9 @@ export function consumeWarmInitialNavigationState(
     }
 
     if (typeof aligned === 'string') {
-      const getParsedState = linking?.getStateFromPath ?? getStateFromPath
-      const parsed = getParsedState(aligned, linking?.config)
-      if (!parsed || !parsed.routes || parsed.routes.length === 0) {
-        return undefined
-      }
-      targetState = parsed as WarmNavigationSnapshot
+      const parsed = getStateFromHref(aligned, linking)
+      if (!parsed) return undefined
+      targetState = parsed
       envelope.pathname = aligned
     } else if (typeof aligned === 'object' && aligned !== null) {
       if (!aligned.routes || !Array.isArray(aligned.routes) || aligned.routes.length === 0) {
@@ -445,6 +482,22 @@ export function consumeWarmInitialNavigationState(
         envelope.pathname = derivedPath
       }
     }
+  }
+
+  let restore: boolean | string
+  try {
+    restore = evaluateRouteRestore(targetState, routeNode, envelope.pathname || '/')
+  } catch (error) {
+    // a lazy route module suspends until it loads, and the retry restores again
+    warmInitialRouteConsumed = false
+    throw error
+  }
+  if (restore === false) return undefined
+  if (typeof restore === 'string') {
+    const parsed = getStateFromHref(restore, linking)
+    if (!parsed) return undefined
+    targetState = parsed
+    envelope.pathname = restore
   }
 
   if (!routesMatchLinkingConfig(targetState.routes, linking?.config?.screens)) {
@@ -469,7 +522,10 @@ export function consumeWarmInitialNavigationState(
   }
 
   warmRouteApplied = true
-  return targetState as unknown as OneRouter.ResultState
+  restoredLaunch = true
+  restoredPathname = (envelope.pathname || '/').split('?')[0].split('#')[0] || '/'
+  restoredState = targetState as unknown as OneRouter.ResultState
+  return restoredState
 }
 
 /** check whether web SPA root is eligible to mount directly into saved warm route. */
@@ -488,6 +544,18 @@ export function isWarmWebRestoreEligible(initialLocation?: URL): boolean {
 
 export function isWarmRouteApplied(): boolean {
   return warmRouteApplied
+}
+
+export function isRestoredLaunch(): boolean {
+  return restoredLaunch
+}
+
+// navigation containers report state changes just from mounting, so only a
+// different pathname ends the restored launch
+export function trackRestoredLaunch(pathname: string | undefined): void {
+  if (!restoredLaunch || pathname === restoredPathname) return
+  restoredLaunch = false
+  restoredState = undefined
 }
 
 export function consumeWarmRouteApplied(): boolean {
@@ -553,6 +621,8 @@ export function clearWarmState(options?: { keepConfig?: boolean }): void {
   hydratedEnvelope = null
   hydratedSourceKeys.clear()
   warmRouteApplied = false
+  restoredLaunch = false
+  restoredState = undefined
   warmInitialRouteConsumed = false
   latestNavState = undefined
   latestPathname = undefined
@@ -620,6 +690,8 @@ export async function reconcileNativeColdDeepLink(options: {
     return null
   }
 
+  // the linked screen is not a restored one
+  trackRestoredLaunch(normalizedTarget)
   options.navigateTo(normalizedTarget)
   options.onComplete?.(normalizedTarget)
   return normalizedTarget

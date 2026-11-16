@@ -1029,7 +1029,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   }
   globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
 
-  const flags: One.Flags = {}
+  const flags: One.Flags = { warmStart: options.router?.restore }
   const routeIndex = createRouteIndex({
     routerRoot: path.resolve(root, routerRoot),
     ignoredRouteFiles: options.router?.ignoredRouteFiles,

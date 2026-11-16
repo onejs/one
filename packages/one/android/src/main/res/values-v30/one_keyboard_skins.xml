@@ -1,0 +1,17 @@
+<resources>
+  <style name="one_keyboard_gboard_dark">
+    <item name="oneKeyboardColor">#292e32</item>
+  </style>
+  <style name="one_keyboard_gboard_light">
+    <item name="oneKeyboardColor">#e8eaed</item>
+  </style>
+  <style name="one_keyboard_gboard_tts_light">
+    <item name="oneKeyboardColor">#f8f9fa</item>
+  </style>
+  <style name="one_keyboard_yandex_dark">
+    <item name="oneKeyboardColor">#121212</item>
+  </style>
+  <style name="one_keyboard_yandex_light">
+    <item name="oneKeyboardColor">#eaeef2</item>
+  </style>
+</resources>

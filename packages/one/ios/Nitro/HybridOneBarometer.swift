@@ -1,3 +1,4 @@
+#if ONE_GROUP_FITNESS
 import CoreMotion
 import NitroModules
 
@@ -97,3 +98,5 @@ final class HybridOneBarometer: HybridOneBarometerSpec {
     }
   }
 }
+
+#endif

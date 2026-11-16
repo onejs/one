@@ -2830,8 +2830,20 @@ extension View {
 
 #if ONE_GROUP_INTENTS
   @ViewBuilder fileprivate func oneNativeSDKAppEntityIdentifier(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if value == "null" { if #available(iOS 18.4, *) { self.appEntityIdentifier(nil as AppIntents.EntityIdentifier?) } else { self } } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
-      if #available(iOS 18.4, *) { self.appEntityIdentifier((AppIntents.EntityIdentifier(activityIdentifier: decoded) ?? { () -> AppIntents.EntityIdentifier in preconditionFailure("invalid appEntityIdentifier") }())) } else { self }
+    if value == "null" { 
+#if ONE_IOS_27_SDK
+if #available(iOS 18.4, *) { self.appEntityIdentifier(nil as AppIntents.EntityIdentifier?) } else { self }
+#else
+self
+#endif
+ } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+      
+#if ONE_IOS_27_SDK
+if #available(iOS 18.4, *) { self.appEntityIdentifier((AppIntents.EntityIdentifier(activityIdentifier: decoded) ?? { () -> AppIntents.EntityIdentifier in preconditionFailure("invalid appEntityIdentifier") }())) } else { self }
+#else
+self
+#endif
+
     } else { preconditionFailure("invalid appEntityIdentifier: \(value)") } }
   }
 #endif
@@ -4093,7 +4105,13 @@ self
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentAccessibilityPrefersCrossFadeTransitions(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid environmentAccessibilityPrefersCrossFadeTransitions: \(value)")
-      if #available(iOS 26.4, *) { self.environment(\.accessibilityPrefersCrossFadeTransitions, value == "true") } else { self }
+
+#if ONE_IOS_27_SDK
+if #available(iOS 26.4, *) { self.environment(\.accessibilityPrefersCrossFadeTransitions, value == "true") } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentAllowedDynamicRange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -10770,7 +10788,13 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
 
   @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentAccessibilityPrefersCrossFadeTransitions(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid transformEnvironmentAccessibilityPrefersCrossFadeTransitions: \(value)")
-      if #available(iOS 26.4, *) { self.transformEnvironment(\.accessibilityPrefersCrossFadeTransitions, transform: { environmentValue in if value == "true" { environmentValue.toggle() } }) } else { self }
+
+#if ONE_IOS_27_SDK
+if #available(iOS 26.4, *) { self.transformEnvironment(\.accessibilityPrefersCrossFadeTransitions, transform: { environmentValue in if value == "true" { environmentValue.toggle() } }) } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentAllowsTightening(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

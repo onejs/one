@@ -225,6 +225,9 @@ export interface NativeAppManifest {
     // instead of hermes; debug builds stay on hermes. pod install downloads
     // the engine from an onejs/bun-engine release.
     engine?: 'hermes' | 'bun'
+    // turns on react native's view culling: views outside a scroll view's
+    // visible area stay unmounted instead of being mounted and clipped.
+    viewCulling?: boolean
     usesNonExemptEncryption?: boolean
     appTransportSecurity?: Record<string, PlistValue>
     // the tint the system gives the app's controls, tab selection and text
@@ -731,6 +734,9 @@ export function validateNativeApp(
   ) {
     fail(`ios.engine must be 'hermes' or 'bun'`)
   }
+  if (manifest.ios?.viewCulling !== undefined && typeof manifest.ios.viewCulling !== 'boolean') {
+    fail('ios.viewCulling must be a boolean')
+  }
   if (manifest.updates !== undefined) {
     if (
       typeof manifest.updates.runtimeVersion !== 'string' ||
@@ -829,8 +835,9 @@ export function validateNativeApp(
     }
     for (const key of ['targetSdk', 'compileSdk'] as const) {
       const value = manifest.android[key]
-      if (value !== undefined && (!Number.isInteger(value) || value < 21)) {
-        fail(`android.${key} "${value}" must be an api level integer`)
+      const floor = key === 'compileSdk' ? 36 : 21
+      if (value !== undefined && (!Number.isInteger(value) || value < floor)) {
+        fail(`android.${key} "${value}" must be an api level integer of at least ${floor}`)
       }
     }
     if (manifest.android.shrinkResources && !manifest.android.minify) {
@@ -937,7 +944,11 @@ export function androidAppPermissions(app: NativeAppManifest): Map<string, numbe
   if (app.location !== undefined) {
     add('ACCESS_COARSE_LOCATION')
     add('ACCESS_FINE_LOCATION')
-    if (app.location.background) add('ACCESS_BACKGROUND_LOCATION')
+    if (app.location.background) {
+      add('ACCESS_BACKGROUND_LOCATION')
+      add('FOREGROUND_SERVICE')
+      add('FOREGROUND_SERVICE_LOCATION')
+    }
   }
   if (app.pedometer !== undefined) add('ACTIVITY_RECOGNITION')
   if (app.brightness === true) add('WRITE_SETTINGS')

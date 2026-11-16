@@ -26,6 +26,12 @@ import dev.onejs.onenative.OneNativeSafeAreaProviderManager
 import dev.onejs.onenative.OneNativeSyncModule
 import dev.onejs.onenative.OneNativeUiMapManager
 import dev.onejs.one.source.OneNativeSourceEvents
+import dev.onejs.keyboard.ClippingScrollViewDecoratorViewManager
+import dev.onejs.keyboard.KeyboardBackgroundViewManager
+import dev.onejs.keyboard.KeyboardControllerViewManager
+import dev.onejs.keyboard.KeyboardGestureAreaViewManager
+import dev.onejs.keyboard.KeyboardToolbarGroupViewManager
+import dev.onejs.keyboard.OverKeyboardViewManager
 
 class OnePackage : BaseReactPackage() {
     override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
@@ -104,6 +110,12 @@ class OnePackage : BaseReactPackage() {
             OneNativeUiMapManager(),
             OneNativePictureInPictureManager(),
             OneKotlinHostManager(),
+            KeyboardControllerViewManager(),
+            KeyboardGestureAreaViewManager(),
+            OverKeyboardViewManager(),
+            KeyboardBackgroundViewManager(),
+            ClippingScrollViewDecoratorViewManager(),
+            KeyboardToolbarGroupViewManager(),
         )
 
     companion object {

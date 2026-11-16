@@ -8,11 +8,16 @@
 static atomic_bool preventAutoHide = false;
 // the launch view still over the root; main thread only.
 static UIView *heldLaunchView;
+// work that waits for the held launch view to go; main thread only.
+static NSMutableArray<dispatch_block_t> *afterRelease;
 
 static void releaseLaunchView(BOOL fade) {
   UIView *launchView = heldLaunchView;
   heldLaunchView = nil;
   if (launchView == nil) return;
+  NSArray<dispatch_block_t> *pending = afterRelease;
+  afterRelease = nil;
+  for (dispatch_block_t block in pending) block();
   if (!fade) {
     [launchView removeFromSuperview];
     return;
@@ -60,5 +65,16 @@ void OneLaunchScreenPreventAutoHide(void) {
 void OneLaunchScreenHide(BOOL fade) {
   dispatch_async(dispatch_get_main_queue(), ^{
     releaseLaunchView(fade);
+  });
+}
+
+void OneLaunchScreenAfterRelease(dispatch_block_t block) {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    if (heldLaunchView == nil) {
+      block();
+      return;
+    }
+    if (afterRelease == nil) afterRelease = [NSMutableArray new];
+    [afterRelease addObject:block];
   });
 }

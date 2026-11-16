@@ -1,0 +1,418 @@
+// shared identity and installer for the public ios native artifacts. runs in node
+// during pod install, without loading the framework's javascript build outputs.
+import assert from 'node:assert/strict'
+import { execFileSync } from 'node:child_process'
+import { createHash } from 'node:crypto'
+import { createReadStream, createWriteStream } from 'node:fs'
+import {
+  constants,
+  cpSync,
+  existsSync,
+  lstatSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  realpathSync,
+  renameSync,
+  rmSync,
+  symlinkSync,
+  writeFileSync,
+} from 'node:fs'
+import { homedir } from 'node:os'
+import { createRequire } from 'node:module'
+import { dirname, join, resolve } from 'node:path'
+import { Readable } from 'node:stream'
+import { pipeline } from 'node:stream/promises'
+import { fileURLToPath } from 'node:url'
+
+const one = dirname(dirname(fileURLToPath(import.meta.url)))
+const repository = 'https://github.com/onejs/one/releases/download'
+const configurations = ['Debug', 'Release']
+
+function digestTree(root, paths) {
+  const hash = createHash('sha256')
+  const walk = (name) => {
+    if (!existsSync(join(root, name))) return
+    const stat = lstatSync(join(root, name))
+    if (stat.isDirectory()) {
+      for (const child of readdirSync(join(root, name)).sort()) {
+        if (
+          ['Prebuilt', 'build', '.build', 'Tests', '__tests__', '.DS_Store'].includes(
+            child
+          )
+        )
+          continue
+        walk(join(name, child))
+      }
+    } else if (stat.isFile()) {
+      hash
+        .update(name)
+        .update('\0')
+        .update(readFileSync(join(root, name)))
+        .update('\0')
+    }
+  }
+  paths.sort().forEach(walk)
+  return hash.digest('hex')
+}
+
+export function identity(ios) {
+  const require = createRequire(join(resolve(ios, '..'), 'package.json'))
+  const dependencies = {}
+  for (const [name, paths] of [
+    [
+      'react-native',
+      [
+        'React',
+        'ReactCommon',
+        'Libraries',
+        'src',
+        'scripts',
+        'React-Core-prebuilt.podspec',
+      ],
+    ],
+    [
+      'react-native-nitro-modules',
+      ['ios', 'cpp', 'NitroModules.podspec', 'nitro_pod_utils.rb'],
+    ],
+    [
+      'react-native-worklets',
+      [
+        'apple',
+        'Common',
+        'RNWorklets.podspec',
+        'scripts',
+        'src/featureFlags/staticFlags.json',
+      ],
+    ],
+  ]) {
+    const manifest = require.resolve(`${name}/package.json`)
+    dependencies[name] = digestTree(dirname(manifest), ['package.json', ...paths])
+  }
+  const catalog = Object.keys(
+    JSON.parse(readFileSync(join(one, 'ios-link-set.json'), 'utf8')).groups
+  ).sort()
+  const app = JSON.parse(readFileSync(join(ios, '../package.json'), 'utf8'))
+  const workletsFlags = Object.entries(app.worklets?.staticFeatureFlags ?? {})
+    .map(([name, value]) => {
+      assert(
+        ['boolean', 'string', 'number'].includes(typeof value),
+        `invalid Worklets flag: ${name}`
+      )
+      return [name, String(value)]
+    })
+    .sort(([a], [b]) => a.localeCompare(b))
+  // the app's own release selection, defaulting to the full catalog exactly
+  // like the podspec: a subset app matches only a binary built for its
+  // selection, otherwise it keeps its smaller set through a source build.
+  const linkSetFile = join(ios, 'one-link-set.json')
+  const releaseGroups = existsSync(linkSetFile)
+    ? JSON.parse(readFileSync(linkSetFile, 'utf8')).groups.sort()
+    : catalog
+  const unknown = releaseGroups.filter((group) => !catalog.includes(group))
+  assert(
+    unknown.length === 0,
+    `one-link-set.json names unknown groups: ${unknown.join(', ')}`
+  )
+  // the podspec excludes cpp/zero and defines ONE_ZERO_SQLITE=0 for these.
+  const opSqlite = app['op-sqlite'] ?? {}
+  const sqlite =
+    opSqlite['libsql'] === true || opSqlite['turso'] === true ? 'external' : 'zero'
+  return {
+    format: 3,
+    source: digestTree(one, [
+      'ios',
+      'cpp',
+      'nitrogen/generated',
+      'schema.json',
+      'ios-link-set.json',
+      'One.podspec',
+    ]),
+    dependencies,
+    xcode: execFileSync('xcodebuild', ['-version'], { encoding: 'utf8' }).trim(),
+    swift: execFileSync('xcrun', ['swiftc', '--version'], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    })
+      .trim()
+      .split('\n')[0],
+    workletsFlags,
+    releaseGroups,
+    sqlite,
+  }
+}
+
+export function artifactKey(value) {
+  return createHash('sha256').update(JSON.stringify(value)).digest('hex')
+}
+
+export async function sha256(file) {
+  const hash = createHash('sha256')
+  for await (const chunk of createReadStream(file)) hash.update(chunk)
+  return hash.digest('hex')
+}
+
+export function readManifest(value, expected) {
+  assert(
+    value &&
+      typeof value === 'object' &&
+      'identity' in value &&
+      'key' in value &&
+      'archives' in value,
+    'invalid One iOS binary manifest'
+  )
+  assert.deepEqual(value.identity, expected, 'One iOS binary compatibility mismatch')
+  assert.equal(value.key, artifactKey(expected), 'One iOS binary identity mismatch')
+  const archives = value.archives
+  assert(archives && typeof archives === 'object', 'missing One iOS binary archives')
+  const readArchive = (name) => {
+    assert(name in archives, `missing ${name} One iOS binary`)
+    const entry = Reflect.get(archives, name)
+    assert(
+      entry && typeof entry === 'object' && 'file' in entry && 'sha256' in entry,
+      'invalid One iOS binary archive'
+    )
+    assert.equal(entry.file, `one-ios-${value.key}-${name}.tar.gz`)
+    assert(
+      typeof entry.file === 'string' &&
+        typeof entry.sha256 === 'string' &&
+        /^[a-f0-9]{64}$/.test(entry.sha256),
+      'invalid One iOS archive digest'
+    )
+    return { file: entry.file, sha256: entry.sha256 }
+  }
+  return {
+    identity: expected,
+    key: artifactKey(expected),
+    archives: { Debug: readArchive('Debug'), Release: readArchive('Release') },
+  }
+}
+
+export async function publishedManifest(expected) {
+  const result = await fetch(
+    `${repository}/one-ios-${artifactKey(expected)}/manifest.json`,
+    { signal: AbortSignal.timeout(120_000) }
+  )
+  if (result.status === 404) return undefined
+  assert(result.ok, `One iOS binary manifest download failed: HTTP ${result.status}`)
+  return readManifest(await result.json(), expected)
+}
+
+export async function downloadArchive(key, entry, destination) {
+  // no total deadline: archives are hundreds of megabytes, and undici's idle
+  // timeouts still end a stalled transfer.
+  const download = await fetch(`${repository}/one-ios-${key}/${entry.file}`)
+  assert(
+    download.ok && download.body,
+    `One iOS archive download failed: HTTP ${download.status}`
+  )
+  await pipeline(Readable.from(download.body), createWriteStream(destination))
+  assert.equal(
+    await sha256(destination),
+    entry.sha256,
+    'One iOS archive checksum mismatch'
+  )
+}
+
+export async function install(ios, local) {
+  const mode = process.env.ONE_PREBUILT_IOS ?? 'auto'
+  assert(
+    ['auto', '0', '1'].includes(mode),
+    'ONE_PREBUILT_IOS must be auto, 0 (source), or 1 (require binaries)'
+  )
+  if (mode === '0') return { reason: 'source build requested' }
+  if (
+    process.env.RCT_TESTONLY_RNCORE_TARBALL_PATH ||
+    process.env.RCT_TESTONLY_RNCORE_VERSION ||
+    process.env.RCT_USE_LOCAL_RN_DEP ||
+    process.env.RCT_DEPS_VERSION
+  ) {
+    assert(mode !== '1', 'One binaries require the standard React Native artifacts')
+    return { reason: 'custom React Native artifacts require a source build' }
+  }
+  if (process.arch !== 'arm64') {
+    assert(mode !== '1', 'One iOS binaries currently require an arm64 Mac')
+    return { reason: 'source build on an Intel Mac' }
+  }
+  const expected = identity(ios)
+  const key = artifactKey(expected)
+  const cache = join(homedir(), 'Library/Caches/One/ios', key)
+  const cachedManifest = join(cache, 'manifest.json')
+  if (existsSync(cachedManifest)) {
+    readManifest(JSON.parse(readFileSync(cachedManifest, 'utf8')), expected)
+  } else {
+    const manifest = local
+      ? readManifest(
+          JSON.parse(readFileSync(join(local, 'manifest.json'), 'utf8')),
+          expected
+        )
+      : await publishedManifest(expected)
+    if (!manifest) {
+      assert(mode !== '1', `no published One iOS binary for ${key}`)
+      return { reason: `no published binary for ${key.slice(0, 12)}` }
+    }
+    mkdirSync(dirname(cache), { recursive: true })
+    const temporary = mkdtempSync(join(dirname(cache), '.download-'))
+    try {
+      for (const configuration of configurations) {
+        const entry = manifest.archives[configuration]
+        const archive = join(temporary, entry.file)
+        if (local) {
+          await pipeline(
+            createReadStream(join(local, entry.file)),
+            createWriteStream(archive)
+          )
+          assert.equal(
+            await sha256(archive),
+            entry.sha256,
+            'One iOS archive checksum mismatch'
+          )
+        } else {
+          await downloadArchive(key, entry, archive)
+        }
+        // accept only a framework tree, never absolute paths, traversal or links.
+        const entries = execFileSync('tar', ['-tzf', archive], { encoding: 'utf8' })
+          .trim()
+          .split('\n')
+        assert(
+          entries.every(
+            (name) =>
+              name.startsWith('One.xcframework/') && !name.split('/').includes('..')
+          ),
+          'invalid One iOS archive paths'
+        )
+        const types = execFileSync('tar', ['-tvzf', archive], { encoding: 'utf8' })
+          .trim()
+          .split('\n')
+        assert(
+          types.every((line) => /^[-d]/.test(line)),
+          'One iOS archives cannot contain links or special files'
+        )
+        const destination = join(temporary, configuration)
+        mkdirSync(destination)
+        execFileSync('tar', ['-xzf', archive, '-C', destination])
+        rmSync(archive)
+        for (const slice of ['ios-arm64', 'ios-arm64-simulator']) {
+          assert(
+            existsSync(join(destination, 'One.xcframework', slice, 'One.framework/One')),
+            `missing One iOS ${slice} binary`
+          )
+        }
+      }
+      writeFileSync(
+        join(temporary, 'manifest.json'),
+        `${JSON.stringify(manifest, null, 2)}\n`
+      )
+      try {
+        renameSync(temporary, cache)
+      } catch (error) {
+        if (
+          !(
+            error instanceof Error &&
+            'code' in error &&
+            (error.code === 'EEXIST' || error.code === 'ENOTEMPTY')
+          )
+        )
+          throw error
+      }
+    } finally {
+      rmSync(temporary, { recursive: true, force: true })
+    }
+  }
+  for (const configuration of configurations) {
+    for (const slice of ['ios-arm64', 'ios-arm64-simulator']) {
+      assert(
+        existsSync(
+          join(cache, configuration, 'One.xcframework', slice, 'One.framework/One')
+        ),
+        `incomplete One binary cache: ${configuration}/${slice}`
+      )
+    }
+  }
+  // link each entry, not the whole cache: CocoaPods enumerates pod files
+  // with a `**` glob that never descends into a symlinked directory, so a
+  // single top-level link leaves vendored_frameworks empty and dependents
+  // cannot resolve the One module. final-component links enumerate normally.
+  const relative = join('ios/Prebuilt', key)
+  const link = join(one, relative)
+  mkdirSync(dirname(link), { recursive: true })
+  if (lstatSync(link, { throwIfNoEntry: false })?.isSymbolicLink()) rmSync(link)
+  mkdirSync(link, { recursive: true })
+  for (const configuration of configurations) {
+    const entry = join(link, configuration, 'One.xcframework')
+    mkdirSync(dirname(entry), { recursive: true })
+    try {
+      symlinkSync(join(cache, configuration, 'One.xcframework'), entry)
+    } catch (error) {
+      if (!(error instanceof Error && 'code' in error && error.code === 'EEXIST'))
+        throw error
+    }
+    assert(
+      realpathSync(entry) === join(cache, configuration, 'One.xcframework'),
+      `${entry} must link to its matching One binary cache`
+    )
+  }
+  writeFileSync(join(link, 'manifest.json'), readFileSync(join(cache, 'manifest.json')))
+  return { path: relative }
+}
+
+// CocoaPods first copies its declared Debug xcframework. this phase then picks
+// the matching configuration before dependents compile or link against One.
+export function select(root, destination) {
+  const configuration = process.env.CONFIGURATION === 'Debug' ? 'Debug' : 'Release'
+  const platform = process.env.PLATFORM_NAME
+  assert(
+    platform === 'iphoneos' || platform === 'iphonesimulator',
+    `unsupported One binary platform: ${platform}`
+  )
+  assert(
+    process.env.ARCHS?.trim() === 'arm64',
+    'One iOS binaries require ARCHS=arm64; run ONE_PREBUILT_IOS=0 pod install for other architectures'
+  )
+  const slice = platform === 'iphoneos' ? 'ios-arm64' : 'ios-arm64-simulator'
+  const source = join(root, configuration, 'One.xcframework', slice, 'One.framework')
+  mkdirSync(destination, { recursive: true })
+  rmSync(join(destination, 'One.framework'), { recursive: true, force: true })
+  cpSync(source, join(destination, 'One.framework'), {
+    recursive: true,
+    mode: constants.COPYFILE_FICLONE,
+  })
+}
+
+if (process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const [command, argument] = process.argv.slice(2)
+  assert(argument, 'expected an iOS project or binary destination')
+  if (command === 'resolve') {
+    assert(
+      process.argv[4] === 'prebuilt' || process.argv[4] === 'source',
+      'expected the resolved React Native build mode from CocoaPods'
+    )
+    if (process.argv[4] === 'source') {
+      assert(
+        process.env.ONE_PREBUILT_IOS !== '1',
+        'One binaries require precompiled React Native core and dependencies'
+      )
+      console.log(JSON.stringify({ reason: 'React Native is building from source' }))
+    } else {
+      // auto mode never fails pod install over the binary: offline machines,
+      // blocked hosts or a failed download keep the source build.
+      const result = await install(resolve(argument)).catch((error) => {
+        if (process.env.ONE_PREBUILT_IOS === '1') throw error
+        const message = error instanceof Error ? error.message : String(error)
+        return { reason: `binary unavailable (${message.split('\n')[0]})` }
+      })
+      console.log(JSON.stringify(result))
+    }
+  } else if (command === 'import') {
+    assert(process.argv[4], 'expected an artifact directory')
+    console.log(
+      JSON.stringify(await install(resolve(argument), resolve(process.argv[4])))
+    )
+  } else if (command === 'identity')
+    console.log(JSON.stringify(identity(resolve(argument)), null, 2))
+  else if (command === 'select') {
+    assert(process.argv[4], 'expected a One binary destination')
+    select(resolve(argument), resolve(process.argv[4]))
+  } else throw new Error(`unknown One iOS binary command: ${command}`)
+}

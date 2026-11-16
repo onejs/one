@@ -2,6 +2,20 @@ require 'json'
 
 package = JSON.parse(File.read(File.join(__dir__, 'package.json')))
 schema = JSON.parse(File.read(File.join(__dir__, 'schema.json')))
+if ENV['ONE_PREBUILT_IOS'] == '0'
+  prebuilt = { 'reason' => 'source build requested' }
+else
+  # autolinking reads the podspec before use_react_native! initializes these.
+  # use upstream's resolved mode, including an unavailable binary's source build.
+  rn_manifest = Pod::Executable.execute_command('node', ['-p', 'require.resolve("react-native/package.json", {paths: [process.argv[1]]})', Pod::Config.instance.installation_root.to_s]).strip
+  rn_package = JSON.parse(File.read(rn_manifest))
+  ENV['RCT_USE_PREBUILT_RNCORE'] = ENV['RCT_USE_PREBUILT_RNCORE'] == '0' ? '0' : '1'
+  ENV['RCT_USE_RN_DEP'] = ENV['RCT_USE_RN_DEP'] == '0' ? '0' : '1'
+  ReactNativeCoreUtils.setup_rncore(File.dirname(rn_manifest), rn_package['version'])
+  ReactNativeDependenciesUtils.setup_react_native_dependencies(File.dirname(rn_manifest), rn_package['version'])
+  rn_mode = !ReactNativeCoreUtils.build_rncore_from_source() && !ReactNativeDependenciesUtils.build_react_native_deps_from_source() ? 'prebuilt' : 'source'
+  prebuilt = JSON.parse(Pod::Executable.execute_command('node', [File.join(__dir__, 'ios/prebuilt.mjs'), 'resolve', Pod::Config.instance.installation_root.to_s, rn_mode]))
+end
 
 Pod::Spec.new do |s|
   s.name           = 'One'
@@ -45,8 +59,40 @@ Pod::Spec.new do |s|
     'HEADER_SEARCH_PATHS' => '"$(PODS_TARGET_SRCROOT)/cpp" "$(OBJECT_FILE_DIR_normal)/$(CURRENT_ARCH)"',
   }
 
-  s.exclude_files = ['ios/Tests/**/*', 'ios/Generated/*ComponentView.mm']
-  s.source_files = 'ios/**/*.{h,m,swift,mm,cpp}', 'cpp/**/*.{h,cpp}'
+  # required-reason api declarations (user defaults, boot time, file
+  # timestamps, disk space); xcode aggregates these into the app manifest.
+  s.resource_bundles = { 'One' => ['ios/PrivacyInfo.xcprivacy'] }
+  # c entries the app's bridging header imports without importing the one module.
+  # nitrogen appends its own public headers after these.
+  # nitro hybrid objects: nitrogen generates the specs and bridges from
+  # src/specs/*.nitro.ts into nitrogen/generated (see README).
+  # declared for both paths: the app's bridging header imports these C
+  # entries without importing the One module, and the sources are present
+  # in the pod either way.
+  s.public_header_files = 'ios/SDK/OneSDKBridge.h', 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneViewCulling.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h', 'ios/Keyboard/objc/TextInput+DelegateManager.h', 'ios/Keyboard/objc/NSObject+SafeKVC.h'
+  if prebuilt['path']
+    Pod::UI.puts "[One] Using precompiled iOS libraries (#{File.basename(prebuilt['path'])[0, 12]})"
+    s.vendored_frameworks = "#{prebuilt['path']}/Debug/One.xcframework"
+    s.preserve_paths = ['ios/prebuilt.mjs', "#{prebuilt['path']}/**/*"]
+    s.module_map = false
+    s.dependency 'NitroModules'
+    s.script_phase = {
+      :name => '[One] Select precompiled iOS configuration',
+      :execution_position => :before_compile,
+      :always_out_of_date => '1',
+      :script => <<~SCRIPT
+        set -e
+        . "$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh"
+        "$NODE_BINARY" "$PODS_TARGET_SRCROOT/ios/prebuilt.mjs" select "$PODS_TARGET_SRCROOT/#{prebuilt['path']}" "$PODS_XCFRAMEWORKS_BUILD_DIR/One"
+      SCRIPT
+    }
+  else
+    Pod::UI.puts "[One] Compiling native sources: #{prebuilt['reason']}"
+    s.exclude_files = ['ios/Tests/**/*', 'ios/Generated/*ComponentView.mm', 'ios/Prebuilt/**/*']
+    s.source_files = 'ios/**/*.{h,m,swift,mm,cpp}', 'cpp/**/*.{h,cpp}'
+    load 'nitrogen/generated/ios/One+autolinking.rb'
+    add_nitrogen_files(s)
+  end
   op_manifest = IO.popen(['node', '--print', "require.resolve('@op-engineering/op-sqlite/package.json', {paths: [process.argv[1]]})", Pod::Config.instance.installation_root.to_s], &:read).strip
   raise 'One requires the installed @op-engineering/op-sqlite package' if op_manifest.empty?
   app_directory = File.dirname(File.dirname(op_manifest))
@@ -65,17 +111,6 @@ Pod::Spec.new do |s|
     end
     s.pod_target_xcconfig = zero_config
   end
-  # required-reason api declarations (user defaults, boot time, file
-  # timestamps, disk space); xcode aggregates these into the app manifest.
-  s.resource_bundles = { 'One' => ['ios/PrivacyInfo.xcprivacy'] }
-  # c entries the app's bridging header imports without importing the one module.
-  # nitrogen appends its own public headers after these.
-  s.public_header_files = 'ios/SDK/OneSDKBridge.h', 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h'
-
-  # nitro hybrid objects: nitrogen generates the specs and bridges from
-  # src/specs/*.nitro.ts into nitrogen/generated (see README).
-  load 'nitrogen/generated/ios/One+autolinking.rb'
-  add_nitrogen_files(s)
   # objc++ units build without clang modules, so One-Swift.h skips its
   # own @import lines (React, UserNotifications, Social) and never sees the
   # nitro bridge types its c++ section names; every unit gets them first.
@@ -84,7 +119,7 @@ Pod::Spec.new do |s|
   s.dependency 'op-sqlite'
   s.dependency 'RNWorklets'
   # webp encoding has no system encoder on ios; expo-image-manipulator uses the same coder.
-  s.dependency 'SDWebImageWebPCoder'
+  s.dependency 'SDWebImageWebPCoder', '>= 0.14.6', '< 0.16'
 
   install_modules_dependencies(s)
 end

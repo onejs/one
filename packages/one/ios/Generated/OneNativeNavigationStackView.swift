@@ -49,9 +49,7 @@ private struct OneNativeNavigationStackRoot: View {
     }
     .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
     .toolbar {
-      ForEach(model.toolbarEntries) { entry in
-        OneNativeToolbarEntryContent(entry: entry)
-      }
+      OneNativeToolbarEntries(entries: model.toolbarEntries)
     }
   }
 }

@@ -37,6 +37,13 @@ export type SlotConfig = {
   interceptRoutes: RouteNode[]
 }
 
+export type RouteRestore =
+  | boolean
+  | ((saved: {
+      pathname: string
+      params: Record<string, string | string[]>
+    }) => boolean | string | null | undefined)
+
 export type LoadedRoute = {
   ErrorBoundary?: React.ComponentType<ErrorBoundaryProps>
   SuspenseFallback?: React.ComponentType<SuspenseFallbackProps>
@@ -60,6 +67,12 @@ export type LoadedRoute = {
    * ```
    */
   validateParams?: ParamValidator
+  /**
+   * With `router.restore`, controls reopening this route on launch. `false`
+   * skips it; a function receives the saved pathname and params and returns
+   * `false` to skip or an href to open instead.
+   */
+  restore?: RouteRestore
   /**
    * Async route validation function.
    * Runs before navigation to validate the route is accessible.

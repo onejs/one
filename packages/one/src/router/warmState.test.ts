@@ -8,6 +8,7 @@ import {
   configureWarmState,
   consumeWarmInitialNavigationState,
   consumeWarmRouteApplied,
+  isRestoredLaunch,
   flushWarmState,
   getHydratedWarmState,
   hydrateWarmInitialLoad,
@@ -19,6 +20,7 @@ import {
   reconcileNativeColdDeepLink,
   registerWarmStateSource,
   scheduleWarmStatePersist,
+  trackRestoredLaunch,
   waitForWarmRoutePreload,
   type WarmNavigationSnapshot,
   type WarmStateStorage,
@@ -620,6 +622,84 @@ describe('warmState', () => {
     const customAligned = consumeWarmInitialNavigationState(routeNode, linking as any)
     expect(customAligned).toEqual({ index: 0, routes: [{ name: 'settings', path: '/settings' }] })
     expect(consumeWarmRouteApplied()).toBe(true)
+  })
+
+  it('lets a route restore export skip or redirect using the saved params', async () => {
+    const seen: unknown[] = []
+    const files: Record<string, any> = {
+      './inbox.tsx': { default: () => null, restore: false },
+      './post/[id].tsx': {
+        default: () => null,
+        restore: (saved: { pathname: string; params: Record<string, unknown> }) => {
+          seen.push(saved)
+          return saved.params.id === 'gone' ? '/inbox' : true
+        },
+      },
+    }
+    const ctx = ((id: string) => files[id]) as any
+    ctx.keys = () => Object.keys(files)
+    ctx.resolve = (id: string) => id
+    ctx.id = 'test'
+    const routeNode = getRoutes(ctx)
+    const linking = { prefixes: [], config: { screens: { inbox: 'inbox', 'post/[id]': 'post/:id' } } }
+    const save = (pathname: string, state: WarmNavigationSnapshot) => {
+      clearWarmState({ keepConfig: true })
+      storage.raw.set(
+        WARM_STATE_STORAGE_KEY,
+        JSON.stringify({ v: 1, schemaVersion: 2, updatedAt: nowMs, pathname, state, sources: {} })
+      )
+    }
+
+    save('/post/1', { index: 0, routes: [{ name: 'post/[id]', params: { id: '1' } }] })
+    expect(consumeWarmInitialNavigationState(routeNode, linking as any)).toEqual({
+      index: 0,
+      routes: [{ name: 'post/[id]', params: { id: '1' } }],
+    })
+    expect(seen).toEqual([{ pathname: '/post/1', params: { id: '1' } }])
+    expect(isRestoredLaunch()).toBe(true)
+    // a second router initialize in the same launch gets the same route
+    expect(consumeWarmInitialNavigationState(routeNode, linking as any)).toMatchObject({
+      routes: [{ name: 'post/[id]', params: { id: '1' } }],
+    })
+    trackRestoredLaunch('/post/1')
+    expect(isRestoredLaunch()).toBe(true)
+    // a cold deep link replaces the restored route, and its screen is not restored
+    const navigated: string[] = []
+    await reconcileNativeColdDeepLink({
+      getInitialURL: async () => 'myapp://inbox',
+      prefixes: ['myapp://'],
+      currentHref: '/post/1',
+      navigateTo: (href) => {
+        navigated.push(href)
+        expect(isRestoredLaunch()).toBe(false)
+      },
+    })
+    expect(navigated).toEqual(['/inbox'])
+
+    save('/post/gone', { index: 0, routes: [{ name: 'post/[id]', params: { id: 'gone' } }] })
+    expect(consumeWarmInitialNavigationState(routeNode, linking as any)).toMatchObject({
+      routes: [{ name: 'inbox' }],
+    })
+    expect(getHydratedWarmState()?.pathname).toBe('/inbox')
+
+    save('/inbox', { index: 0, routes: [{ name: 'inbox' }] })
+    expect(consumeWarmInitialNavigationState(routeNode, linking as any)).toBeUndefined()
+
+    // a lazy route that suspends while loading restores on the retry
+    let loaded = false
+    const pending = Promise.resolve()
+    files['./post/[id].tsx'] = new Proxy({} as any, {
+      get(_, key) {
+        if (!loaded) throw pending
+        return key === 'default' ? () => null : undefined
+      },
+    })
+    save('/post/2', { index: 0, routes: [{ name: 'post/[id]', params: { id: '2' } }] })
+    expect(() => consumeWarmInitialNavigationState(routeNode, linking as any)).toThrow()
+    loaded = true
+    expect(consumeWarmInitialNavigationState(routeNode, linking as any)).toMatchObject({
+      routes: [{ name: 'post/[id]', params: { id: '2' } }],
+    })
   })
 
   it('coordinates LaunchScreen hold timing until cold deep link reconciliation completes', async () => {

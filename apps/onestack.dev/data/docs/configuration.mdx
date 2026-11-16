@@ -69,6 +69,12 @@ export default {
           // (universal links, host-bearing custom scheme URLs)
           prefixes: ['https://example.com/app'],
         },
+
+        /**
+         * On native, reopen the app on the route the user last had open,
+         * with its params. Routes can skip or redirect with a `restore` export.
+         */
+        restore: true,
       },
 
       optimization: {

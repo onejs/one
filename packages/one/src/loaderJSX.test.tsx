@@ -1,15 +1,33 @@
+import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { parseSync } from 'oxc-parser'
 import * as React from 'react'
 import { renderToString } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
-import { reviveLoaderData, reviveLoaderJSX, registerLoaderClient, ServerJSX } from './loaderJSX'
+import {
+  reviveLoaderData,
+  reviveLoaderJSX,
+  registerLoaderClient,
+  ServerJSX,
+} from './loaderJSX'
 import { transformTreeShakeClient } from './vite/plugins/clientTreeShakePlugin'
-import { transformUseClient } from './vite/plugins/loaderJSXPlugin'
+import {
+  collectLoaderJSXRegistrationImports,
+  createLoaderJSXUniversalModule,
+  transformUseClient,
+} from './vite/plugins/loaderJSXPlugin'
 import { ClientFallback, JSXSlot, renderJSX } from './server/renderJSX'
 
 const wire = <T,>(value: T): T => JSON.parse(JSON.stringify(value))
 
 function Counter(props: { start: number; children?: React.ReactNode }) {
-  return <button>{props.start}{props.children}</button>
+  return (
+    <button>
+      {props.start}
+      {props.children}
+    </button>
+  )
 }
 registerLoaderClient('app/Counter.tsx#Counter', Counter)
 
@@ -37,7 +55,11 @@ describe('renderJSX', () => {
       {},
       ['h', 'article', {}, 'post ', 1],
       ['h', 'article', {}, 'post ', 2],
-      ['c', 'app/Counter.tsx#Counter', { start: 3, children: { __oneJSX: ['h', 'b', {}, 'child'] } }],
+      [
+        'c',
+        'app/Counter.tsx#Counter',
+        { start: 3, children: { __oneJSX: ['h', 'b', {}, 'child'] } },
+      ],
     ])
   })
 
@@ -81,7 +103,9 @@ describe('renderJSX', () => {
   })
 
   it('rejects non-serializable props crossing to a client component', async () => {
-    await expect(renderJSX(<Counter start={(() => 1) as any} />)).rejects.toThrow(/a function/)
+    await expect(renderJSX(<Counter start={(() => 1) as any} />)).rejects.toThrow(
+      /a function/
+    )
   })
 
   it('(a, b) ssr html equals frame-1 html and the ssg payload is static json', async () => {
@@ -146,7 +170,9 @@ describe('renderJSX', () => {
       {},
       ['h', 'p', {}, 'update the app'],
     ])
-    expect(renderToString(<ServerJSX value={envelope} />)).toBe('<span style="display:contents"><p>update the app</p></span>')
+    expect(renderToString(<ServerJSX value={envelope} />)).toBe(
+      '<span style="display:contents"><p>update the app</p></span>'
+    )
     try {
       ;(globalThis as any).document = {}
       ;(globalThis as any).__vxrnRoot = {}
@@ -157,6 +183,195 @@ describe('renderJSX', () => {
       delete (globalThis as any).document
       delete (globalThis as any).__vxrnRoot
     }
+  })
+})
+
+describe('renderJSX edge cases', () => {
+  it('preserves element keys so list state follows identity after a refetch', async () => {
+    const envelope = wire(
+      await renderJSX(
+        <ul>
+          {[1, 2].map((id) => (
+            <li key={id}>item-{id}</li>
+          ))}
+          {[1, 2].map((id) => (
+            <Counter key={id} start={id} />
+          ))}
+          <li>footer</li>
+        </ul>
+      )
+    )
+    const revived = reviveLoaderJSX(envelope) as React.ReactElement
+    const keys = ((revived.props as any).children as React.ReactElement[]).map(
+      (child) => child.key
+    )
+    // sibling lists sharing ids stay distinct, and the footer keeps its slot
+    // when an earlier list changes length
+    expect(keys).toEqual(['0:1', '0:2', '1:1', '1:2', '.2'])
+
+    // a key on a server component transfers to the element it renders
+    const serverEnvelope = wire(
+      await renderJSX(
+        <div>
+          {[1, 2].map((id) => (
+            <Post key={`post-${id}`} id={id} />
+          ))}
+        </div>
+      )
+    )
+    const serverRevived = reviveLoaderJSX(serverEnvelope) as React.ReactElement
+    const serverKeys = (
+      (serverRevived.props as any).children as React.ReactElement[]
+    ).map((child) => child.key)
+    expect(serverKeys).toEqual(['post-1', 'post-2'])
+  })
+
+  it('preserves keys through ClientFallback wrappers, unknown islands and slot fallbacks', async () => {
+    function Newer() {
+      return <p>newer</p>
+    }
+    ;(Newer as any).__oneClientId = 'app/Newer.tsx#Newer'
+
+    const childKeys = (envelope: any) =>
+      (
+        ((reviveLoaderJSX(envelope) as React.ReactElement).props as any)
+          .children as React.ReactElement[]
+      ).map((child) => child.key)
+
+    // a known island wrapped for skew revives inside a span on web: the
+    // key has to land on that wrapper, keyed at the ClientFallback
+    const known = wire(
+      await renderJSX(
+        <div>
+          {[1, 2].map((n) => (
+            <ClientFallback key={`cf-${n}`} fallback={<p>update</p>}>
+              <Counter start={n} />
+            </ClientFallback>
+          ))}
+        </div>
+      )
+    )
+    expect(childKeys(known)).toEqual(['cf-1', 'cf-2'])
+
+    // an unknown island revives as its fallback, which keeps the key
+    const unknown = wire(
+      await renderJSX(
+        <div>
+          {['x', 'y'].map((k) => (
+            <ClientFallback key={`cf-${k}`} fallback={<p>update</p>}>
+              <Newer />
+            </ClientFallback>
+          ))}
+        </div>
+      )
+    )
+    expect(childKeys(unknown)).toEqual(['cf-x', 'cf-y'])
+
+    // an unfilled slot revives as its fallback children, which keep the key
+    const slotted = wire(
+      await renderJSX(
+        <div>
+          {[1, 2].map((n) => (
+            <JSXSlot key={`slot-${n}`} name="x">
+              <p>fallback</p>
+            </JSXSlot>
+          ))}
+        </div>
+      )
+    )
+    expect(childKeys(slotted)).toEqual(['slot-1', 'slot-2'])
+  })
+
+  it('keeps tree order when async siblings resolve out of order', async () => {
+    async function Slow({ label, ms }: { label: string; ms: number }) {
+      await new Promise((r) => setTimeout(r, ms))
+      return <p>{label}</p>
+    }
+    const envelope = wire(
+      await renderJSX(
+        <div>
+          <Slow label="first" ms={25} />
+          <Slow label="second" ms={1} />
+        </div>
+      )
+    )
+    const html = renderToString(<ServerJSX value={envelope} />)
+    expect(html.indexOf('first')).toBeLessThan(html.indexOf('second'))
+  })
+
+  it('rejects Date, bigint and non-finite numbers in client props', async () => {
+    await expect(
+      renderJSX(<Counter start={1} {...({ when: new Date() } as any)} />)
+    ).rejects.toThrow(/instance of Date/)
+    await expect(
+      renderJSX(<Counter start={1} {...({ n: 10n } as any)} />)
+    ).rejects.toThrow(/bigint/)
+    await expect(
+      renderJSX(<Counter start={1} {...({ n: NaN } as any)} />)
+    ).rejects.toThrow(/non-finite/)
+  })
+
+  it('renders elements nested inside prop objects and arrays', async () => {
+    const envelope = wire(
+      await renderJSX(
+        <Counter start={1} {...({ meta: { list: [{ badge: <i>bd</i> }] } } as any)} />
+      )
+    )
+    const node: any = envelope.__oneJSX
+    expect(node[2].meta.list[0].badge.__oneJSX).toEqual(['h', 'i', {}, 'bd'])
+  })
+
+  it('gives a clear error for class components and context providers', async () => {
+    class Klass extends React.Component {
+      render() {
+        return <p>hi</p>
+      }
+    }
+    await expect(renderJSX(<Klass />)).rejects.toThrow(/class component/)
+    const Ctx = React.createContext('v')
+    await expect(
+      renderJSX(
+        <Ctx.Provider value="x">
+          <p>hi</p>
+        </Ctx.Provider>
+      )
+    ).rejects.toThrow(/context/)
+  })
+
+  it('passes Suspense and StrictMode through to their children', async () => {
+    const envelope = wire(
+      await renderJSX(
+        <React.StrictMode>
+          <React.Suspense fallback={<p>loading</p>}>
+            <Post id={3} />
+          </React.Suspense>
+        </React.StrictMode>
+      )
+    )
+    const html = renderToString(<ServerJSX value={envelope} />)
+    expect(html).toContain('post <!-- -->3')
+    expect(html).not.toContain('loading')
+  })
+
+  it('isolates concurrent walks so the hook guard names the right component', async () => {
+    async function Good() {
+      await new Promise((r) => setTimeout(r, 10))
+      const v = React.useMemo(() => 'good', [])
+      return <p>{v}</p>
+    }
+    async function Bad() {
+      await new Promise((r) => setTimeout(r, 5))
+      React.useState(0)
+      return <p>bad</p>
+    }
+    const [good, bad] = await Promise.allSettled([
+      renderJSX(<Good />),
+      renderJSX(<Bad />),
+    ])
+    expect(good.status).toBe('fulfilled')
+    expect(bad.status).toBe('rejected')
+    if (bad.status === 'rejected')
+      expect(String(bad.reason)).toMatch(/<Bad> called useState/)
   })
 })
 
@@ -171,6 +386,80 @@ describe('loaderJSX plugin transforms', () => {
     expect(out?.code).toContain('Panel.__oneClientId = "app/ui.tsx#default"')
     expect(out?.code).not.toContain('hook.__oneClientId')
     expect(transformUseClient(`export function A() {}`, '/p/a.tsx', '/p')).toBeUndefined()
+  })
+
+  it('creates a universal registry module only for referenced components', () => {
+    const code = createLoaderJSXUniversalModule(['Link', 'YStack', 'Text'], true)
+    expect(code).toContain(`import { registerLoaderClient, Link } from 'one'`)
+    expect(code).toContain(`import { Text, YStack } from 'tamagui'`)
+    expect(code).not.toContain('Paragraph')
+    expect(code).not.toContain('H1')
+    expect(createLoaderJSXUniversalModule([], true)).toBe('export {}')
+  })
+
+  it('collects only referenced universal components and does not crawl framework internals', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'one-loader-jsx-registry-'))
+    const appDir = join(root, 'app')
+    const frameworkFile = join(root, 'packages/one/src/internal.tsx')
+    mkdirSync(appDir, { recursive: true })
+    mkdirSync(join(root, 'packages/one/src'), { recursive: true })
+
+    const counterFile = join(appDir, 'Counter.tsx')
+    const nestedFile = join(appDir, 'Nested.tsx')
+    const postFile = join(appDir, 'Post.tsx')
+    writeFileSync(counterFile, `'use client'\nexport function Counter() { return null }`)
+    writeFileSync(nestedFile, `'use client'\nexport function Nested() { return null }`)
+    writeFileSync(
+      postFile,
+      `import { YStack } from '@tamagui/core'\nimport { Nested } from './Nested'\nexport function Post() { return null }`
+    )
+    const uiDir = join(root, 'node_modules/@acme/ui')
+    mkdirSync(uiDir, { recursive: true })
+    writeFileSync(
+      join(uiDir, 'package.json'),
+      JSON.stringify({ name: '@acme/ui', dependencies: { tamagui: '*' } })
+    )
+    writeFileSync(join(uiDir, 'index.js'), `export * from 'tamagui'`)
+    writeFileSync(
+      frameworkFile,
+      `'use client'\nexport function Internal() { return null }`
+    )
+
+    const route = `import { Link, renderJSX } from 'one'
+import { Button, Text } from 'tamagui'
+import { Counter } from './Counter'
+import { Post } from './Post'
+import { Internal } from './framework'
+export async function loader() { return renderJSX(null) }
+export default function Page() { return null }`
+    const routeFile = join(appDir, 'index.tsx')
+    const imports = await collectLoaderJSXRegistrationImports(
+      parseSync(routeFile, route).program,
+      routeFile,
+      async (source) => {
+        const files: Record<string, string> = {
+          './Counter': counterFile,
+          './Nested': nestedFile,
+          './Post': postFile,
+          './framework': frameworkFile,
+        }
+        return files[source] ? { id: files[source] } : null
+      }
+    )
+
+    expect(imports).toEqual([
+      `import 'virtual:one-loader-jsx-universal:Link,Text,YStack'`,
+      `import 'virtual:one-loader-jsx-client:${counterFile}'`,
+      `import 'virtual:one-loader-jsx-client:${nestedFile}'`,
+    ])
+
+    // a published package that depends on tamagui may re-export any primitive
+    const viaPackage = await collectLoaderJSXRegistrationImports(
+      parseSync(routeFile, `import { YStack } from '@acme/ui'`).program,
+      routeFile,
+      async () => ({ id: join(uiDir, 'index.js') })
+    )
+    expect(viaPackage).toEqual([`import 'virtual:one-loader-jsx-universal:all'`])
   })
 
   it('ships no server walker in the client route bundle', async () => {

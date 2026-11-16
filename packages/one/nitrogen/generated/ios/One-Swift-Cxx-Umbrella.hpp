@@ -220,6 +220,8 @@ namespace margelo::nitro::one { class HybridOneHapticsSpec; }
 namespace margelo::nitro::one { class HybridOneImageManipulatorSpec; }
 // Forward declaration of `HybridOneImagePickerSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
+// Forward declaration of `HybridOneKeyboardSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneKeyboardSpec; }
 // Forward declaration of `HybridOneLaunchScreenSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneLaunchScreenSpec; }
 // Forward declaration of `HybridOneLightSensorSpec` to properly resolve imports.
@@ -372,6 +374,14 @@ namespace margelo::nitro::one { enum class NotificationPermissionStatus; }
 namespace margelo::nitro::one { enum class OneImageFlip; }
 // Forward declaration of `OneImageFormat` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneImageFormat; }
+// Forward declaration of `OneKeyboardEventName` to properly resolve imports.
+namespace margelo::nitro::one { enum class OneKeyboardEventName; }
+// Forward declaration of `OneKeyboardEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct OneKeyboardEvent; }
+// Forward declaration of `OneKeyboardFocus` to properly resolve imports.
+namespace margelo::nitro::one { struct OneKeyboardFocus; }
+// Forward declaration of `OneKeyboardFrame` to properly resolve imports.
+namespace margelo::nitro::one { struct OneKeyboardFrame; }
 // Forward declaration of `OneSDKPoint` to properly resolve imports.
 namespace margelo::nitro::one { struct OneSDKPoint; }
 // Forward declaration of `OneSDKRect` to properly resolve imports.
@@ -580,6 +590,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneHapticsSpec.hpp"
 #include "HybridOneImageManipulatorSpec.hpp"
 #include "HybridOneImagePickerSpec.hpp"
+#include "HybridOneKeyboardSpec.hpp"
 #include "HybridOneLaunchScreenSpec.hpp"
 #include "HybridOneLightSensorSpec.hpp"
 #include "HybridOneLocationSpec.hpp"
@@ -656,6 +667,10 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "NotificationPermissionStatus.hpp"
 #include "OneImageFlip.hpp"
 #include "OneImageFormat.hpp"
+#include "OneKeyboardEvent.hpp"
+#include "OneKeyboardEventName.hpp"
+#include "OneKeyboardFocus.hpp"
+#include "OneKeyboardFrame.hpp"
 #include "OneSDKPoint.hpp"
 #include "OneSDKRect.hpp"
 #include "OneSDKResult.hpp"
@@ -783,6 +798,8 @@ namespace One { class HybridOneHapticsSpec_cxx; }
 namespace One { class HybridOneImageManipulatorSpec_cxx; }
 // Forward declaration of `HybridOneImagePickerSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneImagePickerSpec_cxx; }
+// Forward declaration of `HybridOneKeyboardSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneKeyboardSpec_cxx; }
 // Forward declaration of `HybridOneLaunchScreenSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneLaunchScreenSpec_cxx; }
 // Forward declaration of `HybridOneLightSensorSpec_cxx` to properly resolve imports.

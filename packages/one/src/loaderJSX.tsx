@@ -104,6 +104,15 @@ function SkewFallback(props: { children: React.ReactNode }) {
   return React.createElement('span', { style: DISPLAY_CONTENTS }, props.children)
 }
 
+// a node's key rides in its props. wrappers and fallbacks revive in place of
+// the keyed element, so the key has to land on them or list identity is lost.
+function withRevivedKey(node: React.ReactNode, key: unknown): React.ReactNode {
+  if (typeof key !== 'string' || !React.isValidElement(node)) return node
+  return node.key === key
+    ? node
+    : React.cloneElement(node, { key } as Record<string, unknown>)
+}
+
 function reviveNode(
   node: JSXEnvelopeNode,
   slots: LoaderJSXSlots | undefined
@@ -125,16 +134,23 @@ function reviveNode(
     case 'c': {
       const [, id, props, fallback] = node
       const hasFallback = node.length > 3 && fallback !== undefined
-      const fallbackNode = hasFallback && fallback !== null ? reviveNode(fallback, slots) : null
+      const fallbackNode =
+        hasFallback && fallback !== null ? reviveNode(fallback, slots) : null
       const Component = resolveClient(id)
 
       if (!Component) {
         if (!hasFallback) return null
-        if (isNative) return fallbackNode
+        if (isNative) return withRevivedKey(fallbackNode, props.key)
         if (typeof document === 'undefined') {
-          return React.createElement('span', { style: DISPLAY_CONTENTS }, fallbackNode)
+          return withRevivedKey(
+            React.createElement('span', { style: DISPLAY_CONTENTS }, fallbackNode),
+            props.key
+          )
         }
-        return React.createElement(SkewFallback, null, fallbackNode)
+        return withRevivedKey(
+          React.createElement(SkewFallback, null, fallbackNode),
+          props.key
+        )
       }
 
       const element = React.createElement(Component, reviveProps(props, slots))
@@ -142,16 +158,19 @@ function reviveNode(
         ? React.createElement(React.Suspense, { fallback: fallbackNode }, element)
         : element
       if (hasFallback && !isNative) {
-        return React.createElement('span', { style: DISPLAY_CONTENTS }, inner)
+        return withRevivedKey(
+          React.createElement('span', { style: DISPLAY_CONTENTS }, inner),
+          props.key
+        )
       }
-      return inner
+      return withRevivedKey(inner, props.key)
     }
     case 's': {
       const [, name, props, fallback] = node
       const slot = slots?.[name]
       const fallbackNode = fallback ? reviveNode(fallback, slots) : null
-      if (slot === undefined) return fallbackNode
-      if (React.isValidElement(slot)) return slot
+      if (slot === undefined) return withRevivedKey(fallbackNode, props.key)
+      if (React.isValidElement(slot)) return withRevivedKey(slot, props.key)
       return React.createElement(
         slot as React.ComponentType<any>,
         reviveProps(props, slots),

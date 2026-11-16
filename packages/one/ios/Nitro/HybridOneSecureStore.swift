@@ -1,3 +1,4 @@
+#if ONE_GROUP_BIOMETRICS
 import Foundation
 import LocalAuthentication
 import NitroModules
@@ -266,3 +267,5 @@ final class HybridOneSecureStore: HybridOneSecureStoreSpec {
     try Self.remove(key: key, options: options)
   }
 }
+
+#endif

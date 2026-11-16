@@ -19,6 +19,7 @@
 #include "HybridOneMessageComposeSpecSwift.hpp"
 #include "HybridOneDocumentCameraSpecSwift.hpp"
 #include "HybridOneHapticsSpecSwift.hpp"
+#include "HybridOneKeyboardSpecSwift.hpp"
 #include "HybridOneLaunchScreenSpecSwift.hpp"
 #include "HybridOneBatterySpecSwift.hpp"
 #include "HybridOneSpeechSynthesisSpecSwift.hpp"
@@ -144,6 +145,13 @@
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneKeyboard",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneKeyboardSpec> hybridObject = One::OneAutolinking::createOneKeyboard();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
     "OneLaunchScreen",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneLaunchScreenSpec> hybridObject = One::OneAutolinking::createOneLaunchScreen();
@@ -207,6 +215,7 @@
       return hybridObject;
     }
   );
+#if ONE_GROUP_BIOMETRICS
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneSecureStore",
     []() -> std::shared_ptr<HybridObject> {
@@ -214,6 +223,7 @@
       return hybridObject;
     }
   );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneAdaptive",
     []() -> std::shared_ptr<HybridObject> {
@@ -246,6 +256,7 @@
     }
   );
 #endif
+#if ONE_GROUP_BIOMETRICS
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneProtectedStore",
     []() -> std::shared_ptr<HybridObject> {
@@ -253,6 +264,7 @@
       return hybridObject;
     }
   );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneZero",
     []() -> std::shared_ptr<HybridObject> {
@@ -411,6 +423,7 @@
       return hybridObject;
     }
   );
+#if ONE_GROUP_FITNESS
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneBarometer",
     []() -> std::shared_ptr<HybridObject> {
@@ -418,6 +431,7 @@
       return hybridObject;
     }
   );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneLightSensor",
     []() -> std::shared_ptr<HybridObject> {
@@ -425,6 +439,7 @@
       return hybridObject;
     }
   );
+#if ONE_GROUP_FITNESS
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OnePedometer",
     []() -> std::shared_ptr<HybridObject> {
@@ -432,6 +447,7 @@
       return hybridObject;
     }
   );
+#endif
 }
 
 @end

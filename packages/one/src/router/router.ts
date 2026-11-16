@@ -63,8 +63,9 @@ import {
   consumeWarmInitialNavigationState,
   isWarmStateEnabled,
   isWarmWebRestoreEligible,
-  shouldAttemptWarmRouteRestore,
   scheduleWarmStatePersist,
+  shouldAttemptWarmRouteRestore,
+  trackRestoredLaunch,
 } from './warmState'
 import {
   getSafeWindowPath,
@@ -444,6 +445,7 @@ export function handleNavigationContainerStateChange(
     updateState(state, undefined)
     shouldUpdateSubscribers = true
     if (isWarmStateEnabled()) {
+      trackRestoredLaunch(routeInfo?.pathname)
       scheduleWarmStatePersist(state, routeInfo?.pathname)
     }
   }
@@ -499,6 +501,16 @@ export function dismissAll() {
     console.info(`[one] 🔙 dismissAll`)
   }
   navigationRef?.dispatch(StackActions.popToTop())
+}
+
+// a dev route-map update rebuilds the tree from scratch: take the app back
+// to its root like the reload this replaced, instead of leaving a screen
+// from the old map mounted under the new one.
+export function resetToRoot() {
+  const linking = getResolvedLinking()
+  const state = linking?.getStateFromPath?.('/', linking.config)
+  if (!state || !navigationRef?.isReady()) return
+  navigationRef.resetRoot(state)
 }
 
 export function goBack() {
