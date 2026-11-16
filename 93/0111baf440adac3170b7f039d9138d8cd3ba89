@@ -32,3 +32,5 @@
 {"id":"00000001794814977102:e81a2adf7c85d66bf863541d151342d2","text":"Android keyboard validation RAN all four components on emulator; fix bfd4b9b6b9 pushed to feat/one-keyboard. Native-density captures on pro-128 /Users/n8/builders/.scratch/one-keyboard-p269687; details in worker handoff."}
 
 {"id":"00000001794815085040:a7a997d0dae7e7e9f0c72fea957e0da8","text":"one-keyboard-android-check (p269687) done: gesture area, OverKeyboardView, KeyboardAwareScrollView, toolbar RAN on API 37 emulator; toolbar Pressable fix bfd4b9b6b merged into release/v2.20.0 (9bb85a234)"}
+
+{"id":"00000001794815658869:71232e62958d71c23aaec97a46f1d7fe","text":"TM tm/tm-one-220 (ef382a14f2: one/keyboard swap + ios.viewCulling) built on pro-128 against release/v2.20.0 and RAN on sim 8CCC71C9: executable links BunEngine (__bun 44.5MB section, no Bun framework loaded, sample shows JSC::AOT frames, main.jsbundle is bun-compiled-entry marker), composer on keyboard, chat scroll with view culling shows no blank rows, drag dismiss tracks. TM canary 959bd8a16 fixes are on main via #1230/#1231. Landing after 2.20.0: pin one 2.20.0, native-surface --write, runtimeVersion 87->88."}
