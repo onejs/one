@@ -31,3 +31,5 @@
 {"id":"00000001794781663898:0a6724d97b862d431de6da02846a1e30","text":"bun-engine v0.1.6 (79.1 MB, bun release LTO flags plus icf) released; One #1259 pins it, merging on green per Nate; API audit clean (all imports in public iOS SDK tbds)"}
 
 {"id":"00000001794801549601:08507a9d9379318fdad143771bd6a2f7","text":"warm start: TM tm/warm-resume 536d162b25 (wip, needs One feat/warm-start-config). Launch profile on sim: pre-main 1.7s is simulator dyld; JS->chat ~750ms main-bound. Deferred keyboard preload (-160ms main). Prototyping One warm launch cover (window snapshot as launch screen) on feat/warm-start-config, native build w-ce99ea."}
+
+{"id":"00000001794801756111:168d90dd0cb980615b1c0d7909b25cc3","text":"Nate rejected the launch-cover snapshot ('No fake picture saving that's just literally cheating'); prototype reverted, feat/warm-start-config clean at 2d09e1a5a. TM node_modules/one may hold a partial cover build: rebuild One and release --into before the next TM native build. V3 launch gaps recorded on t-mwipuo8y-1rjq0 and sent to m127298."}
