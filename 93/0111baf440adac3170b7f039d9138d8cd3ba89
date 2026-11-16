@@ -52,3 +52,5 @@
 {"id":"00000001794842976330:a53679f32b5b04272e9fbea44b537d8a","text":"TestFlight run 43893336311 failed: static engine device template unsigned, bun compile MissingRequiredSegment (never hit on simulator, which signs by default). Fix 'sign the bun program template' added to onejs/one#1270 with the crash guard; release as 2.21.1, then bump TM pin and recut TestFlight."}
 
 {"id":"00000001794845097753:1a3601336637f07878fdfd329f0ebfd7","text":"Took onejs/one#1246 (updates launch proof) per Nate via sweep: merged main, regenerated stale types, made the proof call optional for old binaries (8a780aba2). Android updates suite running on pro-128 (emulator-5590, own AVD). Ships in the next minor after 2.21.1."}
+
+{"id":"00000001794848607721:73536206a4f79ee3b48945568b2bd9a0","text":"2.21.1 published (releaseSourceCommit ec0938fb2; crash guard + signed device template verified in tarball). TM main 9aa5974869 pins 2.21.1, runtime 89 (rv88 never shipped). TestFlight run 43914107103. #1246 Android suite 155/155 on pro-128; CI rerunning, then merge and 2.22.0."}
