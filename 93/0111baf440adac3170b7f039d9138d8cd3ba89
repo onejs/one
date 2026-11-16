@@ -37,3 +37,5 @@
 {"id":"00000001794802238423:a51b1df6d0bd38a1cb0a00c1e1923e83","text":"proposed One-owned keyboard primitive replacing react-native-keyboard-controller (dismiss, setFocusTo, visible state, UI-thread height, swipe dismiss, deferred warm-up); awaiting Nate go-ahead"}
 
 {"id":"00000001794803435878:64849a2c0d134332fad11c43d17b7c9e","text":"one/keyboard (Nate: 'Let's go for it see how far we get'): keyboard-controller 1.23.0 folded into One on feat/one-keyboard (5a20b1e36): iOS native renamed to One*/OneKC*, Nitro module OneKeyboard, preload waits for launch screen release + 1s, swizzle and keyboard window observer lazy, TM's provider patch applied. TM sim build with both libs linked running; upstream PR triage running. Release: #1262 merged 7d3441e6a, release/v2.19.0 at 48b400076, wait w-c056a6 on #1257."}
+
+{"id":"00000001794803901113:65189db1fc681d22cd984a52a85f27d2","text":"one/keyboard: feat/one-keyboard has upstream adoptions (12 PRs) + docs + delegate refocus fix; first TM sim build failed only on a non-public ObjC category header (fixed, rebuilding). static Bun handed to static-bun-ios."}
