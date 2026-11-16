@@ -30,7 +30,7 @@ export function writeSdkNativeSupport(dir: string, sdkRoot = sdkPath()) {
 }
 
 export { appSdkOptions, importedFrameworks } from './selection'
-import { importedFrameworks } from './selection'
+import { appSdkOptions, importedFrameworks } from './selection'
 
 // SDK-specific compiler outputs stay separate. the wire generation identifies
 // the generator/runtime; signature-based symbol ids remain stable across SDKs.
@@ -88,20 +88,31 @@ function openCache() {
     }
     if (!existsSync(manifest(module))) {
       log(`[one] generating iOS bindings for ${module}`)
-      const result = await generateModule(module, await ready(), cache, { table: tableName(module) })
-      if (!result) {
-        const error = extractionErrors.get(module)
-        throw new Error(`[one] no symbol graph for ${module}${error ? `: swift-symbolgraph-extract failed: ${error}` : ''}`)
+      // concurrent prebuilds share this cache: each generates and typechecks in
+      // its own directory and publishes by rename, with the manifest last
+      const work = join(cache, `.work-${process.pid}-${module}`)
+      mkdirSync(work, { recursive: true })
+      try {
+        const result = await generateModule(module, await ready(), work, { table: tableName(module) })
+        if (!result) {
+          const error = extractionErrors.get(module)
+          throw new Error(`[one] no symbol graph for ${module}${error ? `: swift-symbolgraph-extract failed: ${error}` : ''}`)
+        }
+        if (result.errors.length) throw new Error(`[one] ${module} bindings do not compile:\n${result.errors.join('\n')}`)
+        const { entries, skipped } = result.output
+        const { bridge } = await ready()
+        const modules = new Set(entries.flatMap((entry) => entryUsrs(entry).map((usr) => bridge.index.get(usr)?.module ?? '')))
+        modules.delete('')
+        modules.delete(module)
+        const cached: Cached = { entries: entries.map(({ swift, ...e }) => e), skipped, modules: [...modules].sort(), exclusions: [...result.exclude] }
+        writeFileSync(join(work, 'facade.ts'), emitFacade({ module, table: tableName(module), entries: cached.entries, skipped }, bridge))
+        writeFileSync(join(work, 'manifest.json'), JSON.stringify(cached))
+        renameSync(result.file, tableFile(module))
+        renameSync(join(work, 'facade.ts'), facadeFile(module))
+        renameSync(join(work, 'manifest.json'), manifest(module))
+      } finally {
+        rmSync(work, { recursive: true, force: true })
       }
-      if (result.errors.length) throw new Error(`[one] ${module} bindings do not compile:\n${result.errors.join('\n')}`)
-      const { entries, skipped } = result.output
-      const { bridge } = await ready()
-      const modules = new Set(entries.flatMap((entry) => entryUsrs(entry).map((usr) => bridge.index.get(usr)?.module ?? '')))
-      modules.delete('')
-      modules.delete(module)
-      const cached: Cached = { entries: entries.map(({ swift, ...e }) => e), skipped, modules: [...modules].sort(), exclusions: [...result.exclude] }
-      writeFileSync(facadeFile(module), emitFacade({ module, table: tableName(module), entries: cached.entries, skipped }, bridge))
-      writeFileSync(manifest(module), JSON.stringify(cached))
     }
     return JSON.parse(readFileSync(manifest(module), 'utf8'))
   }
@@ -212,7 +223,9 @@ export async function writeAppSdkPod(root: string, log = console.info, releaseFr
     throw new Error('[one] installed iOS facades do not match the SDK generator; regenerate One SDK bindings before building')
   }
   const debug = await generateAppSdk(frameworks, log)
-  const release = releaseFrameworks === undefined ? debug : await generateAppSdk(releaseFrameworks, log)
+  // release keeps only the entries the app and One reach; debug keeps full tables
+  // so new calls work without another prebuild
+  const release = await generateAppSdk(releaseFrameworks ?? frameworks, log, appSdkOptions(root))
   const sdkRoots = SDKS.map((target) => ({ name: target.sdk, root: sdkPath(target.sdk) }))
   // keep the previous coherent pod if validation or generation fails.
   rmSync(podDir, { recursive: true, force: true })
@@ -242,6 +255,9 @@ export async function writeAppSdkPod(root: string, log = console.info, releaseFr
   # the tables import One with c++ interop, which reaches react's headers, so
   # they need One's module policy
   s.pod_target_xcconfig = {
+    # whole-module release builds type check and optimize every table on one
+    # core; the tables share nothing, so compile them as separate files in parallel
+    'SWIFT_COMPILATION_MODE' => 'singlefile',
     'ONE_IOS_SDK_FRAMEWORKS' => '${(releaseFrameworks ?? frameworks).join(' ')}',
     'SWIFT_ACTIVE_COMPILATION_CONDITIONS[config=Debug]' => '$(inherited) ONE_SDK_DEBUG',
     'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',

@@ -2,7 +2,7 @@
 // graphs carry objective-c frameworks as swift sees them and swift-only
 // frameworks alike, so one reader covers the whole sdk.
 import { execFile, execFileSync } from 'node:child_process'
-import { existsSync, mkdirSync, readdirSync, readFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync } from 'node:fs'
 import { homedir } from 'node:os'
 import { join } from 'node:path'
 import { promisify } from 'node:util'
@@ -96,9 +96,17 @@ export async function extractGraphs(
       try {
         for (const t of targets) {
           if (t.cached.has(module)) continue
-          await run('xcrun', ['swift-symbolgraph-extract', '-module-name', module,
-            '-target', t.target, '-sdk', t.sdk,
-            '-output-dir', t.dir, '-minimum-access-level', 'public'], { maxBuffer: 64 * 1024 * 1024 })
+          // presence marks a graph cached, so extract privately and publish by rename
+          const work = join(t.dir, `.work-${process.pid}-${module}`)
+          mkdirSync(work, { recursive: true })
+          try {
+            await run('xcrun', ['swift-symbolgraph-extract', '-module-name', module,
+              '-target', t.target, '-sdk', t.sdk,
+              '-output-dir', work, '-minimum-access-level', 'public'], { maxBuffer: 64 * 1024 * 1024 })
+            for (const file of readdirSync(work)) renameSync(join(work, file), join(t.dir, file))
+          } finally {
+            rmSync(work, { recursive: true, force: true })
+          }
         }
         extracted.push(module)
       } catch (error) {
