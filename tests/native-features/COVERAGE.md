@@ -278,7 +278,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.UI.Map` | ui-map | ui-map | OneNativeVisualLibraryCase |  |
 | `One.UI.PictureInPicture` | missing | missing | missing | fixture exists; simulators report no PiP, needs a device run |
 | `One.UI.Blur` | ui-effects | effects | OneNativeVisualLibraryCase | iOS and Android bounded backdrop blur and sharp foreground pixels proven; live tint/lifecycle unproven |
-| `One.UI.Mask` | ui-effects | effects | OneNativeVisualLibraryCase |  |
+| `One.UI.Mask` | linear-gradient, ui-effects | effects | OneNativeVisualLibraryCase |  |
 | `One.UI.Portal` | portal | portal | OnePortalLibraryCase |  |
 | `One.UI.PortalHost` | portal | portal | OnePortalLibraryCase |  |
 | `One.UI.Pager` | pager | ui-pager | OneUIPagerLibraryCase |  |
