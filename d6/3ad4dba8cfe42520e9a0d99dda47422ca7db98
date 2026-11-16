@@ -17,3 +17,5 @@
 {"id":"00000001794788717819:fecb52bd3709377b44a3c7d2de786384","text":"2.19 blocker found+fixed: ios/prebuilt.ts failed pod install under node_modules (type stripping). Renamed to prebuilt.mjs in #1262 (36f9fcf70). Repro runs 43780185743 (xcode 26.6) and 43780185926 (link set) rerun on the fix; wait w-5b0a40. Then merge #1262, main into #1257, publish."}
 
 {"id":"00000001794813687641:f6b844c0eb63c3231d0139875eed430b","text":"2.19.0 minor out via run 43818712624; #1249 #1250 #1261 commented. Asked Nate: warmStart/useWarmState, static bun branch merge, one/keyboard merge"}
+
+{"id":"00000001794826047585:587933ed3823a43dc8a1951524a0fa39","text":"CI speed: prebuilt-ios.yml 'One iOS (Debug|Release)' takes ~75 min per config on xcode-27 shared runners (package-one-ios.mts builds iphoneos then iphonesimulator sequentially at -jobs 2) and waits ~1.5h for a runner; gates every release PR touching packages/one/ios. Fix candidates: split the matrix to config x sdk with a merge job that assembles the xcframework, or a self-hosted Mac runner (Nate suggested pro-128). Cancelled superseded runs 43824622573, 43825736867, 43824361083 to free runners."}
