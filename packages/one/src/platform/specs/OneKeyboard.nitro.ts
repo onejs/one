@@ -30,9 +30,11 @@ export interface OneKeyboardFrame {
 // the module half of One's keyboard (one/keyboard), folded in from
 // react-native-keyboard-controller. the views emit per-frame movement as
 // fabric events; these listeners carry the lifecycle events.
-export interface OneKeyboard extends HybridObject<{ ios: 'swift' }> {
+export interface OneKeyboard extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   readonly keyboardBorderRadius: number
   preload(): void
+  setInputMode(mode: number): void
+  setDefaultMode(): void
   dismiss(keepFocus: boolean, animated: boolean): void
   setFocusTo(direction: string): void
   setTranslucent(translucent: boolean): void

@@ -141,6 +141,28 @@ open class HybridOneKeyboardSpec_cxx {
   }
   
   @inline(__always)
+  public final func setInputMode(mode: Double) -> bridge.Result_void_ {
+    do {
+      try self.__implementation.setInputMode(mode: mode)
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func setDefaultMode() -> bridge.Result_void_ {
+    do {
+      try self.__implementation.setDefaultMode()
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
   public final func dismiss(keepFocus: Bool, animated: Bool) -> bridge.Result_void_ {
     do {
       try self.__implementation.dismiss(keepFocus: keepFocus, animated: animated)

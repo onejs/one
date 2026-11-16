@@ -120,6 +120,7 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneImageManipulatorSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneImagePickerSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneKeepAwakeSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneKeyboardSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneLaunchScreenSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneLightSensorSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneLocalAuthenticationSpec.cpp

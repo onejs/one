@@ -14,6 +14,8 @@ public protocol HybridOneKeyboardSpec_protocol: HybridObject {
 
   // Methods
   func preload() throws -> Void
+  func setInputMode(mode: Double) throws -> Void
+  func setDefaultMode() throws -> Void
   func dismiss(keepFocus: Bool, animated: Bool) throws -> Void
   func setFocusTo(direction: String) throws -> Void
   func setTranslucent(translucent: Bool) throws -> Void

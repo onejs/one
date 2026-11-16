@@ -62,6 +62,8 @@ namespace margelo::nitro::one {
     public:
       // Methods
       virtual void preload() = 0;
+      virtual void setInputMode(double mode) = 0;
+      virtual void setDefaultMode() = 0;
       virtual void dismiss(bool keepFocus, bool animated) = 0;
       virtual void setFocusTo(const std::string& direction) = 0;
       virtual void setTranslucent(bool translucent) = 0;

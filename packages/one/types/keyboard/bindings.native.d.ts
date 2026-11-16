@@ -16,4 +16,4 @@ export declare const KeyboardBackgroundView: React.FC<KeyboardBackgroundViewProp
 export declare const RCTKeyboardExtender: React.FC<KeyboardExtenderProps>;
 export declare const ClippingScrollView: React.FC<ClippingScrollViewProps>;
 export declare const RCTKeyboardToolbarGroupView: React.FC<KeyboardToolbarGroupViewProps>;
-//# sourceMappingURL=bindings.ios.d.ts.map
+//# sourceMappingURL=bindings.native.d.ts.map

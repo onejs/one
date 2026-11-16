@@ -87,6 +87,18 @@ namespace margelo::nitro::one {
         std::rethrow_exception(__result.error());
       }
     }
+    inline void setInputMode(double mode) override {
+      auto __result = _swiftPart.setInputMode(std::forward<decltype(mode)>(mode));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline void setDefaultMode() override {
+      auto __result = _swiftPart.setDefaultMode();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
     inline void dismiss(bool keepFocus, bool animated) override {
       auto __result = _swiftPart.dismiss(std::forward<decltype(keepFocus)>(keepFocus), std::forward<decltype(animated)>(animated));
       if (__result.hasError()) [[unlikely]] {

@@ -23,7 +23,10 @@
       "ios": { "language": "swift", "implementationClassName": "HybridOneHaptics" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneHaptics" }
     },
-    "OneKeyboard": { "ios": { "language": "swift", "implementationClassName": "HybridOneKeyboard" } },
+    "OneKeyboard": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneKeyboard" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneKeyboard" }
+    },
     "OneLaunchScreen": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneLaunchScreen" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneLaunchScreen" }

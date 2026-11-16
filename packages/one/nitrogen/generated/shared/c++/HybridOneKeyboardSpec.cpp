@@ -16,6 +16,8 @@ namespace margelo::nitro::one {
     registerHybrids(this, [](Prototype& prototype) {
       prototype.registerHybridGetter("keyboardBorderRadius", &HybridOneKeyboardSpec::getKeyboardBorderRadius);
       prototype.registerHybridMethod("preload", &HybridOneKeyboardSpec::preload);
+      prototype.registerHybridMethod("setInputMode", &HybridOneKeyboardSpec::setInputMode);
+      prototype.registerHybridMethod("setDefaultMode", &HybridOneKeyboardSpec::setDefaultMode);
       prototype.registerHybridMethod("dismiss", &HybridOneKeyboardSpec::dismiss);
       prototype.registerHybridMethod("setFocusTo", &HybridOneKeyboardSpec::setFocusTo);
       prototype.registerHybridMethod("setTranslucent", &HybridOneKeyboardSpec::setTranslucent);

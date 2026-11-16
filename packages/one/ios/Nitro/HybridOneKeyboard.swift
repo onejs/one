@@ -61,6 +61,11 @@ final class HybridOneKeyboard: HybridOneKeyboardSpec {
     }
   }
 
+  // soft input modes are android only.
+  func setInputMode(mode: Double) throws {}
+
+  func setDefaultMode() throws {}
+
   func dismiss(keepFocus: Bool, animated: Bool) throws {
     DispatchQueue.main.async {
       KeyboardControllerModuleImpl.dismiss(keepFocus, animated: animated)

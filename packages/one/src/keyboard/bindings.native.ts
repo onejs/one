@@ -36,11 +36,9 @@ native.addAnimationEndListener((tag) => {
   DeviceEventEmitter.emit('onUserDrivenAnimationEnded', { tags: [tag] })
 })
 
-const NOOP = () => {}
-
 export const KeyboardControllerNative: KeyboardControllerNativeModule = {
-  setDefaultMode: NOOP,
-  setInputMode: NOOP,
+  setDefaultMode: () => native.setDefaultMode(),
+  setInputMode: (mode) => native.setInputMode(mode),
   preload: () => native.preload(),
   setTranslucent: (translucent) => native.setTranslucent(translucent),
   dismiss: (keepFocus, animated) => native.dismiss(keepFocus, animated),
