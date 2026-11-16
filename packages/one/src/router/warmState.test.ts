@@ -674,6 +674,22 @@ describe('warmState', () => {
 
     save('/inbox', { index: 0, routes: [{ name: 'inbox' }] })
     expect(consumeWarmInitialNavigationState(routeNode, linking as any)).toBeUndefined()
+
+    // a lazy route that suspends while loading restores on the retry
+    let loaded = false
+    const pending = Promise.resolve()
+    files['./post/[id].tsx'] = new Proxy({} as any, {
+      get(_, key) {
+        if (!loaded) throw pending
+        return key === 'default' ? () => null : undefined
+      },
+    })
+    save('/post/2', { index: 0, routes: [{ name: 'post/[id]', params: { id: '2' } }] })
+    expect(() => consumeWarmInitialNavigationState(routeNode, linking as any)).toThrow()
+    loaded = true
+    expect(consumeWarmInitialNavigationState(routeNode, linking as any)).toMatchObject({
+      routes: [{ name: 'post/[id]', params: { id: '2' } }],
+    })
   })
 
   it('coordinates LaunchScreen hold timing until cold deep link reconciliation completes', async () => {

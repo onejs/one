@@ -484,7 +484,14 @@ export function consumeWarmInitialNavigationState(
     }
   }
 
-  const restore = evaluateRouteRestore(targetState, routeNode, envelope.pathname || '/')
+  let restore: boolean | string
+  try {
+    restore = evaluateRouteRestore(targetState, routeNode, envelope.pathname || '/')
+  } catch (error) {
+    // a lazy route module suspends until it loads, and the retry restores again
+    warmInitialRouteConsumed = false
+    throw error
+  }
   if (restore === false) return undefined
   if (typeof restore === 'string') {
     const parsed = getStateFromHref(restore, linking)
