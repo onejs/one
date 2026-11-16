@@ -160,6 +160,8 @@ dependencies {
     // setContent and BackHandler for the share-target compose activity.
     implementation "androidx.activity:activity-compose:1.9.3"
     implementation "androidx.core:core:1.13.1"
+    // spring settling for one/keyboard interactive dismissal.
+    implementation "androidx.dynamicanimation:dynamicanimation-ktx:1.0.0-alpha03"
     // Play In-App Review for One.StoreReview.requestReview on Android, the
     // same ReviewManager flow Expo's Android implementation uses.
     implementation "com.google.android.play:review:2.0.1"

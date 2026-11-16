@@ -11,8 +11,8 @@ by Kiryl Ziusko, built into One, so an app gets it without another native
 dependency. The API matches the library's, so the library's documentation
 applies to every component and hook here.
 
-iOS runs the native implementation. On Android and web the components render
-plain views and the module calls do nothing, until the Android port lands.
+iOS and Android run the native implementation. On web the components render
+plain views and the module calls do nothing.
 
 ## Usage
 
@@ -69,7 +69,7 @@ Change the import from `react-native-keyboard-controller` to `one/keyboard`
 and remove the package. Both can be installed side by side while you move
 over: One's native classes, components, and selectors use their own names.
 
-Three things behave differently:
+Four things behave differently:
 
 - **The keyboard warm-up waits for launch.** `KeyboardProvider` still warms
   the keyboard so the first tap on a field opens it at once, but the warm-up
@@ -83,3 +83,7 @@ Three things behave differently:
   register by view tag instead of through animated wrappers. Values from
   `useKeyboardAnimation`, the React Native `Animated` API, are driven from
   JavaScript.
+- **Android leaves the status bar module alone.** The library replaced React
+  Native's `StatusBarManager` on Android so `StatusBar` translucency changes
+  also reached `KeyboardProvider`. One does not override core modules, so
+  pass `statusBarTranslucent` to `KeyboardProvider` instead.
