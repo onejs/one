@@ -35,6 +35,7 @@ const nativeProjectPatches = require('./native-project-patches.cjs')
 // options: { engine: 'bun' } runs ios release builds on bun's ahead-of-time
 // compiled javascript instead of hermes. pod install needs ONE_BUN_ENGINE_DIR
 // naming the bun runtime directory (see vxrn/ios/OneBunEngine).
+// options: { viewCulling: true } turns on react native's ios view culling.
 module.exports = function withVxrn(config, options = {}) {
   const projectRoot = config?._internal?.projectRoot
   if (!projectRoot) {
@@ -896,6 +897,24 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
         ],
       ]
 
+  const viewCullingPlugins = !options.viewCulling
+    ? []
+    : [
+        [
+          withAppDelegate,
+          (nextConfig) => {
+            nextConfig.modResults.contents = nativeProjectPatches.enableViewCullingInAppDelegate(
+              nextConfig.modResults.contents
+            )
+            return nextConfig
+          },
+        ],
+        importIntoBridgingHeader(
+          'viewCulling',
+          nativeProjectPatches.ONE_VIEW_CULLING.bridgingHeaderImport
+        ),
+      ]
+
   return withPlugins(config, [
     ...locationPlugins,
     ...audioPlugins,
@@ -907,6 +926,7 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
     ...updatesPlugins,
     ...launchScreenPlugins,
     ...bunEnginePlugins,
+    ...viewCullingPlugins,
     ...deploymentTargetPlugins,
     ...sdkBindingsPlugins,
     ...nativeSourcePlugins,

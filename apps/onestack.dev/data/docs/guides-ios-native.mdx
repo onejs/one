@@ -142,6 +142,22 @@ Limits:
 
 Remove `engine: 'bun'` and prebuild again to go back to Hermes.
 
+### View culling
+
+`viewCulling: true` turns on React Native's view culling. Views outside a scroll view's visible area stay unmounted, where React Native otherwise mounts them and walks every view under the scroll view after each update to clip them. Long lists and feeds spend less time on the main thread, with either engine.
+
+```ts
+one({
+  native: {
+    app: {
+      ios: { bundleId: 'com.example.app', viewCulling: true },
+    },
+  },
+})
+```
+
+Apps on `expo prebuild` pass `['vxrn/expo-plugin', { viewCulling: true }]`. React Native still marks view culling experimental, so check views that draw outside their bounds, such as shadows and overflowing children, inside scroll views.
+
 
 ## Project Setup
 
