@@ -115,6 +115,11 @@ export type Control = {
   leaf?: LeafRecipe
   swift: string
   extraSwift?: string
+  // standalone, the control draws into a Core Animation layer instead of a SwiftUI
+  // host, so it renders without a window (inside a UI.Mask) and costs no hosting
+  // controller. composed, the parent still renders `swift`. `update` is Swift that
+  // sees `layer` (of `type`) and the view's `model`.
+  standaloneLayer?: { type: string; update: string }
   validate: string
   // replaces the generated set<Key> body for a strings array field with raw
   // Swift. the body sees `items: [String]` and the view's `model`, and must

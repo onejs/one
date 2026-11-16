@@ -19,12 +19,13 @@ private final class LinearGradientModel: ObservableObject {
   public var onSDKEvent: ((String, String) -> Void)?
 
   private var model = LinearGradientModel()
-  private var controller: OneNativeHostingController<OneNativeStandalone<LinearGradientContent>>?
+  public override class var layerClass: AnyClass { CAGradientLayer.self }
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
   public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
     let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
     if model.accessibility != next { model.accessibility = next }
+    applyStandaloneAccessibility()
   }
   public func configureStyle(_ style: [String: Any]) {
     let next = OneNativeStyle(dictionary: style)
@@ -39,6 +40,7 @@ private final class LinearGradientModel: ObservableObject {
     if model.locations != locations { model.locations = locations }
     if model.startPoint != startPoint { model.startPoint = startPoint }
     if model.endPoint != endPoint { model.endPoint = endPoint }
+    updateHost()
   }
   public func setColors(_ items: [String]) {
     guard items.allSatisfy({ oneNativeLinearGradientColor($0) != nil }) else {
@@ -46,6 +48,7 @@ private final class LinearGradientModel: ObservableObject {
       return
     }
     if model.colors != items { model.colors = items }
+    updateHost()
   }
 
   private weak var compositionParent: OneNativeCompositionParent?
@@ -53,8 +56,8 @@ private final class LinearGradientModel: ObservableObject {
   // composed, activation follows the parent: a subtree mounted before root attachment
   // stays silent until the root attaches.
   public func composeInto(_ parent: OneNativeCompositionParent) {
-    controller?.detach(); controller = nil
     compositionParent = parent
+    applyStandaloneAccessibility()
     bindCallbacks()
     model.active = parent.compositionActive
   }
@@ -67,20 +70,37 @@ private final class LinearGradientModel: ObservableObject {
 
   }
   private func updateHost() {
-    guard compositionParent == nil else { return }
-    model.active = false
-    guard window != nil else { controller?.detach(); return }
-    if controller == nil {
-      bindCallbacks()
-      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: LinearGradientContent(model: model)))
-    }
-    controller?.attach(to: self)
-    model.active = controller?.isAttached == true
+    // composed views never join the view hierarchy, so their own layer never draws
+    guard compositionParent == nil, let layer = self.layer as? CAGradientLayer else { return }
+    CATransaction.begin()
+    CATransaction.setDisableActions(true)
+    let colors = model.colors.compactMap(oneNativeLinearGradientColor).map { UIColor($0).cgColor }
+    // a gradient layer draws nothing for one color, where SwiftUI fills with it
+    layer.colors = colors.count == 1 ? [colors[0], colors[0]] : colors
+    let positions = model.locations.data(using: .utf8).flatMap { try? JSONDecoder().decode([Double].self, from: $0) }
+    layer.locations = positions?.count == colors.count && colors.count > 1 ? positions!.map { NSNumber(value: $0) } : nil
+    let start = oneNativeLinearGradientPoint(model.startPoint, fallback: .top)
+    let end = oneNativeLinearGradientPoint(model.endPoint, fallback: .bottom)
+    layer.startPoint = CGPoint(x: start.x, y: start.y)
+    layer.endPoint = CGPoint(x: end.x, y: end.y)
+    CATransaction.commit()
+  }
+  // a standalone layer has no SwiftUI tree to carry the accessibility modifier
+  private func applyStandaloneAccessibility() {
+    let info = model.accessibility
+    let exposed = compositionParent == nil && !info.label.isEmpty
+    isAccessibilityElement = exposed
+    accessibilityLabel = exposed ? info.label : nil
+    accessibilityHint = exposed && !info.hint.isEmpty ? info.hint : nil
+    accessibilityValue = exposed && !info.value.isEmpty ? info.value : nil
+    accessibilityIdentifier = exposed && !info.identifier.isEmpty ? info.identifier : nil
   }
   public func reset() {
     compositionParent = nil
     model.active = false; model.onSDKEvent = nil
-    controller?.detach(); controller = nil; model = LinearGradientModel()
+    model = LinearGradientModel()
+    // a recycled view keeps its layer contents until the next prop change
+    updateHost()
   }
 }
 private struct LinearGradientContent: View {
