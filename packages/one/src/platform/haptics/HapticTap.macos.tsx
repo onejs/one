@@ -1,0 +1,1 @@
+export { HapticTap } from './HapticTapView'

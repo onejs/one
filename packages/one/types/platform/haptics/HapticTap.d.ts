@@ -1,3 +1,2 @@
-import type { HapticTapProps } from './types.js';
-export declare function HapticTap({ feedback, ...props }: HapticTapProps): import("react").JSX.Element;
+export { HapticTap } from './HapticTapView.js';
 //# sourceMappingURL=HapticTap.d.ts.map
