@@ -218,7 +218,8 @@ describe('pedometer permission probe', () => {
       writeFileSync(source, probeSource(), 'utf8')
       const binary = join(dir, 'probe')
       try {
-        execFileSync('swiftc', ['-suppress-warnings', '-o', binary, source], {
+        // the landed file compiles only into apps that link the fitness group
+        execFileSync('swiftc', ['-suppress-warnings', '-D', 'ONE_GROUP_FITNESS', '-o', binary, source], {
           encoding: 'utf8',
           stdio: ['ignore', 'pipe', 'pipe'],
         })
