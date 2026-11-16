@@ -58,3 +58,5 @@
 {"id":"00000001794851242687:ee0cf67e35d2571ca25c5da06704dac1","text":"Nate: #1246 ships as a patch (2.21.2), not a minor. Waiting on its Precompiled One iOS check (run 43910084881, normally 2 to 5 h), then merge and release patch."}
 
 {"id":"00000001794853018225:af8fd6086332cdcaddade76162decfa3","text":"2.21.2 patch set: #1246 (updates launch proof, Android 155/155), #1271 (keyboard header rename, reviewed, Contrast blocker), #1273 (LinearGradient in CAGradientLayer, fixes TM fade inside UI.Mask; canary run 43925859929), #1275 (SDK bindings pod per-file compile in release). Next: wire #1256 entry pruning into iOS release prebuild; One media viewer work from Nate via s263372."}
+
+{"id":"00000001794856324964:92512afd075d0044b20f742845ec899f","text":"Took over TM landing from s263372: after 2.21.2 publishes, pin it on origin/tm/tm-mobile-multiselect (2a2e66348f), regenerate native surface and prebuild, release sim check, tm land, TestFlight runtime 90, then close t-mwjk00ji-1c0a0. Fade confirmed on canary 1794852641838 Release. OneSDKBindings baseline 250.7 s whole-module on studio-64 (One 2.21.1)."}
