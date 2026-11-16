@@ -53,3 +53,5 @@
 {"id":"00000001794810793097:4814d95c1bbe89a504083a2dc58739dc","text":"keyboard iOS rebuild moved to pro-128 (air-32 compiler paused by load governor); one tmp/kb-warm-test af0122aec + tm tm/warm-resume 6c5a2c086c; first attempt hit pro-128 daemon restart, retrying"}
 
 {"id":"00000001794812242598:d9ed1219411b98bc10e77fe0420cc3bd","text":"static bun ios done by static-bun-ios (f2438): engine v0.2.0 prerelease, One branch tm/bun-ios-static b3cb683272 (pushed, unmerged, read by b67657: static pod, BunEngine.o + __TEXT,__bun sectcreate, weak tbd Debug, phase ordering in both prebuild paths). Merge needs Nate; asking with 2.19.0 share. 2.19.0: #1257 merged f9cd8f4fb, minor release run 43818712624 in flight (w-20f9c8)"}
+
+{"id":"00000001794813687751:0f41087e38e8cee870a36c0c3d2488fd","text":"keyboard merged build (ios+android, tmp/kb-warm-test af0122aec) built on pro-128 and RAN on sim 8CCC71C9: composer on keyboard, draft restore, interactive drag dismiss tracks frame by frame"}
