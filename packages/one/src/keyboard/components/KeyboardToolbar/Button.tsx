@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Platform, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native'
+import { Platform, Pressable, TouchableOpacity, View } from 'react-native'
 
 import { useKeyboardState } from '../../hooks'
 
@@ -62,23 +62,24 @@ const ButtonAndroid = ({
   const colorScheme = useKeyboardState((state) => state.appearance)
   const accessibilityState = useMemo(() => ({ disabled }), [disabled])
   const ripple = useMemo(
-    () => TouchableNativeFeedback.Ripple(theme[colorScheme].ripple, true, rippleRadius),
+    () => ({ color: theme[colorScheme].ripple, borderless: true, radius: rippleRadius }),
     [colorScheme, rippleRadius, theme]
   )
 
   return (
-    <TouchableNativeFeedback
+    <Pressable
       accessibilityHint={accessibilityHint}
       accessibilityLabel={accessibilityLabel}
       accessibilityRole="button"
       accessibilityState={accessibilityState}
-      background={ripple}
+      android_ripple={ripple}
+      disabled={disabled}
       style={style}
       testID={testID}
       onPress={onPress}
     >
-      <View style={style}>{children}</View>
-    </TouchableNativeFeedback>
+      {children}
+    </Pressable>
   )
 }
 
