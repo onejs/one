@@ -1,4 +1,4 @@
-extension KeyboardMovementObserver {
+public extension KeyboardMovementObserver {
   @objc func mount() {
     if isMounted {
       return
