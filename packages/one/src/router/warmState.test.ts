@@ -8,7 +8,6 @@ import {
   configureWarmState,
   consumeWarmInitialNavigationState,
   consumeWarmRouteApplied,
-  endRestoredLaunch,
   isRestoredLaunch,
   flushWarmState,
   getHydratedWarmState,
@@ -21,6 +20,7 @@ import {
   reconcileNativeColdDeepLink,
   registerWarmStateSource,
   scheduleWarmStatePersist,
+  trackRestoredLaunch,
   waitForWarmRoutePreload,
   type WarmNavigationSnapshot,
   type WarmStateStorage,
@@ -661,7 +661,9 @@ describe('warmState', () => {
     expect(consumeWarmInitialNavigationState(routeNode, linking as any)).toMatchObject({
       routes: [{ name: 'post/[id]', params: { id: '1' } }],
     })
-    endRestoredLaunch()
+    trackRestoredLaunch('/post/1')
+    expect(isRestoredLaunch()).toBe(true)
+    trackRestoredLaunch('/inbox')
     expect(isRestoredLaunch()).toBe(false)
 
     save('/post/gone', { index: 0, routes: [{ name: 'post/[id]', params: { id: 'gone' } }] })

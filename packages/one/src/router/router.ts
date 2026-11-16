@@ -61,11 +61,11 @@ import { setLastAction } from './lastAction'
 import { getResolvedLinking, resetLinking, setupLinking } from './linkingConfig'
 import {
   consumeWarmInitialNavigationState,
-  endRestoredLaunch,
   isWarmStateEnabled,
   isWarmWebRestoreEligible,
-  shouldAttemptWarmRouteRestore,
   scheduleWarmStatePersist,
+  shouldAttemptWarmRouteRestore,
+  trackRestoredLaunch,
 } from './warmState'
 import {
   getSafeWindowPath,
@@ -445,7 +445,7 @@ export function handleNavigationContainerStateChange(
     updateState(state, undefined)
     shouldUpdateSubscribers = true
     if (isWarmStateEnabled()) {
-      endRestoredLaunch()
+      trackRestoredLaunch(routeInfo?.pathname)
       scheduleWarmStatePersist(state, routeInfo?.pathname)
     }
   }

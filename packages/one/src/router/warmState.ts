@@ -81,9 +81,10 @@ const hydratedSourceKeys = new Set<string>()
 let loadedFromStorage = false
 let hydratedEnvelope: WarmStateEnvelope | null = null
 let warmRouteApplied = false
-// true from a restored launch until the first navigation
+// true from a restored launch until the route moves off the restored pathname
 let restoredLaunch = false
 let restoredState: OneRouter.ResultState | undefined
+let restoredPathname: string | undefined
 let warmInitialRouteConsumed = false
 
 let latestNavState: unknown
@@ -515,6 +516,7 @@ export function consumeWarmInitialNavigationState(
 
   warmRouteApplied = true
   restoredLaunch = true
+  restoredPathname = (envelope.pathname || '/').split('?')[0].split('#')[0] || '/'
   restoredState = targetState as unknown as OneRouter.ResultState
   return restoredState
 }
@@ -541,7 +543,10 @@ export function isRestoredLaunch(): boolean {
   return restoredLaunch
 }
 
-export function endRestoredLaunch(): void {
+// navigation containers report state changes just from mounting, so only a
+// different pathname ends the restored launch
+export function trackRestoredLaunch(pathname: string | undefined): void {
+  if (!restoredLaunch || pathname === restoredPathname) return
   restoredLaunch = false
   restoredState = undefined
 }

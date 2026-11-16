@@ -39,7 +39,7 @@ export declare function shouldAttemptWarmRouteRestore(initialLocation?: URL): bo
 export declare function isWarmWebRestoreEligible(initialLocation?: URL): boolean;
 export declare function isWarmRouteApplied(): boolean;
 export declare function isRestoredLaunch(): boolean;
-export declare function endRestoredLaunch(): void;
+export declare function trackRestoredLaunch(pathname: string | undefined): void;
 export declare function consumeWarmRouteApplied(): boolean;
 /** schedule off-thread serialization and storage persistence of latest route + sources. */
 export declare function scheduleWarmStatePersist(navState?: unknown, pathname?: string): void;
