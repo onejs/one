@@ -215,6 +215,7 @@
       return hybridObject;
     }
   );
+#if ONE_GROUP_BIOMETRICS
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneSecureStore",
     []() -> std::shared_ptr<HybridObject> {
@@ -222,6 +223,7 @@
       return hybridObject;
     }
   );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneAdaptive",
     []() -> std::shared_ptr<HybridObject> {
@@ -254,6 +256,7 @@
     }
   );
 #endif
+#if ONE_GROUP_BIOMETRICS
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneProtectedStore",
     []() -> std::shared_ptr<HybridObject> {
@@ -261,6 +264,7 @@
       return hybridObject;
     }
   );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneZero",
     []() -> std::shared_ptr<HybridObject> {
@@ -419,6 +423,7 @@
       return hybridObject;
     }
   );
+#if ONE_GROUP_FITNESS
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneBarometer",
     []() -> std::shared_ptr<HybridObject> {
@@ -426,6 +431,7 @@
       return hybridObject;
     }
   );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneLightSensor",
     []() -> std::shared_ptr<HybridObject> {
@@ -433,6 +439,7 @@
       return hybridObject;
     }
   );
+#if ONE_GROUP_FITNESS
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OnePedometer",
     []() -> std::shared_ptr<HybridObject> {
@@ -440,6 +447,7 @@
       return hybridObject;
     }
   );
+#endif
 }
 
 @end

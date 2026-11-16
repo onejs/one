@@ -29,7 +29,7 @@ gradle.beforeProject { project ->
     }
     if (project.path != ':app') return
     project.afterEvaluate {
-        project.dependencies.add('implementation', 'androidx.work:work-runtime-ktx:2.9.0')
+        project.dependencies.add('implementation', 'androidx.work:work-runtime-ktx:2.12.0')
         project.layout.buildDirectory.set(new File(proofRoot, 'build'))
         project.android.externalNativeBuild.cmake.buildStagingDirectory = new File(proofRoot, '.cxx')
         project.android.defaultConfig.applicationId = 'dev.onejs.backgroundproof'
