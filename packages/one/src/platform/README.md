@@ -1013,8 +1013,8 @@ array of `{ url, title?, sourceIdentifier? }`, with `initialIndex` selecting the
 page. Errors call `onError(message)` and dismiss the preview.
 
 `One.UI.MediaViewer` wraps this control with `MediaViewer.Thumbnail` triggers and
-registers each thumbnail with One's existing zoom source repository. On iOS 18 and
-later the system zooms to the current item's mounted thumbnail when dismissing.
+registers each thumbnail with One's existing zoom source repository. Quick Look
+zooms to the current item's mounted thumbnail when dismissing.
 Quick Look supplies filenames and the system share and save actions.
 
 ```tsx

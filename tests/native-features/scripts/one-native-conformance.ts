@@ -11074,8 +11074,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     return
   }
   if (config.suite === 'media-viewer') {
-    await wait('home screen mounted', () => true, true)
-    await tapNav('nav-one-native-media-viewer')
+    const home = await wait('home screen mounted', () => true, true)
+    if (id(home, 'index')) await tapNav('nav-one-native-media-viewer')
+    else tap({ id: 'nav-one-native-media-viewer' })
     await wait('gallery mounted', (n) => Boolean(id(n, 'media-viewer-photo')))
     screenshot('media-viewer-thumbnails.png')
     tap({ id: 'media-viewer-photo' })

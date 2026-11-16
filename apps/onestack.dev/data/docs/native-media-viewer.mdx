@@ -49,9 +49,8 @@ with a message and closes the presentation.
 
 `MediaViewer.Thumbnail` takes an item `index`, children, and React Native
 `Pressable` props except `onPress`, with a static view `style`. Its bounds define the source of the system
-zoom transition on iOS 18 and later. After paging, dismissal returns to the
+Quick Look zoom transition. After paging, dismissal returns to the
 current item's mounted thumbnail. Keep thumbnails mounted while viewing.
-Earlier iOS versions use Quick Look's standard presentation.
 
 For a controlled preview without thumbnail triggers, use the same underlying
 `One.iOS.QuickLook` control:

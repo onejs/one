@@ -284,14 +284,6 @@ ${dialogButtons('presenting')}
           controller.delegate = self
           controller.currentPreviewItemIndex = initialIndex
           controller.modalPresentationStyle = .fullScreen
-          if #available(iOS 18.0, *) {
-            controller.preferredTransition = .zoom { [weak self] _ in
-              guard let self, let preview = self.preview, self.items.indices.contains(preview.currentPreviewItemIndex) else { return nil }
-              let identifier = self.items[preview.currentPreviewItemIndex].sourceIdentifier
-              let view = OneZoomManager.shared.sourceRepository.getSource(identifier: identifier)?.view
-              return view?.window == nil ? nil : view
-            }
-          }
           preview = controller
           loading = nil
           anchor.present(controller, animated: true)
@@ -308,6 +300,17 @@ ${dialogButtons('presenting')}
       }
     }
 
+    func source(for item: QLPreviewItem) -> UIView? {
+      guard let item = item as? Item else { return nil }
+      let view = OneZoomManager.shared.sourceRepository.getSource(identifier: item.sourceIdentifier)?.view
+      return view?.superview == nil ? nil : view
+    }
+    func previewController(_ controller: QLPreviewController, transitionViewFor item: QLPreviewItem) -> UIView? { source(for: item) }
+    func previewController(_ controller: QLPreviewController, frameFor item: QLPreviewItem, inSourceView view: AutoreleasingUnsafeMutablePointer<UIView?>) -> CGRect {
+      guard let source = source(for: item) else { return .zero }
+      view.pointee = source
+      return source.bounds
+    }
     func numberOfPreviewItems(in controller: QLPreviewController) -> Int { items.count }
     func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem { items[index] }
     func previewControllerDidDismiss(_ controller: QLPreviewController) {
