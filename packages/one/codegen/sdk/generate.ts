@@ -72,7 +72,22 @@ export async function typecheck(files: string[]) {
       return []
     } catch (error) {
       const stderr = error instanceof Error && 'stderr' in error ? String(error.stderr) : String(error)
-      return stderr.split('\n').filter((line) => / error: /.test(line))
+      const diagnostics = stderr
+        .split('\n')
+        .filter((line) => /^.*:\d+:\d+: error: /.test(line))
+      if (!diagnostics.length) {
+        const status =
+          error instanceof Error && 'signal' in error && error.signal
+            ? `signal ${error.signal}`
+            : error instanceof Error && 'code' in error
+              ? `exit ${error.code}`
+              : 'unknown status'
+        throw new Error(
+          `[one] ${sdk.sdk} Swift compiler failed (${status}):\n${stderr}`,
+          { cause: error }
+        )
+      }
+      return diagnostics
     }
   }))
   return errors.flat()
