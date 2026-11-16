@@ -624,7 +624,7 @@ describe('warmState', () => {
     expect(consumeWarmRouteApplied()).toBe(true)
   })
 
-  it('lets a route restore export skip or redirect using the saved params', () => {
+  it('lets a route restore export skip or redirect using the saved params', async () => {
     const seen: unknown[] = []
     const files: Record<string, any> = {
       './inbox.tsx': { default: () => null, restore: false },
@@ -663,8 +663,18 @@ describe('warmState', () => {
     })
     trackRestoredLaunch('/post/1')
     expect(isRestoredLaunch()).toBe(true)
-    trackRestoredLaunch('/inbox')
-    expect(isRestoredLaunch()).toBe(false)
+    // a cold deep link replaces the restored route, and its screen is not restored
+    const navigated: string[] = []
+    await reconcileNativeColdDeepLink({
+      getInitialURL: async () => 'myapp://inbox',
+      prefixes: ['myapp://'],
+      currentHref: '/post/1',
+      navigateTo: (href) => {
+        navigated.push(href)
+        expect(isRestoredLaunch()).toBe(false)
+      },
+    })
+    expect(navigated).toEqual(['/inbox'])
 
     save('/post/gone', { index: 0, routes: [{ name: 'post/[id]', params: { id: 'gone' } }] })
     expect(consumeWarmInitialNavigationState(routeNode, linking as any)).toMatchObject({

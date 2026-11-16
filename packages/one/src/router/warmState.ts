@@ -690,6 +690,8 @@ export async function reconcileNativeColdDeepLink(options: {
     return null
   }
 
+  // the linked screen is not a restored one
+  trackRestoredLaunch(normalizedTarget)
   options.navigateTo(normalizedTarget)
   options.onComplete?.(normalizedTarget)
   return normalizedTarget
