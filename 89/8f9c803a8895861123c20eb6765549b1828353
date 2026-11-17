@@ -1,3 +1,7 @@
 {"id":"00000001794875982663:4786e874b6e3f2f04debc40d26e37ace","text":"brief shared to Nate (i-1794875973980-8891-0); fixing contacts/camera groups and SDK framework union as plain bugs after 2.22.0"}
 
 {"id":"00000001794876111907:81733eca1015de9d5403cb824816a54f","text":"Nate answered Yes (mail #372): vxrn/expo-plugin should write ios/one-link-set.json. Implement with the contacts/camera group and SDK framework union fixes after 2.22.0."}
+
+{"id":"00000001794887365485:c619c25ad91348ce2e2d0b5bb79cee17:6b37748bca717c18","text":"b78458: 254d95c39 on fix/expo-link-set. TESTED studio-64 Release sim build of TM with the fix: Release bindings CoreGraphics, Foundation, UIKit, UniformTypeIdentifiers (was 13); otool shows no EventKit/ATT/DeviceCheck/PDFKit (LocalAuthentication stays, from TM's biometrics group); app launches to the board. Cold review running; then PR into next and issue comment."}
+
+{"id":"00000001794887681697:2571143619c1527cef95a95d9d0e14a3:6b37748bca717c18","text":"Review fixes dee5450ba (escape invariant counts every One reference; shadowed alias crash fixed). PR #1290 into next, auto-merge on. Issue comment posted. TM bundle unchanged: 0 escapes, 4 frameworks."}

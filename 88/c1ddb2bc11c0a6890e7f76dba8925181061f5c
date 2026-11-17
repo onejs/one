@@ -1,1 +1,3 @@
 {"id":"00000001794755460400:9b34c285a57d05f8f07973cc5f080bae","text":"PR https://github.com/onejs/one/pull/1248 (feat/native-view-culling 4b0ce0b17). New feature, so it goes in the next minor. RAN: prebuild + Release sim build, lldb confirmed OneEnableViewCulling called from AppDelegate and React reads the flag through the override."}
+
+{"id":"00000001794887715479:3c367634ed1f88612b891b20f474e92f:6b37748bca717c18","text":"PR 1248 merged to main 2026-11-16T06:43Z."}

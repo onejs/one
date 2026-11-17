@@ -3,3 +3,5 @@
 {"id":"00000001794758823329:36fda1c65390dfc483821e81bcc47699","text":"RAN: Tamagui PR https://github.com/tamagui/tamagui/pull/4463 (branch tm/compiler-flatten-text: d93d64ae41 text flatten + 345415753b plan cache keyed on compiler build). TM feed series, 12 alternating runs each, full CPU, Tamagui 3.3.3 base vs flat: re-render total Hermes 1434->1137 ms, Bun 364->273 ms; mount Hermes 184->167, Bun 135->118; scroll unchanged; 0 errors. Found: plan cache reused stale plans across same-version local compiler builds."}
 
 {"id":"00000001794759621169:f425c72e080c9665e19b387e5406a82b","text":"Nate approved PR 4463. Lint fix beb4067863 pushed; auto-merge via merge queue armed."}
+
+{"id":"00000001794887715549:13a55dec1531d929fb96fd4062546d53:6b37748bca717c18","text":"One 1253 and Tamagui 4463 both merged."}
