@@ -19,3 +19,5 @@
 {"id":"00000001794813687641:f6b844c0eb63c3231d0139875eed430b","text":"2.19.0 minor out via run 43818712624; #1249 #1250 #1261 commented. Asked Nate: warmStart/useWarmState, static bun branch merge, one/keyboard merge"}
 
 {"id":"00000001794826047585:587933ed3823a43dc8a1951524a0fa39","text":"CI speed: prebuilt-ios.yml 'One iOS (Debug|Release)' takes ~75 min per config on xcode-27 shared runners (package-one-ios.mts builds iphoneos then iphonesimulator sequentially at -jobs 2) and waits ~1.5h for a runner; gates every release PR touching packages/one/ios. Fix candidates: split the matrix to config x sdk with a merge job that assembles the xcframework, or a self-hosted Mac runner (Nate suggested pro-128). Cancelled superseded runs 43824622573, 43825736867, 43824361083 to free runners."}
+
+{"id":"00000001794887754407:c3ee696cf240d8704a56f83289c57b07:6b37748bca717c18","text":"b78458: prebuilt-ios wall time is mostly shared macOS runner queue; splitting config x sdk adds queued Mac jobs, so no change. Since #1286 it runs only on PRs into main and main pushes, and --reuse-published skips builds when the native identity is unchanged."}
