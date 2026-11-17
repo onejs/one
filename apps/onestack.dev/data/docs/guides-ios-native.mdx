@@ -129,7 +129,7 @@ one({
 
 Apps on `expo prebuild` pass the same option to the plugin: `['vxrn/expo-plugin', { engine: 'bun' }]`.
 
-One prebuild also supports Android Release builds with `android: { applicationId: 'com.example.app', engine: 'bun' }`. Android requires ARM64 and API 28 or newer. Set `ONE_BUN_ENGINE_DIR` to a local Android engine build with `android/arm64-v8a/libbun.so`, `android/include/JavaScriptCore`, and `android/compile`. The compiler and runtime must match their Bun revision, built-in modules and JavaScriptCore layout. The iOS download's macOS compiler cannot compile for the Android runtime.
+One prebuild also supports Android Release builds with `android: { applicationId: 'com.example.app', engine: 'bun' }`. Android requires ARM64 and API 28 or newer. Gradle downloads the Android engine from a pinned onejs/bun-engine release into the user cache (`~/Library/Caches/one/bun-engine` on macOS, `~/.cache/one/bun-engine` on Linux), checks its checksum, and reuses it after that. Set `ONE_BUN_ENGINE_DIR` to a local Android engine build with `android/arm64-v8a/libbun.so`, `android/include/JavaScriptCore`, and `android/compile` instead. The compiler and runtime must match their Bun revision, built-in modules and JavaScriptCore layout, so the iOS download's macOS compiler cannot compile for the Android runtime.
 
 The Android build compiles `index.android.bundle` into `libbun.so` and installs a JNI runtime factory. Debug builds use Hermes.
 

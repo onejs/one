@@ -2,7 +2,45 @@ def bunSource = file(providers.exec {
     workingDir rootDir
     commandLine "node", "--print", "require('path').join(require('path').dirname(require.resolve('vxrn/package.json')), 'android/OneBunEngine')"
 }.standardOutput.asText.get().trim())
-def bunEngine = providers.environmentVariable("ONE_BUN_ENGINE_DIR")
+// the android runtime and its compiler come from an onejs/bun-engine release. a compiled program only
+// loads in the runtime it was compiled against, so the release is pinned. ONE_BUN_ENGINE_DIR points at a
+// local engine build instead
+def engineVersion = "0.3.0"
+def engineSha256 = "ee62477a55e1471640071bf2dd7e4e0b9f435ec893d63ea407e33fd8c2a20782"
+def bunEngine = {
+    def local = System.getenv("ONE_BUN_ENGINE_DIR")
+    if (local) {
+        if (!new File(local, "android").directory) throw new GradleException("[one] ONE_BUN_ENGINE_DIR has no android folder: ${local}")
+        return new File(local).absolutePath
+    }
+    def home = System.getProperty("user.home")
+    def caches = System.getProperty("os.name").toLowerCase().contains("mac")
+        ? new File(home, "Library/Caches")
+        : new File(System.getenv("XDG_CACHE_HOME") ?: "${home}/.cache")
+    def cache = new File(caches, "one/bun-engine/${engineVersion}")
+    def dir = new File(cache, "bun-engine")
+    if (new File(dir, "android").directory) return dir.absolutePath
+    cache.mkdirs()
+    def tmp = java.nio.file.Files.createTempDirectory(cache.toPath(), "download").toFile()
+    def tarball = new File(tmp, "engine.tar.gz")
+    def url = "https://github.com/onejs/bun-engine/releases/download/v${engineVersion}/bun-engine-${engineVersion}-android.tar.gz"
+    logger.lifecycle("[one] downloading the bun engine ${engineVersion}")
+    if (providers.exec { commandLine "curl", "-fsSL", "--retry", "3", "-o", tarball, url; ignoreExitValue true }.result.get().exitValue != 0) {
+        throw new GradleException("[one] could not download the bun engine from ${url}")
+    }
+    def digest = java.security.MessageDigest.getInstance("SHA-256")
+    tarball.eachByte(1 << 16) { bytes, length -> digest.update(bytes, 0, length) }
+    if (digest.digest().encodeHex().toString() != engineSha256) {
+        throw new GradleException("[one] the bun engine download from ${url} does not match its checksum")
+    }
+    // tar keeps the compiler's executable bits
+    if (providers.exec { commandLine "tar", "-xzf", tarball, "-C", tmp; ignoreExitValue true }.result.get().exitValue != 0) {
+        throw new GradleException("[one] could not unpack the bun engine")
+    }
+    new File(tmp, "bun-engine").renameTo(dir)
+    tmp.deleteDir()
+    dir.absolutePath
+}()
 def bunOutput = layout.buildDirectory.dir("generated/one-bun")
 
 android {
@@ -11,7 +49,7 @@ android {
         ndk { abiFilters "arm64-v8a" }
         externalNativeBuild {
             cmake {
-                arguments "-DONE_BUN_ENGINE_DIR=${bunEngine.getOrElse('')}", "-DONE_BUN_SOURCE=${bunSource}"
+                arguments "-DONE_BUN_ENGINE_DIR=${bunEngine}", "-DONE_BUN_SOURCE=${bunSource}"
             }
         }
     }
@@ -25,18 +63,15 @@ android {
 afterEvaluate {
     tasks.matching { it.name.startsWith("createBundle") && it.name.endsWith("JsAndAssets") }.configureEach { bundleTask ->
         hermesEnabled.set(false)
-        inputs.dir(bunEngine.map { file(it) })
+        inputs.dir(file(bunEngine))
         inputs.file(new File(bunSource, "embed.sh"))
         outputs.dir(bunOutput.map { it.dir("release") })
         doLast {
-            if (!bunEngine.isPresent()) {
-                throw new GradleException("[one] the Android Bun engine requires ONE_BUN_ENGINE_DIR")
-            }
             def bundle = new File(jsBundleDir.get().asFile, bundleAssetName.get())
             def output = bunOutput.get().dir("release/arm64-v8a").asFile
             output.mkdirs()
             def compilation = providers.exec {
-                environment "ONE_BUN_ENGINE_DIR", bunEngine.get()
+                environment "ONE_BUN_ENGINE_DIR", bunEngine
                 commandLine "bash", new File(bunSource, "embed.sh"), bundle, new File(output, "libbun.so")
                 ignoreExitValue true
             }
