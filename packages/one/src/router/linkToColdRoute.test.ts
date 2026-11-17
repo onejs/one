@@ -1,7 +1,15 @@
 import { createNavigationContainerRef } from '@react-navigation/core'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import type { One } from '../vite/types'
-import { initialize, replace, routeNode } from './router'
+import {
+  handleNavigationContainerStateChange,
+  initialize,
+  push,
+  replace,
+  rootStateSnapshot,
+  routeInfoSnapshot,
+  routeNode,
+} from './router'
 
 afterEach(() => {
   vi.unstubAllEnvs()
@@ -11,6 +19,58 @@ afterEach(() => {
 })
 
 describe('navigation to a cold route', () => {
+  it('reconciles encoded dynamic parameters before a native pop', async () => {
+    vi.stubEnv('TAMAGUI_TARGET', 'native')
+    vi.stubGlobal('__vxrnHeadless', true)
+    vi.stubGlobal(
+      'requestAnimationFrame',
+      vi.fn(() => 1)
+    )
+    const files = {
+      './_layout.tsx': { default: () => null },
+      './index.tsx': { default: () => null },
+      './items/[key].tsx': { default: () => null },
+    }
+    const context = ((id: string) => files[id]) as One.RouteContext
+    context.keys = () => Object.keys(files)
+    context.resolve = (id) => id
+    context.id = 'encoded-route'
+    const initial = {
+      key: 'stack-1',
+      type: 'stack' as const,
+      index: 0,
+      stale: false as const,
+      routeNames: ['index', 'items/[key]'],
+      routes: [{ key: 'index-1', name: 'index' }],
+    }
+    const navigator = {
+      isReady: () => true,
+      getRootState: () => initial,
+      getCurrentRoute: () => initial.routes[0],
+      resetRoot: vi.fn(),
+      dispatch: vi.fn(),
+      addListener: () => () => {},
+      removeListener: () => {},
+    }
+    const ref = createNavigationContainerRef()
+    ref.current = navigator as any
+    initialize(context, ref as any, new URL('http://one.test/'))
+
+    await push('/items/agent%3Aexample')
+    const committed = {
+      ...initial,
+      index: 1,
+      routes: [
+        ...initial.routes,
+        { key: 'item-1', name: 'items/[key]', params: { key: 'agent:example' } },
+      ],
+    }
+    handleNavigationContainerStateChange(committed)
+    expect(rootStateSnapshot()).toEqual(committed)
+    handleNavigationContainerStateChange(initial)
+    expect(routeInfoSnapshot().pathname).toBe('/')
+  })
+
   it.each([
     ['native', 'development', true, false, false],
     ['web', 'development', false, false, false],

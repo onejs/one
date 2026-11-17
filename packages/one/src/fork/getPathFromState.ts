@@ -166,6 +166,13 @@ export function getPathDataFromState<ParamList extends {}>(
 
       if (route.params) {
         const stringify = currentOptions[route.name]?.stringify
+        const hasKeySegment = pattern
+          ?.split('/')
+          .some(
+            (part) =>
+              sharedModUtils.isDynamicPart(part) &&
+              sharedModUtils.getParamName(part) === NAV_PARAM_KEY
+          )
 
         // @modified - start
 
@@ -180,11 +187,10 @@ export function getPathDataFromState<ParamList extends {}>(
         const currentParams = Object.fromEntries(
           Object.entries(route.params!).flatMap(([key, value]) => {
             // Filter out internal navigation params that shouldn't appear in URL
-            // 'key' is our deterministic route key used for React reconciliation
             if (
               key === NAV_PARAM_SCREEN ||
               key === NAV_PARAM_PARAMS ||
-              key === NAV_PARAM_KEY
+              (key === NAV_PARAM_KEY && !hasKeySegment)
             ) {
               return []
             }
