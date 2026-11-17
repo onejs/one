@@ -63,7 +63,7 @@ function analysisPlugin(): Plugin {
         if (own.some((dir) => file.startsWith(dir + '/'))) return
         if (mightUseGroups(code, keySet, pattern))
           analyzeModule(code, file, keySet, usage)
-        if (!/["']one["']/.test(code)) return
+        if (!/["'`]one["'`]/.test(code)) return
         return rewriteMembers(code, file, (reason) => escapes.push(`${file}: ${reason}`))
       },
     },

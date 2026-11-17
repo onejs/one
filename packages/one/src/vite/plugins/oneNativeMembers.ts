@@ -279,8 +279,10 @@ export function nativeOneMembers(file: string, platform = 'ios') {
   // whole of one's platform barrel reachable from the module
   return (source: string, id: string, escape: (reason: string) => void = () => {}) => {
     if (
-      /\b(require|import)\s*\(\s*["']one["']\s*\)/.test(source) ||
-      /export\s*(\*|\{[^}]*\bOne\b[^}]*\})\s*from\s*["']one["']/.test(source)
+      /\b(require|import)\s*\(\s*["'`]one["'`]\s*\)/.test(source) ||
+      /export\s*(\*(\s*as\s+[\w$]+)?|\{[^}]*\bOne\b[^}]*\})\s*from\s*["']one["']/.test(
+        source
+      )
     )
       escape('dynamic or re-exported one')
     const parsed = parseSync(id, source, {
@@ -368,7 +370,11 @@ export function nativeOneMembers(file: string, platform = 'ios') {
     const pattern = (node: Node) => {
       if (node.type === 'Identifier') roots.delete(node.name)
       else if (node.type === 'Property') pattern(node.value)
-      else children(node, pattern)
+      else if (node.type === 'AssignmentPattern') pattern(node.left)
+      else if (node.type === 'RestElement') pattern(node.argument)
+      else if (node.type === 'TSParameterProperty') pattern(node.parameter)
+      else if (node.type === 'ArrayPattern' || node.type === 'ObjectPattern')
+        children(node, pattern)
     }
     const shadows = (node: Node) => {
       if (node.type === 'ImportDeclaration') return
@@ -399,12 +405,15 @@ export function nativeOneMembers(file: string, platform = 'ios') {
       escaped.add(name)
       escape(reason)
     }
+    const typeOnly = (node: Node) =>
+      node.declare ||
+      node.type === 'TSTypeAliasDeclaration' ||
+      node.type === 'TSInterfaceDeclaration' ||
+      node.type === 'TSDeclareFunction' ||
+      (node.type.startsWith('TS') && node.type.endsWith('Type'))
+    let rewritten = 0
     const visit = (node: Node) => {
-      if (node.type === 'ImportDeclaration' || aliases.has(node)) return
-      if (node.type.startsWith('TS')) {
-        if (node.expression) visit(node.expression)
-        return
-      }
+      if (node.type === 'ImportDeclaration' || aliases.has(node) || typeOnly(node)) return
       if (node.type === 'Identifier') {
         if (roots.has(node.name)) kept(node.name, `One read at ${node.start}`)
         return
@@ -452,6 +461,7 @@ export function nativeOneMembers(file: string, platform = 'ios') {
             while (new RegExp(`\\b${alias}\\b`).test(source)) alias += '_'
             added.set(key, { binding: found.binding, alias })
           }
+          rewritten++
           output.overwrite(
             root.start,
             nodes[read.prefix.length + consumed - 1].end,
@@ -469,10 +479,51 @@ export function nativeOneMembers(file: string, platform = 'ios') {
       children(node, visit)
     }
     visit(app)
+    // every reference to a root must have been rewritten, whatever syntax holds it
+    let references = 0
+    const count = (node: Node) => {
+      if (node.type === 'ImportDeclaration' || aliases.has(node) || typeOnly(node)) return
+      if (node.type === 'Identifier' || node.type === 'JSXIdentifier') {
+        if (roots.has(node.name)) references++
+        return
+      }
+      if (node.type === 'MemberExpression' || node.type === 'JSXMemberExpression') {
+        count(node.object)
+        if (node.computed) count(node.property)
+        return
+      }
+      if (
+        (node.type === 'Property' ||
+          node.type === 'MethodDefinition' ||
+          node.type === 'PropertyDefinition' ||
+          node.type === 'JSXAttribute') &&
+        !node.computed
+      ) {
+        if (node.value) count(node.value)
+        return
+      }
+      if (
+        node.type === 'LabeledStatement' ||
+        node.type === 'BreakStatement' ||
+        node.type === 'ContinueStatement'
+      ) {
+        if (node.body) count(node.body)
+        return
+      }
+      if (node.type === 'ExportSpecifier') {
+        count(node.local)
+        return
+      }
+      children(node, count)
+    }
+    count(app)
+    const complete = references === rewritten && roots.size === imported
+    if (!complete) escape('One reference left unrewritten')
     // an alias whose every read became an import no longer needs One
     for (const declaration of [...aliases].toReversed()) {
-      if (escaped.has(declaration.id.name)) escaped.add(chain(declaration.init).root.name)
-      else output.overwrite(declaration.init.start, declaration.init.end, 'void 0')
+      if (complete && roots.has(declaration.id.name) && !escaped.has(declaration.id.name))
+        output.overwrite(declaration.init.start, declaration.init.end, 'void 0')
+      else escaped.add(chain(declaration.init).root.name)
     }
     if (!added.size && !aliases.size) return
     const lastImport = app.body

@@ -35,6 +35,8 @@ it('drops unrelated SDK backends for static namespace reads and preserves escape
       static: `import { One } from 'one'; globalThis.__oneResult = One.UI.Map();`,
       settings: `import { One } from 'one'; globalThis.__oneResult = One.openSettings();`,
       alias: `import { One } from 'one'; const UI = One.UI; globalThis.__oneResult = UI.Map();`,
+      defaultParam: `import { One } from 'one'; function f(map = One.UI.Map) { return map(); } globalThis.__oneResult = f();`,
+      shadowedAlias: `import { One } from 'one'; const UI = One.UI; function f({ map = UI.Map } = {}) { return map(); } function g(UI) { return UI; } globalThis.__oneResult = [f(), g(1)];`,
       getter: `import { One } from 'one'; globalThis.__onePlatform = 'ios'; const first = One.platform; globalThis.__onePlatform = 'android'; globalThis.__oneResult = [first, One.platform];`,
       identity: `import { One, original } from 'one'; globalThis.__oneResult = One.UI.Map === original().UI.Map;`,
       shadow: `import { One } from 'one'; function local(One) { return One.UI.Map(); } globalThis.__oneResult = [One.UI.Map(), local({ UI: { Map: () => 'shadow' } })];`,
@@ -58,24 +60,44 @@ it('drops unrelated SDK backends for static namespace reads and preserves escape
       const { output } = await bundle.generate({ format: 'iife', minify: true })
       await bundle.close()
       const result = output[0] as { code: string }
-      if (['static', 'alias', 'settings', 'getter'].includes(name))
+      if (['static', 'alias', 'settings', 'getter', 'defaultParam'].includes(name))
         expect(result.code).not.toContain('EventKit_unused')
       delete (globalThis as any).__oneBarrel
       new Function(result.code)()
       // reads resolve past the barrel to the module defining them
-      if (['static', 'alias', 'settings'].includes(name))
+      if (['static', 'alias', 'settings', 'defaultParam'].includes(name))
         expect((globalThis as any).__oneBarrel).toBeUndefined()
       expect((globalThis as any).__oneResult).toEqual(
-        name === 'static' || name === 'alias'
+        name === 'static' || name === 'alias' || name === 'defaultParam'
           ? 'map'
-          : name === 'settings'
-            ? 'settings'
-            : name === 'identity'
-              ? true
-              : name === 'getter'
-                ? ['ios', 'android']
-                : ['map', 'shadow']
+          : name === 'shadowedAlias'
+            ? ['map', 1]
+            : name === 'settings'
+              ? 'settings'
+              : name === 'identity'
+                ? true
+                : name === 'getter'
+                  ? ['ios', 'android']
+                  : ['map', 'shadow']
       )
+    }
+    // every read is either rewritten or reported, so linking never drops a reached framework
+    for (const [file, code] of Object.entries({
+      'key.js': `import { One } from 'one'; const c = {}; c[One.Calendar] = 1;`,
+      'update.js': `import { One } from 'one'; const c = {}; c[One.Calendar]++;`,
+      'pattern.js': `import { One } from 'one'; let g; [g = One.Calendar] = [];`,
+      'namespace.ts': `import { One } from 'one'; namespace N { export const g = One.Calendar; }`,
+      'enum.ts': `import { One } from 'one'; enum E { A = One.Calendar.length }`,
+      'reexport.js': `export * as Lib from 'one';`,
+      'template.js': 'export const one = import(`one`);',
+      'tag.jsx': `import { One } from 'one'; const UI = One.UI; export const a = <UI />;`,
+    })) {
+      const escapes: string[] = []
+      const result = rewrite(code, join(root, file), (reason) => escapes.push(reason))
+      expect(
+        escapes.length > 0 || !/One\.Calendar/.test(result?.code ?? code),
+        file
+      ).toBe(true)
     }
   } finally {
     delete (globalThis as any).__oneResult
