@@ -290,6 +290,7 @@ export interface NativeAppManifest {
   }
   android?: {
     applicationId: string
+    engine?: 'hermes' | 'bun'
     versionCode?: number
     minSdk?: number
     // the android 8+ launcher icon. foreground is a 108dp square image whose
@@ -727,12 +728,11 @@ export function validateNativeApp(
   ) {
     fail('pictureInPicture must be a boolean')
   }
-  if (
-    manifest.ios?.engine !== undefined &&
-    manifest.ios.engine !== 'hermes' &&
-    manifest.ios.engine !== 'bun'
-  ) {
-    fail(`ios.engine must be 'hermes' or 'bun'`)
+  for (const platform of ['ios', 'android'] as const) {
+    const engine = manifest[platform]?.engine
+    if (engine !== undefined && engine !== 'hermes' && engine !== 'bun') {
+      fail(`${platform}.engine must be 'hermes' or 'bun'`)
+    }
   }
   if (manifest.ios?.viewCulling !== undefined && typeof manifest.ios.viewCulling !== 'boolean') {
     fail('ios.viewCulling must be a boolean')

@@ -62,6 +62,7 @@
     "expo-plugin.cjs",
     "native-project-patches.cjs",
     "ios",
+    "android",
     "react-native-commands.cjs"
   ],
   "scripts": {
