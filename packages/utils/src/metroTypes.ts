@@ -2,7 +2,7 @@ export type MetroPluginOptions = {
   argv?: Record<string, any>
   defaultConfigOverrides?:
     | Record<string, any>
-    | ((defaultConfig: Record<string, any>) => Record<string, any>)
+    | ((defaultConfig: Record<string, any> | undefined) => Record<string, any> | undefined)
   /**
    * Shorthand for setting `useWatchman` in Metro's resolver config.
    * When true, enables Watchman for file watching. When false, disables it.
