@@ -67,12 +67,7 @@ import {
   shouldAttemptWarmRouteRestore,
   trackRestoredLaunch,
 } from './warmState'
-import {
-  getSafeWindowPath,
-  getSafeWindowPathname,
-  normalizeRoutePathname,
-  stripTrailingSlash,
-} from './path'
+import { getSafeWindowPath, getSafeWindowPathname, normalizeRoutePathname } from './path'
 import type { RouteNode } from './Route'
 import { sortRoutes } from './sortRoutes'
 import { getQualifiedRouteComponent } from './useScreens'
@@ -1514,7 +1509,7 @@ export async function linkTo(
 
   // a bit hacky until can figure out a reliable way to tie it to the state
   nextOptions = options ?? null
-  pendingNavigationPathname = stripTrailingSlash(extractPathnameFromHref(href))
+  pendingNavigationPathname = getRouteInfo(state).pathname
   pendingNavigationAction =
     event === 'PUSH' || event === 'REPLACE' || event === 'NAVIGATE' ? event : undefined
   // record the user-intended pathname so late-mounting navigators (e.g. an

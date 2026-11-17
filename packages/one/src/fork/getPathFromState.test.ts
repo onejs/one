@@ -158,3 +158,23 @@ it('writes an array param as a repeated query key', () => {
     '/?tags=a&tags=b+c&page=2'
   )
 })
+
+it('preserves a declared dynamic key parameter', () => {
+  const state = {
+    routes: [{ name: 'items/[key]', params: { key: 'agent:example' } }],
+  } satisfies State
+
+  expect(getPathFromState(state, { screens: { 'items/[key]': 'items/:key' } })).toBe(
+    '/items/agent:example'
+  )
+})
+
+it('omits internal route keys from query parameters', () => {
+  const state = {
+    routes: [{ name: 'items/[id]', params: { id: 'example', key: 'internal-route' } }],
+  } satisfies State
+
+  expect(getPathFromState(state, { screens: { 'items/[id]': 'items/:id' } })).toBe(
+    '/items/example'
+  )
+})
