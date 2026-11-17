@@ -452,6 +452,9 @@ function getNativePlugins(
     // red-boxes "unknown-message [object Object]" on every edit (new arch)
     hmrClientNoopPlugin(),
     ...(!dev && isBunEngine(root, platform) ? [nativePromisePlugin()] : []),
+    ...(!dev && platform === 'ios' && isBunEngine(root, platform)
+      ? [engineBuiltinsPlugin()]
+      : []),
     nativeIdentityAliasPlugin(platform),
     nativeAssetRegistryPlugin(root),
     // route every `react-native/*` import through the app's react native copy.
@@ -1993,6 +1996,36 @@ function nativePromisePlugin(): Plugin {
     load(id) {
       if (id === '\0vxrn-native-promise') {
         return { code: 'export {}', moduleType: 'js' }
+      }
+    },
+  }
+}
+
+/**
+ * one's mobile polyfills fill gaps in hermes. bun's ios engine ships every one of
+ * these globals itself, so a production bun bundle drops the polyfill packages
+ * and the two value imports read the engine's own.
+ */
+function engineBuiltinsPlugin(): Plugin {
+  const POLYFILL_RE =
+    /^(core-js\/|web-streams-polyfill(\/|$)|@bacons\/text-decoder$|@ungap\/structured-clone$|@azure\/core-asynciterator-polyfill$)/
+  const prefix = '\0vxrn-engine-builtin:'
+  return {
+    name: 'vxrn:engine-builtins',
+    resolveId(source) {
+      if (POLYFILL_RE.test(source)) return { id: prefix + source, external: false }
+    },
+    load(id) {
+      if (!id.startsWith(prefix)) return
+      const source = id.slice(prefix.length)
+      return {
+        code:
+          source === '@bacons/text-decoder'
+            ? 'export const TextDecoder = globalThis.TextDecoder'
+            : source === '@ungap/structured-clone'
+              ? 'export default globalThis.structuredClone'
+              : 'export {}',
+        moduleType: 'js',
       }
     },
   }
