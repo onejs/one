@@ -136,6 +136,7 @@ function ThumbnailWithRatio() {
   source="zoom/types.ts#ZoomTransitionSourceProps"
   data={[
     { name: 'identifier', required: true, type: 'string', description: 'Names this source for the enabler.' },
+    { name: 'style', type: 'StyleProp<ViewStyle>', description: 'Styles the wrapping view, such as a fixed thumbnail frame.' },
     { name: 'alignment', type: 'SourceAlignmentRect', description: 'A fixed rect, { x, y, width, height } in points, to zoom out of instead of the child.' },
     { name: 'animateAspectRatioChange', type: 'boolean', description: 'Animates a ratio change between source and landing rects.' },
   ]}

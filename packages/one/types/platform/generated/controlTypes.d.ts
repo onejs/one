@@ -3316,6 +3316,11 @@ export type MapMarker = Readonly<{
     latitude: number;
     longitude: number;
 }>;
+export type QuickLookItem = Readonly<{
+    url: string;
+    title?: string;
+    sourceIdentifier?: string;
+}>;
 export interface PickerProps extends OneNativeViewProps {
     selection: string;
     onSelectionChange: (value: string) => void;
@@ -3659,7 +3664,10 @@ export interface QuickLookProps extends OneNativeViewProps {
     isPresented: boolean;
     onIsPresentedChange: (value: boolean) => void;
     revision?: number;
+    onError?: (message: string) => void;
     url?: string;
+    items?: readonly QuickLookItem[];
+    initialIndex?: number;
 }
 export type FileImporterCompletion = Readonly<{
     type: 'success';

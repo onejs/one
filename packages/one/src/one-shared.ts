@@ -80,6 +80,7 @@ import {
   ZoomTransitionAlignmentRectDetector,
   ZoomTransitionEnabler,
   ZoomTransitionSource,
+  MediaViewer,
   type ColorType,
 } from './platform'
 import type { ComponentType } from 'react'
@@ -148,6 +149,7 @@ export type OneIOS = typeof Swift & {
   readonly ZoomTransitionAlignmentRectDetector: typeof ZoomTransitionAlignmentRectDetector
   readonly ZoomTransitionEnabler: typeof ZoomTransitionEnabler
   readonly ZoomTransitionSource: typeof ZoomTransitionSource
+  readonly MediaViewer: typeof MediaViewer
 }
 
 export type OneAndroid = typeof Compose & {
@@ -270,6 +272,7 @@ const iOS: Readonly<OneIOS> = Object.freeze({
   ZoomTransitionAlignmentRectDetector,
   ZoomTransitionEnabler,
   ZoomTransitionSource,
+  MediaViewer,
 })
 
 const Android: Readonly<OneAndroid> = Object.freeze({

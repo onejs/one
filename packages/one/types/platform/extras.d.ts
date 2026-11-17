@@ -3,6 +3,8 @@ export type { ColorType } from './color/index.js';
 export { Fonts, useFonts } from './fonts/index.js';
 export type { FontMap, FontSource, UseFontsResult } from './fonts/index.js';
 export { ZoomTransitionSource, ZoomTransitionEnabler, ZoomTransitionAlignmentRectDetector, } from './zoom/index.js';
+export { MediaViewer } from './ui/MediaViewer.js';
+export type { MediaViewerItem, MediaViewerProps, MediaViewerThumbnailProps, } from './ui/mediaViewerTypes.js';
 export { ToolbarHost, ToolbarItem } from './toolbar/index.js';
 export type { ToolbarHostProps, ToolbarItemProps } from './toolbar/index.js';
 export { MenuAction } from './menu/index.js';

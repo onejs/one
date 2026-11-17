@@ -182,6 +182,9 @@
         "OneNativeQuickLook"
       ],
       "hybrids": [],
+      "uses": [
+        "MediaViewer"
+      ],
       "modifiers": [
         "environmentRealityViewCameraControls",
         "musicPickerWithMusicVideo",
