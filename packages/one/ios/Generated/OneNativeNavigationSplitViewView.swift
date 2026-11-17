@@ -341,7 +341,7 @@ public final class OneNativeNavigationSplitViewView: UIView {
 
   private func updateHost() {
     guard window != nil else {
-      controller?.detach()
+      controller?.hostLeftWindow(self)
       setActive(false)
       return
     }

@@ -458,7 +458,7 @@ private struct OneNativeHostRoot: View {
 
   @nonobjc func updateHost() {
     guard compositionParent == nil else { return }
-    guard window != nil else { controller?.detach(); propagateActive(false); return }
+    guard window != nil else { controller?.hostLeftWindow(self); propagateActive(false); return }
     let overlap = presentedSheetBottomOverlap()
     if hostInsets.bottom != overlap { hostInsets.bottom = overlap }
     if controller == nil {

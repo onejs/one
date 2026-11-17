@@ -147,7 +147,7 @@ private final class UiMapModel: ObservableObject {
   }
   private func updateHost() {
     model.active = false
-    guard window != nil else { controller?.detach(); return }
+    guard window != nil else { controller?.hostLeftWindow(self); return }
     if controller == nil {
       bindCallbacks()
       controller = OneNativeHostingController(

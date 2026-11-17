@@ -363,7 +363,7 @@ describe('tab view host generation', () => {
 
   it('attaches the controller on window with weak callbacks and resets clean', () => {
     const swift = emit().get('ios/Generated/OneNativeTabViewView.swift')!
-    expect(swift).toContain('if window == nil { detachController() }')
+    expect(swift).toContain('if window == nil { leaveWindow() }')
     expect(swift).toContain('else { attachController() }')
     expect(swift).toContain('guard window != nil else { return }')
     expect(swift).toContain('model.onSelection = { [weak self] id, count, revision in')

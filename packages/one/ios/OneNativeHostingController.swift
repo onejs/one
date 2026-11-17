@@ -39,7 +39,7 @@ final class OneNativeHostingController<Content: View>: UIHostingController<Conte
   // controller's own chrome (a bottom accessory, a navigation bar item) is hosted
   // without containment, as a plain subview.
   func attach(to host: UIView) {
-    guard host.window != nil else { detach(); return }
+    guard host.window != nil else { hostLeftWindow(host); return }
     var responder: UIResponder? = host.next
     while responder != nil && !(responder is UIViewController) { responder = responder?.next }
     let nearest = responder as? UIViewController
@@ -57,6 +57,15 @@ final class OneNativeHostingController<Content: View>: UIHostingController<Conte
       updateScreenNavigation()
     }
     view.frame = host.bounds
+  }
+
+  // a covered screen leaves the window but keeps its views, and uikit moves a screen out of
+  // the window for a moment while it pushes or switches tabs. its hosts stay attached, since
+  // attaching again rebuilds the whole swiftui tree; a host react native removed is no longer
+  // inside its parent's view and detaches.
+  func hostLeftWindow(_ host: UIView) {
+    if view.superview === host, let parent, host.isDescendant(of: parent.view) { return }
+    detach()
   }
 
   func detach() {

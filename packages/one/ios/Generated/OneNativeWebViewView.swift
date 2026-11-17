@@ -178,7 +178,7 @@ private final class WebViewModel: ObservableObject {
   private func updateHost() {
     guard compositionParent == nil else { return }
     model.active = false
-    guard window != nil else { controller?.detach(); return }
+    guard window != nil else { controller?.hostLeftWindow(self); return }
     if controller == nil {
       bindCallbacks()
       controller = OneNativeHostingController(rootView: OneNativeStandalone(content: WebViewContent(model: model)))
