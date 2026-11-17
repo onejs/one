@@ -22,7 +22,7 @@ export default function Sockets() {
   }
   return <View style={{ flex: 1, padding: 32, gap: 24, backgroundColor: '#fff' }}>
     <Text style={{ fontSize: 26, color: '#162331' }}>AFTER: WebSocket cleanup</Text>
-    <One.linux.Button title="Open and close 20" disabled={running} onPress={run} style={{ width: 220 }} />
+    <One.Linux.Button title="Open and close 20" disabled={running} onPress={run} style={{ width: 220 }} />
     <Text style={{ fontSize: 22, color: '#162331' }}>{`closed ${closed}, failed ${failed}`}</Text>
   </View>
 }

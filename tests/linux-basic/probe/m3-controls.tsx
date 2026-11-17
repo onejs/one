@@ -57,57 +57,57 @@ export default function Controls() {
     <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 20, gap: 18, alignItems: 'flex-start' }}
       onScroll={({ nativeEvent }) => setOffset(nativeEvent.contentOffset.y)} scrollEventThrottle={16}>
       <Row title="Toggle: Mac label and boolean" note={`natural ${sizes.toggle}`}>
-        <One.linux.Toggle onLayout={measure('toggle')} label="Enable notifications" isOn={toggle} revision={revision}
+        <One.Linux.Toggle onLayout={measure('toggle')} label="Enable notifications" isOn={toggle} revision={revision}
           onIsOnChange={(event) => report(() => setToggle(event.isOn))} />
-        <One.linux.Toggle label="Unavailable" isOn={false} disabled />
+        <One.Linux.Toggle label="Unavailable" isOn={false} disabled />
       </Row>
       <Row title="Stepper: native numeric value" note={`0 to 5, step 0.25 | natural ${sizes.stepper}`}>
-        <One.linux.Stepper onLayout={measure('stepper')} value={stepper} label="Amount" in={[0, 5]} step={0.25} revision={revision}
+        <One.Linux.Stepper onLayout={measure('stepper')} value={stepper} label="Amount" in={[0, 5]} step={0.25} revision={revision}
           onValueChange={(value) => report(() => setStepper(value))} />
-        <One.linux.Stepper value={2} disabled onValueChange={() => {}} />
+        <One.Linux.Stepper value={2} disabled onValueChange={() => {}} />
       </Row>
       <Row title="TextField: controlled text" note={`Enter submits | natural ${sizes.text}`}>
-        <One.linux.TextField onLayout={measure('text')} label="Project" prompt="Project name" text={text} revision={revision}
+        <One.Linux.TextField onLayout={measure('text')} label="Project" prompt="Project name" text={text} revision={revision}
           onTextChange={(value) => report(() => setText(value))} onSubmit={() => setSubmits((value) => value + 1)} />
-        <One.linux.TextField text="Unavailable" disabled />
+        <One.Linux.TextField text="Unavailable" disabled />
       </Row>
       <Row title="SecureField: GTK password entry" note={`masked, Enter submits | natural ${sizes.secure}`}>
-        <One.linux.SecureField onLayout={measure('secure')} label="Password" prompt="Password" text={secret} revision={revision}
+        <One.Linux.SecureField onLayout={measure('secure')} label="Password" prompt="Password" text={secret} revision={revision}
           onTextChange={(value) => report(() => setSecret(value))} onSubmit={() => setSubmits((value) => value + 1)} />
-        <One.linux.SecureField text="hidden" disabled />
+        <One.Linux.SecureField text="hidden" disabled />
       </Row>
       <Row title="Switch and Button" note={`button presses ${presses} | switch natural ${sizes.switch}`}>
-        <One.linux.Switch onLayout={measure('switch')} isOn={isOn} revision={revision} onIsOnChange={(event) => report(() => setIsOn(event.isOn))} />
-        <One.linux.Button title="Native button" onPress={() => setPresses((value) => value + 1)} />
+        <One.Linux.Switch onLayout={measure('switch')} isOn={isOn} revision={revision} onIsOnChange={(event) => report(() => setIsOn(event.isOn))} />
+        <One.Linux.Button title="Native button" onPress={() => setPresses((value) => value + 1)} />
       </Row>
       <Row title="SegmentedControl" note={`index ${segment}`}>
-        <One.linux.SegmentedControl labels={['One', 'Two', 'Three']} selectedIndex={segment} revision={revision}
+        <One.Linux.SegmentedControl labels={['One', 'Two', 'Three']} selectedIndex={segment} revision={revision}
           onChange={(event) => report(() => setSegment(event.selectedIndex))} />
       </Row>
       <Row title="Slider and ProgressBar" note={`${Math.round(level * 100)} percent | starts ${starts}, completes ${completes}, final ${finalValue.toFixed(2)}`}>
-        <One.linux.Slider style={{ width: 240 }} value={level} revision={revision} onValueChange={(event) => report(() => setLevel(event.value))}
+        <One.Linux.Slider style={{ width: 240 }} value={level} revision={revision} onValueChange={(event) => report(() => setLevel(event.value))}
           onSlidingStart={() => setStarts((value) => value + 1)}
           onSlidingComplete={(event) => { setCompletes((value) => value + 1); setFinalValue(event.value) }} />
-        <One.linux.ProgressBar style={{ width: 240 }} value={level} />
+        <One.Linux.ProgressBar style={{ width: 240 }} value={level} />
       </Row>
       <Row title="ProgressBar activity mode" note={busy ? 'indeterminate' : 'determinate'}>
-        <One.linux.ProgressBar style={{ width: 240 }} value={busy ? undefined : level} />
-        <One.linux.Button title="Change progress mode" onPress={() => setBusy((value) => !value)} />
+        <One.Linux.ProgressBar style={{ width: 240 }} value={busy ? undefined : level} />
+        <One.Linux.Button title="Change progress mode" onPress={() => setBusy((value) => !value)} />
       </Row>
       <Row title="DropDown" note={`index ${choice}`}>
-        <One.linux.DropDown labels={['Alpha', 'Beta', 'Gamma']} selectedIndex={choice} revision={revision}
+        <One.Linux.DropDown labels={['Alpha', 'Beta', 'Gamma']} selectedIndex={choice} revision={revision}
           onChange={(event) => report(() => setChoice(event.selectedIndex))} />
       </Row>
       <Row title="DropDown: stable item values" note={`selection ${selection}`}>
-        <One.linux.DropDown items={reverse ? [...items].reverse() : items} selection={selection} revision={revision}
+        <One.Linux.DropDown items={reverse ? [...items].reverse() : items} selection={selection} revision={revision}
           onSelectionChange={(event) => report(() => setSelection(event.selection))} />
-        <One.linux.Button title="Reorder items" onPress={() => setReverse((value) => !value)} />
-        <One.linux.Button title="Clear selection" onPress={() => setSelection(null)} />
+        <One.Linux.Button title="Reorder items" onPress={() => setReverse((value) => !value)} />
+        <One.Linux.Button title="Clear selection" onPress={() => setSelection(null)} />
       </Row>
       <View style={{ padding: 20, width: 560, backgroundColor: '#e4f3e7', gap: 12 }}>
         <Text style={{ fontSize: 24, color: '#162331' }}>React Native content inside the same ScrollView</Text>
         <Text style={status}>GTK controls retain state while RN content scrolls and clips.</Text>
-        <One.linux.Toggle label="Composed native control" isOn={toggle} revision={revision}
+        <One.Linux.Toggle label="Composed native control" isOn={toggle} revision={revision}
           onIsOnChange={(event) => report(() => setToggle(event.isOn))} />
       </View>
       {Array.from({ length: 4 }, (_, index) => <Text key={index} style={status}>{`React Native row ${index + 1}`}</Text>)}
