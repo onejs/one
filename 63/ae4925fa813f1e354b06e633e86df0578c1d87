@@ -1,0 +1,1 @@
+{"id":"00000001794904959398:6113d55aae548d1c8a2b83375dc3ed98:2cd1c417cbc67493","text":"Validation scores: host Android compiler execution 10x9=90, host-compiled image Android runtime parity 10x10=100. Testing unmodified Android compiler under Linux host/container with its bionic linker and libraries; no source rebuild needed."}
