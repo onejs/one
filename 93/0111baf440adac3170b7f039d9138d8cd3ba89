@@ -78,3 +78,5 @@
 {"id":"00000001794880400640:42c7c28cab02ad9e6f3115722e293181","text":"2.22.0 tarball verified: CAGradientLayer standalone layer, react-native-config.d.cts, One.iOS.MediaViewer, One.Linux. Next: TM pin + runtime 91 + TestFlight."}
 
 {"id":"00000001794880734987:08ab8003fc9a9c8ed8f5f9be1f7ab7a1","text":"TM: tm/media-viewer-ios e1f6f5fe0e (multiselect + media viewer + One 2.22.0, runtime 91, gui typecheck clean) pushed. Release sim build running on studio-64 (mini-16 too small for cold SDK generation), scratch /Volumes/Studio-2TB-B/.scratch/tm-2220-b67657. Then sim check, tm land, TestFlight."}
+
+{"id":"00000001794883611603:b7cb414f8b08683b9ce8cce3b00c6b00","text":"TM landed 731db4aa23 (media viewer + multi-select + One 2.22.0, runtime 91), Release sim build on studio-64 verified launch, pairing, swipe-right multi-select, new bar icons. TestFlight run 44005125037 in progress. Next: #1215 expo link set + contacts/camera groups + SDK framework union, into next."}
