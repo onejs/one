@@ -215,6 +215,8 @@ export type OneAPI = {
   // present on the macos entry only, so ios, android and web bundles omit it
   readonly macOS?: Readonly<OneMacOS>
   // present on the linux entry only, for the same reason
+  readonly Linux?: Readonly<OneLinux>
+  /** @deprecated use `One.Linux` */
   readonly linux?: Readonly<OneLinux>
   readonly Android: Readonly<OneAndroid>
   readonly UI: Readonly<OneUI>
@@ -248,6 +250,8 @@ export type OneMacAPI = OneAPI & {
 // the One object of the linux entry, which always has its native namespace
 export type OneLinuxAPI = OneAPI & {
   readonly platform: 'linux'
+  readonly Linux: Readonly<OneLinux>
+  /** @deprecated use `One.Linux` */
   readonly linux: Readonly<OneLinux>
 }
 

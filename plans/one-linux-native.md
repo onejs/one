@@ -76,7 +76,7 @@ The Mac packaging rules apply with `linux` for `macos`:
   resolves (`.ios.js`), because the host implements the iOS-shaped native
   module contract; importers outside `react-native` get an owned `Platform`
   override where `Platform.OS` is `'linux'`.
-- `One.platform` gains `'linux'`; `One.linux` is the Linux component namespace.
+- `One.platform` gains `'linux'`; `One.Linux` is the Linux component namespace.
 
 ### 4. Startup from the first milestone
 
@@ -219,7 +219,7 @@ headless sway and a uinput pointer and keyboard, with fatal GTK criticals
   `close-request`.
 - P3 10, underscores: menu labels escape `_`; the probe menu `Probe_Menu` shows
   its underscore ([menu](one-linux-native-review3-menu-underscore.webp)).
-- P3 11: `One.linux.AppCommands` is typed `OneLinuxAppCommands`.
+- P3 11: `One.Linux.AppCommands` is typed `OneLinuxAppCommands`.
 - Simplifications taken: D1 through the size-affecting prop check and D3
   through the Fabric insets. Not taken: D2 (a shared keystroke tokenizer in
   native-core) and D4 (one header bar per window, a design choice for s72425);
@@ -1098,11 +1098,11 @@ namespace now has six controls including the existing Switch:
 
 | API | GTK widget | proof |
 | --- | --- | --- |
-| `One.linux.Button` | `GtkButton` | [one press, disabled button unchanged](one-linux-native-button.webp) |
-| `One.linux.SegmentedControl` | grouped `GtkToggleButton`s in a linked `GtkBox` | [selection](one-linux-native-segmented-control.webp) |
-| `One.linux.Slider` | `GtkScale` | [three drag updates to 74 percent](one-linux-native-slider-progress.webp) |
-| `One.linux.DropDown` | `GtkDropDown` with a `GtkStringList` | [popup](one-linux-native-dropdown-open.webp), [Beta selected by keyboard](one-linux-native-dropdown.webp) |
-| `One.linux.ProgressBar` | `GtkProgressBar` | [fraction follows the slider](one-linux-native-slider-progress.webp) |
+| `One.Linux.Button` | `GtkButton` | [one press, disabled button unchanged](one-linux-native-button.webp) |
+| `One.Linux.SegmentedControl` | grouped `GtkToggleButton`s in a linked `GtkBox` | [selection](one-linux-native-segmented-control.webp) |
+| `One.Linux.Slider` | `GtkScale` | [three drag updates to 74 percent](one-linux-native-slider-progress.webp) |
+| `One.Linux.DropDown` | `GtkDropDown` with a `GtkStringList` | [popup](one-linux-native-dropdown-open.webp), [Beta selected by keyboard](one-linux-native-dropdown.webp) |
+| `One.Linux.ProgressBar` | `GtkProgressBar` | [fraction follows the slider](one-linux-native-slider-progress.webp) |
 
 All five new Fabric components share the native value, revision and event
 acknowledgement implementation in `OneLinuxControl`; the public wrappers use

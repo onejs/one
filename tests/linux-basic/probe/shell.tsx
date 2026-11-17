@@ -10,7 +10,7 @@ export function ShellProvider({ children }: { children: ReactNode }) {
   const [tabPresses, setTabPresses] = useState(0)
   const [blocked, setBlocked] = useState(false)
   useEffect(() => {
-    One.linux.AppCommands.configure({
+    One.Linux.AppCommands.configure({
       bindings: [
         { id: 'increment', key: 'ctrl-k', context: '!Input' },
         { id: 'input', key: 'ctrl-k', context: 'Input' },
@@ -21,7 +21,7 @@ export function ShellProvider({ children }: { children: ReactNode }) {
         { kind: 'submenu', label: 'Navigate', items: [{ kind: 'action', id: 'detail', label: 'Open detail' }] },
       ] }],
     })
-    return One.linux.AppCommands.addListener((id) => {
+    return One.Linux.AppCommands.addListener((id) => {
       setLast(id)
       setCommands((count) => count + 1)
       if (id === 'detail') router.push('/detail')

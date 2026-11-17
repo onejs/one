@@ -117,6 +117,8 @@ export type OneAPI = {
     readonly Calendar: typeof Calendar;
     readonly iOS: Readonly<OneIOS>;
     readonly macOS?: Readonly<OneMacOS>;
+    readonly Linux?: Readonly<OneLinux>;
+    /** @deprecated use `One.Linux` */
     readonly linux?: Readonly<OneLinux>;
     readonly Android: Readonly<OneAndroid>;
     readonly UI: Readonly<OneUI>;
@@ -146,6 +148,8 @@ export type OneMacAPI = OneAPI & {
 };
 export type OneLinuxAPI = OneAPI & {
     readonly platform: 'linux';
+    readonly Linux: Readonly<OneLinux>;
+    /** @deprecated use `One.Linux` */
     readonly linux: Readonly<OneLinux>;
 };
 export declare const One: OneAPI;

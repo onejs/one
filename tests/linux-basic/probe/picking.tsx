@@ -12,8 +12,8 @@ function Column({ mode }: { mode: 'auto' | 'none' | 'box-only' | 'box-none' }) {
     <Text style={{ fontSize: 22, color: '#162331' }}>{mode}</Text>
     <View pointerEvents={mode} onTouchStart={() => setTouches((value) => value + 1)}
       style={{ padding: 16, gap: 24, backgroundColor: '#d9e8f6' }}>
-      <One.linux.Switch isOn={isOn} onIsOnChange={(event) => setIsOn(event.isOn)} />
-      <One.linux.Button title="Click" onPress={() => setPresses((value) => value + 1)} />
+      <One.Linux.Switch isOn={isOn} onIsOnChange={(event) => setIsOn(event.isOn)} />
+      <One.Linux.Button title="Click" onPress={() => setPresses((value) => value + 1)} />
       <TextInput value={text} onChangeText={setText} onFocus={() => setFocuses((value) => value + 1)}
         placeholder="click, then type" style={{ width: 220, height: 40, fontSize: 18, backgroundColor: '#fff', color: '#162331' }} />
     </View>
