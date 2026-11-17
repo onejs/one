@@ -11,5 +11,5 @@ export declare function generateWorkerdDevEntryModule(args: {
     routePaths: string[];
     preloads: string[];
 }): string;
-export declare function createWorkerdDevPlugins(options: One.PluginOptions, root: string, routeIndex: RouteIndex): PluginOption[];
+export declare function createWorkerdDevPlugins(options: One.PluginOptions, root: string, routeIndex: RouteIndex): Promise<PluginOption[]>;
 //# sourceMappingURL=workerdDevPlugin.d.ts.map

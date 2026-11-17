@@ -32,6 +32,7 @@ import {
   createCloudflareWranglerConfig,
   getCloudflareProjectName,
   isPlainObject,
+  loadCloudflarePlugin,
   loadUserWranglerConfig,
   type JsonValue,
 } from '../vite/cloudflareWranglerConfig'
@@ -1453,7 +1454,7 @@ export default {
       const workerExternals = Array.isArray(ssrExternal) ? ssrExternal : []
 
       console.info('\n [cloudflare] Bundling worker...')
-      const { cloudflare } = await import('@cloudflare/vite-plugin')
+      const cloudflare = await loadCloudflarePlugin()
       const builder = await createBuilder({
         root: options.root,
         mode: 'production',

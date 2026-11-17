@@ -127,11 +127,12 @@ export async function startRozeniteHost(
 
   let rozenite: RozeniteModule
   try {
-    // One depends on @rozenite/middleware, so this resolves from One's own
-    // package in every layout, including pnpm's strict node_modules.
     rozenite = (await import('@rozenite/middleware')) as unknown as RozeniteModule
   } catch (error) {
-    console.warn(`[one] Rozenite plugins are configured but @rozenite/middleware could not load: ${String(error)}`)
+    console.warn(
+      '[one] Could not load @rozenite/middleware. Install it as a dev dependency in your app to use Rozenite plugins.',
+      error
+    )
     return null
   }
 

@@ -2,6 +2,18 @@ import { existsSync, readFileSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import FSExtra from 'fs-extra'
 
+export async function loadCloudflarePlugin() {
+  try {
+    const { cloudflare } = await import('@cloudflare/vite-plugin')
+    return cloudflare
+  } catch (error) {
+    throw new Error(
+      'Could not load @cloudflare/vite-plugin. Install it as a dev dependency in your app to use Cloudflare.',
+      { cause: error }
+    )
+  }
+}
+
 export type JsonPrimitive = string | number | boolean | null
 export type JsonValue = JsonPrimitive | JsonValue[] | { [key: string]: JsonValue }
 

@@ -228,7 +228,11 @@ npx one build
 
 ### Cloudflare Workers
 
-One supports deploying to Cloudflare Workers with full SSR, API routes, and edge performance.
+Install the Cloudflare Vite plugin in your app to build for Workers or use the workerd dev server.
+
+```sh
+npm install -D @cloudflare/vite-plugin
+```
 
 ```tsx fileName=vite.config.ts
 import { one } from 'one/vite'
