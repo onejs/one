@@ -94,3 +94,5 @@
 {"id":"00000001794890563100:f0127d1d23b0d2f11e593593fa084d3f:6b37748bca717c18","text":"Nate answered 'Yes, merge it' on #1291 via tm ask (answered 1794890553233). Auto-merge enabled."}
 
 {"id":"00000001794891206124:4d49a52951f4394bd40613e3f97ded58:6b37748bca717c18","text":"#1291 merged to main (Bun GC crash fix); main merged back into next as df84144ae. #1289 next->main release PR open."}
+
+{"id":"00000001794893781852:51b0a2487425fee016dfc18db960e633:6b37748bca717c18","text":"#1289 full suite green on next df84144ae. Asked Nate to publish 2.23.0."}
