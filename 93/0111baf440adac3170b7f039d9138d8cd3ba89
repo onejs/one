@@ -100,3 +100,5 @@
 {"id":"00000001794894315011:58c71a21185a1883da6800550e81f7f8:6b37748bca717c18","text":"Nate approved 2.23.0 ('Yes, publish 2.23.0' via tm ask). Merged #1289 as a0de412e1; minor release run 44026252346 dispatched."}
 
 {"id":"00000001794896842483:00aa6859bae60d860a4d7fd06e9d18f4:6b37748bca717c18","text":"One 2.23.0 published (run 44026252346, tag v2.23.0 b195e081d). TESTED tarballs: one releaseSourceCommit b195e081d contains the oneNativeMembers reference check; vxrn BunRuntime.cpp contains Releases. next = main a0de412e1."}
+
+{"id":"00000001794897021284:707638979fc171a7e6590ed624770500:6b37748bca717c18","text":"Acceptance check started: one-basic on published One 2.23.0, Release iOS simulator, Hermes vs engine:'bun', studio-64 /Volumes/Studio-2TB-B/.scratch/basic-b78458."}
