@@ -49,8 +49,8 @@ std::shared_ptr<OneHostModule> imageLoader(std::shared_ptr<CallInvoker> invoker)
   auto module = std::make_shared<OneHostModule>("ImageLoader", std::move(invoker));
   for (const char *name : {"getSize", "getSizeWithHeaders", "prefetchImage", "prefetchImageWithMetadata", "queryCache"}) {
     module->method(name, 0, [name](jsi::Runtime &rt, const jsi::Value *, size_t) {
-      auto reject = rt.global().getPropertyAsObject(rt, "Promise").getPropertyAsFunction(rt, "reject");
-      return reject.call(rt, jsi::String::createFromUtf8(rt, std::string("ImageLoader.") + name + " is not available on macOS"));
+      auto promise = rt.global().getPropertyAsObject(rt, "Promise");
+      return promise.getPropertyAsFunction(rt, "reject").callWithThis(rt, promise, jsi::String::createFromUtf8(rt, std::string("ImageLoader.") + name + " is not available on macOS"));
     });
   }
   return module;

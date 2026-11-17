@@ -11,22 +11,22 @@ export class ASIdentifierManager extends SDKHandle {
    * class func shared() -> ASIdentifierManager
    * @availability iOS 6.0+
    */
-  static shared(): ASIdentifierManager { return callSDK<ASIdentifierManager>("AdSupport_d04ad79e98d4fc54", 3828394280705407, undefined, []); }
+  static shared(): ASIdentifierManager { return callSDK<ASIdentifierManager>("AdSupport_b0e1456fef7e4b05", 3828394280705407, undefined, []); }
   /** init() */
-  static init(): ASIdentifierManager { return callSDK<ASIdentifierManager>("AdSupport_d04ad79e98d4fc54", 511556060443248, undefined, []); }
+  static init(): ASIdentifierManager { return callSDK<ASIdentifierManager>("AdSupport_b0e1456fef7e4b05", 511556060443248, undefined, []); }
   /**
    * var advertisingIdentifier: UUID { get }
    * @availability iOS 6.0+
    */
-  get advertisingIdentifier(): string { return callSDK<string>("AdSupport_d04ad79e98d4fc54", 2883430199300877, this, []); }
+  get advertisingIdentifier(): string { return callSDK<string>("AdSupport_b0e1456fef7e4b05", 2883430199300877, this, []); }
   /**
    * var isAdvertisingTrackingEnabled: Bool { get }
    * @availability iOS 6.0+
    * @deprecated iOS 14.0
    */
-  get isAdvertisingTrackingEnabled(): boolean { return callSDK<boolean>("AdSupport_d04ad79e98d4fc54", 3243589797446549, this, []); }
+  get isAdvertisingTrackingEnabled(): boolean { return callSDK<boolean>("AdSupport_b0e1456fef7e4b05", 3243589797446549, this, []); }
   declare readonly $type: { "c:objc(cs)ASIdentifierManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "advertisingIdentifier": true; "isAdvertisingTrackingEnabled": true };
 }
 
-registerSDKClass("ASIdentifierManager", ASIdentifierManager, { module: "AdSupport_d04ad79e98d4fc54", properties: {"advertisingIdentifier":2883430199300877,"isAdvertisingTrackingEnabled":3243589797446549} });
+registerSDKClass("ASIdentifierManager", ASIdentifierManager, { module: "AdSupport_b0e1456fef7e4b05", properties: {"advertisingIdentifier":2883430199300877,"isAdvertisingTrackingEnabled":3243589797446549} });

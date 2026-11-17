@@ -64,6 +64,7 @@ namespace margelo::nitro::one {
     std::optional<std::string> getStagedJson() override;
     std::function<void()> addStagedListener(const std::function<void(const std::optional<std::string>& /* stagedJson */)>& listener) override;
     std::shared_ptr<Promise<void>> reload() override;
+    void markLaunchSuccessful() override;
 
   private:
     jni::global_ref<JHybridOneUpdatesSpec::JavaPart> _javaPart;

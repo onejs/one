@@ -53,8 +53,8 @@ std::shared_ptr<TurboModule> OneLinuxCreateImageLoaderModule(std::shared_ptr<Cal
   auto module = std::make_shared<OneHostModule>("ImageLoader", std::move(jsInvoker));
   for (const char *name : {"getSize", "getSizeWithHeaders", "prefetchImage", "prefetchImageWithMetadata", "queryCache"}) {
     module->method(name, 0, [name](jsi::Runtime &rt, const jsi::Value *, size_t) {
-      auto reject = rt.global().getPropertyAsObject(rt, "Promise").getPropertyAsFunction(rt, "reject");
-      return reject.call(rt, jsi::String::createFromUtf8(rt, std::string("ImageLoader.") + name + " is not available on Linux"));
+      auto promise = rt.global().getPropertyAsObject(rt, "Promise");
+      return promise.getPropertyAsFunction(rt, "reject").callWithThis(rt, promise, jsi::String::createFromUtf8(rt, std::string("ImageLoader.") + name + " is not available on Linux"));
     });
   }
   return module;

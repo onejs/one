@@ -118,8 +118,8 @@ inline void addEventEmitterStubs(OneHostModule &module)
 
 inline jsi::Value resolvedPromise(jsi::Runtime &rt, jsi::Value value)
 {
-  auto resolve = rt.global().getPropertyAsObject(rt, "Promise").getPropertyAsFunction(rt, "resolve");
-  return resolve.call(rt, value);
+  auto promise = rt.global().getPropertyAsObject(rt, "Promise");
+  return promise.getPropertyAsFunction(rt, "resolve").callWithThis(rt, promise, value);
 }
 
 } // namespace facebook::react

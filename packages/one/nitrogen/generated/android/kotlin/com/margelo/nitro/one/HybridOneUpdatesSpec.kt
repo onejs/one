@@ -76,6 +76,10 @@ abstract class HybridOneUpdatesSpec: HybridObject() {
   @DoNotStrip
   @Keep
   abstract fun reload(): Promise<Unit>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun markLaunchSuccessful(): Unit
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

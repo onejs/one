@@ -117,7 +117,10 @@
       "require": "./vendor/react-dom/cjs/react-dom.development.js",
       "import": "./vendor/react-dom/cjs/react-dom.development.js"
     },
-    "./react-native-config": "./react-native-config.cjs",
+    "./react-native-config": {
+      "types": "./react-native-config.d.cts",
+      "default": "./react-native-config.cjs"
+    },
     "./babel-plugin-one-router-metro": {
       "types": "./types/babel-plugins/one-router-metro.d.ts",
       "import": "./dist/esm/babel-plugins/one-router-metro.mjs",
@@ -245,6 +248,7 @@
     "metro-entry.js",
     "metro-entry-ctx.js",
     "react-native-config.cjs",
+    "react-native-config.d.cts",
     "LICENSE",
     "README.md",
     "ios",

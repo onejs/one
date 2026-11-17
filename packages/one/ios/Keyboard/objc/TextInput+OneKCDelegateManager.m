@@ -1,7 +1,7 @@
 #import <objc/runtime.h>
-#import "TextInput+DelegateManager.h"
+#import "TextInput+OneKCDelegateManager.h"
 
-@implementation UITextView (DelegateManager)
+@implementation UITextView (OneKCDelegateManager)
 
 /**
  * We are aware that delegate is set by RN on mount and we can not re-define it
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation UITextField (DelegateManager)
+@implementation UITextField (OneKCDelegateManager)
 
 /**
  * Some `UITextField` subclasses (e.g. card-input fields from third-party SDKs, aka Square)

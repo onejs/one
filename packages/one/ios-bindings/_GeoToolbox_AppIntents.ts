@@ -8,13 +8,13 @@ export class PlaceDescriptor extends SDKHandle {
    * var displayRepresentation: DisplayRepresentation { get }
    * @availability iOS 26.0+
    */
-  get displayRepresentation(): _AppIntents_DisplayRepresentation { return callSDK<_AppIntents_DisplayRepresentation>("_GeoToolbox_AppIntents_d04ad79e98d4fc54", 26599346525409, this, []); }
+  get displayRepresentation(): _AppIntents_DisplayRepresentation { return callSDK<_AppIntents_DisplayRepresentation>("_GeoToolbox_AppIntents_b0e1456fef7e4b05", 26599346525409, this, []); }
   /**
    * static var typeDisplayRepresentation: TypeDisplayRepresentation
    * @availability iOS 26.0+
    */
-  static get typeDisplayRepresentation(): _AppIntents_TypeDisplayRepresentation { return callSDK<_AppIntents_TypeDisplayRepresentation>("_GeoToolbox_AppIntents_d04ad79e98d4fc54", 1546878917532756, undefined, []); }
-  static set typeDisplayRepresentation(value: _AppIntents_TypeDisplayRepresentation) { callSDK<void>("_GeoToolbox_AppIntents_d04ad79e98d4fc54", 44000319108819, undefined, [value]); }
+  static get typeDisplayRepresentation(): _AppIntents_TypeDisplayRepresentation { return callSDK<_AppIntents_TypeDisplayRepresentation>("_GeoToolbox_AppIntents_b0e1456fef7e4b05", 1546878917532756, undefined, []); }
+  static set typeDisplayRepresentation(value: _AppIntents_TypeDisplayRepresentation) { callSDK<void>("_GeoToolbox_AppIntents_b0e1456fef7e4b05", 44000319108819, undefined, [value]); }
   declare readonly $type: { "s:10GeoToolbox15PlaceDescriptorV": true };
 }
 
@@ -36,4 +36,4 @@ export type PlaceDescriptor_UnwrappedType = _GeoToolbox_PlaceDescriptor;
  */
 export type PlaceDescriptor_ValueType = _GeoToolbox_PlaceDescriptor;
 
-registerSDKClass("GeoToolbox.PlaceDescriptor", PlaceDescriptor, { module: "_GeoToolbox_AppIntents_d04ad79e98d4fc54", properties: {} }, true);
+registerSDKClass("GeoToolbox.PlaceDescriptor", PlaceDescriptor, { module: "_GeoToolbox_AppIntents_b0e1456fef7e4b05", properties: {} }, true);

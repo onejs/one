@@ -1936,7 +1936,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     })
   }
   if (config.suite === 'updates') {
-    // the proof walks one install from its embedded launch through eight
+    // the proof walks one install from its embedded launch through nine
     // publishes, so it starts from a release build with no state on disk.
     if (!config.appPath)
       throw new Error('The updates suite requires --app-path for a fresh install.')
@@ -15718,9 +15718,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   if (config.suite === 'updates') {
     // the release build under test baked this server in at prebuild time.
-    // the block starts from its fresh install and walks it through eight
+    // the block starts from its fresh install and walks it through nine
     // publishes: cold launch, stage and launch, tamper, fatal rollback,
-    // splash kill, in-session reloads, deleted bundle, the reaper, and a
+    // root render rollback, splash kill, in-session reloads, deleted bundle, the reaper, and a
     // foreign runtime version.
     const updates = startUpdatesServer(config.artifactDir, 'ios')
     const { publish } = updates
@@ -15758,6 +15758,31 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       stopApp()
       launchApp()
     }
+    // the line the launcher logs when it rolls an update back, since a time.
+    const rollbackLine = (since: Date, updateId: string) =>
+      execFileSync(
+        'xcrun',
+        [
+          'simctl',
+          'spawn',
+          config.simulatorId,
+          'log',
+          'show',
+          '--start',
+          // log show reads a local time
+          new Date(since.getTime() - since.getTimezoneOffset() * 60_000)
+            .toISOString()
+            .replace('T', ' ')
+            .slice(0, 19),
+          '--predicate',
+          'eventMessage CONTAINS "[OneUpdates]"',
+          '--style',
+          'compact',
+        ],
+        { encoding: 'utf8' }
+      )
+        .split('\n')
+        .find((line) => line.includes(`update ${updateId} failed before first render`))
     try {
       // 1. a fresh install launches embedded, and an empty server checks none.
       await openFixture()
@@ -15862,31 +15887,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       // the launcher logs the error it rolled back from: the bundle's own
       // throw proves it executed, which a reload that skipped the update
       // never produces.
-      const rollbackLog = execFileSync(
-        'xcrun',
-        [
-          'simctl',
-          'spawn',
-          config.simulatorId,
-          'log',
-          'show',
-          '--start',
-          // log show reads a local time
-          new Date(reloadedAt.getTime() - reloadedAt.getTimezoneOffset() * 60_000)
-            .toISOString()
-            .replace('T', ' ')
-            .slice(0, 19),
-          '--predicate',
-          'eventMessage CONTAINS "[OneUpdates]"',
-          '--style',
-          'compact',
-        ],
-        { encoding: 'utf8' }
-      )
-      const rollbackLine = rollbackLog
-        .split('\n')
-        .find((line) => line.includes(`update ${fatal.id} failed before first render`))
-      if (!rollbackLine?.includes('updates-suite-boom'))
+      if (!rollbackLine(reloadedAt, fatal.id)?.includes('updates-suite-boom'))
         throw new Error('the fatal update was skipped without booting')
       checks.push({ name: 'fatal update booted before rolling back', durationMs: 0 })
       console.log('PASS fatal update booted before rolling back')
@@ -15913,6 +15914,40 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         'failed update is never selected again',
         (n) => labelValue(n, 'UpdateId') === first.id
       )
+
+      // 4b. a root layout that loads but throws while it renders also rolls
+      // back in-session: the router's provider shell has already appeared,
+      // and only the committed root layout proves an update.
+      const rootFatal = publish('root-throws')
+      tap({ id: 'one-native-updates-check' })
+      await wait(
+        'root render fatal update checks available',
+        (n) => labelValue(n, 'Check') === `available:${rootFatal.id}`
+      )
+      tap({ id: 'one-native-updates-fetch' })
+      await wait(
+        'root render fatal update fetches',
+        (n) => labelValue(n, 'Fetch') === `fetched:${rootFatal.id}`
+      )
+      const rootReloadedAt = new Date()
+      tap({ id: 'one-native-updates-reload' })
+      await wait(
+        'root render fatal update rolls back in-session',
+        (n) => Boolean(id(n, 'nav-one-native-updates')),
+        true
+      )
+      if (!rollbackLine(rootReloadedAt, rootFatal.id)?.includes('updates-suite-root-boom'))
+        throw new Error('the root render fatal update was skipped without rendering')
+      checks.push({ name: 'root render fatal update rolls back', durationMs: 0 })
+      console.log('PASS root render fatal update rolls back')
+      await openFixture()
+      await wait('root render rollback runs the previous update', (n) =>
+        Boolean(
+          labelValue(n, 'UpdateId') === first.id && labelValue(n, 'Marker') === 'v2'
+        )
+      )
+      if (readState().updates[rootFatal.id]?.successes)
+        throw new Error('the root render fatal update was marked successful')
 
       // 5. a proven update survives a kill during its splash: the kill lands
       // while launching is still recorded, and the relaunch selects it again.

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import { launchCanRollBack } from '../platform/updates/launchProof'
 
 type RootErrorBoundaryState = {
   hasError: boolean
@@ -36,6 +37,9 @@ export class RootErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       const { error } = this.state
+      // an unproven update that cannot render its root layout escapes as a
+      // fatal error, which One.Updates turns into a rollback.
+      if (error && launchCanRollBack()) throw error
 
       return (
         <View

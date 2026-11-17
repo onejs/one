@@ -288,4 +288,15 @@ open class HybridOneUpdatesSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
+  
+  @inline(__always)
+  public final func markLaunchSuccessful() -> bridge.Result_void_ {
+    do {
+      try self.__implementation.markLaunchSuccessful()
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
 }
