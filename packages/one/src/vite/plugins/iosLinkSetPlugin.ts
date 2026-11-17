@@ -51,6 +51,7 @@ function analysisPlugin(): Plugin {
   const rewriteMembers = nativeOneMembers(
     join(oneDirectory(), 'dist/esm/one-shared.native.js')
   )
+  const escapes: string[] = []
 
   return {
     name: 'one:ios-link-set',
@@ -60,9 +61,10 @@ function analysisPlugin(): Plugin {
         const file = id.split('?')[0]
         if (file.startsWith('\0') || file.startsWith('virtual:')) return
         if (own.some((dir) => file.startsWith(dir + '/'))) return
-        if (!mightUseGroups(code, keySet, pattern)) return
-        analyzeModule(code, file, keySet, usage)
-        return rewriteMembers(code, file)
+        if (mightUseGroups(code, keySet, pattern))
+          analyzeModule(code, file, keySet, usage)
+        if (!/["'`]one["'`]/.test(code)) return
+        return rewriteMembers(code, file, (reason) => escapes.push(`${file}: ${reason}`))
       },
     },
     generateBundle(_options, bundle) {
@@ -71,14 +73,45 @@ function analysisPlugin(): Plugin {
         if (!groups.includes('web')) groups.push('web')
       }
       const frameworks = new Set<string>()
-      for (const output of Object.values(bundle)) {
-        if (output.type !== 'chunk') continue
-        for (const match of output.code.matchAll(
+      const scan = (code: string) => {
+        for (const match of code.matchAll(
           /["'`]([A-Za-z_][A-Za-z0-9_]*)_([a-f0-9]{16})["'`]/g
         )) {
           if (match[2] === sdk.generation && sdkModules.has(match[1]))
             frameworks.add(match[1])
         }
+      }
+      for (const output of Object.values(bundle))
+        if (output.type === 'chunk') scan(output.code)
+      // the One object spreads every namespace, so a framework also has to sit in a
+      // module the app reaches without it. that holds while every app read of One was
+      // rewritten to the module defining it and only one's entry imports the object.
+      const dist = own.map((dir) => join(dir, 'dist/esm'))
+      const oneObject = dist.flatMap((dir) =>
+        ['one.native.js', 'one-shared.native.js'].map((name) => join(dir, name))
+      )
+      const entries = dist.map((dir) => join(dir, 'index.native.js'))
+      if (
+        !escapes.length &&
+        !oneObject.some((id) =>
+          this.getModuleInfo(id)?.importers.some(
+            (importer) => !oneObject.includes(importer) && !entries.includes(importer)
+          )
+        )
+      ) {
+        const inBundle = new Set(frameworks)
+        frameworks.clear()
+        const seen = new Set(
+          [...this.getModuleIds()].filter((id) => this.getModuleInfo(id)?.isEntry)
+        )
+        for (const id of seen) {
+          const info = this.getModuleInfo(id)
+          if (!info) continue
+          if (info.code) scan(info.code)
+          for (const next of [...info.importedIds, ...info.dynamicallyImportedIds])
+            if (!oneObject.includes(next)) seen.add(next)
+        }
+        for (const name of frameworks) if (!inBundle.has(name)) frameworks.delete(name)
       }
       const sdkFrameworks = [...frameworks].sort()
       const report = process.env[IOS_LINK_SET_REPORT_ENV]
