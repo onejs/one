@@ -3,3 +3,5 @@
 {"id":"00000001794876003749:738855175a59b7526c2ffad48f46aa0e","text":"Read reporter issue and repro instructions; will run Activity hidden/reveal regression after declaration reproduction is running."}
 
 {"id":"00000001794876435563:6b2ff04b1616fa9c56680ecb6d37a28c","text":"TESTED: reporter sequence reproduced in native core integration test: visible control passes; memoised hidden Activity consumer fails (#111111 versus #eeeeee). Current v3-beta uses manual effect subscription, not useSyncExternalStore. Adding snapshot check immediately after resubscription; checking nearby theme switching regression."}
+
+{"id":"00000001794876559817:ef4eff850395519caacbf66d884a5f6e","text":"TESTED: snapshot callback immediately after installing subscription fixes failing reporter sequence; focused Activity + native theme switching regression 4/4 pass. Probe scores launch 10/functionality 9. Root lint/check required but admission currently refuses with reserved memory over configured budget; queued validation will report actual results."}
