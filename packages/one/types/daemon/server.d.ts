@@ -16,7 +16,7 @@ export declare function startDaemon(options?: DaemonOptions): Promise<{
     ipcServer: import("net").Server;
     state: DaemonState;
     shutdown: () => never;
-    healthCheckInterval: number;
+    healthCheckInterval: NodeJS.Timeout;
 }>;
 export {};
 //# sourceMappingURL=server.d.ts.map
