@@ -1,0 +1,81 @@
+---
+title: 'Bun as your React Native engine'
+publishedAt: '2026-11-20'
+description: 'One can now ship iOS and Android Release builds on Bun, compiled ahead of time to machine code instead of interpreted by Hermes.'
+by: nate
+draft: true
+---
+
+<IntroParagraph>
+  One apps can now run on Bun instead of Hermes. Add one line to your config
+  and your Release build compiles its JavaScript ahead of time into machine
+  code, on Bun's fork of JavaScriptCore, and ships it inside the signed app.
+</IntroParagraph>
+
+```ts
+one({
+  native: {
+    app: {
+      ios: { bundleId: 'com.example.app', engine: 'bun' },
+      android: { applicationId: 'com.example.app', engine: 'bun' },
+    },
+  },
+})
+```
+
+Debug builds keep Hermes, so fast refresh and the debugger work as before.
+Remove the option and prebuild again to go back to Hermes. Apps on Expo
+prebuild pass the same option to the plugin:
+`['vxrn/expo-plugin', { engine: 'bun' }]`.
+
+## How it works
+
+Your app is bundled exactly as before. At the end of a Release build, Bun's
+compiler turns the finished bundle into native code, and the app links it in.
+On the phone there is no parser and no bytecode interpreter: the first line of
+your app is already machine code. Stack traces still point into the bundle,
+so your source maps and crash reporting keep working.
+
+## Where it's faster
+
+We ran the same app on both engines in alternating Release builds on the iOS
+Simulator. Times are medians in milliseconds; lower is better.
+
+| Workload | Hermes | Bun |
+| --- | ---: | ---: |
+| 300 updates of 1,000 views | 8,254 | 5,135 |
+| JSON parse and stringify | 34 | 9 |
+| Regular expressions | 244 | 9 |
+| Sort | 355 | 32 |
+| Object creation | 222 | 30 |
+| String building | 126 | 37 |
+
+Plain JavaScript work is several times faster, and in a real app (Team
+Machine, rendering 58 live sessions) the first React commit lands sooner on
+Bun. Mounting views, long lists and navigation are about even.
+
+## What it costs
+
+We'd rather you knew these up front:
+
+- **Startup.** Bun takes longer to reach first content in our simple
+  benchmark app, about 680 ms against 540 ms for Hermes on the simulator.
+- **Memory.** Bun uses more memory, most visibly after heavy string work.
+- **Size.** The engine adds about 20 MB to your compressed download (53 MB
+  uncompressed per architecture). We cut it from 92 MB by leaving out every
+  part of Bun a React Native app can't reach, and by moving collation and
+  language names onto the system's own APIs.
+- **Android builds** run Bun's Android compiler on your build machine. On a
+  Mac that needs Docker or Colima (`brew install colima docker && colima start`);
+  on Linux, `qemu-user`. Android needs ARM64 and API 28 or newer.
+- **Intl** matches Hermes in our apps with two exceptions: a plain space
+  instead of a narrow one before AM/PM in some dates, and `Intl.Segmenter`
+  treating a run of Chinese or Japanese text as one word.
+
+## Status
+
+The engine is experimental and opt-in; Hermes stays the default. We checked
+it by running our starter app and a full product template on both engines
+and comparing every screen and interaction pixel for pixel, on the iOS
+Simulator and an Android emulator. Team Machine, our own app, has shipped to
+TestFlight on it. Try it on your app and tell us what you find.
