@@ -90,6 +90,7 @@ const { ONE_BUN_ENGINE } = nativeProjectPatches
 const androidBunEngine = requireVxrn('../../android/OneBunEngine/prebuild.cjs') as {
   patchMainApplication(source: string): string
   patchBuildGradle(source: string): string
+  patchGradleProperties(source: string): string
   generateCMake(dest: string): void
 }
 
@@ -2795,6 +2796,9 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         const trailed = rendered.endsWith('\n') ? rendered : `${rendered}\n`
         rendered = `${trailed}\n# One.UI.Map: set by native.app.android.googleMapsApiKey.\n${line}\n`
       }
+    }
+    if (platform === 'android' && relativePath === 'gradle.properties' && app.android?.engine === 'bun') {
+      rendered = androidBunEngine.patchGradleProperties(rendered)
     }
     if (platform === 'android' && relativePath === 'gradle.properties') {
       // MainActivity opts into androidx edge-to-edge; this tells react
