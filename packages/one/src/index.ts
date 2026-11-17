@@ -150,7 +150,12 @@ export * from '@vxrn/color-scheme'
 // TODO breaking due to react-native-gesture-handler
 // export { Drawer } from './layouts/Drawer'
 // export { Unmatched } from './fallbackViews/Unmatched'
-export { SafeAreaView, useSafeAreaFrame, useSafeAreaInsets } from './safe-area-context'
+export {
+  SafeAreaView,
+  useSafeAreaCornerRadius,
+  useSafeAreaFrame,
+  useSafeAreaInsets,
+} from './safe-area-context'
 export { onClientLoaderResolve } from './clientLoaderResolver'
 
 // middleware

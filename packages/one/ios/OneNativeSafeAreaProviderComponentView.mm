@@ -21,6 +21,8 @@ using namespace facebook::react;
   CGRect _currentFrame;
   BOOL _initialInsetsSent;
   BOOL _registeredNotifications;
+  CGFloat _currentCornerRadius;
+  UIView *_cornerProbe;
 }
 
 + (ComponentDescriptorProvider)componentDescriptorProvider {
@@ -32,6 +34,7 @@ using namespace facebook::react;
     _props = std::make_shared<const OneNativeSafeAreaProviderProps>();
     _currentInsets = UIEdgeInsetsZero;
     _currentFrame = CGRectZero;
+    _currentCornerRadius = 0;
     _initialInsetsSent = NO;
     _registeredNotifications = NO;
   }
@@ -78,6 +81,7 @@ using namespace facebook::react;
     return;
   }
   UIEdgeInsets insets = self.safeAreaInsets;
+  CGFloat cornerRadius = [self concentricCornerRadius];
   UIResponder *responder = self;
   while (responder && ![responder isKindOfClass:[UIViewController class]]) {
     responder = [responder nextResponder];
@@ -96,7 +100,8 @@ using namespace facebook::react;
   if (_initialInsetsSent && fabs(insets.top - _currentInsets.top) < threshold &&
       fabs(insets.left - _currentInsets.left) < threshold &&
       fabs(insets.bottom - _currentInsets.bottom) < threshold &&
-      fabs(insets.right - _currentInsets.right) < threshold && CGRectEqualToRect(frame, _currentFrame)) {
+      fabs(insets.right - _currentInsets.right) < threshold && CGRectEqualToRect(frame, _currentFrame) &&
+      fabs(cornerRadius - _currentCornerRadius) < threshold) {
     return;
   }
   if (!self->_eventEmitter) {
@@ -113,16 +118,38 @@ using namespace facebook::react;
        .frameX = frame.origin.x,
        .frameY = frame.origin.y,
        .frameWidth = frame.size.width,
-       .frameHeight = frame.size.height});
+       .frameHeight = frame.size.height,
+       .cornerRadius = cornerRadius});
   _initialInsetsSent = YES;
   _currentInsets = insets;
+  _currentCornerRadius = cornerRadius;
   _currentFrame = frame;
+}
+
+// the screen corner radius concentric with this view's own corners, read from
+// a hidden probe over its bounds. read during layoutSubviews, UIKit lays this
+// view out again when the radius changes, as when a window moves or resizes.
+- (CGFloat)concentricCornerRadius {
+  if (@available(iOS 26.0, *)) {
+    if (!_cornerProbe) {
+      _cornerProbe = [[UIView alloc] initWithFrame:self.bounds];
+      _cornerProbe.hidden = YES;
+      _cornerProbe.userInteractionEnabled = NO;
+      _cornerProbe.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+      _cornerProbe.cornerConfiguration =
+          [UICornerConfiguration configurationWithRadius:[UICornerRadius containerConcentricRadius]];
+      [self addSubview:_cornerProbe];
+    }
+    return [_cornerProbe effectiveRadiusForCorner:UIRectCornerTopLeft];
+  }
+  return 0;
 }
 
 - (void)prepareForRecycle {
   [super prepareForRecycle];
   _currentInsets = UIEdgeInsetsZero;
   _currentFrame = CGRectZero;
+  _currentCornerRadius = 0;
   _initialInsetsSent = NO;
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   _registeredNotifications = NO;

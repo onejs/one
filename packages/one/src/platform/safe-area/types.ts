@@ -23,6 +23,8 @@ export interface Rect {
 export interface Metrics {
   insets: EdgeInsets
   frame: Rect
+  // the screen corner's radius concentric with the measured view's corners
+  cornerRadius: number
 }
 
 export type Edge = 'top' | 'right' | 'bottom' | 'left'
@@ -31,7 +33,7 @@ export type EdgeMode = 'off' | 'additive' | 'maximum'
 export type EdgeRecord = Partial<Record<Edge, EdgeMode>>
 export type Edges = readonly Edge[] | Readonly<EdgeRecord>
 
-// flat native event payload. the provider emits eight scalars because
+// flat native event payload. the provider emits flat scalars because
 // generated event structs are flat; the adapter reshapes them into Metrics.
 export interface NativeInsetsChangePayload {
   insetTop: number
@@ -42,6 +44,7 @@ export interface NativeInsetsChangePayload {
   frameY: number
   frameWidth: number
   frameHeight: number
+  cornerRadius: number
 }
 
 export interface NativeSafeAreaProviderProps extends ViewProps {

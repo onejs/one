@@ -168,5 +168,6 @@ export function providerEventToMetrics(payload: NativeInsetsChangePayload): Metr
       width: payload.frameWidth,
       height: payload.frameHeight,
     },
+    cornerRadius: payload.cornerRadius,
   }
 }

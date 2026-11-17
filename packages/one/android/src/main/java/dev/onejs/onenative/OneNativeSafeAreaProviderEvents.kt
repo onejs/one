@@ -15,6 +15,7 @@ internal class OneNativeSafeAreaInsetsChangeEvent(
     private val frameY: Double,
     private val frameWidth: Double,
     private val frameHeight: Double,
+    private val cornerRadius: Double,
 ) : Event<OneNativeSafeAreaInsetsChangeEvent>(surfaceId, viewTag) {
     override fun getEventName(): String = "topNativeInsetsChange"
 
@@ -30,5 +31,6 @@ internal class OneNativeSafeAreaInsetsChangeEvent(
             putDouble("frameY", frameY)
             putDouble("frameWidth", frameWidth)
             putDouble("frameHeight", frameHeight)
+            putDouble("cornerRadius", cornerRadius)
         }
 }

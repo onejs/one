@@ -19,6 +19,7 @@ interface NativeProps extends ViewProps {
       frameY: Double
       frameWidth: Double
       frameHeight: Double
+      cornerRadius: Double
     }>
   >
 }
