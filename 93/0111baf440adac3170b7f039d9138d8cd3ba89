@@ -80,3 +80,5 @@
 {"id":"00000001794880734987:08ab8003fc9a9c8ed8f5f9be1f7ab7a1","text":"TM: tm/media-viewer-ios e1f6f5fe0e (multiselect + media viewer + One 2.22.0, runtime 91, gui typecheck clean) pushed. Release sim build running on studio-64 (mini-16 too small for cold SDK generation), scratch /Volumes/Studio-2TB-B/.scratch/tm-2220-b67657. Then sim check, tm land, TestFlight."}
 
 {"id":"00000001794883611603:b7cb414f8b08683b9ce8cce3b00c6b00","text":"TM landed 731db4aa23 (media viewer + multi-select + One 2.22.0, runtime 91), Release sim build on studio-64 verified launch, pairing, swipe-right multi-select, new bar icons. TestFlight run 44005125037 in progress. Next: #1215 expo link set + contacts/camera groups + SDK framework union, into next."}
+
+{"id":"00000001794886917667:f22b93b97052b438135c668cfb0a3e43","text":"b78458 replaces b67657 (quota). TestFlight 44005125037 succeeded. #1215 fix pushed as 254d95c39 on fix/expo-link-set (TM link set 13 to 4 frameworks); cold review and studio-64 Release sim build (w-2a6974) running."}
