@@ -43,6 +43,7 @@ void bun_embed_grab_locks(void* dropper);
 #include <mutex>
 #include <sstream>
 #include <thread>
+#include <vector>
 
 namespace facebook::bun {
 
@@ -110,6 +111,42 @@ class ArgsConverter;
 
 class JSCRuntime;
 
+// JSValueUnprotect takes the JS lock, and JSC scans the stack of every thread
+// that ever took it on each GC. a value dropped on the main thread registers it,
+// and the main thread later runs hermes (worklets) compiles on a fiber stack
+// outside its registered bounds, so the scan faults. only the JS thread unprotects.
+struct Releases {
+  std::atomic<bool> invalid{false};
+  // the runtime is created on the JS thread
+  const std::thread::id owner = std::this_thread::get_id();
+  std::mutex mutex;
+  std::vector<JSValueRef> pending;
+
+  void release(JSGlobalContextRef ctx, JSValueRef value) {
+    if (invalid) {
+      return;
+    }
+    if (owner == std::this_thread::get_id()) {
+      JSValueUnprotect(ctx, value);
+      return;
+    }
+    std::lock_guard<std::mutex> lock(mutex);
+    pending.push_back(value);
+  }
+
+  // runs on the JS thread outside any GC
+  void drain(JSGlobalContextRef ctx) {
+    std::vector<JSValueRef> values;
+    {
+      std::lock_guard<std::mutex> lock(mutex);
+      values.swap(pending);
+    }
+    for (JSValueRef value : values) {
+      JSValueUnprotect(ctx, value);
+    }
+  }
+};
+
 struct Lock {
   void lock(const bun::JSCRuntime& /*unused*/) const {}
   void unlock(const bun::JSCRuntime& /*unused*/) const {}
@@ -167,19 +204,19 @@ class JSCRuntime : public jsi::Runtime {
 #ifndef NDEBUG
     JSCSymbolValue(
         JSGlobalContextRef ctx,
-        const std::atomic<bool>& ctxInvalid,
+        Releases& releases,
         JSValueRef sym,
         std::atomic<intptr_t>& counter);
 #else
     JSCSymbolValue(
         JSGlobalContextRef ctx,
-        const std::atomic<bool>& ctxInvalid,
+        Releases& releases,
         JSValueRef sym);
 #endif
     void invalidate() noexcept override;
 
     JSGlobalContextRef ctx_;
-    const std::atomic<bool>& ctxInvalid_;
+    Releases& releases_;
     // There is no C type in the JSC API to represent Symbol, so this stored
     // a JSValueRef which contains the Symbol.
     JSValueRef sym_;
@@ -209,7 +246,7 @@ class JSCRuntime : public jsi::Runtime {
   class JSCObjectValue final : public PointerValue {
     JSCObjectValue(
         JSGlobalContextRef ctx,
-        const std::atomic<bool>& ctxInvalid,
+        Releases& releases,
         JSObjectRef obj
 #ifndef NDEBUG
         ,
@@ -220,7 +257,7 @@ class JSCRuntime : public jsi::Runtime {
     void invalidate() noexcept override;
 
     JSGlobalContextRef ctx_;
-    const std::atomic<bool>& ctxInvalid_;
+    Releases& releases_;
     JSObjectRef obj_;
 #ifndef NDEBUG
     std::atomic<intptr_t>& counter_;
@@ -374,7 +411,7 @@ class JSCRuntime : public jsi::Runtime {
   void checkException(JSValueRef res, JSValueRef exc, const char* msg);
 
   JSGlobalContextRef ctx_;
-  std::atomic<bool> ctxInvalid_;
+  mutable Releases releases_;
   std::string desc_;
   JSValueRef nativeStateSymbol_ = nullptr;
   JSObjectRef arrayIsArray_ = nullptr;
@@ -469,8 +506,7 @@ std::string to_string(void* value) {
 } // namespace
 
 JSCRuntime::JSCRuntime(JSGlobalContextRef ctx)
-    : ctx_(JSGlobalContextRetain(ctx)),
-      ctxInvalid_(false)
+    : ctx_(JSGlobalContextRetain(ctx))
 #ifndef NDEBUG
       ,
       objectCounter_(0),
@@ -497,7 +533,10 @@ JSCRuntime::~JSCRuntime() {
   // JSValueUnprotect() can no longer be called.  We use an
   // atomic<bool> to avoid unsafe unprotects happening after shutdown
   // has started.
-  ctxInvalid_ = true;
+  if (releases_.owner == std::this_thread::get_id()) {
+    releases_.drain(ctx_);
+  }
+  releases_.invalid = true;
   // No need to unprotect nativeStateSymbol_ since the heap is getting torn down
   // anyway
   JSGlobalContextRelease(ctx_);
@@ -529,6 +568,7 @@ jsi::Value JSCRuntime::evaluatePreparedJavaScript(
 jsi::Value JSCRuntime::evaluateJavaScript(
     const std::shared_ptr<const jsi::Buffer>& buffer,
     const std::string& sourceURL) {
+  releases_.drain(ctx_);
   // the compiled program replaces a bundle that starts with this marker
   constexpr size_t markerLength = sizeof(kCompiledEntryMarker) - 1;
   if (buffer->size() >= markerLength &&
@@ -567,6 +607,7 @@ void JSCRuntime::queueMicrotask(const jsi::Function& callback) {
 }
 
 bool JSCRuntime::drainMicrotasks(int /*maxMicrotasksHint*/) {
+  releases_.drain(ctx_);
   // bun delays JSC's own microtask drain between ticks, so promise jobs run
   // only when bun ticks; either queue can refill the other.
   do {
@@ -598,7 +639,7 @@ bool JSCRuntime::isInspectable() {
 
 JSCRuntime::JSCSymbolValue::JSCSymbolValue(
     JSGlobalContextRef ctx,
-    const std::atomic<bool>& ctxInvalid,
+    Releases& releases,
     JSValueRef sym
 #ifndef NDEBUG
     ,
@@ -606,7 +647,7 @@ JSCRuntime::JSCSymbolValue::JSCSymbolValue(
 #endif
     )
     : ctx_(ctx),
-      ctxInvalid_(ctxInvalid),
+      releases_(releases),
       sym_(sym)
 #ifndef NDEBUG
       ,
@@ -625,9 +666,7 @@ void JSCRuntime::JSCSymbolValue::invalidate() noexcept {
   counter_ -= 1;
 #endif
 
-  if (!ctxInvalid_) {
-    JSValueUnprotect(ctx_, sym_);
-  }
+  releases_.release(ctx_, sym_);
   delete this;
 }
 
@@ -659,7 +698,7 @@ void JSCRuntime::JSCStringValue::invalidate() noexcept {
 
 JSCRuntime::JSCObjectValue::JSCObjectValue(
     JSGlobalContextRef ctx,
-    const std::atomic<bool>& ctxInvalid,
+    Releases& releases,
     JSObjectRef obj
 #ifndef NDEBUG
     ,
@@ -667,7 +706,7 @@ JSCRuntime::JSCObjectValue::JSCObjectValue(
 #endif
     )
     : ctx_(ctx),
-      ctxInvalid_(ctxInvalid),
+      releases_(releases),
       obj_(obj)
 #ifndef NDEBUG
       ,
@@ -706,9 +745,7 @@ void JSCRuntime::JSCObjectValue::invalidate() noexcept {
   // JSValueUnprotect, in order to conform to the documented API, but
   // use the "unsafe" synchronous version on iOS 11 and earlier.
 
-  if (!ctxInvalid_) {
-    JSValueUnprotect(ctx_, obj_);
-  }
+  releases_.release(ctx_, obj_);
   delete this;
 }
 
@@ -1718,9 +1755,9 @@ void JSCRuntime::setExternalMemoryPressure(
 jsi::Runtime::PointerValue* JSCRuntime::makeSymbolValue(
     JSValueRef symbolRef) const {
 #ifndef NDEBUG
-  return new JSCSymbolValue(ctx_, ctxInvalid_, symbolRef, symbolCounter_);
+  return new JSCSymbolValue(ctx_, releases_, symbolRef, symbolCounter_);
 #else
-  return new JSCSymbolValue(ctx_, ctxInvalid_, symbolRef);
+  return new JSCSymbolValue(ctx_, releases_, symbolRef);
 #endif
 }
 
@@ -1761,9 +1798,9 @@ jsi::Runtime::PointerValue* JSCRuntime::makeObjectValue(
     objectRef = JSObjectMake(ctx_, nullptr, nullptr);
   }
 #ifndef NDEBUG
-  return new JSCObjectValue(ctx_, ctxInvalid_, objectRef, objectCounter_);
+  return new JSCObjectValue(ctx_, releases_, objectRef, objectCounter_);
 #else
-  return new JSCObjectValue(ctx_, ctxInvalid_, objectRef);
+  return new JSCObjectValue(ctx_, releases_, objectRef);
 #endif
 }
 
