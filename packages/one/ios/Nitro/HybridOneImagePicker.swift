@@ -248,7 +248,7 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
   ) {
     let mediaType = info[.mediaType] as? String
     if mediaType == UTType.movie.identifier {
-      picker.dismiss(animated: true) {
+      oneUIKitDismiss(picker, animated: true) {
         guard let url = info[.mediaURL] as? URL else {
           self.rejectPending("launchCamera", "the camera returned no video")
           return
@@ -259,7 +259,7 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
     }
     // a photo: the crop UI result when editing, the original otherwise.
     let image = (info[.editedImage] ?? info[.originalImage]) as? UIImage
-    picker.dismiss(animated: true) {
+    oneUIKitDismiss(picker, animated: true) {
       guard let image else {
         self.rejectPending(self.pendingVerb(), "the picker returned no image")
         return
@@ -273,7 +273,7 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
   }
 
   fileprivate func pickerDidCancel(_ picker: UIImagePickerController) {
-    picker.dismiss(animated: true) {
+    oneUIKitDismiss(picker, animated: true) {
       self.resolvePendingCanceled()
     }
   }
@@ -366,7 +366,7 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
     let quality = self.quality
     // dismiss first: loading file representations can take a while and the
     // picker staying up meanwhile reads as a hang.
-    picker.dismiss(animated: true) {
+    oneUIKitDismiss(picker, animated: true) {
       if results.isEmpty {
         self.resolvePendingCanceled()
         return
