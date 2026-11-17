@@ -1,3 +1,5 @@
 {"id":"00000001794875955793:76ac56d3bc02f84ea323cb9cf50fec36","text":"staffed: oss-decls-theme (b77914), lead b67657"}
 
 {"id":"00000001794876003673:05a46f6760964489c5b8e1a4fd921b49","text":"Working in managed tree one-oss-decls. Read contributor patch; preparing packed native and vite config before/after checks, preserving existing export surface and Metro option types."}
+
+{"id":"00000001794876435673:7f2bf2ab588cca0109c2586047e26035","text":"RAN: packed original one into reporter scratch app and tsc skipLibCheck=false: native 58 errors, vite 67 errors, both wrong-platform type imports confirmed. Source split and exact shared Metro options implemented; declaration build succeeds in 3.3s using cached SDK declarations, no cold SDK build. Repacked artifact checks next."}
