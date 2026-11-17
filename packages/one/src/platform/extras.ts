@@ -13,6 +13,13 @@ export {
   ZoomTransitionAlignmentRectDetector,
 } from './zoom'
 
+export { MediaViewer } from './ui/MediaViewer'
+export type {
+  MediaViewerItem,
+  MediaViewerProps,
+  MediaViewerThumbnailProps,
+} from './ui/mediaViewerTypes'
+
 export { ToolbarHost, ToolbarItem } from './toolbar'
 export type { ToolbarHostProps, ToolbarItemProps } from './toolbar'
 

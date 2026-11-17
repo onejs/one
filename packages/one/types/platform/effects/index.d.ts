@@ -15,6 +15,4 @@ export { Portal, PortalHost } from '../ui/Portal.js';
 export type { PortalProps, PortalHostProps } from '../ui/portalTypes.js';
 export { Pager } from '../ui/Pager.js';
 export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerScrollStateEvent, } from '../ui/pagerTypes.js';
-export { MediaViewer } from '../ui/MediaViewer.js';
-export type { MediaViewerItem, MediaViewerProps, MediaViewerThumbnailProps, } from '../ui/mediaViewerTypes.js';
 //# sourceMappingURL=index.d.ts.map

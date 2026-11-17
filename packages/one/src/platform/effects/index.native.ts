@@ -30,10 +30,3 @@ export type {
   PagerSelectedEvent,
   PagerScrollStateEvent,
 } from '../ui/pagerTypes'
-
-export { MediaViewer } from '../ui/MediaViewer.native'
-export type {
-  MediaViewerItem,
-  MediaViewerProps,
-  MediaViewerThumbnailProps,
-} from '../ui/mediaViewerTypes'

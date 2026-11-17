@@ -1013,7 +1013,7 @@ it is a zero-size presentation host. Use `url` for one file or `items` for a pag
 array of `{ url, title?, sourceIdentifier? }`, with `initialIndex` selecting the first
 page. Errors call `onError(message)` and dismiss the preview.
 
-`One.UI.MediaViewer` wraps this control with `MediaViewer.Thumbnail` triggers and
+`One.iOS.MediaViewer` wraps this control with `MediaViewer.Thumbnail` triggers and
 registers each thumbnail with One's existing zoom source repository. The system
 zoom transition on iOS 18 and later returns to the current item's mounted
 thumbnail when dismissing. Images fit the viewport and support pinch and double

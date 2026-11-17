@@ -28,8 +28,8 @@ export default function MediaViewerFixture() {
         </Text>
       </Pressable>
       {mounted && (
-        <One.UI.MediaViewer items={items} onError={setError}>
-          <One.UI.MediaViewer.Thumbnail
+        <One.iOS.MediaViewer items={items} onError={setError}>
+          <One.iOS.MediaViewer.Thumbnail
             index={0}
             testID="media-viewer-photo"
             accessibilityLabel="Open Pokai.jpg"
@@ -39,8 +39,8 @@ export default function MediaViewerFixture() {
               style={{ width: '100%', height: 240, borderRadius: 20 }}
               resizeMode="cover"
             />
-          </One.UI.MediaViewer.Thumbnail>
-          <One.UI.MediaViewer.Thumbnail
+          </One.iOS.MediaViewer.Thumbnail>
+          <One.iOS.MediaViewer.Thumbnail
             index={1}
             testID="media-viewer-video"
             accessibilityLabel="Open Ocean.mp4"
@@ -55,8 +55,8 @@ export default function MediaViewerFixture() {
             >
               Ocean.mp4
             </Text>
-          </One.UI.MediaViewer.Thumbnail>
-          <One.UI.MediaViewer.Thumbnail
+          </One.iOS.MediaViewer.Thumbnail>
+          <One.iOS.MediaViewer.Thumbnail
             index={2}
             testID="media-viewer-document"
             accessibilityLabel="Open Notes.txt"
@@ -71,17 +71,17 @@ export default function MediaViewerFixture() {
             >
               Notes.txt
             </Text>
-          </One.UI.MediaViewer.Thumbnail>
-        </One.UI.MediaViewer>
+          </One.iOS.MediaViewer.Thumbnail>
+        </One.iOS.MediaViewer>
       )}
-      <One.UI.MediaViewer
+      <One.iOS.MediaViewer
         items={[{ url: 'file:///missing-preview.jpg', title: 'Missing.jpg' }]}
         onError={setError}
       >
-        <One.UI.MediaViewer.Thumbnail index={0} testID="media-viewer-missing">
+        <One.iOS.MediaViewer.Thumbnail index={0} testID="media-viewer-missing">
           <Text style={{ color: '#9ac7ff' }}>Open missing file</Text>
-        </One.UI.MediaViewer.Thumbnail>
-      </One.UI.MediaViewer>
+        </One.iOS.MediaViewer.Thumbnail>
+      </One.iOS.MediaViewer>
     </View>
   )
 }

@@ -202,7 +202,7 @@ bytes with 347 modules removed. The class route retains One's root public API.
 # Native media viewer
 
 Extend the existing QuickLook control with titled paged files and the system zoom
-transition into the current thumbnail. Expose One.UI.MediaViewer and replace
+transition into the current thumbnail. Expose One.iOS.MediaViewer and replace
 Team Machine’s local tm-media-gallery module. A UIKit image surface fits small
 images to the viewport and supports pinch and double tap zoom. Native filename,
 close, and share controls stay visible; the system share sheet exports the original

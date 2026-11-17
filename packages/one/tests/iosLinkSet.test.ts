@@ -16,7 +16,7 @@ it('selects SDK frameworks from the emitted production graph after unused import
     const input = join(root, 'app.js')
     writeFileSync(
       input,
-      `import { useAudioPlayer, CameraView, Location, One } from 'one'; globalThis.features = [useAudioPlayer, CameraView, Location, One.UI.MediaViewer]; import { used } from './used.js'; import { unused } from './unused.js'; globalThis.result = used();`
+      `import { useAudioPlayer, CameraView, Location, One } from 'one'; globalThis.features = [useAudioPlayer, CameraView, Location, One.iOS.MediaViewer]; import { used } from './used.js'; import { unused } from './unused.js'; globalThis.result = used();`
     )
     writeFileSync(
       join(root, 'used.js'),
