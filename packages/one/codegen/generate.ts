@@ -1004,7 +1004,7 @@ for (const [path, source] of outputs) {
   }
   writeFileSync(temporary, text.trimEnd() + '\n')
   if (/\.tsx?$/.test(path))
-    run('bunx', ['oxfmt', '-c', resolve(root, '../../.prettierrc'), temporary])
+    run('bunx', ['oxfmt', '-c', resolve(root, '../../.oxfmtrc.jsonc'), temporary])
   const generated = readFileSync(temporary, 'utf8')
   let existing = ''
   try {

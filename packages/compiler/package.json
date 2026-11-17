@@ -29,8 +29,8 @@
     "check": "depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
-    "lint": "../../node_modules/.bin/biome check src",
-    "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src",
+    "lint": "oxlint -c ../../.oxlintrc.json src",
+    "lint:fix": "oxfmt -c ../../.oxfmtrc.jsonc src && oxlint -c ../../.oxlintrc.json --fix src",
     "test": "vitest run --dir src",
     "typecheck": "tsc --noEmit"
   },

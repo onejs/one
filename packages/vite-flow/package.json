@@ -22,8 +22,8 @@
     "build": "tamagui-build",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
-    "lint": "../../node_modules/.bin/biome check src",
-    "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src",
+    "lint": "oxlint -c ../../.oxlintrc.json src",
+    "lint:fix": "oxfmt -c ../../.oxfmtrc.jsonc src && oxlint -c ../../.oxlintrc.json --fix src",
     "typecheck": "tsc --noEmit",
     "watch": "tamagui-build --watch"
   },
@@ -32,7 +32,6 @@
     "vite": "^8.2.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.15",
     "@tamagui/build": "3.3.3"
   },
   "publishConfig": {

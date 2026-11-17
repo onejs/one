@@ -57,9 +57,6 @@ jobs:
       - name: Check no committed proofs
         run: bun run check:proofs
 
-      # workaround of node_modules/.bin/biome not being executable
-      - run: chmod +x node_modules/@biomejs/biome/bin/biome
-
       - name: Lint
         run: bun run lint
 

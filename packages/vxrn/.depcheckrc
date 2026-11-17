@@ -1,7 +1,6 @@
 ignorePatterns:
   - "dist"
 ignores:
-  - "@biomejs/biome"
   - "vxrn"
   - "@expo/cli"
   - "react"

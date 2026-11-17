@@ -23,8 +23,8 @@
   "scripts": {
     "build": "tamagui-build",
     "watch": "tamagui-build --watch",
-    "lint": "npx biome check src",
-    "lint:fix": "npx biome check --write --unsafe src",
+    "lint": "oxlint -c ../../.oxlintrc.json src",
+    "lint:fix": "oxfmt -c ../../.oxfmtrc.jsonc src && oxlint -c ../../.oxlintrc.json --fix src",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
     "test": "vitest run --dir src",
