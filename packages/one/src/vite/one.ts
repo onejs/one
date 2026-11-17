@@ -962,8 +962,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   }
 
   // TODO move this handoff off globalThis, like the other one -> vxrn options
-  ;(globalThis as any).__vxrnNativeIosEngine = !nativeDisabled
-    ? { root: path.resolve(root), engine: nativeApp?.ios?.engine }
+  ;(globalThis as any).__vxrnNativeEngine = !nativeDisabled
+    ? { root: path.resolve(root), ios: nativeApp?.ios?.engine, android: nativeApp?.android?.engine }
     : undefined
 
   if (!nativeDisabled) {

@@ -40,7 +40,7 @@ import {
 } from '@vxrn/utils/desktopReactNativeResolve'
 import { nativeAppDefines } from '@vxrn/utils/nativeAppManifest'
 import type { NativePlatform } from '@vxrn/utils/platformEnv'
-import { isBunIosEngine } from '@vxrn/utils'
+import { isBunEngine } from '@vxrn/utils'
 import { withExpoPublicEnvAliases } from '@vxrn/utils/publicEnv'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
@@ -451,7 +451,7 @@ function getNativePlugins(
     // rolldown-runtime WebSocket); RN's client otherwise opens a /hot socket and
     // red-boxes "unknown-message [object Object]" on every edit (new arch)
     hmrClientNoopPlugin(),
-    ...(!dev && isBunIosEngine(root, platform) ? [nativePromisePlugin()] : []),
+    ...(!dev && isBunEngine(root, platform) ? [nativePromisePlugin()] : []),
     nativeIdentityAliasPlugin(platform),
     nativeAssetRegistryPlugin(root),
     // route every `react-native/*` import through the app's react native copy.
@@ -1512,7 +1512,7 @@ export async function buildNativeBundle(
         'build'
       ),
       // last, so it sees what every other plugin produced
-      nativeBundlePostProcessPlugin(!dev && isBunIosEngine(root, platform)),
+      nativeBundlePostProcessPlugin(!dev && isBunEngine(root, platform)),
       ...(await bundleAnalysisPlugins(root, platform)),
     ],
     output: {

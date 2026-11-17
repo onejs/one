@@ -25,19 +25,28 @@ class OneUpdatesReactHostDelegate(
     private val context: Context,
     override val jsMainModulePath: String = "index",
     override val reactPackages: List<ReactPackage>,
-    override val jsRuntimeFactory: JSRuntimeFactory = HermesInstance(),
+    jsRuntimeFactory: JSRuntimeFactory = HermesInstance(),
     override val bindingsInstaller: BindingsInstaller? = null,
     override val turboModuleManagerDelegateBuilder: ReactPackageTurboModuleManagerDelegate.Builder =
         DefaultTurboModuleManagerDelegate.Builder()
 ) : ReactHostDelegate {
+    private val embeddedRuntimeFactory = jsRuntimeFactory
+    private var selectedRuntimeFactory = jsRuntimeFactory
+    override val jsRuntimeFactory: JSRuntimeFactory
+        get() = selectedRuntimeFactory
+
     override val jsBundleLoader: JSBundleLoader
         get() {
+            selectedRuntimeFactory = embeddedRuntimeFactory
             if (!OneUpdatesLauncher.isEnabled()) {
                 return JSBundleLoader.createAssetLoader(
                     context, "assets://${OneUpdatesLauncher.EMBEDDED_BUNDLE_ASSET}", true)
             }
             val file = OneUpdatesLauncher.select()
-            if (file != null) return JSBundleLoader.createFileLoader(file.absolutePath)
+            if (file != null) {
+                selectedRuntimeFactory = HermesInstance()
+                return JSBundleLoader.createFileLoader(file.absolutePath)
+            }
             return JSBundleLoader.createAssetLoader(
                 context, "assets://${OneUpdatesLauncher.EMBEDDED_BUNDLE_ASSET}", true)
         }
@@ -57,7 +66,11 @@ object OneUpdatesReactHost {
 
     @OptIn(UnstableReactNativeAPI::class)
     @JvmStatic
-    fun getDefaultReactHost(context: Context, packageList: List<ReactPackage>): ReactHost {
+    fun getDefaultReactHost(
+        context: Context,
+        packageList: List<ReactPackage>,
+        jsRuntimeFactory: JSRuntimeFactory? = null
+    ): ReactHost {
         reactHost?.let {
             return it
         }
@@ -65,7 +78,8 @@ object OneUpdatesReactHost {
         val delegate =
             OneUpdatesReactHostDelegate(
                 context = context.applicationContext,
-                reactPackages = packageList
+                reactPackages = packageList,
+                jsRuntimeFactory = jsRuntimeFactory ?: HermesInstance()
             )
         val componentFactory = ComponentFactory()
         DefaultComponentsRegistry.register(componentFactory)

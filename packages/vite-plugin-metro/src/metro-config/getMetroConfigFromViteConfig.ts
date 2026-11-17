@@ -12,7 +12,7 @@ import { getDefaultConfig } from '@react-native/metro-config'
 import type { loadConfig as loadConfigT } from 'metro'
 
 import { findUserBabelConfig } from '@vxrn/compiler'
-import { isBunIosEngine } from '@vxrn/utils'
+import { isBunEngine } from '@vxrn/utils'
 import {
   desktopReactNativeFile,
   requireOnePackageRoot,
@@ -203,7 +203,7 @@ function isReactNativePromisePolyfill(
 ) {
   return (
     !context.dev &&
-    isBunIosEngine(projectRoot, platform) &&
+    isBunEngine(projectRoot, platform) &&
     /(^|[\\/])polyfillPromise(\.js)?$/.test(moduleName) &&
     /(^|[\\/])react-native[\\/]/.test(context.originModulePath)
   )
