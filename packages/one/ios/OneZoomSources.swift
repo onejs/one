@@ -60,7 +60,8 @@ class ZoomTransitionsSourceRepository {
   func getSource(identifier: String) -> SourceInfo? {
     lock.lock()
     defer { lock.unlock() }
-    return sources[identifier]
+    guard let source = sources[identifier], source.view?.window != nil else { return nil }
+    return source
   }
 
   func updateIdentifier(oldIdentifier: String, newIdentifier: String) {
