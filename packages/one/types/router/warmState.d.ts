@@ -1,5 +1,5 @@
 import type { OneRouter } from '../interfaces/router.js';
-import type { One } from '../vite/types.js';
+import type { One } from '../routeTypes.js';
 import type { OneLinkingOptions } from './getLinkingConfig.js';
 import type { RouteNode } from './Route.js';
 import { type WarmStartOptions, type WarmStateEnvelope, type WarmStateStorage } from './warmStateShared.js';

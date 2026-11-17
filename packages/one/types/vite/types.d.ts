@@ -1,13 +1,11 @@
 import type { GetTransform } from '@vxrn/compiler';
-import type { metroPlugin } from '@vxrn/vite-plugin-metro';
+import type { MetroPluginOptions } from '@vxrn/utils/metroTypes';
 import type { Plugin as RolldownPlugin } from 'rolldown';
 import type { AutoDepOptimizationOptions, UserDepPatches, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
-import type { One as OneShared } from '../interfaces/router.js';
+import type { One as OneRoute } from '../routeTypes.js';
 import type { RouteNode } from '../router/Route.js';
 import type { NativeAppManifest } from '../native/appManifest.js';
-import type { WarmStartOptions } from '../router/warmStateShared.js';
 import type { EnvironmentGuardOptions } from './plugins/environmentGuardPlugin.js';
-type MetroPluginOptions = Parameters<typeof metroPlugin>[0];
 export type DeployTarget = 'node' | 'vercel' | 'cloudflare';
 export type DeployConfig = {
     target: DeployTarget;
@@ -31,12 +29,10 @@ export type RouteInfo<TRegex = string> = {
 };
 export declare namespace One {
     export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions;
-    export type RouteRenderMode = 'ssg' | 'spa' | 'ssr';
-    export type RouteType = RouteRenderMode | 'api' | 'layout';
-    export type ClientData = Record<string, any>;
-    export type RouteOptions = {
-        routeModes?: Record<string, RouteRenderMode>;
-    };
+    export type RouteRenderMode = OneRoute.RouteRenderMode;
+    export type RouteType = OneRoute.RouteType;
+    export type ClientData = OneRoute.ClientData;
+    export type RouteOptions = OneRoute.RouteOptions;
     export type FixDependencies = UserDepPatches;
     type PluginPlatformTarget = 'native' | 'web';
     type CompilerEnvironment = 'ios' | 'android' | 'client' | 'ssr';
@@ -738,12 +734,7 @@ export declare namespace One {
          */
         environmentGuards?: EnvironmentGuardOptions;
     };
-    export interface RouteContext {
-        keys(): string[];
-        (id: string): any;
-        <T>(id: string): T;
-        resolve(id: string): string;
-        id: string;
+    export interface RouteContext extends OneRoute.RouteContext {
     }
     export type Redirect = {
         source: string;
@@ -812,38 +803,11 @@ export declare namespace One {
      * Represents a matched route in the route hierarchy.
      * Used by useMatches() to expose loader data from all matched routes.
      */
-    export type RouteMatch = {
-        /** Route identifier (e.g., "docs/_layout" or "docs/intro") */
-        routeId: string;
-        /** The pathname segment this route matched */
-        pathname: string;
-        /** URL params extracted for this route */
-        params: Record<string, string | string[]>;
-        /** Data returned from this route's loader */
-        loaderData: unknown;
-    };
-    export type ServerContext = {
-        css?: string[];
-        /** When inlineLayoutCSS is enabled, this contains the actual CSS content to inline */
-        cssContents?: string[];
-        /** Number of inline CSS entries - used for hydration matching when cssContents is stripped */
-        cssInlineCount?: number;
-        postRenderData?: any;
-        loaderData?: any;
-        loaderProps?: any;
-        mode?: 'spa' | 'ssg' | 'ssr' | 'spa-shell';
-        routePreloads?: string[];
-        /**
-         * All matched routes with their loader data.
-         * Ordered from root layout to leaf page (parent → child).
-         */
-        matches?: RouteMatch[];
-    };
-    export type Flags = {
-        warmStart?: boolean | WarmStartOptions;
-    };
-    export type SitemapChangefreq = OneShared.SitemapChangefreq;
-    export type RouteSitemap = OneShared.RouteSitemap;
+    export type RouteMatch = OneRoute.RouteMatch;
+    export type ServerContext = OneRoute.ServerContext;
+    export type Flags = OneRoute.Flags;
+    export type SitemapChangefreq = OneRoute.SitemapChangefreq;
+    export type RouteSitemap = OneRoute.RouteSitemap;
     export type SitemapOptions = {
         /**
          * Base URL for the sitemap. Defaults to ONE_SERVER_URL environment variable.
@@ -866,5 +830,4 @@ export declare namespace One {
     };
     export {};
 }
-export {};
 //# sourceMappingURL=types.d.ts.map

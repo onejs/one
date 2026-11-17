@@ -1,3 +1,4 @@
+import type { ReadableStream as FileReadableStream, WritableStream as FileWritableStream } from '../streams.js';
 import { PathUtilities } from './paths.js';
 import { FileMode } from './types.js';
 import type { DirectoryCreateOptions, DirectoryStat, FileCreateOptions, FileDigestAlgorithm, FileStat, FileWriteOptions, PathInfo, RelocationOptions } from './types.js';
@@ -53,9 +54,9 @@ export declare class File {
     moveSync(_destination: File | Directory, _options?: RelocationOptions): void;
     rename(_newName: string): void;
     open(mode?: FileMode): FileHandle;
-    readableStream(): ReadableStream<Uint8Array<ArrayBuffer>>;
-    writableStream(): WritableStream<Uint8Array<ArrayBufferLike>>;
-    stream(): ReadableStream<Uint8Array<ArrayBuffer>>;
+    readableStream(): FileReadableStream<Uint8Array<ArrayBuffer>>;
+    writableStream(): FileWritableStream<Uint8Array<ArrayBufferLike>>;
+    stream(): FileReadableStream<Uint8Array<ArrayBuffer>>;
 }
 export declare class Directory {
     private currentUri;

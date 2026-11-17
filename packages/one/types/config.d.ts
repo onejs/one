@@ -1,3 +1,2 @@
-import type { One } from './vite/types.js';
-export declare const getDefaultRenderMode: () => One.RouteRenderMode;
+export declare const getDefaultRenderMode: () => import("./routeTypes.js").One.RouteRenderMode;
 //# sourceMappingURL=config.d.ts.map
