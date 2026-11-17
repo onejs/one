@@ -1,3 +1,4 @@
+export declare function loadCloudflarePlugin(): Promise<typeof import("@cloudflare/vite-plugin").cloudflare>;
 export type JsonPrimitive = string | number | boolean | null;
 export type JsonValue = JsonPrimitive | JsonValue[] | {
     [key: string]: JsonValue;

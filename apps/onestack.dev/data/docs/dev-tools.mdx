@@ -184,10 +184,10 @@ Plugins are loaded only in development. The module is resolved through Vite, so 
 
 ## Rozenite plugins in React Native DevTools
 
-One hosts the [Rozenite](https://github.com/callstackincubator/rozenite) plugin convention for React Native. If a Rozenite plugin package is installed in your app, One mounts its plugin host on the native dev server and React Native DevTools shows the panels. Existing Rozenite plugins work without a Metro wrapper or a separate `withRozenite` config.
+One hosts the [Rozenite](https://github.com/callstackincubator/rozenite) plugin convention for React Native. Install the middleware and a Rozenite plugin in your app to show its panels in React Native DevTools. Existing Rozenite plugins work without a Metro wrapper or a separate `withRozenite` config.
 
 ```sh
-bun add -d @rozenite/storage-plugin
+bun add -d @rozenite/middleware @rozenite/storage-plugin
 ```
 
 On the next `one dev`, pressing **j** or **dt** opens DevTools with the Storage panel. One logs the plugin names it found:
@@ -220,7 +220,7 @@ The device half of a Rozenite plugin still lives in your app. Follow the plugin'
 
 [Runtime Inspector](https://github.com/AmatoGiulio/runtime-inspector) is the reference adapter for this API. It already ships its semantics and layouts as a protocol-first package with a Rozenite panel. In a One app:
 
-1. Add `@runtime-inspector/react-native` and `@runtime-inspector/panel-rozenite` to the app.
+1. Add `@runtime-inspector/react-native` and `@runtime-inspector/panel-rozenite` to the app. Add `@rozenite/middleware` as a dev dependency.
 2. Import the panel once from the app entry: `import '@runtime-inspector/panel-rozenite'`.
 3. Press **j** or **dt**. Runtime Inspector appears in React Native DevTools through Rozenite.
 

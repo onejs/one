@@ -43,6 +43,7 @@
     "@tamagui/react-native-web-lite": "3.3.3"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.33.1",
     "@algolia/client-search": "^5.8.1",
     "@tamagui/vite-plugin": "3.3.3",
     "@vxrn/test": "workspace:*",
