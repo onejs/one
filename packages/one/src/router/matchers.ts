@@ -1,4 +1,4 @@
-import type { One } from '../vite/types'
+import type { One } from '../routeTypes'
 
 /** Match `[page]` -> `page` or `[...page]` -> `page` with deep flag */
 const dynamicNameRe = /^\[([^[\]]+?)\]$/

@@ -7,7 +7,7 @@
 // and then later its imported through optimizeDeps, a seaprate instance, creating a separate requestAsyncLocalStore
 
 import { SERVER_CONTEXT_KEY } from '../constants'
-import type { One } from './types'
+import type { One } from '../routeTypes'
 
 // symbol key for storing context directly on the ALS id object (faster than WeakMap)
 const _ctxKey = Symbol.for('__oneCtx')
@@ -20,7 +20,10 @@ export interface ALSId {
 
 import { AsyncLocalStorage } from 'node:async_hooks'
 
-type ALSInstance = AsyncLocalStorage<ALSId>
+interface ALSInstance {
+  getStore(): ALSId | undefined
+  run<R>(store: ALSId, callback: () => R): R
+}
 
 const key = '__vxrnrequestAsyncLocalStore'
 const read = () => globalThis[key] as ALSInstance | undefined

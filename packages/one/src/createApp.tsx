@@ -1,3 +1,4 @@
+import type { ReadableStream } from 'web-streams-polyfill'
 import './setup'
 
 import { cloneElement } from 'react'
@@ -26,7 +27,7 @@ import { ensureExists } from './utils/ensureExists'
 import { SERVER_CONTEXT_POST_RENDER_STRING } from './vite/constants'
 import { safeJsonStringify } from './utils/htmlEscape'
 import { getServerContext, setServerContext } from './vite/one-server-only'
-import type { One } from './vite/types'
+import type { One } from './routeTypes'
 
 export type CreateAppProps = {
   routes: Record<string, () => Promise<unknown>>

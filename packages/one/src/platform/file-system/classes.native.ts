@@ -1,3 +1,4 @@
+import type { ReadableStream, WritableStream } from 'web-streams-polyfill'
 import { rethrowNativeError } from '../nativeError'
 import type { OneFileSystem } from '../specs/OneFileSystem.nitro'
 import { fileSystemNative } from './hybrid.native'
@@ -314,11 +315,11 @@ export class File {
   }
 
   readableStream(): ReadableStream<Uint8Array<ArrayBuffer>> {
-    return new ReadableStream(new FileSystemReadableStreamSource(this.open(FileMode.ReadOnly)))
+    return new globalThis.ReadableStream(new FileSystemReadableStreamSource(this.open(FileMode.ReadOnly))) as unknown as ReadableStream<Uint8Array<ArrayBuffer>>
   }
 
   writableStream(): WritableStream<Uint8Array<ArrayBufferLike>> {
-    return new WritableStream(new FileSystemWritableSink(this.open(FileMode.WriteOnly)))
+    return new globalThis.WritableStream(new FileSystemWritableSink(this.open(FileMode.WriteOnly))) as unknown as WritableStream<Uint8Array<ArrayBufferLike>>
   }
 
   stream(): ReadableStream<Uint8Array<ArrayBuffer>> {
