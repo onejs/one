@@ -46,6 +46,7 @@ private struct PopoverContent: View {
         OneNativeSlot(content: content, mode: .presented, onLayout: { frame in
           if model.active && model.controlled.value { model.onLayout?(frame) }
         }, measuredWidth: model.measuredWidth, measuredHeight: model.measuredHeight)
+        .ignoresSafeArea(.keyboard)
         .oneNativePresentationCompactAdaptation(model.presentationCompactAdaptation)
       }
     })

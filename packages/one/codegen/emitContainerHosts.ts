@@ -710,7 +710,7 @@ export function emitContainerHosts(
       if (component.props[prop] !== 'string') fail(`slot prop ${prop} must be a string`)
     // the content React mounted for the presentation, sized by SwiftUI
     const presentedBody = presented
-      ? `if let content = model.content {\n  OneNativeSlot(content: content, mode: .presented, onLayout: { frame in\n    if model.active && model.controlled.value { model.onLayout?(frame) }\n  }, measuredWidth: model.measuredWidth, measuredHeight: model.measuredHeight)${(presented.modifiers ?? []).map((modifier) => `\n  ${model(modifier)}`).join('')}\n}`
+      ? `if let content = model.content {\n  OneNativeSlot(content: content, mode: .presented, onLayout: { frame in\n    if model.active && model.controlled.value { model.onLayout?(frame) }\n  }, measuredWidth: model.measuredWidth, measuredHeight: model.measuredHeight)\n  .ignoresSafeArea(.keyboard)${(presented.modifiers ?? []).map((modifier) => `\n  ${model(modifier)}`).join('')}\n}`
       : ''
 
     const conversions: string[] = []

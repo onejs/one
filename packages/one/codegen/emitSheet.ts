@@ -376,6 +376,9 @@ struct OneNativeSheetRoot: View {
         model.presentedWindowChanged(identity, attached: attached)
       }, measuredHeight: model.presentationSizing == "fitted" ? model.measuredHeight : 0)
       .frame(maxWidth: .infinity, maxHeight: .infinity)
+      // react native content avoids the keyboard itself, as in a Modal. a keyboard
+      // inset swiftui kept after the keyboard left sized this slot to zero.
+      .ignoresSafeArea(.keyboard)
     }
   }
   var body: some View {
