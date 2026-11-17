@@ -133,6 +133,8 @@ One prebuild also supports Android Release builds with `android: { applicationId
 
 The Android build compiles `index.android.bundle` into `libbun.so` and installs a JNI runtime factory. Debug builds use Hermes.
 
+Android compilation needs Python 3 and a running Docker Desktop or Colima daemon on macOS, or `qemu-aarch64` from the `qemu-user` package on Linux. The engine package includes the matching Android compiler and its runtime libraries, so app builds need no emulator or phone. See the [Android compiler packaging guide](https://github.com/onejs/bun-engine/blob/main/docs/android-compiler.md) when preparing a local engine build.
+
 `pod install` downloads the engine from a pinned [onejs/bun-engine](https://github.com/onejs/bun-engine) release into `~/Library/Caches/one/bun-engine`, checks its checksum, and reuses it after that. Set `ONE_BUN_ENGINE_DIR` to use a local engine build instead. The app executable links the runtime statically, so no Bun framework loads before `main`. The bundle phase compiles `main.jsbundle` on every Release build and the link places the program in the executable's `__TEXT` segment, since an App Store binary may have only one executable segment.
 
 Limits:
