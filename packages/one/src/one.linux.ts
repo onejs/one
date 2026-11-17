@@ -39,4 +39,4 @@ function inherit<Base extends object, Own extends object>(
 
 // shadows the shared One object. the shared module stays the ios, android and
 // web build, and this entry is loaded only when the platform is linux.
-export const One: OneLinuxAPI = inherit(NativeOne, { platform: 'linux' as const, linux })
+export const One: OneLinuxAPI = inherit(NativeOne, { platform: 'linux' as const, Linux: linux, linux })

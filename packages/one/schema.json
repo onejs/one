@@ -3335,6 +3335,12 @@
         },
         "url": {
           "type": "string"
+        },
+        "items": {
+          "type": "ReadonlyArray<QuickLookItem>"
+        },
+        "initialIndex": {
+          "type": "Double"
         }
       },
       "events": {
@@ -3356,13 +3362,26 @@
           "revision": {
             "type": "Int32"
           }
+        },
+        "onNativeQuickLookError": {
+          "message": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
         }
       },
       "controlled": {
         "value": "value",
         "event": "onNativeQuickLookValueChange"
       },
-      "actions": [],
+      "actions": [
+        {
+          "publicProp": "onError",
+          "event": "onNativeQuickLookError"
+        }
+      ],
       "layout": {
         "kind": "presentation"
       },
@@ -5254,6 +5273,19 @@
         },
         "longitude": {
           "type": "Double"
+        }
+      }
+    },
+    "QuickLookItem": {
+      "fields": {
+        "url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "sourceIdentifier": {
+          "type": "string"
         }
       }
     },

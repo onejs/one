@@ -27,15 +27,15 @@ export default function Review2() {
       </Pressable>
       <Text style={{ fontSize: 24 }}>Linux review 2</Text>
       <Text>Stepper numeric value {String(count)}, parent renders {renders}</Text>
-      <One.linux.Stepper testID={`stepper-${renders}`} label="Amount" value={count} in={[0, 3]} step={1} onValueChange={setCount}
+      <One.Linux.Stepper testID={`stepper-${renders}`} label="Amount" value={count} in={[0, 3]} step={1} onValueChange={setCount}
         style={small ? { width: 20, height: 20 } : undefined} />
-      <One.linux.Button title="Rerender parent" onPress={() => setTimeout(() => setRenders((n) => n + 1), 2000)} />
-      <One.linux.DropDown labels={['Alpha', 'Beta', 'Gamma']} selectedIndex={selection}
+      <One.Linux.Button title="Rerender parent" onPress={() => setTimeout(() => setRenders((n) => n + 1), 2000)} />
+      <One.Linux.DropDown labels={['Alpha', 'Beta', 'Gamma']} selectedIndex={selection}
         onChange={(event) => setSelection(event.selectedIndex)} />
       <Text>Selected {selection}; popup selection must leave RN counts unchanged</Text>
-      <One.linux.TextField text="minimum" onTextChange={() => {}} style={small ? { width: 20, height: 20 } : undefined} />
-      <One.linux.Button title="Allocate below minimum" onPress={() => setSmall(true)} />
-      <One.linux.Slider value={value} onValueChange={(event) => setValue(event.value)} revision={revision} disabled={disabled}
+      <One.Linux.TextField text="minimum" onTextChange={() => {}} style={small ? { width: 20, height: 20 } : undefined} />
+      <One.Linux.Button title="Allocate below minimum" onPress={() => setSmall(true)} />
+      <One.Linux.Slider value={value} onValueChange={(event) => setValue(event.value)} revision={revision} disabled={disabled}
         style={{ width: 400 }} onSlidingStart={() => {
           setStarts((n) => n + 1)
           if (cancel === 'disable') setTimeout(() => setDisabled(true), 500)
@@ -43,7 +43,7 @@ export default function Review2() {
         }} onSlidingComplete={() => setCompletes((n) => n + 1)} />
       <Text>Slider {value.toFixed(2)}, starts {starts}, completes {completes}, revision {revision}, disabled {String(disabled)}</Text>
       <View style={{ flexDirection: 'row', gap: 12 }}>
-        {['none', 'disable', 'revision'].map((mode) => <One.linux.Button key={mode} title={`Cancel: ${mode}`} onPress={() => {
+        {['none', 'disable', 'revision'].map((mode) => <One.Linux.Button key={mode} title={`Cancel: ${mode}`} onPress={() => {
           setCancel(mode); setDisabled(false); setStarts(0); setCompletes(0)
         }} />)}
       </View>

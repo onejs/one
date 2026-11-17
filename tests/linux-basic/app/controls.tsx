@@ -75,7 +75,7 @@ export default function Index() {
         {`platform ${Platform.OS} / ${One.platform}, resolved ${probe}`}
       </Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 24 }}>
-        <One.linux.Switch isOn={isOn} revision={0} onIsOnChange={(event) => setIsOn(event.isOn)} />
+        <One.Linux.Switch isOn={isOn} revision={0} onIsOnChange={(event) => setIsOn(event.isOn)} />
         <Text testID="linux-switch" style={{ fontSize: 20, marginLeft: 12, color: '#1f1d1a' }}>
           {isOn ? 'switch on' : 'switch off'}
         </Text>
@@ -137,11 +137,11 @@ export default function Index() {
             GTK controls with React Native content
           </Text>
           <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center' }}>
-            <One.linux.Button
+            <One.Linux.Button
               title="Native button"
               onPress={() => setNativePresses((value) => value + 1)}
             />
-            <One.linux.Button
+            <One.Linux.Button
               title="Disabled"
               disabled
               style={{ width: 100 }}
@@ -151,7 +151,7 @@ export default function Index() {
               style={{ fontSize: 14, color: '#1f1d1a' }}
             >{`${nativePresses} presses`}</Text>
           </View>
-          <One.linux.SegmentedControl
+          <One.Linux.SegmentedControl
             labels={['One', 'Two', 'Three']}
             selectedIndex={segment}
             revision={controlRevision}
@@ -161,7 +161,7 @@ export default function Index() {
             }}
           />
           <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}>
-            <One.linux.Slider
+            <One.Linux.Slider
               value={level}
               revision={controlRevision}
               onValueChange={(event) => {
@@ -174,7 +174,7 @@ export default function Index() {
             >{`level ${Math.round(level * 100)}%`}</Text>
           </View>
           <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}>
-            <One.linux.DropDown
+            <One.Linux.DropDown
               labels={['Alpha', 'Beta', 'Gamma']}
               selectedIndex={choice}
               revision={controlRevision}
@@ -187,12 +187,12 @@ export default function Index() {
               style={{ fontSize: 14, color: '#1f1d1a' }}
             >{`segment ${segment}, choice ${choice}`}</Text>
           </View>
-          <One.linux.ProgressBar value={level} />
+          <One.Linux.ProgressBar value={level} />
           <Text
             style={{ fontSize: 14, color: '#1f1d1a' }}
           >{`${controlEvents} native changes, revision ${controlRevision}`}</Text>
           <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}>
-            <One.linux.Button
+            <One.Linux.Button
               title="Reset controls"
               onPress={() => {
                 setSegment(0)

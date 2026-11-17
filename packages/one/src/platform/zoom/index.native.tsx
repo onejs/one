@@ -39,7 +39,7 @@ const ZoomSourceNative = isAvailable
 
 export function ZoomTransitionSource(props: ZoomTransitionSourceProps) {
   if (!ZoomSourceNative) return null
-  return <ZoomSourceNative {...props} collapsable={false} style={{ display: 'flex' }} />
+  return <ZoomSourceNative {...props} collapsable={false} style={[{ display: 'flex' }, props.style]} />
 }
 
 const ZoomAlignmentNative = isAvailable

@@ -80,6 +80,7 @@ import {
   ZoomTransitionAlignmentRectDetector,
   ZoomTransitionEnabler,
   ZoomTransitionSource,
+  MediaViewer,
   type ColorType,
 } from './platform'
 import type { ComponentType } from 'react'
@@ -148,6 +149,7 @@ export type OneIOS = typeof Swift & {
   readonly ZoomTransitionAlignmentRectDetector: typeof ZoomTransitionAlignmentRectDetector
   readonly ZoomTransitionEnabler: typeof ZoomTransitionEnabler
   readonly ZoomTransitionSource: typeof ZoomTransitionSource
+  readonly MediaViewer: typeof MediaViewer
 }
 
 export type OneAndroid = typeof Compose & {
@@ -215,6 +217,8 @@ export type OneAPI = {
   // present on the macos entry only, so ios, android and web bundles omit it
   readonly macOS?: Readonly<OneMacOS>
   // present on the linux entry only, for the same reason
+  readonly Linux?: Readonly<OneLinux>
+  /** @deprecated use `One.Linux` */
   readonly linux?: Readonly<OneLinux>
   readonly Android: Readonly<OneAndroid>
   readonly UI: Readonly<OneUI>
@@ -248,6 +252,8 @@ export type OneMacAPI = OneAPI & {
 // the One object of the linux entry, which always has its native namespace
 export type OneLinuxAPI = OneAPI & {
   readonly platform: 'linux'
+  readonly Linux: Readonly<OneLinux>
+  /** @deprecated use `One.Linux` */
   readonly linux: Readonly<OneLinux>
 }
 
@@ -270,6 +276,7 @@ const iOS: Readonly<OneIOS> = Object.freeze({
   ZoomTransitionAlignmentRectDetector,
   ZoomTransitionEnabler,
   ZoomTransitionSource,
+  MediaViewer,
 })
 
 const Android: Readonly<OneAndroid> = Object.freeze({

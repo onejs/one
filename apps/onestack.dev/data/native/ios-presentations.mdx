@@ -341,7 +341,10 @@ function Itinerary({ url }: { url: string }) {
     { name: 'isPresented', required: true, type: 'boolean', description: 'Whether the preview shows.' },
     { name: 'onIsPresentedChange', required: true, type: '(value: boolean) => void', description: 'The preview closed.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new isPresented to reset it from outside.' },
-    { name: 'url', type: 'string', description: 'A file, http, or https URL. Required at runtime.' },
+    { name: 'onError', type: '(message: string) => void', description: 'A file could not be previewed.' },
+    { name: 'url', type: 'string', description: 'A file, http, or https URL, for a single preview.' },
+    { name: 'items', type: 'readonly QuickLookItem[]', description: 'Files to page through, each { url, title?, sourceIdentifier? }. Takes the place of url.' },
+    { name: 'initialIndex', type: 'number', default: '0', description: 'The item shown first.' },
   ]}
 />
 

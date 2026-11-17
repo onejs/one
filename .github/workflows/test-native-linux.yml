@@ -16,6 +16,7 @@ on:
       - 'packages/vite-plugin-metro/**'
       - 'tests/linux-basic/**'
   pull_request:
+    branches: [main]
     paths:
       - '.github/actions/install/**'
       - '.github/workflows/test-native-linux.yml'

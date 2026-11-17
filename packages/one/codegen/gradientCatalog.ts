@@ -41,6 +41,18 @@ export const gradientControls: Control[] = [
       startPoint: oneNativeLinearGradientPoint(model.startPoint, fallback: .top),
       endPoint: oneNativeLinearGradientPoint(model.endPoint, fallback: .bottom)
     )`,
+    standaloneLayer: {
+      type: 'CAGradientLayer',
+      update: `let colors = model.colors.compactMap(oneNativeLinearGradientColor).map { UIColor($0).cgColor }
+    // a gradient layer draws nothing for one color, where SwiftUI fills with it
+    layer.colors = colors.count == 1 ? [colors[0], colors[0]] : colors
+    let positions = model.locations.data(using: .utf8).flatMap { try? JSONDecoder().decode([Double].self, from: $0) }
+    layer.locations = positions?.count == colors.count && colors.count > 1 ? positions!.map { NSNumber(value: $0) } : nil
+    let start = oneNativeLinearGradientPoint(model.startPoint, fallback: .top)
+    let end = oneNativeLinearGradientPoint(model.endPoint, fallback: .bottom)
+    layer.startPoint = CGPoint(x: start.x, y: start.y)
+    layer.endPoint = CGPoint(x: end.x, y: end.y)`,
+    },
     extraSwift: `private struct OneNativeLinearGradientPoint: Decodable {
   let x: Double
   let y: Double

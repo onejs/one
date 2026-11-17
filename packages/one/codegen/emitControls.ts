@@ -369,6 +369,9 @@ export type OneNativeViewProps = Pick<
     // React Native, so they keep the shadow node codegen writes.
     const measured = !control.layout
     const presentation = control.layout === 'presentation'
+    const layer = control.standaloneLayer
+    if (layer && (slot || measured || presentation || control.value || control.focus))
+      throw new Error(`${name}: a standalone layer draws a fill-layout leaf without state`)
     // weakSelf only exists for the blocks below it, so a control with none would declare it
     // and never read it.
     const callbacks = measured || !!value || actions.length > 0 || !!control.focus || hasSDKEvents
@@ -440,7 +443,7 @@ ${
   focusRevision?: number
 `
         : ''
-    }${actions.map((action) => `  ${action.prop}?: ${callbackType(action)}\n`).join('')}${publicFields.map(([key, field]) => `  ${key}${field.type === 'objects' || field.required ? '' : '?'}: ${field.publicType ? `${field.publicType}${field.default === '' ? " | ''" : ''}` : field.enum ? `Styles.${field.enum}${optionalEnum(field) ? " | ''" : ''}` : tsType(field)}`).join('\n')}
+    }${actions.map((action) => `  ${action.prop}?: ${callbackType(action)}\n`).join('')}${publicFields.map(([key, field]) => `  ${key}${(field.type === 'objects' && field.jsDefault === undefined) || field.required ? '' : '?'}: ${field.publicType ? `${field.publicType}${field.default === '' ? " | ''" : ''}` : field.enum ? `Styles.${field.enum}${optionalEnum(field) ? " | ''" : ''}` : tsType(field)}`).join('\n')}
 }\n`
     const props = {
       ...(value
@@ -578,7 +581,7 @@ export default codegenNativeComponent<NativeProps>('${nativeName}'${measured ? '
       ...actions.map((action) => action.prop),
       ...publicFields.map(([key, field]) => {
         const binding = field.as ? `${key}: ${field.as}` : key
-        return field.type === 'objects' || field.required
+        return (field.type === 'objects' && field.jsDefault === undefined) || field.required
           ? binding
           : `${binding} = ${field.jsDefault ?? literal(field.default)}`
       }),
@@ -763,13 +766,13 @@ ${value ? `  public var onChange: ((${swiftScalar(value.type)}, Int, Int) -> Voi
 ${slot ? `  private let ${slot.name} = OneNativeChildren()
   private var childViews: [UIView] = []
   public var compositionActive: Bool { model.active }
-` : ''}${control.focus ? '  @nonobjc var containsComposedFocus: Bool { model.hasNativeFocus }\n' : ''}${measured ? '  public var onHeight: ((CGFloat) -> Void)?\n' : ''}  private var controller: OneNativeHostingController<${measured ? 'OneNativeMeasuredStandalone' : 'OneNativeStandalone'}<${name}Content>>?
+` : ''}${control.focus ? '  @nonobjc var containsComposedFocus: Bool { model.hasNativeFocus }\n' : ''}${measured ? '  public var onHeight: ((CGFloat) -> Void)?\n' : ''}${layer ? `  public override class var layerClass: AnyClass { ${layer.type}.self }` : `  private var controller: OneNativeHostingController<${measured ? 'OneNativeMeasuredStandalone' : 'OneNativeStandalone'}<${name}Content>>?`}
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
   public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
     let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
     if model.accessibility != next { model.accessibility = next }
-  }
+${layer ? '    applyStandaloneAccessibility()\n' : ''}  }
   public func configureStyle(_ style: [String: Any]) {
     let next = OneNativeStyle(dictionary: style)
     if model.swiftStyle != next {
@@ -787,14 +790,14 @@ ${value ? '    if let next = model.controlled.applying(value, acknowledged: ackn
         }${plainFields
           .map(([key]) => `    if model.${key} != ${key} { model.${key} = ${key} }`)
           .join('\n')}
-  }
+${layer ? '    updateHost()\n' : ''}  }
 ${arrayFields
   .map(([key, field]) => {
     if (field.type === 'strings') {
       const custom = control.setBody?.[key]
       if (custom !== undefined)
-        return `  public func set${upper(key)}(_ items: [String]) {\n    ${custom}\n  }`
-      return `  public func set${upper(key)}(_ items: [String]) { if model.${key} != items { model.${key} = items } }`
+        return `  public func set${upper(key)}(_ items: [String]) {\n    ${custom}${layer ? '\n    updateHost()' : ''}\n  }`
+      return `  public func set${upper(key)}(_ items: [String]) { if model.${key} != items { model.${key} = items }${layer ? '; updateHost()' : ''} }`
     }
     const payload = payloadOf(field)
     return `  public func set${upper(key)}(_ items: [[String: Any]]) { model.${key} = items.map { OneNative${payload.name}(${Object.entries(
@@ -828,9 +831,8 @@ ${slot ? `  public func insertChild(_ child: UIView, at index: Int) {
   // composed, activation follows the parent: a subtree mounted before root attachment
   // stays silent until the root attaches.
   public func composeInto(_ parent: OneNativeCompositionParent) {
-    controller?.detach(); controller = nil
-    compositionParent = parent
-    bindCallbacks()
+${layer ? '' : '    controller?.detach(); controller = nil\n'}    compositionParent = parent
+${layer ? '    applyStandaloneAccessibility()\n' : ''}    bindCallbacks()
     ${slot ? 'propagateActive(parent.compositionActive)' : 'model.active = parent.compositionActive'}
   }
   public func decompose() { compositionParent = nil; ${slot ? 'propagateActive(false)' : 'model.active = false'} }
@@ -855,7 +857,25 @@ ${value ? '    model.onChange = { [weak self] value, count, revision in self?.on
             return `    model.on${action.event} = { [weak self] ${names.join(', ')} in self?.on${action.event}?(${names.join(', ')}) }\n`
           })
           .join('')}  }
-  private func updateHost() {
+${layer ? `  private func updateHost() {
+    // composed views never join the view hierarchy, so their own layer never draws
+    guard compositionParent == nil, let layer = self.layer as? ${layer.type} else { return }
+    CATransaction.begin()
+    CATransaction.setDisableActions(true)
+    ${layer.update}
+    CATransaction.commit()
+  }
+  // a standalone layer has no SwiftUI tree to carry the accessibility modifier
+  private func applyStandaloneAccessibility() {
+    let info = model.accessibility
+    let exposed = compositionParent == nil${control.decorativeWhenUnlabeled ? ' && !info.label.isEmpty' : ''}
+    isAccessibilityElement = exposed
+    accessibilityLabel = exposed ? info.label : nil
+    accessibilityHint = exposed && !info.hint.isEmpty ? info.hint : nil
+    accessibilityValue = exposed && !info.value.isEmpty ? info.value : nil
+    accessibilityIdentifier = exposed && !info.identifier.isEmpty ? info.identifier : nil
+  }
+` : `  private func updateHost() {
     guard compositionParent == nil else { return }
     ${slot ? 'propagateActive(false)' : 'model.active = false'}
     guard window != nil else { controller?.detach(); return }
@@ -866,13 +886,13 @@ ${value ? '    model.onChange = { [weak self] value, count, revision in self?.on
     controller?.attach(to: self)
     ${slot ? 'propagateActive(controller?.isAttached == true)' : 'model.active = controller?.isAttached == true'}
   }
-  public func reset() {
+`}  public func reset() {
     compositionParent = nil
 ${slot ? `    for child in childViews { (child as? OneNativeComposable)?.decompose() }
     childViews.removeAll()
     ${slot.name}.items = []
 ` : ''}    model.active = false${hasSDKEvents ? '; model.onSDKEvent = nil' : ''}${value ? '; model.onChange = nil' : ''}${control.focus ? '; model.onFocusChange = nil' : ''}${actions.map((action) => `; model.on${action.event} = nil`).join('')}
-${presentation ? '    controller?.presentedViewController?.dismiss(animated: false)\n' : ''}    controller?.detach(); controller = nil; model = ${name}Model()
+${presentation ? '    controller?.presentedViewController?.dismiss(animated: false)\n' : ''}${layer ? '    ' : '    controller?.detach(); controller = nil; '}model = ${name}Model()${layer ? '\n    // a recycled view keeps its layer contents until the next prop change\n    updateHost()' : ''}
   }
 }
 private struct ${name}Content: View {

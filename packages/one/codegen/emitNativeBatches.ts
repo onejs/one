@@ -19,4 +19,26 @@ export function emitNativeBatches(header: string, outputs: Map<string, string>) 
         '\n'
     )
   }
+  const shadows = [
+    ...[...outputs.keys()].filter(
+      (path) => path.startsWith('cpp/') && path.endsWith('ShadowNode.cpp')
+    ),
+    'cpp/OneNativeArrangementSlotShadowNode.cpp',
+    'cpp/OneNativeContainerSlotShadowNode.cpp',
+    'cpp/OneNativeContentShadowNode.cpp',
+    'cpp/OneNativePortalShadowNode.cpp',
+    'cpp/OneOverKeyboardViewShadowNode.cpp',
+    'cpp/OneSwiftHostShadowNode.cpp',
+  ].sort()
+  for (let start = 0; start < shadows.length; start += 8) {
+    outputs.set(
+      `cpp/OneNativeShadowNodeBatch${start / 8}.cpp`,
+      header +
+        shadows
+          .slice(start, start + 8)
+          .map((path) => `#include "${basename(path)}"`)
+          .join('\n') +
+        '\n'
+    )
+  }
 }

@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { rolldown } from 'rolldown'
 import { expect, it } from 'vitest'
-import { assertLinkSet, IOS_LINK_SET_REPORT_ENV } from '../src/cli/iosLinkSet'
+import { assertLinkSet, IOS_LINK_SET_REPORT_ENV, oneDirectory } from '../src/cli/iosLinkSet'
 import { iosLinkSetPlugin } from '../src/vite/plugins/iosLinkSetPlugin'
 import { generation } from '../ios-bindings/manifest.json'
 
@@ -16,7 +16,7 @@ it('selects SDK frameworks from the emitted production graph after unused import
     const input = join(root, 'app.js')
     writeFileSync(
       input,
-      `import { useAudioPlayer, CameraView, Location } from 'one'; globalThis.features = [useAudioPlayer, CameraView, Location]; import { used } from './used.js'; import { unused } from './unused.js'; globalThis.result = used();`
+      `import { useAudioPlayer, CameraView, Location, One } from 'one'; globalThis.features = [useAudioPlayer, CameraView, Location, One.iOS.MediaViewer]; import { used } from './used.js'; import { unused } from './unused.js'; globalThis.result = used();`
     )
     writeFileSync(
       join(root, 'used.js'),
@@ -28,7 +28,7 @@ it('selects SDK frameworks from the emitted production graph after unused import
     )
     const bundle = await rolldown({
       input,
-      external: ['one'],
+      external: (id) => id === 'one' || id.startsWith(oneDirectory() + '/'),
       plugins: [iosLinkSetPlugin().api.vxrnNative({ platform: 'ios', dev: false })],
     })
     try {
@@ -37,7 +37,7 @@ it('selects SDK frameworks from the emitted production graph after unused import
       await bundle.close()
     }
     expect(JSON.parse(readFileSync(report, 'utf8'))).toEqual({
-      groups: ['maps', 'media'],
+      groups: ['preview3d', 'maps', 'media'],
       frameworks: ['UIKit'],
     })
   } finally {

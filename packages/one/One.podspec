@@ -88,7 +88,10 @@ Pod::Spec.new do |s|
     }
   else
     Pod::UI.puts "[One] Compiling native sources: #{prebuilt['reason']}"
-    s.exclude_files = ['ios/Tests/**/*', 'ios/Generated/*ComponentView.mm', 'ios/Prebuilt/**/*']
+    shadow_members = Dir[File.join(__dir__, 'cpp/OneNativeShadowNodeBatch*.cpp')].flat_map do |file|
+      File.read(file).scan(/#include "([^"]+\.cpp)"/).flatten.map { |name| "cpp/#{name}" }
+    end
+    s.exclude_files = ['ios/Tests/**/*', 'ios/Generated/*ComponentView.mm', 'ios/Prebuilt/**/*'] + shadow_members
     s.source_files = 'ios/**/*.{h,m,swift,mm,cpp}', 'cpp/**/*.{h,cpp}'
     load 'nitrogen/generated/ios/One+autolinking.rb'
     add_nitrogen_files(s)

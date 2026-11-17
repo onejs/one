@@ -72,7 +72,7 @@ export declare const Swift: {
     TextEditor({ text, onTextChange, revision, focused, onFocusChange, focusRevision, swiftStyle, style, ...props }: import("./types.js").TextEditorProps): import("react").JSX.Element;
     Alert({ isPresented, onIsPresentedChange, revision, onAction, title, message, presenting, actions, swiftStyle, style, ...props }: import("./types.js").AlertProps): import("react").JSX.Element;
     ConfirmationDialog({ isPresented, onIsPresentedChange, revision, onAction, title, message, presenting, actions, titleVisibility, swiftStyle, style, ...props }: import("./types.js").ConfirmationDialogProps): import("react").JSX.Element;
-    QuickLook({ isPresented, onIsPresentedChange, revision, url, swiftStyle, style, ...props }: import("./types.js").QuickLookProps): import("react").JSX.Element;
+    QuickLook({ isPresented, onIsPresentedChange, revision, onError, url, items, initialIndex, swiftStyle, style, ...props }: import("./types.js").QuickLookProps): import("react").JSX.Element;
     FileImporter({ isPresented, onIsPresentedChange, revision, onCompletion, allowedContentTypes, allowsMultipleSelection, swiftStyle, style, ...props }: import("./types.js").FileImporterProps): import("react").JSX.Element;
     Chart({ data, type, showGrid, animate, showLegend, referenceLines, lineStyle, pointStyle, areaStyle, barStyle, pieStyle, rectangleStyle, ruleStyle, swiftStyle, style, ...props }: import("./types.js").ChartProps): import("react").JSX.Element;
     AsyncImage({ url, scale, swiftStyle, style, ...props }: import("./types.js").AsyncImageProps): import("react").JSX.Element;

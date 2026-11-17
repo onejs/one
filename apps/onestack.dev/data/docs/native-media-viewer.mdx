@@ -1,0 +1,72 @@
+---
+title: Media viewer
+description: Preview images, videos, and documents with native iOS paging, filenames, sharing, and zoom transitions.
+---
+
+`One.iOS.MediaViewer` opens images, videos, PDFs, and other Quick Look formats in
+a native iOS viewer. Images fit the available space and support pinch and double
+tap zoom. Swipe horizontally to page between files. The filename, close button,
+and share button stay visible. The system share sheet offers save and export
+actions for the original file. Video and document pages use Quick Look.
+It requires an iOS native build.
+
+To offer saving images and videos to Photos, set
+`native.app.photoLibrary.addOnly` in your One configuration to the permission
+message shown by iOS. Saving to Files and sharing use the system share sheet.
+
+```tsx
+import { One } from 'one'
+import { Image } from 'react-native'
+
+const items = [
+  { url: 'https://example.com/beach.jpg', title: 'Beach.jpg' },
+  { url: 'https://example.com/forest.jpg', title: 'Forest.jpg' },
+]
+
+export function Gallery() {
+  return (
+    <One.iOS.MediaViewer items={items} onError={console.error}>
+      {items.map((item, index) => (
+        <One.iOS.MediaViewer.Thumbnail
+          key={item.url}
+          index={index}
+          accessibilityLabel={`Open ${item.title}`}
+        >
+          <Image source={{ uri: item.url }} style={{ width: 160, height: 120 }} />
+        </One.iOS.MediaViewer.Thumbnail>
+      ))}
+    </One.iOS.MediaViewer>
+  )
+}
+```
+
+`items` is an array of `{ id?, url, title? }`. Give items stable, unique `id` values
+when URLs can change or repeat; otherwise each URL identifies its thumbnail. The
+viewer keeps the item list from the moment it opens, so cache updates and
+reordering do not change the preview or its dismissal target. URLs use `file://`, `https://`, or
+`http://`. Remote files are downloaded before presentation and removed when the
+viewer closes. Local files remain owned by the caller. Keep the files available
+while the viewer is open. A failed download or unsupported file calls `onError`
+with a message and closes the presentation.
+
+`MediaViewer.Thumbnail` takes an item `index`, children, and React Native
+`Pressable` props except `onPress`, with a static view `style`. Its bounds define the source of the system
+zoom transition on iOS 18 and later. After paging, dismissal returns to the
+current item's mounted thumbnail. Keep thumbnails mounted while viewing.
+
+For a controlled preview without thumbnail triggers, use the same underlying
+`One.iOS.QuickLook` control:
+
+```tsx
+<One.iOS.QuickLook
+  items={items}
+  initialIndex={0}
+  isPresented={open}
+  onIsPresentedChange={setOpen}
+  onError={console.error}
+/>
+```
+
+`initialIndex` selects the first displayed item. Each item may include a
+`sourceIdentifier` registered by `One.iOS.ZoomTransitionSource` to anchor its zoom
+transition. Existing single-file previews can keep using the `url` prop.

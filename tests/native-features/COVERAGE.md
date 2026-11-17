@@ -187,6 +187,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ZoomTransitionAlignmentRectDetector` | zoom | n/a | VerifiedOneZoomAlignmentCase |  |
 | `One.iOS.ZoomTransitionEnabler` | zoom | n/a | ScreensTransitionLibraryCase, VerifiedOneZoomAlignmentCase |  |
 | `One.iOS.ZoomTransitionSource` | zoom, e2e:zoom-test | n/a | ScreensTransitionLibraryCase, VerifiedOneZoomAlignmentCase |  |
+| `One.iOS.MediaViewer` | media-viewer | n/a | missing |  |
 | `One.Android.BasicAlertDialog` | n/a | android-compose-family | Android, outside the iOS Verified map | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
 | `One.Android.HorizontalCenteredHeroCarousel` | n/a | android-compose-family | Android, outside the iOS Verified map | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
 | `One.Android.HorizontalMultiBrowseCarousel` | n/a | android-compose-family | Android, outside the iOS Verified map | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
@@ -278,7 +279,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.UI.Map` | ui-map | ui-map | OneNativeVisualLibraryCase |  |
 | `One.UI.PictureInPicture` | missing | missing | missing | fixture exists; simulators report no PiP, needs a device run |
 | `One.UI.Blur` | ui-effects | effects | OneNativeVisualLibraryCase | iOS and Android bounded backdrop blur and sharp foreground pixels proven; live tint/lifecycle unproven |
-| `One.UI.Mask` | ui-effects | effects | OneNativeVisualLibraryCase |  |
+| `One.UI.Mask` | linear-gradient, ui-effects | effects | OneNativeVisualLibraryCase |  |
 | `One.UI.Portal` | portal | portal | OnePortalLibraryCase |  |
 | `One.UI.PortalHost` | portal | portal | OnePortalLibraryCase |  |
 | `One.UI.Pager` | pager | ui-pager | OneUIPagerLibraryCase |  |
