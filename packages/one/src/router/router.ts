@@ -44,7 +44,7 @@ import {
   RouteValidationError,
   validateParams as runValidateParams,
 } from '../validateParams'
-import type { One } from '../vite/types'
+import type { One } from '../routeTypes'
 import {
   extractParamsFromState,
   extractPathnameFromHref,

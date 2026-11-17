@@ -1,3 +1,4 @@
+import type { ReadableStream as FileReadableStream, WritableStream as FileWritableStream } from '../streams'
 import { directories, entry, parent, parts, serial, transfer, write } from './opfs'
 import { PathUtilities } from './paths'
 import { FileSystemReadableStreamSource, FileSystemWritableSink } from './streams'
@@ -413,15 +414,15 @@ export class File {
     return new FileHandle(this.currentUri, mode)
   }
 
-  readableStream(): ReadableStream<Uint8Array<ArrayBuffer>> {
-    return new ReadableStream(new FileSystemReadableStreamSource(this.open(FileMode.ReadOnly)))
+  readableStream(): FileReadableStream<Uint8Array<ArrayBuffer>> {
+    return new ReadableStream(new FileSystemReadableStreamSource(this.open(FileMode.ReadOnly))) as unknown as FileReadableStream<Uint8Array<ArrayBuffer>>
   }
 
-  writableStream(): WritableStream<Uint8Array<ArrayBufferLike>> {
-    return new WritableStream(new FileSystemWritableSink(this.open(FileMode.WriteOnly)))
+  writableStream(): FileWritableStream<Uint8Array<ArrayBufferLike>> {
+    return new WritableStream(new FileSystemWritableSink(this.open(FileMode.WriteOnly))) as unknown as FileWritableStream<Uint8Array<ArrayBufferLike>>
   }
 
-  stream(): ReadableStream<Uint8Array<ArrayBuffer>> {
+  stream(): FileReadableStream<Uint8Array<ArrayBuffer>> {
     return this.readableStream()
   }
 }

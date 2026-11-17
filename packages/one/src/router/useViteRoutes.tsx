@@ -1,5 +1,5 @@
 import type { GlobbedRouteImports } from '../types'
-import type { One } from '../vite/types'
+import type { One } from '../routeTypes'
 import { hasWebHistory, isNative } from '../constants'
 import { handleSkewError, isChunkLoadError } from '../utils/dynamicImport'
 import { diagnoseRouteLoadFailure } from './diagnoseRouteLoadFailure'

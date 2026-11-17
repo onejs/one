@@ -45,7 +45,7 @@ import { PreloadLinks } from './views/PreloadLinks'
 import { SafeAreaProvider, initialWindowMetrics } from './safe-area-context'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { ScrollBehavior } from './views/ScrollBehavior'
-import type { One } from './vite/types'
+import type { One } from './routeTypes'
 
 // cache URL objects for SSR to avoid per-render allocation
 // keyed by path string, evicted when cache grows too large

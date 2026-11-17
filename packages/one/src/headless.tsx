@@ -6,7 +6,7 @@ import { resolveClientLoader } from './clientLoaderResolver'
 import { render } from './render'
 import { handleSkewError, isChunkLoadError } from './utils/dynamicImport'
 import { findRootLayout } from './utils/findRootLayout'
-import type { One } from './vite/types'
+import type { One } from './routeTypes'
 
 export { Root }
 

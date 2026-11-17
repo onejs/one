@@ -1,6 +1,6 @@
 import { type ParamListBase, useNavigationContainerRef } from '@react-navigation/core'
 import { resetLoaderState } from '../useLoader'
-import type { One } from '../vite/types'
+import type { One } from '../routeTypes'
 import type { OneLinkingConfig } from '../link/getLinking'
 import * as routerStore from './router'
 import { initialize } from './router'

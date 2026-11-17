@@ -1,6 +1,6 @@
 import { getDefaultRenderMode } from '../config'
 import { getPageExport } from '../utils/getPageExport'
-import type { One } from '../vite/types'
+import type { One } from '../routeTypes'
 import {
   matchArrayGroupName,
   matchDirectoryRenderMode,

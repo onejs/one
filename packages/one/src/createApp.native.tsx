@@ -1,6 +1,6 @@
 import { AppRegistry, LogBox } from 'react-native' // This should be the first import as it might set up global variables that are needed for the other imports
 import { useSyncExternalStore } from 'react'
-import type { One } from './vite/types'
+import type { One } from './routeTypes'
 import './polyfills-mobile'
 import { Root } from './Root'
 import './setup'

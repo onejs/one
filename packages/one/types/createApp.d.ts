@@ -1,10 +1,11 @@
+import type { ReadableStream as RenderReadableStream } from './platform/streams.js';
 import './setup.js';
 import { loaderResponseToModule } from './loaderResponseToModule.js';
 import { prepareSsrLoaderProps } from './loaderSearchParams.js';
 import { readLoaderSearch } from './utils/cleanUrl.js';
 import type { RenderAppProps } from './types.js';
 import type { OneLinkingConfig } from './link/getLinking.js';
-import type { One } from './vite/types.js';
+import type { One } from './routeTypes.js';
 export type CreateAppProps = {
     routes: Record<string, () => Promise<unknown>>;
     routerRoot: string;
@@ -24,6 +25,6 @@ export declare function createApp(options: CreateAppProps): Promise<void> | {
         readLoaderSearch: typeof readLoaderSearch;
     };
     render: (props: RenderAppProps) => Promise<any>;
-    renderStream: (props: RenderAppProps) => Promise<ReadableStream>;
+    renderStream: (props: RenderAppProps) => Promise<RenderReadableStream>;
 };
 //# sourceMappingURL=createApp.d.ts.map

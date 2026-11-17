@@ -1,5 +1,5 @@
 import { safeJsonStringify } from './utils/htmlEscape'
-import type { One } from './vite/types'
+import type { One } from './routeTypes'
 
 export const isWebClient =
   process.env.TAMAGUI_TARGET !== 'native' && typeof window !== 'undefined'

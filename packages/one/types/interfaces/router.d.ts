@@ -1,3 +1,4 @@
+import type { One as OneRoute } from '../routeTypes.js';
 import type { NavigationContainerRefWithCurrent, NavigationState, ParamListBase, PartialState } from '@react-navigation/core';
 import type { JSX, ReactNode } from 'react';
 import type { GestureResponderEvent, PressableProps, TextProps } from 'react-native';
@@ -394,24 +395,7 @@ export declare namespace OneRouter {
 }
 export declare namespace One {
     type Route<Path> = OneRouter.Route<Path>;
-    type SitemapChangefreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
-    type RouteSitemap = {
-        /**
-         * Priority for this route (0.0 to 1.0).
-         */
-        priority?: number;
-        /**
-         * Change frequency for this route.
-         */
-        changefreq?: SitemapChangefreq;
-        /**
-         * Last modification date for this route.
-         */
-        lastmod?: string | Date;
-        /**
-         * Exclude this route from the sitemap.
-         */
-        exclude?: boolean;
-    };
+    type SitemapChangefreq = OneRoute.SitemapChangefreq;
+    type RouteSitemap = OneRoute.RouteSitemap;
 }
 //# sourceMappingURL=router.d.ts.map

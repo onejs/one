@@ -1,3 +1,4 @@
+import type { ReadableStream as FileReadableStream, WritableStream as FileWritableStream } from '../streams'
 import { rethrowNativeError } from '../nativeError'
 import type { OneFileSystem } from '../specs/OneFileSystem.nitro'
 import { fileSystemNative } from './hybrid.native'
@@ -313,15 +314,15 @@ export class File {
     return new FileHandle(sync(() => native().openFile(this.currentUri, mode)), mode)
   }
 
-  readableStream(): ReadableStream<Uint8Array<ArrayBuffer>> {
-    return new ReadableStream(new FileSystemReadableStreamSource(this.open(FileMode.ReadOnly)))
+  readableStream(): FileReadableStream<Uint8Array<ArrayBuffer>> {
+    return new ReadableStream(new FileSystemReadableStreamSource(this.open(FileMode.ReadOnly))) as unknown as FileReadableStream<Uint8Array<ArrayBuffer>>
   }
 
-  writableStream(): WritableStream<Uint8Array<ArrayBufferLike>> {
-    return new WritableStream(new FileSystemWritableSink(this.open(FileMode.WriteOnly)))
+  writableStream(): FileWritableStream<Uint8Array<ArrayBufferLike>> {
+    return new WritableStream(new FileSystemWritableSink(this.open(FileMode.WriteOnly))) as unknown as FileWritableStream<Uint8Array<ArrayBufferLike>>
   }
 
-  stream(): ReadableStream<Uint8Array<ArrayBuffer>> {
+  stream(): FileReadableStream<Uint8Array<ArrayBuffer>> {
     return this.readableStream()
   }
 }
