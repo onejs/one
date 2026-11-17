@@ -1,4 +1,4 @@
-import type { ReadableStream as FileReadableStream, WritableStream as FileWritableStream } from 'web-streams-polyfill'
+import type { ReadableStream as FileReadableStream, WritableStream as FileWritableStream } from '../streams'
 import { rethrowNativeError } from '../nativeError'
 import type { OneFileSystem } from '../specs/OneFileSystem.nitro'
 import { fileSystemNative } from './hybrid.native'

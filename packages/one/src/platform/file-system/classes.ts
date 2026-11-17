@@ -1,4 +1,4 @@
-import type { ReadableStream as FileReadableStream, WritableStream as FileWritableStream } from 'web-streams-polyfill'
+import type { ReadableStream as FileReadableStream, WritableStream as FileWritableStream } from '../streams'
 import { directories, entry, parent, parts, serial, transfer, write } from './opfs'
 import { PathUtilities } from './paths'
 import { FileSystemReadableStreamSource, FileSystemWritableSink } from './streams'

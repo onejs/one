@@ -1,4 +1,4 @@
-import type { ReadableStream as RenderReadableStream } from 'web-streams-polyfill'
+import type { ReadableStream as RenderReadableStream } from './platform/streams'
 import './setup'
 
 import { cloneElement } from 'react'
