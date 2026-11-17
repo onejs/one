@@ -1,4 +1,4 @@
-import type { ReadableStream } from 'web-streams-polyfill'
+import type { ReadableStream as RenderReadableStream } from 'web-streams-polyfill'
 import './setup'
 
 import { cloneElement } from 'react'
@@ -157,7 +157,7 @@ export function createApp(options: CreateAppProps) {
       },
 
       // streaming SSR - returns ReadableStream, no post-processing
-      renderStream: async (props: RenderAppProps): Promise<ReadableStream> => {
+      renderStream: async (props: RenderAppProps): Promise<RenderReadableStream> => {
         const renderMode = props.mode === 'spa-shell' ? 'spa' : props.mode
         // skip setup for build-time renders (ssg + spa-shell) — see render() above
         const shouldRunSetup = props.mode !== 'ssg' && props.mode !== 'spa-shell'
