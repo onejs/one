@@ -92,3 +92,5 @@
 {"id":"00000001794890465140:2cb8a7ce4def9ad30a33b1eff631fbd5:6b37748bca717c18","text":"#1290 merged into next. #1291 waiting on Nate's answer to share-url-b78458-5b0397398b1a820f."}
 
 {"id":"00000001794890563100:f0127d1d23b0d2f11e593593fa084d3f:6b37748bca717c18","text":"Nate answered 'Yes, merge it' on #1291 via tm ask (answered 1794890553233). Auto-merge enabled."}
+
+{"id":"00000001794891206124:4d49a52951f4394bd40613e3f97ded58:6b37748bca717c18","text":"#1291 merged to main (Bun GC crash fix); main merged back into next as df84144ae. #1289 next->main release PR open."}
