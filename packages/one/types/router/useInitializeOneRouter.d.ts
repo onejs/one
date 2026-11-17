@@ -1,4 +1,4 @@
-import type { One } from '../vite/types.js';
+import type { One } from '../routeTypes.js';
 import type { OneLinkingConfig } from '../link/getLinking.js';
 import * as routerStore from './router.js';
 export declare function useInitializeOneRouter(context: One.RouteContext, initialLocation: URL | undefined, linking?: OneLinkingConfig): typeof routerStore;

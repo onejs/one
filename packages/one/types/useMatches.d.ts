@@ -1,4 +1,4 @@
-import type { One } from './vite/types.js';
+import type { One } from './routeTypes.js';
 /**
  * Re-export for convenience
  */

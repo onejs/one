@@ -2,7 +2,7 @@ import React, { type ReactNode } from 'react';
 import type { ErrorBoundaryProps } from '../views/Try.js';
 import type { SuspenseFallbackProps } from '../views/SuspenseFallback.js';
 import type { LoaderProps } from '../types.js';
-import type { One } from '../vite/types.js';
+import type { One } from '../routeTypes.js';
 import type { ParamValidator, RouteValidationFn } from '../validateParams.js';
 export type DynamicConvention = {
     name: string;

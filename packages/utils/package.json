@@ -37,6 +37,11 @@
       "types": "./types/nativeAppManifest.d.ts",
       "import": "./dist/esm/nativeAppManifest.mjs",
       "require": "./dist/cjs/nativeAppManifest.cjs"
+    },
+    "./metroTypes": {
+      "types": "./types/metroTypes.d.ts",
+      "import": "./dist/esm/metroTypes.mjs",
+      "require": "./dist/cjs/metroTypes.cjs"
     }
   },
   "files": [

@@ -1,5 +1,5 @@
 import type { GetTransform } from '@vxrn/compiler'
-import type { metroPlugin } from '@vxrn/vite-plugin-metro'
+import type { MetroPluginOptions } from '@vxrn/utils/metroTypes'
 import type { Plugin as RolldownPlugin } from 'rolldown'
 import type {
   AutoDepOptimizationOptions,
@@ -8,13 +8,10 @@ import type {
   VXRNBuildOptions,
   VXRNOptions,
 } from 'vxrn'
-import type { One as OneShared } from '../interfaces/router'
+import type { One as OneRoute } from '../routeTypes'
 import type { RouteNode } from '../router/Route'
 import type { NativeAppManifest } from '../native/appManifest'
-import type { WarmStartOptions } from '../router/warmStateShared'
 import type { EnvironmentGuardOptions } from './plugins/environmentGuardPlugin'
-
-type MetroPluginOptions = Parameters<typeof metroPlugin>[0]
 
 export type DeployTarget = 'node' | 'vercel' | 'cloudflare'
 
@@ -46,15 +43,13 @@ export type RouteInfo<TRegex = string> = {
 export namespace One {
   export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions
 
-  export type RouteRenderMode = 'ssg' | 'spa' | 'ssr'
+  export type RouteRenderMode = OneRoute.RouteRenderMode
 
-  export type RouteType = RouteRenderMode | 'api' | 'layout'
+  export type RouteType = OneRoute.RouteType
 
-  export type ClientData = Record<string, any>
+  export type ClientData = OneRoute.ClientData
 
-  export type RouteOptions = {
-    routeModes?: Record<string, RouteRenderMode>
-  }
+  export type RouteOptions = OneRoute.RouteOptions
 
   // false skips every built-in patch; a module set to false skips its built-in patch
   export type FixDependencies = UserDepPatches
@@ -830,13 +825,7 @@ export namespace One {
     environmentGuards?: EnvironmentGuardOptions
   }
 
-  export interface RouteContext {
-    keys(): string[]
-    (id: string): any;
-    <T>(id: string): T
-    resolve(id: string): string
-    id: string
-  }
+  export interface RouteContext extends OneRoute.RouteContext {}
 
   export type Redirect = {
     source: string
@@ -913,43 +902,15 @@ export namespace One {
    * Represents a matched route in the route hierarchy.
    * Used by useMatches() to expose loader data from all matched routes.
    */
-  export type RouteMatch = {
-    /** Route identifier (e.g., "docs/_layout" or "docs/intro") */
-    routeId: string
-    /** The pathname segment this route matched */
-    pathname: string
-    /** URL params extracted for this route */
-    params: Record<string, string | string[]>
-    /** Data returned from this route's loader */
-    loaderData: unknown
-  }
+  export type RouteMatch = OneRoute.RouteMatch
 
-  export type ServerContext = {
-    css?: string[]
-    /** When inlineLayoutCSS is enabled, this contains the actual CSS content to inline */
-    cssContents?: string[]
-    /** Number of inline CSS entries - used for hydration matching when cssContents is stripped */
-    cssInlineCount?: number
-    postRenderData?: any
-    loaderData?: any
-    loaderProps?: any
-    mode?: 'spa' | 'ssg' | 'ssr' | 'spa-shell'
-    // route keys the client loads and registers before hydrating
-    routePreloads?: string[]
-    /**
-     * All matched routes with their loader data.
-     * Ordered from root layout to leaf page (parent → child).
-     */
-    matches?: RouteMatch[]
-  }
+  export type ServerContext = OneRoute.ServerContext
 
-  export type Flags = {
-    warmStart?: boolean | WarmStartOptions
-  }
+  export type Flags = OneRoute.Flags
 
   // Re-export from shared types so they're available from both 'one' and 'one/vite'
-  export type SitemapChangefreq = OneShared.SitemapChangefreq
-  export type RouteSitemap = OneShared.RouteSitemap
+  export type SitemapChangefreq = OneRoute.SitemapChangefreq
+  export type RouteSitemap = OneRoute.RouteSitemap
 
   export type SitemapOptions = {
     /**

@@ -7,7 +7,7 @@ import type { NavigationContainerRefWithCurrent, NavigationState, ParamListBase 
 import { type ComponentType } from 'react';
 import type { OneRouter } from '../interfaces/router.js';
 import type { OneLinkingConfig } from '../link/getLinking.js';
-import type { One } from '../vite/types.js';
+import type { One } from '../routeTypes.js';
 import type { UrlObject } from './getNormalizedStatePath.js';
 import type { RouteNode } from './Route.js';
 import type { RouteMatch } from '../useMatches.js';

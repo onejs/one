@@ -1,3 +1,4 @@
+import type { ReadableStream as RenderReadableStream } from './platform/streams'
 import './setup'
 
 import { cloneElement } from 'react'
@@ -26,7 +27,7 @@ import { ensureExists } from './utils/ensureExists'
 import { SERVER_CONTEXT_POST_RENDER_STRING } from './vite/constants'
 import { safeJsonStringify } from './utils/htmlEscape'
 import { getServerContext, setServerContext } from './vite/one-server-only'
-import type { One } from './vite/types'
+import type { One } from './routeTypes'
 
 export type CreateAppProps = {
   routes: Record<string, () => Promise<unknown>>
@@ -156,7 +157,7 @@ export function createApp(options: CreateAppProps) {
       },
 
       // streaming SSR - returns ReadableStream, no post-processing
-      renderStream: async (props: RenderAppProps): Promise<ReadableStream> => {
+      renderStream: async (props: RenderAppProps): Promise<RenderReadableStream> => {
         const renderMode = props.mode === 'spa-shell' ? 'spa' : props.mode
         // skip setup for build-time renders (ssg + spa-shell) — see render() above
         const shouldRunSetup = props.mode !== 'ssg' && props.mode !== 'spa-shell'

@@ -1,7 +1,7 @@
 import { startTransition, useEffect, useReducer } from 'react'
 import { reviveLoaderData } from './loaderJSX'
 import { useServerContext } from './vite/one-server-only'
-import type { One } from './vite/types'
+import type { One } from './routeTypes'
 
 /**
  * Re-export for convenience

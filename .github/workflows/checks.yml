@@ -39,6 +39,7 @@ jobs:
           stale=$(git status --porcelain --untracked-files=all -- 'packages/**/types/**')
           if [ -n "$stale" ]; then
             echo "$stale"
+            git diff -- 'packages/**/types/**'
             echo "::error::packages/*/types is stale: run bun run build in the changed packages and commit their types/"
             exit 1
           fi

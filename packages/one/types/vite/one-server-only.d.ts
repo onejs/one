@@ -1,12 +1,14 @@
-import type { One } from './types.js';
+import type { One } from '../routeTypes.js';
 declare const _ctxKey: unique symbol;
 /** shape of the object stored as the ALS context id */
 export interface ALSId {
     _id: number;
     [_ctxKey]?: One.ServerContext;
 }
-import { AsyncLocalStorage } from 'node:async_hooks';
-type ALSInstance = AsyncLocalStorage<ALSId>;
+interface ALSInstance {
+    getStore(): ALSId | undefined;
+    run<R>(store: ALSId, callback: () => R): R;
+}
 export declare const requestAsyncLocalStore: ALSInstance | null | undefined;
 export declare const asyncHeadersCache: WeakMap<any, Headers>;
 export declare function runWithAsyncLocalContext<A>(cb: (id: ALSId) => Promise<A>): Promise<A>;
