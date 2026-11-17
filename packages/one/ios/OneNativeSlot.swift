@@ -49,6 +49,12 @@ extension View {
   }
 }
 
+// any hosting controller, whatever its root view
+@MainActor private protocol OneNativeSafeAreaRegionsHost: AnyObject {
+  var safeAreaRegions: SafeAreaRegions { get set }
+}
+extension UIHostingController: OneNativeSafeAreaRegionsHost {}
+
 struct OneNativeSlot: UIViewRepresentable {
   @Environment(\.oneNativeSlotScrolling) private var scrolling
   enum Mode { case fill, passive, presented }
@@ -190,6 +196,16 @@ struct OneNativeSlot: UIViewRepresentable {
       addSubview(content)
     }
 
+    // react native content avoids the keyboard itself, as in a Modal. swiftui could keep
+    // the inset of a keyboard that left while the presentation appeared, sizing this
+    // slot to zero until a trait change, so the presentation never tracks it.
+    private func dropPresentationKeyboardRegion() {
+      var responder: UIResponder? = next
+      while let current = responder, !(current is UIViewController) { responder = current.next }
+      guard let host = responder as? OneNativeSafeAreaRegionsHost, host.safeAreaRegions != .container else { return }
+      host.safeAreaRegions = .container
+    }
+
     override func didMoveToWindow() {
       super.didMoveToWindow()
       let attached = window != nil
@@ -205,6 +221,7 @@ struct OneNativeSlot: UIViewRepresentable {
 
     override func layoutSubviews() {
       super.layoutSubviews()
+      if mode == .presented, window != nil { dropPresentationKeyboardRegion() }
       guard mode != .passive, window != nil, bounds.width > 0, bounds.height > 0 else { return }
       content.frame = bounds
       // scrolling moves existing rows without changing their bounds. publish their
