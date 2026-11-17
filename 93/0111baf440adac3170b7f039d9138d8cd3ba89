@@ -70,3 +70,5 @@
 {"id":"00000001794870780180:8dba4fd1dd93445a36268a27d4f0fc96","text":"Next minor 2.22.0 candidate: #1278 media viewer (Nate approved visual). Needs Nate's word to publish the minor."}
 
 {"id":"00000001794874461646:4f9ee5245ceb2314167aa2221e9ca2e1","text":"Nate approved publishing the minor ('Yeah, you can publish it'). Plan: one release 2.22.0 carrying #1246 #1271 #1275 (merged), #1273 #1281 #1282 and #1278 media viewer (now One.iOS.MediaViewer, b2066bc08). Then TM: multiselect branch + media viewer PR on 2.22.0, runtime 90, TestFlight."}
+
+{"id":"00000001794876281173:95fd94c742dd065f50a4ebe03c445288","text":"2.22.0: merged #1273 (a42f6e624), #1278 (348d19ece), #1281, #1282. Auto-merge on #1285 (One.Linux rename, Nate asked) and #1286 (CI: next integration branch, PRs into next run checks only; Nate asked). next created from main, protection requires checks. Release dispatch after both land. Staffed oss-decls-theme (b77914) on One #1151 and Tamagui #4464; Nate said Yes to expo-plugin link set (#1215)."}
