@@ -28,9 +28,11 @@ compile() { # <entry> <template> <program out>
   local name
   name=$(basename "$2")
   # react native polyfills replace built-in members (intl's Number.prototype.toLocaleString),
-  # so built-ins the program writes stay replaceable
-  BUN_AOT_REPLACE_WRITTEN=1 "$ONE_BUN_ENGINE_DIR/bun" compile "$1" ${FLAGS[@]+"${FLAGS[@]}"} \
-    --compile-executable-path="$2" --outfile="$WORK/compiled/$name"
+  # so built-ins the program writes stay replaceable. stack frames name the entry as bun was
+  # given it, so it compiles from its own directory: ./main.jsbundle:<line>:<col>, which a
+  # main.jsbundle source map resolves. bun would read .jsbundle as typescript without the loader
+  (cd "$(dirname "$1")" && BUN_AOT_REPLACE_WRITTEN=1 "$ONE_BUN_ENGINE_DIR/bun" compile "$(basename "$1")" --loader .jsbundle:js \
+    ${FLAGS[@]+"${FLAGS[@]}"} --compile-executable-path="$2" --outfile="$WORK/compiled/$name")
   python3 "$HERE/program.py" extract "$WORK/compiled/$name" "$3"
   rm -f "$WORK/compiled/$name"
 }
@@ -43,10 +45,10 @@ case "${1:-}" in
       echo "error: [one] bun engine: no main.jsbundle to compile" >&2
       exit 1
     fi
-    # bun records the executable's name in the program, and reads .jsbundle as typescript
+    # bun records the executable's name in the program
     python3 "$HERE/program.py" template "$WORK/template.linked" "$WORK/template/$EXECUTABLE_NAME"
-    cp "$BUNDLE" "$WORK/entry.js"
-    compile "$WORK/entry.js" "$WORK/template/$EXECUTABLE_NAME" "$WORK/program.new"
+    cp "$BUNDLE" "$WORK/main.jsbundle"
+    compile "$WORK/main.jsbundle" "$WORK/template/$EXECUTABLE_NAME" "$WORK/program.new"
     # an unchanged program keeps its date, so the link only reruns for a new one
     cmp -s "$WORK/program.new" "$DERIVED_FILE_DIR/one-bun-program" || mv "$WORK/program.new" "$DERIVED_FILE_DIR/one-bun-program"
     printf '%s' "$MARKER" > "$BUNDLE"
