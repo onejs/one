@@ -19,16 +19,22 @@ it('drops unrelated SDK backends for static namespace reads and preserves escape
       `export function Calendar() { return 'EventKit_unused'; }`
     )
     writeFileSync(
+      join(root, 'open.js'),
+      `function openSettings() { return 'settings'; } export const Open = Object.freeze({ openSettings });`
+    )
+    writeFileSync(
       join(root, 'platform.js'),
-      `export * as UI from './ui.js'; export { Calendar } from './calendar.js';`
+      `export * as UI from './ui.js'; export { Calendar } from './calendar.js'; import { Open } from './open'; export { Open }; globalThis.__oneBarrel = true;`
     )
     writeFileSync(
       one,
-      `import { UI, Calendar } from './platform.js'; import { currentPlatform } from './platform-getter.js'; const merged = Object.freeze({...UI}); export const One = Object.freeze({UI: merged, Calendar, get platform() { return currentPlatform(); }}); export function original() { return One; }`
+      `import { UI, Calendar, Open } from './platform.js'; import { currentPlatform } from './platform-getter.js'; const merged = Object.freeze({...UI}); export const One = Object.freeze({UI: merged, Calendar, openSettings: Open.openSettings, get platform() { return currentPlatform(); }}); export function original() { return One; }`
     )
     const rewrite = nativeOneMembers(one)
     for (const [name, code] of Object.entries({
       static: `import { One } from 'one'; globalThis.__oneResult = One.UI.Map();`,
+      settings: `import { One } from 'one'; globalThis.__oneResult = One.openSettings();`,
+      alias: `import { One } from 'one'; const UI = One.UI; globalThis.__oneResult = UI.Map();`,
       getter: `import { One } from 'one'; globalThis.__onePlatform = 'ios'; const first = One.platform; globalThis.__onePlatform = 'android'; globalThis.__oneResult = [first, One.platform];`,
       identity: `import { One, original } from 'one'; globalThis.__oneResult = One.UI.Map === original().UI.Map;`,
       shadow: `import { One } from 'one'; function local(One) { return One.UI.Map(); } globalThis.__oneResult = [One.UI.Map(), local({ UI: { Map: () => 'shadow' } })];`,
@@ -52,22 +58,29 @@ it('drops unrelated SDK backends for static namespace reads and preserves escape
       const { output } = await bundle.generate({ format: 'iife', minify: true })
       await bundle.close()
       const result = output[0] as { code: string }
-      if (name === 'static' || name === 'getter')
+      if (['static', 'alias', 'settings', 'getter'].includes(name))
         expect(result.code).not.toContain('EventKit_unused')
+      delete (globalThis as any).__oneBarrel
       new Function(result.code)()
+      // reads resolve past the barrel to the module defining them
+      if (['static', 'alias', 'settings'].includes(name))
+        expect((globalThis as any).__oneBarrel).toBeUndefined()
       expect((globalThis as any).__oneResult).toEqual(
-        name === 'static'
+        name === 'static' || name === 'alias'
           ? 'map'
-          : name === 'identity'
-            ? true
-            : name === 'getter'
-              ? ['ios', 'android']
-              : ['map', 'shadow']
+          : name === 'settings'
+            ? 'settings'
+            : name === 'identity'
+              ? true
+              : name === 'getter'
+                ? ['ios', 'android']
+                : ['map', 'shadow']
       )
     }
   } finally {
     delete (globalThis as any).__oneResult
     delete (globalThis as any).__onePlatform
+    delete (globalThis as any).__oneBarrel
     rmSync(root, { recursive: true, force: true })
   }
 })
