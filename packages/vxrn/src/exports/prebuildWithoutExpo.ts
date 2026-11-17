@@ -87,6 +87,11 @@ const nativeProjectPatches = requireVxrn(
 const notificationsHost = nativeProjectPatches.ONE_NOTIFICATIONS
 const updatesHost = nativeProjectPatches.ONE_UPDATES
 const { ONE_BUN_ENGINE } = nativeProjectPatches
+const androidBunEngine = requireVxrn('../../android/OneBunEngine/prebuild.cjs') as {
+  patchMainApplication(source: string): string
+  patchBuildGradle(source: string): string
+  generateCMake(dest: string): void
+}
 
 /*
 This code block is partially copied from meta owned repos.
@@ -2697,6 +2702,13 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
     if (
       platform === 'android' &&
       relativePath === 'app/src/main/java/com/helloworld/MainApplication.kt' &&
+      app.android?.engine === 'bun'
+    ) {
+      rendered = androidBunEngine.patchMainApplication(rendered)
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/java/com/helloworld/MainApplication.kt' &&
       app.updates !== undefined
     ) {
       rendered = patchAndroidMainApplicationUpdatesHost(rendered)
@@ -3083,6 +3095,9 @@ end`
     if (platform === 'android' && relativePath === 'app/build.gradle') {
       rendered = nativeProjectPatches.replaceAppBuildGradleReactBlock(rendered)
       rendered = nativeProjectPatches.addDepsPatchToAppBuildGradle(rendered)
+      if (app.android?.engine === 'bun') {
+        rendered = androidBunEngine.patchBuildGradle(rendered)
+      }
       if (
         !rendered.includes('entryFile = file("../../package.json")') ||
         !rendered.includes('[vxrn/one] ensure patches are applied')
@@ -3260,6 +3275,9 @@ export const generateForPlatform = async (
   if (platform === 'ios') await generateSwiftPackages({ root, dest })
   if (platform === 'android') generateAndroidIconForwarder(dest, app)
   if (platform === 'android') await generateKotlinSources({ root, dest })
+  if (platform === 'android' && app.android?.engine === 'bun') {
+    androidBunEngine.generateCMake(dest)
+  }
   copyAppResources({ root, dest, platform, app })
   applyAppPatches(dest, platform, app)
 }

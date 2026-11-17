@@ -142,6 +142,7 @@ export interface NativeAppManifest {
     };
     android?: {
         applicationId: string;
+        engine?: 'hermes' | 'bun';
         versionCode?: number;
         minSdk?: number;
         adaptiveIcon?: {

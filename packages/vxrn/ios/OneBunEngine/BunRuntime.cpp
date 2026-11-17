@@ -26,9 +26,13 @@ void bun_embed_grab_locks(void* dropper);
 
 #include <JavaScriptCore/JavaScript.h>
 #include <cxxabi.h>
+#if defined(__APPLE__)
 #include <execinfo.h>
-#include <jsi/jsilib.h>
 #include <os/log.h>
+#else
+#include <android/log.h>
+#endif
+#include <jsi/jsilib.h>
 #include <unistd.h>
 #include <array>
 #include <atomic>
@@ -1921,7 +1925,10 @@ void JSCRuntime::checkException(
 }
 
 std::unique_ptr<jsi::Runtime> makeBunRuntime() {
-#if defined(__APPLE__) && TARGET_OS_IPHONE && !TARGET_OS_SIMULATOR
+#if defined(__ANDROID__)
+  setenv("BUN_JSC_useJIT", "false", 1);
+  setenv("BUN_JSC_useWasm", "false", 1);
+#elif defined(__APPLE__) && TARGET_OS_IPHONE && !TARGET_OS_SIMULATOR
   // an iPhone process cannot reserve JSC's gigacage or map JIT memory
   setenv("BUN_JSC_markedBlockCageSizeInMB", "0", 1);
   setenv("BUN_JSC_useJIT", "false", 1);
@@ -1954,7 +1961,11 @@ std::unique_ptr<jsi::Runtime> makeBunRuntime() {
         isCell(bits(sym)) && cellType(bits(sym)) == kSymbolType &&
         isObjectCell(obj);
     if (!same) {
+#if defined(__APPLE__)
       os_log_fault(OS_LOG_DEFAULT, "[OneBunEngine] this bun engine encodes values differently than BunRuntime reads them");
+#else
+      __android_log_print(ANDROID_LOG_FATAL, "OneBunEngine", "this bun engine encodes values differently than BunRuntime reads them");
+#endif
       abort();
     }
   }
@@ -1973,10 +1984,16 @@ std::unique_ptr<jsi::Runtime> makeBunRuntime() {
       } catch (...) {
       }
     }
+#if defined(__APPLE__)
     os_log_fault(OS_LOG_DEFAULT, "[OneBunEngine] uncaught C++ exception %{public}s", what.c_str());
+#else
+    __android_log_print(ANDROID_LOG_FATAL, "OneBunEngine", "uncaught C++ exception %s", what.c_str());
+#endif
     std::fprintf(stderr, "[OneBunEngine] uncaught C++ exception %s\n", what.c_str());
+#if defined(__APPLE__)
     void* frames[64];
     backtrace_symbols_fd(frames, backtrace(frames, 64), STDERR_FILENO);
+#endif
     bunTerminate();
   });
   // leave the globals hermes has, so libraries that detect web apis (such as

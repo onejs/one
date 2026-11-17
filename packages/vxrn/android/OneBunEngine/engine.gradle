@@ -1,0 +1,51 @@
+def bunSource = file(providers.exec {
+    workingDir rootDir
+    commandLine "node", "--print", "require('path').join(require('path').dirname(require.resolve('vxrn/package.json')), 'android/OneBunEngine')"
+}.standardOutput.asText.get().trim())
+def bunEngine = providers.environmentVariable("ONE_BUN_ENGINE_DIR")
+def bunOutput = layout.buildDirectory.dir("generated/one-bun")
+
+android {
+    defaultConfig {
+        minSdkVersion Math.max(28, rootProject.ext.minSdkVersion)
+        ndk { abiFilters "arm64-v8a" }
+        externalNativeBuild {
+            cmake {
+                arguments "-DONE_BUN_ENGINE_DIR=${bunEngine.getOrElse('')}", "-DONE_BUN_SOURCE=${bunSource}"
+            }
+        }
+    }
+    externalNativeBuild { cmake { path file("src/main/jni/CMakeLists.txt") } }
+    sourceSets {
+        main.java.srcDir bunSource
+        release.jniLibs.srcDir bunOutput.get().dir("release").asFile
+    }
+}
+
+afterEvaluate {
+    tasks.matching { it.name.startsWith("createBundle") && it.name.endsWith("JsAndAssets") }.configureEach { bundleTask ->
+        hermesEnabled.set(false)
+        inputs.dir(bunEngine.map { file(it) })
+        inputs.file(new File(bunSource, "embed.sh"))
+        outputs.dir(bunOutput.map { it.dir("release") })
+        doLast {
+            if (!bunEngine.isPresent()) {
+                throw new GradleException("[one] the Android Bun engine requires ONE_BUN_ENGINE_DIR")
+            }
+            def bundle = new File(jsBundleDir.get().asFile, bundleAssetName.get())
+            def output = bunOutput.get().dir("release/arm64-v8a").asFile
+            output.mkdirs()
+            def compilation = providers.exec {
+                environment "ONE_BUN_ENGINE_DIR", bunEngine.get()
+                commandLine "bash", new File(bunSource, "embed.sh"), bundle, new File(output, "libbun.so")
+                ignoreExitValue true
+            }
+            logger.lifecycle(compilation.standardOutput.asText.get())
+            logger.lifecycle(compilation.standardError.asText.get())
+            compilation.result.get().assertNormalExitValue()
+        }
+    }
+    tasks.matching { it.name == "mergeReleaseJniLibFolders" }.configureEach {
+        dependsOn tasks.named("createBundleReleaseJsAndAssets")
+    }
+}

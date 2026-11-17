@@ -129,11 +129,15 @@ one({
 
 Apps on `expo prebuild` pass the same option to the plugin: `['vxrn/expo-plugin', { engine: 'bun' }]`.
 
+One prebuild also supports Android Release builds with `android: { applicationId: 'com.example.app', engine: 'bun' }`. Android requires ARM64 and API 28 or newer. Set `ONE_BUN_ENGINE_DIR` to a local Android engine build with `android/arm64-v8a/libbun.so`, `android/include/JavaScriptCore`, and `android/compile`. The compiler and runtime must match their Bun revision, built-in modules and JavaScriptCore layout. The iOS download's macOS compiler cannot compile for the Android runtime.
+
+The Android build compiles `index.android.bundle` into `libbun.so` and installs a JNI runtime factory. Debug builds use Hermes.
+
 `pod install` downloads the engine from a pinned [onejs/bun-engine](https://github.com/onejs/bun-engine) release into `~/Library/Caches/one/bun-engine`, checks its checksum, and reuses it after that. Set `ONE_BUN_ENGINE_DIR` to use a local engine build instead. The app executable links the runtime statically, so no Bun framework loads before `main`. The bundle phase compiles `main.jsbundle` on every Release build and the link places the program in the executable's `__TEXT` segment, since an App Store binary may have only one executable segment.
 
 Limits:
 
-* iOS only for now. Android stays on Hermes.
+* The Expo plugin's `engine` option applies to iOS. Android uses One prebuild.
 * Code that is only known at run time, such as `new Function` and `eval`, runs in the interpreter without the speedup.
 * Apple only runs native code signed into the build, so an over-the-air update cannot carry compiled code. Updates are Hermes bytecode, and an app that launches one runs it on Hermes, which the build still links, until the next build brings the compiled program back.
 * Reanimated and worklets runtimes stay on Hermes.
