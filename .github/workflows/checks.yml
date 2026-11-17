@@ -66,6 +66,8 @@ jobs:
         run: bun run typecheck
 
   tests:
+    # prs into the next integration branch run checks only; the next to main pr runs the full suite
+    if: github.event_name != 'pull_request' || github.base_ref == 'main'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:

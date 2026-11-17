@@ -2,6 +2,7 @@ name: Precompiled One iOS
 
 on:
   pull_request:
+    branches: [main]
     paths:
       - '.github/workflows/prebuilt-ios.yml'
       - 'scripts/package-one-ios.mts'
