@@ -1,6 +1,15 @@
 import NitroModules
 import UIKit
 
+// dismiss the controller and its children, including any permission alert.
+func oneUIKitDismiss(_ controller: UIViewController, animated: Bool, completion: @escaping () -> Void) {
+  guard let presenter = controller.presentingViewController else {
+    completion()
+    return
+  }
+  presenter.dismiss(animated: animated, completion: completion)
+}
+
 func oneUIKitOnMain<T>(_ work: @MainActor () throws -> T) rethrows -> T {
   if Thread.isMainThread { return try MainActor.assumeIsolated { try work() } }
   return try DispatchQueue.main.sync { try MainActor.assumeIsolated { try work() } }
@@ -41,7 +50,7 @@ final class OneUIKitPresentation: NSObject, UIAdaptivePresentationControllerDele
       throw oneNativeError("E_UIKIT_TRANSITION", "Controller transition is in progress")
     }
     transitioning = true
-    controller.dismiss(animated: animated) {
+    oneUIKitDismiss(controller, animated: animated) {
       self.clear()
       promise.resolve(withResult: ())
     }

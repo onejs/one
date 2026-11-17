@@ -77,7 +77,7 @@ final class HybridOneDocumentCamera: HybridOneDocumentCameraSpec {
         return
       }
       self.dismissing = true
-      camera.dismiss(animated: animated) {
+      oneUIKitDismiss(camera, animated: animated) {
         self.clear()
         promise.resolve(withResult: ())
       }

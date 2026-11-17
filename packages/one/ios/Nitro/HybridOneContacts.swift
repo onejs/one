@@ -65,7 +65,7 @@ final class HybridOneContacts: HybridOneContactsSpec {
   }
 
   fileprivate func didPick(_ contact: CNContact?, from picker: CNContactPickerViewController) {
-    picker.dismiss(animated: true) { [weak self] in
+    oneUIKitDismiss(picker, animated: true) { [weak self] in
       self?.settlePicker(contact)
     }
   }
