@@ -68,3 +68,5 @@
 {"id":"00000001794866650702:1e7859e66cf6f59cefe903f099de7124","text":"Merged #1246 (8866beb7f), #1271 (2d75a3c29), #1275 (0bbdaa25a). #1282 (pedometer probe -D ONE_GROUP_FITNESS; main iOS Native Tests red since ecf628294, diagnosed by p271894) on auto-merge. Waiting on #1273 and #1281 checks, then patch 2.21.2."}
 
 {"id":"00000001794870780180:8dba4fd1dd93445a36268a27d4f0fc96","text":"Next minor 2.22.0 candidate: #1278 media viewer (Nate approved visual). Needs Nate's word to publish the minor."}
+
+{"id":"00000001794874461646:4f9ee5245ceb2314167aa2221e9ca2e1","text":"Nate approved publishing the minor ('Yeah, you can publish it'). Plan: one release 2.22.0 carrying #1246 #1271 #1275 (merged), #1273 #1281 #1282 and #1278 media viewer (now One.iOS.MediaViewer, b2066bc08). Then TM: multiselect branch + media viewer PR on 2.22.0, runtime 90, TestFlight."}
