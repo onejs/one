@@ -1,13 +1,8 @@
 {"id":"00000001794875955876:da37a2ad3e2f3f98b9d546ed969c2d09","text":"staffed: oss-decls-theme (b77914), lead b67657"}
-
 {"id":"00000001794876003749:738855175a59b7526c2ffad48f46aa0e","text":"Read reporter issue and repro instructions; will run Activity hidden/reveal regression after declaration reproduction is running."}
-
 {"id":"00000001794876435563:6b2ff04b1616fa9c56680ecb6d37a28c","text":"TESTED: reporter sequence reproduced in native core integration test: visible control passes; memoised hidden Activity consumer fails (#111111 versus #eeeeee). Current v3-beta uses manual effect subscription, not useSyncExternalStore. Adding snapshot check immediately after resubscription; checking nearby theme switching regression."}
-
 {"id":"00000001794876559817:ef4eff850395519caacbf66d884a5f6e","text":"TESTED: snapshot callback immediately after installing subscription fixes failing reporter sequence; focused Activity + native theme switching regression 4/4 pass. Probe scores launch 10/functionality 9. Root lint/check required but admission currently refuses with reserved memory over configured budget; queued validation will report actual results."}
-
 {"id":"00000001794876671522:bd26ada5da052d2061a393f142167cad","text":"Independent read-only review b77936 stopped at author direction because lead b67657 already completed required review. No concrete theme defect found in reviewed diff. INFERRED: immediate cb() after listener registration addresses missed updates during Activity effect disconnection. Read theme-before.log (hidden consumer fails, visible control passes) and theme-after.log (4 tests pass); these are author-run evidence, no reviewer validation performed. No code edits or spawning."}
-
 {"id":"00000001794876689853:62107c52d7852ccd8a350b8d2c578b72","text":"Lead b67657 independently reviewed and approved cb() resubscription check; instructed landing on v3-beta. Source change and failing-before/passing-after native integration are ready. Remaining required lint/check moved to Linux builder due mini-16 memory pressure."}
-
+{"id":"00000001794877218419:b96a8139c1e75e760bd27ef0d30e4584","text":"LANDED: PR https://github.com/tamagui/tamagui/pull/4465 merged to v3-beta as cead0cbfac2f1a1c824b02c69b74464a6e2412a0 (source f31115955e929e72714ea304c583d6b784b388f3). Before hidden native regression fails/visible control passes; after 4 focused tests pass, root lint passes. CI reds are unrelated Next advisories and unsupported Playwright Ubuntu 26.04, routed to delivery-desk. Linux root check setup initially lacked CLI bin; relinking built packages and completing check."}
 {"id":"00000001794877256901:8f987ff03cadb7827252e0504646521c","text":"TESTED: beast2 root bun run lint=0 and bun run check=0 after built CLI bins were relinked. Accepted regression evidence remains 4 focused native tests pass and hidden case fails before fix. PR #4465 merged cead0cbfac2f1a1c824b02c69b74464a6e2412a0; no stable release performed."}
