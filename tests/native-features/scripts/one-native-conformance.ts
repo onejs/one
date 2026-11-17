@@ -5492,6 +5492,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     })
     const baseline = id(initial, 'one-native-linear-gradient-react-native')!.frame!
     const native = id(initial, 'one-native-linear-gradient-native')!.frame!
+    const masked = id(initial, 'one-native-linear-gradient-masked')?.frame
+    if (!masked) throw new Error('Masked linear gradient fixture has no frame')
     if (
       Math.abs(baseline.width - 280) > 2 ||
       Math.abs(native.width - 280) > 2 ||
@@ -5576,6 +5578,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       alphaBottom: sample(alphaPath, native, 0.5, 0.9),
       threeMiddle: sample(threePath, native, 0.5, 0.5),
       emptyMiddle: sample(emptyPath, native, 0.5, 0.5),
+      maskedLeft: sample(initialPath, masked, 0.05, 0.5),
+      maskedRight: sample(initialPath, masked, 0.95, 0.5),
     }
     const red = (value: number[]) => value[0]! > 170 && value[2]! < 100
     const blue = (value: number[]) => value[2]! > 145 && value[0]! < 110
@@ -5593,6 +5597,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
       throw new Error(
         `Native LinearGradient did not paint, reverse, or render one sRGB color: ${JSON.stringify(colors)}`
+      )
+    // a mask layer never joins a window, so a gradient that waits for one masks out everything
+    if (!blue(colors.maskedLeft) || !colors.maskedRight.every((value) => value > 220))
+      throw new Error(
+        `Native LinearGradient did not draw as a UI.Mask element: ${JSON.stringify(colors)}`
       )
     if (!red(colors.horizontalLeft) || !blue(colors.horizontalRight))
       throw new Error(

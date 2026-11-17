@@ -58,6 +58,21 @@ export default function OneNativeLinearGradientFixture() {
         <Text>Empty colors native</Text>
       </Pressable>
       <One.iOS.LinearGradient colors={['#FF3311', '#1144DD']} style={styles.decorative} testID="one-native-linear-gradient-decorative" />
+      <View style={styles.decorative} testID="one-native-linear-gradient-masked">
+        <One.UI.Mask
+          style={styles.decorative}
+          maskElement={
+            <One.iOS.LinearGradient
+              colors={['#000000', '#00000000']}
+              startPoint={{ x: 0, y: 0.5 }}
+              endPoint={{ x: 1, y: 0.5 }}
+              style={styles.decorative}
+            />
+          }
+        >
+          <View style={[styles.decorative, { backgroundColor: '#1144DD' }]} />
+        </One.UI.Mask>
+      </View>
     </View>
   )
 }
