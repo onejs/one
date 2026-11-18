@@ -19,6 +19,7 @@ export interface SheetProps extends ViewProps {
   onIsPresentedChange: (value: boolean) => void
   onDismiss?: () => void
   revision?: number
+  fitToContents?: boolean
   presentationDetents?: readonly PresentationDetent[]
   selectedDetent?: PresentationDetent
   onSelectedDetentChange?: (detent: PresentationDetent) => void

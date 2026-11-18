@@ -66,6 +66,7 @@ public final class OneNativeMenuView: UIView {
   private var model = OneNativeMenuModel()
   private var controller: OneNativeHostingController<OneNativeMenuRoot>?
   private var contextMenu: UIContextMenuInteraction?
+  private var preview: UIView?
 
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
@@ -78,6 +79,15 @@ public final class OneNativeMenuView: UIView {
 
   public func unmountTrigger(_ view: UIView) {
     if model.trigger === view { model.trigger = nil }
+    view.removeFromSuperview()
+  }
+
+  public func mountPreview(_ view: UIView) {
+    preview = view
+  }
+
+  public func unmountPreview(_ view: UIView) {
+    if preview === view { preview = nil }
     view.removeFromSuperview()
   }
 
@@ -171,6 +181,8 @@ public final class OneNativeMenuView: UIView {
     model.onValueChange = nil
     model.onPickerChange = nil
     model.trigger?.removeFromSuperview()
+    preview?.removeFromSuperview()
+    preview = nil
     controller?.detach()
     controller = nil
     model = OneNativeMenuModel()
@@ -248,7 +260,17 @@ extension OneNativeMenuView: UIContextMenuInteractionDelegate {
   public func contextMenuInteraction(
     _ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint
   ) -> UIContextMenuConfiguration? {
-    let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [weak self] _ in
+    let previewProvider: UIContextMenuContentPreviewProvider? = preview.map { preview in
+      return { [weak preview] in
+        guard let preview, !preview.bounds.isEmpty else { return nil }
+        let controller = UIViewController()
+        controller.preferredContentSize = preview.bounds.size
+        preview.frame.origin = .zero
+        controller.view.addSubview(preview)
+        return controller
+      }
+    }
+    let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: previewProvider) { [weak self] _ in
       guard let self else { return nil }
       return UIMenu(children: self.menuElements("", dismiss: self.model.menuActionDismissBehavior, disabled: false))
     }

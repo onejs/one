@@ -40,12 +40,18 @@ extension View {
   @ViewBuilder func oneNativeSheetPresentation(
     _ model: OneNativeSheetModel
   ) -> some View {
-    self
-      .presentationDetents(model.detents, selection: Binding(
-        get: { model.selectedPresentationDetent },
-        set: { model.changeDetent($0) }
-      ))
-      .oneNativeSheetPresentationModifiers(model)
+    if model.presentationSizing == "fitToContents" {
+      self
+        .presentationDetents(model.measuredHeight > 0 ? [.height(model.measuredHeight)] : [.medium])
+        .oneNativeSheetPresentationModifiers(model)
+    } else {
+      self
+        .presentationDetents(model.detents, selection: Binding(
+          get: { model.selectedPresentationDetent },
+          set: { model.changeDetent($0) }
+        ))
+        .oneNativeSheetPresentationModifiers(model)
+    }
   }
 
   @ViewBuilder func oneNativeSheetPresentationModifiers(
@@ -90,6 +96,7 @@ extension View {
       case "fitted": self.presentationSizing(.fitted)
       case "form": self.presentationSizing(.form)
       case "page": self.presentationSizing(.page)
+      case "fitToContents": self
       default: self.presentationSizing(.automatic)
       }
     } else {
