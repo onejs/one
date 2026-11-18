@@ -23,7 +23,6 @@ ignores:
   # this is used dependend on by react-native-screens and errors vite during scan if not here
   - "react-native-reanimated"
   - "react-native-gesture-handler"
-  - "react-compiler-runtime"
 
   # Imported by @react-navigation components (drawer/bottom-tabs), needed for native builds
   - "@react-native-masked-view/masked-view"
