@@ -488,7 +488,10 @@ export function emitContainerHosts(
         if (!(prop in component.props)) fail(`@${prop} is not in the spec`)
         return `model.${prop}`
       })
-    const eachChild = `ForEach(children.items) { child in child.content }${recipe.childModifier ? `\n  ${recipe.childModifier}` : ''}`
+    const childViews = recipe.view === 'Section'
+      ? 'children.listRows'
+      : 'ForEach(children.items) { child in child.content }'
+    const eachChild = `${childViews}${recipe.childModifier ? `\n  ${recipe.childModifier}` : ''}`
     const childrenBody = recipe.childStack
       ? `${recipe.childStack} {\n  ${indent(eachChild, 2)}\n}`
       : eachChild
