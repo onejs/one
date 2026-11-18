@@ -102,10 +102,13 @@ it('treats empty HERMESC_PATH as unset', async () => {
   const root = await mkdtemp(join(tmpdir(), 'vxrn-dev-bytecode-empty-'))
   process.env.HERMESC_PATH = '   '
   try {
+    await mkdir(join(root, 'ios/Pods'), { recursive: true })
     expect(() => nativeDevBytecodeCompiler(root, 'ios')).toThrow(
       /hermes-engine\.podspec\.json/
     )
-    expect(() => nativeDevBytecodeCompiler(root, 'ios')).not.toThrow(/HERMESC_PATH is set/)
+    expect(() => nativeDevBytecodeCompiler(root, 'ios')).not.toThrow(
+      /HERMESC_PATH is set/
+    )
   } finally {
     await rm(root, { recursive: true, force: true })
   }
@@ -142,15 +145,14 @@ it.runIf(process.platform !== 'win32')(
   }
 )
 
-it('loudly rejects a root without ios/Pods when the override is unset', async () => {
-  const root = await mkdtemp(join(tmpdir(), 'vxrn-dev-bytecode-nopods-'))
-  try {
-    expect(() => nativeDevBytecodeCompiler(root, 'ios')).toThrow(
-      /hermes-engine\.podspec\.json.*HERMESC_PATH/s
-    )
-  } finally {
-    await rm(root, { recursive: true, force: true })
-  }
+it('compiles ios bytecode with the npm hermesc and keeps the served url', async () => {
+  const url = 'http://localhost:8081/index.bundle?platform=ios'
+  const bytes = await nativeDevBytecodeCompiler(join(__dirname, '../..'), 'ios')(
+    { code: 'globalThis.answer = 42;', map: '' },
+    url
+  )
+  expect(bytes.subarray(0, 8).toString('hex')).toBe('c61fbc03c103191f')
+  expect(bytes.includes(url)).toBe(true)
 })
 
 it('loudly rejects a malformed podspec when the override is unset', async () => {
