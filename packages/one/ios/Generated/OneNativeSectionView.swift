@@ -16,7 +16,7 @@ private struct SectionContent: View {
 
   var body: some View {
     Section(content: {
-      ForEach(children.items) { child in child.content }
+      children.listRows
     }, header: {
       if !model.title.isEmpty { Text(model.title) }
     }, footer: {

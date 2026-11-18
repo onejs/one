@@ -17,7 +17,7 @@ extension OneNativeCompositionParent {
   public func refreshRow(for child: UIView) {}
 }
 
-public protocol OneNativeComposable: UIView {
+public protocol OneNativeComposable: AnyObject {
   func compositionContent() -> AnyView
   func composeInto(_ parent: OneNativeCompositionParent)
   func decompose()
@@ -97,6 +97,7 @@ struct OneNativeComposedChild: Identifiable {
   let id: String
   let sourceID: ObjectIdentifier
   let content: AnyView
+  var deferredRow: OneNativeDeferredRow? = nil
 }
 
 private final class OneNativeRowIdentity: NSObject {
@@ -109,6 +110,101 @@ private final class OneNativeRowIdentity: NSObject {
 // this rather than the container view.
 final class OneNativeChildren: ObservableObject {
   @Published var items: [OneNativeComposedChild] = []
+
+  var listRows: some View {
+    ForEach(items) { item in
+      if let row = item.deferredRow {
+        VStack(spacing: 0) { OneNativeDeferredRowBody(row) }
+      } else {
+        item.content
+      }
+    }
+  }
+}
+
+@objcMembers public final class OneNativeDeferredRow: NSObject, OneNativeComposable, OneNativeFocusedContent {
+  private let createView: () -> UIView?
+  private let releaseView: (UIView) -> Void
+  private weak var parent: OneNativeCompositionParent?
+  private weak var view: UIView?
+  private var realizations = 0
+
+  public init(createView: @escaping () -> UIView?, releaseView: @escaping (UIView) -> Void) {
+    self.createView = createView
+    self.releaseView = releaseView
+  }
+
+  @nonobjc var containsComposedFocus: Bool {
+    (view as? OneNativeFocusedContent)?.containsComposedFocus == true
+  }
+
+  public func composeInto(_ parent: OneNativeCompositionParent) {
+    self.parent = parent
+    (view as? OneNativeComposable)?.composeInto(parent)
+  }
+
+  public func decompose() {
+    parent = nil
+    (view as? OneNativeComposable)?.decompose()
+  }
+
+  public func propagateActive(_ active: Bool) {
+    (view as? OneNativeComposable)?.propagateActive(active)
+  }
+
+  public func compositionContent() -> AnyView { AnyView(OneNativeDeferredRowBody(self)) }
+
+  fileprivate func realize() -> UIView? {
+    if let view {
+      realizations += 1
+      return view
+    }
+    guard let view = createView() else { return nil }
+    self.view = view
+    realizations = 1
+    if let parent { (view as? OneNativeComposable)?.composeInto(parent) }
+    return view
+  }
+
+  fileprivate func release(_ view: UIView) {
+    guard view === self.view else { return }
+    realizations -= 1
+    if realizations == 0 {
+      self.view = nil
+      releaseView(view)
+    }
+  }
+}
+
+private struct OneNativeDeferredRowBody: View {
+  private final class Realized: ObservableObject {
+    let row: OneNativeDeferredRow
+    let view: UIView?
+    let content: AnyView
+
+    init(_ row: OneNativeDeferredRow) {
+      self.row = row
+      self.view = row.realize()
+      self.content = (view as? OneNativeComposable)?.compositionContent() ?? AnyView(EmptyView())
+    }
+
+    deinit {
+      guard let view else { return }
+      if Thread.isMainThread {
+        row.release(view)
+      } else {
+        DispatchQueue.main.async { [row, view] in row.release(view) }
+      }
+    }
+  }
+
+  @StateObject private var realized: Realized
+
+  init(_ row: OneNativeDeferredRow) {
+    _realized = StateObject(wrappedValue: Realized(row))
+  }
+
+  var body: some View { realized.content }
 }
 
 // a hosting controller inherits its traits from the view controller it attaches to,
@@ -257,9 +353,8 @@ private struct OneNativeHostRoot: View {
   private let wrap: (OneNativeChildren, Bool) -> AnyView
   @nonobjc let style: OneNativeContainerStyle
   private let published = OneNativeChildren()
-  private var childViews: [UIView] = []
-  // Weak keys keep a moved UIView's row identity without retaining removed views.
-  private let rowIdentities = NSMapTable<UIView, OneNativeRowIdentity>.weakToStrongObjects()
+  private var childViews: [NSObject] = []
+  private let rowIdentities = NSMapTable<NSObject, OneNativeRowIdentity>.weakToStrongObjects()
   private var controller: OneNativeHostingController<AnyView>?
   private weak var compositionParent: OneNativeCompositionParent?
   private var active = false
@@ -298,7 +393,7 @@ private struct OneNativeHostRoot: View {
     return (compositionParent as? UIView) ?? controller?.viewIfLoaded
   }
 
-  @nonobjc private func resignComposedFocus(in child: UIView) {
+  @nonobjc private func resignComposedFocus(in child: NSObject) {
     guard (child as? OneNativeFocusedContent)?.containsComposedFocus == true else { return }
     // keyboard layout must run while the focused row still belongs to the host.
     compositionHost?.endEditing(true)
@@ -367,7 +462,33 @@ private struct OneNativeHostRoot: View {
       at: at)
   }
 
-  private func rowIdentity(for child: UIView) -> OneNativeRowIdentity {
+  @objc(reconcileComposedChildren:)
+  public func reconcileComposedChildren(_ next: [NSObject]) {
+    let nextIDs = next.map(ObjectIdentifier.init)
+    guard nextIDs != published.items.map(\.sourceID) else { return }
+    let retained = Set(nextIDs)
+    let previous = Dictionary(uniqueKeysWithValues: published.items.map { ($0.sourceID, $0) })
+    for child in childViews where !retained.contains(ObjectIdentifier(child)) {
+      resignComposedFocus(in: child)
+      (child as? OneNativeComposable)?.decompose()
+    }
+    let items = next.map { child in
+      let id = ObjectIdentifier(child)
+      if let item = previous[id] { return item }
+      guard let composable = child as? OneNativeComposable else {
+        preconditionFailure("One Native containers only accept One Native controls")
+      }
+      (child as? UIView)?.removeFromSuperview()
+      composable.composeInto(self)
+      return OneNativeComposedChild(
+        id: rowIdentity(for: child).id, sourceID: id, content: composable.compositionContent(),
+        deferredRow: child as? OneNativeDeferredRow)
+    }
+    childViews = next
+    published.items = items
+  }
+
+  private func rowIdentity(for child: NSObject) -> OneNativeRowIdentity {
     if let existing = rowIdentities.object(forKey: child) { return existing }
     let identity = OneNativeRowIdentity()
     rowIdentities.setObject(identity, forKey: child)
