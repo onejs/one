@@ -19,6 +19,7 @@ export interface Rect {
 export interface Metrics {
     insets: EdgeInsets;
     frame: Rect;
+    cornerRadius: number;
 }
 export type InsetChangedEvent = NativeSyntheticEvent<Metrics>;
 export type InsetChangeNativeCallback = (event: InsetChangedEvent) => void;

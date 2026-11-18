@@ -32,7 +32,7 @@ export function getInitialWindowMetrics(): Metrics | null {
 
 function isMetrics(value: unknown): value is Metrics {
   if (!value || typeof value !== 'object') return false
-  const { insets, frame } = value as Record<string, unknown>
+  const { insets, frame, cornerRadius } = value as Record<string, unknown>
   if (!insets || typeof insets !== 'object' || !frame || typeof frame !== 'object')
     return false
   const numbers = [
@@ -44,6 +44,7 @@ function isMetrics(value: unknown): value is Metrics {
     (frame as Record<string, unknown>).y,
     (frame as Record<string, unknown>).width,
     (frame as Record<string, unknown>).height,
+    cornerRadius,
   ]
   return numbers.every((number) => typeof number === 'number' && Number.isFinite(number))
 }

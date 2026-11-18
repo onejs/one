@@ -88,12 +88,13 @@ An edge missing from the array or the record is `off`.
   data={[
     { name: 'useSafeAreaInsets', type: '() => EdgeInsets', description: 'The current { top, right, bottom, left } insets of the nearest provider, in points (dp on Android).' },
     { name: 'useSafeAreaFrame', type: '() => Rect', description: 'The nearest provider frame { x, y, width, height }.' },
+    { name: 'useSafeAreaCornerRadius', type: '() => number', description: 'The radius of the screen corner concentric with the nearest provider\'s corners, in points. A shape inset by d from those corners stays concentric at max(0, radius - d). iOS 26 and later, Android 12 and later; 0 elsewhere and on web.' },
   ]}
 />
 
 `One.UI.SafeArea.Provider` creates a nested provider, and
 `One.UI.SafeArea.initialMetrics` holds the synchronous first reading
-(`{ insets, frame }`, or `null` before the native side can measure).
+(`{ insets, frame, cornerRadius }`, or `null` before the native side can measure).
 
 ## Platform differences
 

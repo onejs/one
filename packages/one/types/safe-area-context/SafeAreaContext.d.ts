@@ -2,6 +2,7 @@ import * as React from 'react';
 import type { EdgeInsets, Metrics, NativeSafeAreaProviderProps, Rect } from './SafeArea-types.js';
 export declare const SafeAreaInsetsContext: React.Context<EdgeInsets | null>;
 export declare const SafeAreaFrameContext: React.Context<Rect | null>;
+export declare const SafeAreaCornerRadiusContext: React.Context<number | null>;
 export interface SafeAreaProviderProps extends Omit<NativeSafeAreaProviderProps, 'onInsetsChange'> {
     children?: React.ReactNode;
     initialMetrics?: Metrics | null;
@@ -13,6 +14,7 @@ export interface SafeAreaProviderProps extends Omit<NativeSafeAreaProviderProps,
 export declare function SafeAreaProvider({ children, initialMetrics, initialSafeAreaInsets, ...others }: SafeAreaProviderProps): React.JSX.Element;
 export declare function useSafeAreaInsets(): EdgeInsets;
 export declare function useSafeAreaFrame(): Rect;
+export declare function useSafeAreaCornerRadius(): number;
 export type WithSafeAreaInsetsProps = {
     insets: EdgeInsets;
 };

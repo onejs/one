@@ -28,7 +28,7 @@ class OneNativeSafeAreaProviderManager :
         view: OneNativeSafeAreaProviderView
     ) {
         super.addEventEmitters(reactContext, view)
-        view.setOnInsetsChangeHandler { insetsPx, framePx ->
+        view.setOnInsetsChangeHandler { insetsPx, framePx, cornerRadiusPx ->
             val dispatcher =
                 UIManagerHelper.getEventDispatcherForReactTag(reactContext, view.id)
                     ?: return@setOnInsetsChangeHandler false
@@ -44,7 +44,8 @@ class OneNativeSafeAreaProviderManager :
                     framePx[0] / density,
                     framePx[1] / density,
                     framePx[2] / density,
-                    framePx[3] / density))
+                    framePx[3] / density,
+                    cornerRadiusPx / density))
             true
         }
     }

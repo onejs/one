@@ -23,6 +23,11 @@ if (isDev) {
   SafeAreaFrameContext.displayName = 'SafeAreaFrameContext'
 }
 
+export const SafeAreaCornerRadiusContext = React.createContext<number | null>(null)
+if (isDev) {
+  SafeAreaCornerRadiusContext.displayName = 'SafeAreaCornerRadiusContext'
+}
+
 export interface SafeAreaProviderProps
   extends Omit<NativeSafeAreaProviderProps, 'onInsetsChange'> {
   children?: React.ReactNode
@@ -43,6 +48,7 @@ export function SafeAreaProvider({
 }: SafeAreaProviderProps) {
   const parentInsets = useParentSafeAreaInsets()
   const parentFrame = useParentSafeAreaFrame()
+  const parentCornerRadius = React.useContext(SafeAreaCornerRadiusContext)
   // the outermost provider measures the window, so it alone feeds tamagui.
   const isRoot = parentInsets === null
   // default to zero insets so useSafeAreaInsets() doesn't throw on the first
@@ -58,14 +64,24 @@ export function SafeAreaProvider({
       // backwards compat so we render anyway if we don't have frame.
       getWindowFrame()
   )
+  const [cornerRadius, setCornerRadius] = React.useState(
+    initialMetrics?.cornerRadius ?? parentCornerRadius ?? 0
+  )
   const onInsetsChange = React.useCallback(
     (event: InsetChangedEvent) => {
       const {
-        nativeEvent: { frame: nextFrame, insets: nextInsets },
+        nativeEvent: {
+          frame: nextFrame,
+          insets: nextInsets,
+          cornerRadius: nextCornerRadius,
+        },
       } = event
 
       if (isRoot && nextFrame) {
-        feedTamaguiSafeArea({ insets: nextInsets, frame: nextFrame }, tamaguiHooks)
+        feedTamaguiSafeArea(
+          { insets: nextInsets, frame: nextFrame, cornerRadius: nextCornerRadius },
+          tamaguiHooks
+        )
       }
 
       // urgent, as upstream: a transition here stalls behind the urgent renders a
@@ -83,6 +99,8 @@ export function SafeAreaProvider({
         }
         return curFrame
       })
+
+      setCornerRadius(nextCornerRadius)
 
       setInsets((curInsets) => {
         if (
@@ -104,7 +122,9 @@ export function SafeAreaProvider({
     <NativeSafeAreaProvider onInsetsChange={onInsetsChange} {...others}>
       <SafeAreaFrameContext.Provider value={frame}>
         <SafeAreaInsetsContext.Provider value={insets}>
-          {children}
+          <SafeAreaCornerRadiusContext.Provider value={cornerRadius}>
+            {children}
+          </SafeAreaCornerRadiusContext.Provider>
         </SafeAreaInsetsContext.Provider>
       </SafeAreaFrameContext.Provider>
     </NativeSafeAreaProvider>
@@ -136,6 +156,18 @@ export function useSafeAreaFrame(): Rect {
     throw new Error(NO_INSETS_ERROR)
   }
   return frame
+}
+
+// the radius of the screen corner concentric with the nearest provider's
+// corners: the display's own corner radius under the root provider, and 0 on
+// web and on screens with square corners. a shape inset by d from those corners
+// stays concentric at max(0, radius - d).
+export function useSafeAreaCornerRadius(): number {
+  const radius = React.useContext(SafeAreaCornerRadiusContext)
+  if (radius == null) {
+    throw new Error(NO_INSETS_ERROR)
+  }
+  return radius
 }
 
 export type WithSafeAreaInsetsProps = {
