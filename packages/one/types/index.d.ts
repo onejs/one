@@ -52,7 +52,7 @@ export type RouteType<Path extends string = string> = OneRouter.RouteType<Path>;
 export { useIsFocused } from '@react-navigation/core';
 export { useHeaderHeight } from './useHeaderHeight.js';
 export * from '@vxrn/color-scheme';
-export { SafeAreaView, useSafeAreaFrame, useSafeAreaInsets } from './safe-area-context/index.js';
+export { SafeAreaView, useSafeAreaCornerRadius, useSafeAreaFrame, useSafeAreaInsets, } from './safe-area-context/index.js';
 export { onClientLoaderResolve } from './clientLoaderResolver.js';
 export { createMiddleware, type Middleware, type MiddlewareContext } from './createMiddleware.js';
 export { createAPIRoute, type APIRouteContext, type APIRouteHandler, type WorkerContext, type WorkerEnv, type WorkerExecutionContext, } from './createAPIRoute.js';

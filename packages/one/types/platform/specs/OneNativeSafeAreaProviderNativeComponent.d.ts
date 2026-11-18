@@ -10,6 +10,7 @@ interface NativeProps extends ViewProps {
         frameY: Double;
         frameWidth: Double;
         frameHeight: Double;
+        cornerRadius: Double;
     }>>;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;

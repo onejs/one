@@ -15,6 +15,7 @@ export interface Rect {
 export interface Metrics {
     insets: EdgeInsets;
     frame: Rect;
+    cornerRadius: number;
 }
 export type Edge = 'top' | 'right' | 'bottom' | 'left';
 export type EdgeMode = 'off' | 'additive' | 'maximum';
@@ -29,6 +30,7 @@ export interface NativeInsetsChangePayload {
     frameY: number;
     frameWidth: number;
     frameHeight: number;
+    cornerRadius: number;
 }
 export interface NativeSafeAreaProviderProps extends ViewProps {
     children?: ReactNode;
