@@ -41,6 +41,7 @@ RCT_EXPORT_MODULE()
       probe.cornerConfiguration =
           [UICornerConfiguration configurationWithRadius:[UICornerRadius containerConcentricRadius]];
       [window addSubview:probe];
+      [probe layoutIfNeeded];
       cornerRadius = [probe effectiveRadiusForCorner:UIRectCornerTopLeft];
       [probe removeFromSuperview];
     }

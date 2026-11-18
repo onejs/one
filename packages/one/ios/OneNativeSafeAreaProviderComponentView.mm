@@ -127,8 +127,8 @@ using namespace facebook::react;
 }
 
 // the screen corner radius concentric with this view's own corners, read from
-// a hidden probe over its bounds. read during layoutSubviews, UIKit lays this
-// view out again when the radius changes, as when a window moves or resizes.
+// a hidden probe over its bounds, read on every layout so a window that moves
+// or resizes reports its new corner.
 - (CGFloat)concentricCornerRadius {
   if (@available(iOS 26.0, *)) {
     if (!_cornerProbe) {
@@ -140,6 +140,8 @@ using namespace facebook::react;
           [UICornerConfiguration configurationWithRadius:[UICornerRadius containerConcentricRadius]];
       [self addSubview:_cornerProbe];
     }
+    // the radius resolves only once the probe has been laid out
+    [_cornerProbe layoutIfNeeded];
     return [_cornerProbe effectiveRadiusForCorner:UIRectCornerTopLeft];
   }
   return 0;
