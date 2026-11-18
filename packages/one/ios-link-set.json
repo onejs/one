@@ -280,6 +280,7 @@
     },
     "contacts": {
       "frameworks": [
+        "Contacts",
         "ContactsUI"
       ],
       "components": [],
@@ -463,20 +464,33 @@
       "frameworks": [
         "MediaPlayer"
       ],
-      "components": [
-        "OneNativeCamera"
-      ],
+      "components": [],
       "hybrids": [
         "OneAudio",
         "OneSpeechSynthesis"
       ],
       "uses": [
         "Audio",
-        "Camera",
         "SpeechSynthesis",
-        "CameraView",
         "useAudioPlayer",
         "useAudioPlayerStatus"
+      ],
+      "modifiers": [],
+      "slots": [],
+      "values": []
+    },
+    "camera": {
+      "frameworks": [],
+      "components": [
+        "OneNativeCamera"
+      ],
+      "hybrids": [],
+      "uses": [
+        "Camera",
+        "CameraView",
+        "ImagePicker.launchCamera",
+        "ImagePicker.getCameraPermissions",
+        "ImagePicker.requestCameraPermissions"
       ],
       "modifiers": [],
       "slots": [],

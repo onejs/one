@@ -708,19 +708,69 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
     )
   }
 
+  const REACT_NATIVE_CONFIG = `module.exports = require('one/react-native-config')\n`
+  const REACT_NATIVE_CONFIG_NAMES = [
+    'react-native.config.js',
+    'react-native.config.cjs',
+    'react-native.config.mjs',
+    'react-native.config.ts',
+  ]
+  const ensureReactNativeConfig = () => {
+    const present = REACT_NATIVE_CONFIG_NAMES.filter((name) =>
+      fs.existsSync(path.join(projectRoot, name))
+    )
+    if (present.length === 0) {
+      fs.writeFileSync(path.join(projectRoot, 'react-native.config.cjs'), REACT_NATIVE_CONFIG)
+    } else if (
+      !present.some((name) =>
+        fs.readFileSync(path.join(projectRoot, name), 'utf8').includes('one/react-native-config')
+      )
+    ) {
+      throw new Error(
+        `[vxrn/expo-plugin] ${present.join(', ')} does not load one/react-native-config, so Release builds would run the stock React Native bundler instead of One's. Set it to \`module.exports = require('one/react-native-config')\` or spread that into your config, then re-run expo prebuild.`
+      )
+    }
+  }
+
   // the sdk pod and typescript facades one prebuild writes, from the same
   // generator: writeAppSdkPod in the one package's built sdk.
   const writeExpoSdkBindings = async () => {
-    let appModule
+    let oneDir
     try {
-      appModule = path.join(
-        path.dirname(projectRequire.resolve('one/package.json')),
-        'dist',
-        'sdk',
-        'app.mjs'
-      )
+      oneDir = path.dirname(projectRequire.resolve('one/package.json'))
     } catch (error) {
       throw new Error(`[vxrn/expo-plugin] cannot resolve the one package: ${error.message}`)
+    }
+    ensureReactNativeConfig()
+    let expoPackage
+    try {
+      expoPackage = projectRequire.resolve('expo/package.json')
+    } catch (error) {
+      if (error?.code !== 'MODULE_NOT_FOUND') throw error
+    }
+    let entry
+    if (expoPackage) {
+      const expoRequire = createRequire(expoPackage)
+      const { resolveEntryPoint } = expoRequire('@expo/config/paths')
+      entry = resolveEntryPoint(projectRoot, { platform: 'ios' })
+    } else {
+      const defaultEntry = path.join(projectRoot, 'index.js')
+      if (fs.existsSync(defaultEntry)) entry = defaultEntry
+    }
+    let selection
+    if (entry) {
+      // the release bundle reaches frameworks through one's own modules, which the
+      // app's imports do not name. bundle it once, as one prebuild does, so the
+      // release bindings and link set cover them.
+      const { writeIosLinkSet } = await import(
+        pathToFileURL(path.join(oneDir, 'dist', 'esm', 'cli', 'iosLinkSet.mjs')).href
+      )
+      selection = writeIosLinkSet(projectRoot, entry)
+    }
+    if (!selection && fs.existsSync(path.join(projectRoot, 'ios', 'one-link-set.json'))) {
+      selection = JSON.parse(
+        fs.readFileSync(path.join(projectRoot, 'ios', 'one-link-set.json'), 'utf8')
+      )
     }
     // a linux or windows host still generates the project; it has no iOS SDK to
     // build the bindings pod, which only a mac compiles.
@@ -730,17 +780,9 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
       )
       return []
     }
+    const appModule = path.join(oneDir, 'dist', 'sdk', 'app.mjs')
     const { writeAppSdkPod } = await import(pathToFileURL(appModule).href)
-    // the release bundle reaches frameworks through one's own modules, which the
-    // app's imports do not name. bundle it once, as one prebuild does, so the
-    // release bindings and link set cover them.
-    const { writeIosLinkSet } = await import(
-      pathToFileURL(path.join(path.dirname(appModule), '..', 'esm', 'cli', 'iosLinkSet.mjs')).href
-    )
-    const expoRequire = createRequire(projectRequire.resolve('expo/package.json'))
-    const { resolveEntryPoint } = expoRequire('@expo/config/paths')
-    const entry = resolveEntryPoint(projectRoot, { platform: 'ios' })
-    return writeAppSdkPod(projectRoot, console.info, writeIosLinkSet(projectRoot, entry).frameworks)
+    return writeAppSdkPod(projectRoot, console.info, selection?.frameworks)
   }
 
   // expo's default ios deployment target sits below the one the One pod
@@ -1028,6 +1070,16 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
           : contents
         return nextConfig
       },
+    ],
+    [
+      withDangerousMod,
+      [
+        'android',
+        (nextConfig) => {
+          ensureReactNativeConfig()
+          return nextConfig
+        },
+      ],
     ],
     [
       withDangerousMod,

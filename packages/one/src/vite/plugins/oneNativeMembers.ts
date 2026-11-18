@@ -411,6 +411,67 @@ export function nativeOneMembers(file: string, platform = 'ios') {
       node.type === 'TSInterfaceDeclaration' ||
       node.type === 'TSDeclareFunction' ||
       (node.type.startsWith('TS') && node.type.endsWith('Type'))
+    const importMember = (
+      found: Found,
+      target: Map<string, { binding: Binding; alias: string }> = added
+    ) => {
+      const key = `${found.binding.source}\0${found.binding.imported}`
+      let alias = added.get(key)?.alias ?? target.get(key)?.alias
+      if (!alias) {
+        alias = `__one_member_${added.size + (target === added ? 0 : target.size)}`
+        while (
+          new RegExp(`\\b${alias}\\b`).test(source) ||
+          [...added.values(), ...(target === added ? [] : target.values())].some(
+            (entry) => entry.alias === alias
+          )
+        )
+          alias += '_'
+        target.set(key, { binding: found.binding, alias })
+      }
+      return found.call
+        ? `(${alias}())`
+        : alias + (found.suffix ?? []).map((name) => `.${name}`).join('')
+    }
+    const rewritePattern = (
+      patternNode: Node,
+      basePath: string[],
+      staged = new Map<string, { binding: Binding; alias: string }>(),
+      top = true
+    ): string | undefined => {
+      if (patternNode.type !== 'ObjectPattern') return
+      const entries: string[] = []
+      for (const property of patternNode.properties) {
+        if (property.type !== 'Property' || property.computed) return
+        const propName =
+          property.key.type === 'Identifier'
+            ? property.key.name
+            : property.key.type === 'Literal'
+              ? String(property.key.value)
+              : undefined
+        if (propName === undefined) return
+        const keyCode =
+          property.key.type === 'Identifier' ? propName : JSON.stringify(propName)
+        const nextPath = [...basePath, propName]
+        const target =
+          property.value.type === 'AssignmentPattern'
+            ? property.value.left
+            : property.value
+        const found = member(shared, one, nextPath)
+        if (target.type === 'ObjectPattern') {
+          const childStaged = new Map(staged)
+          const nested = rewritePattern(target, nextPath, childStaged, false)
+          if (nested) {
+            for (const [k, v] of childStaged) staged.set(k, v)
+            entries.push(`${keyCode}: ${nested}`)
+            continue
+          }
+        }
+        if (!found || found.consumed !== nextPath.length) return
+        entries.push(`${keyCode}: ${importMember(found, staged)}`)
+      }
+      if (top) for (const [key, value] of staged) added.set(key, value)
+      return `{ ${entries.join(', ')} }`
+    }
     let rewritten = 0
     const visit = (node: Node) => {
       if (node.type === 'ImportDeclaration' || aliases.has(node) || typeOnly(node)) return
@@ -440,6 +501,26 @@ export function nativeOneMembers(file: string, platform = 'ios') {
         if (node.type === 'AssignmentExpression') visit(node.right)
         return
       }
+      if (
+        node.type === 'VariableDeclarator' &&
+        node.id.type === 'ObjectPattern' &&
+        node.init
+      ) {
+        const { nodes, read, onePath } = chain(node.init)
+        if (
+          read &&
+          onePath &&
+          nodes.length === read.prefix.length + onePath.length - read.base.length
+        ) {
+          const replacement = rewritePattern(node.id, onePath)
+          if (replacement) {
+            rewritten++
+            output.overwrite(node.init.start, node.init.end, replacement)
+            visit(node.id)
+            return
+          }
+        }
+      }
       if (node.type === 'MemberExpression' || node.type === 'JSXMemberExpression') {
         const { root, nodes, read, onePath } = chain(node)
         if (read) {
@@ -454,20 +535,11 @@ export function nativeOneMembers(file: string, platform = 'ios') {
             kept(root.name, `One.${onePath.join('.')}`)
             return
           }
-          const key = `${found.binding.source}\0${found.binding.imported}`
-          let alias = added.get(key)?.alias
-          if (!alias) {
-            alias = `__one_member_${added.size}`
-            while (new RegExp(`\\b${alias}\\b`).test(source)) alias += '_'
-            added.set(key, { binding: found.binding, alias })
-          }
           rewritten++
           output.overwrite(
             root.start,
             nodes[read.prefix.length + consumed - 1].end,
-            found.call
-              ? `(${alias}())`
-              : alias + (found.suffix ?? []).map((name) => `.${name}`).join('')
+            importMember(found)
           )
           return
         }
