@@ -83,8 +83,12 @@ export class Try extends React.Component<TryProps, TryState> {
       }
     }
 
-    // Dispatch error event for devtools integration (web only - CustomEvent doesn't exist on native)
-    if (typeof window !== 'undefined' && typeof CustomEvent !== 'undefined') {
+    // devtools consumes the browser's error events.
+    if (
+      process.env.TAMAGUI_TARGET !== 'native' &&
+      typeof window !== 'undefined' &&
+      typeof CustomEvent !== 'undefined'
+    ) {
       window.dispatchEvent(
         new CustomEvent('one-error', {
           detail: {
