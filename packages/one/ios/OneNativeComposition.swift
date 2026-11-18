@@ -367,6 +367,31 @@ private struct OneNativeHostRoot: View {
       at: at)
   }
 
+  @objc(reconcileComposedChildren:)
+  public func reconcileComposedChildren(_ next: [UIView]) {
+    let nextIDs = next.map(ObjectIdentifier.init)
+    guard nextIDs != published.items.map(\.sourceID) else { return }
+    let retained = Set(nextIDs)
+    let previous = Dictionary(uniqueKeysWithValues: published.items.map { ($0.sourceID, $0) })
+    for child in childViews where !retained.contains(ObjectIdentifier(child)) {
+      resignComposedFocus(in: child)
+      (child as? OneNativeComposable)?.decompose()
+    }
+    let items = next.map { child in
+      let id = ObjectIdentifier(child)
+      if let item = previous[id] { return item }
+      guard let composable = child as? OneNativeComposable else {
+        preconditionFailure("One Native containers only accept One Native controls")
+      }
+      child.removeFromSuperview()
+      composable.composeInto(self)
+      return OneNativeComposedChild(
+        id: rowIdentity(for: child).id, sourceID: id, content: composable.compositionContent())
+    }
+    childViews = next
+    published.items = items
+  }
+
   private func rowIdentity(for child: UIView) -> OneNativeRowIdentity {
     if let existing = rowIdentities.object(forKey: child) { return existing }
     let identity = OneNativeRowIdentity()
