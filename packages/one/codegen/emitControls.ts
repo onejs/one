@@ -878,7 +878,7 @@ ${layer ? `  private func updateHost() {
 ` : `  private func updateHost() {
     guard compositionParent == nil else { return }
     ${slot ? 'propagateActive(false)' : 'model.active = false'}
-    guard window != nil else { controller?.detach(); return }
+    guard window != nil else { controller?.hostLeftWindow(self); return }
     if controller == nil {
       bindCallbacks()
       controller = OneNativeHostingController(rootView: ${measured ? `OneNativeMeasuredStandalone(content: ${name}Content(${contentArguments}), onHeight: { [weak self] height in self?.onHeight?(height) })` : `OneNativeStandalone(content: ${name}Content(${contentArguments}))`})
