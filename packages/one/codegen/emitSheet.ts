@@ -649,7 +649,7 @@ final class OneNativeSheetModel: ObservableObject {
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func updateHost() {
     model.active = false
-    guard window != nil else { controller?.detach(); return }
+    guard window != nil else { controller?.hostLeftWindow(self); return }
     if controller == nil {
       model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
       model.onDetentChange = { [weak self] type, value, count, revision in

@@ -770,7 +770,7 @@ public final class OneNativeTabViewView: UIView, OneNativeToolbarHost {
 
   public override func didMoveToWindow() {
     super.didMoveToWindow()
-    if window == nil { detachController() }
+    if window == nil { leaveWindow() }
     else { attachController() }
   }
 
@@ -814,6 +814,12 @@ public final class OneNativeTabViewView: UIView, OneNativeToolbarHost {
     controller?.attach(to: self)
     model.active = controller?.isAttached == true
     setActive(model.active)
+  }
+
+  private func leaveWindow() {
+    model.active = false
+    setActive(false)
+    controller?.hostLeftWindow(self)
   }
 
   private func detachController() {

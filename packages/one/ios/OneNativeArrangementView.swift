@@ -164,7 +164,7 @@ public final class OneNativeArrangementView: UIView {
 
   public override func didMoveToWindow() {
     super.didMoveToWindow()
-    if window == nil { detachController() }
+    if window == nil { model.active = false; controller?.hostLeftWindow(self) }
     else { attachController() }
   }
 

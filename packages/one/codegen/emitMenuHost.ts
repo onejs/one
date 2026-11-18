@@ -250,7 +250,7 @@ public final class OneNativeMenuView: UIView {
 
   private func updateHost() {
     model.active = false
-    guard window != nil else { controller?.detach(); return }
+    guard window != nil else { controller?.hostLeftWindow(self); return }
     if model.onAction == nil {
       model.onAction = { [weak self] id in self?.onAction?(id) }
       model.onPrimaryAction = { [weak self] in self?.onPrimaryAction?() }
