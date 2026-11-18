@@ -30,8 +30,8 @@ export type LinkSetUsage = {
 
 export const emptyUsage = (): LinkSetUsage => ({ names: new Set(), keys: new Set(), all: false })
 
-// what a binding holds: the exports of a `one` entry point, the One object or a platform namespace
-type Held = 'module' | 'one' | 'platform'
+// what a binding holds: the exports of a `one` entry point, the One object, a platform namespace, or ImagePicker
+type Held = 'module' | 'one' | 'platform' | 'imagePicker'
 
 type Node = { type: string; [key: string]: any }
 
@@ -136,9 +136,24 @@ export function analyzeModule(
   }
 
   // the move one read makes: One.iOS/UI/Android enters a platform object, a read of the module's
-  // `One` enters One, and any other name is a feature that is recorded elsewhere
+  // `One` enters One, ImagePicker enters ImagePicker, and any other name is a feature that is recorded elsewhere
   const step = (held: Held, name: string): Held | undefined =>
-    held === 'module' && name === 'One' ? 'one' : held === 'one' && ['iOS', 'UI', 'Android'].includes(name) ? 'platform' : undefined
+    held === 'module' && name === 'One'
+      ? 'one'
+      : held === 'one' && ['iOS', 'UI', 'Android'].includes(name)
+        ? 'platform'
+        : (held === 'module' || held === 'one') && name === 'ImagePicker'
+          ? 'imagePicker'
+          : undefined
+
+  const recordRead = (held: Held, name: string) => {
+    usage.names.add(held === 'imagePicker' ? `ImagePicker.${name}` : name)
+  }
+
+  const escapeHeld = (held: Held) => {
+    if (held === 'imagePicker') usage.names.add('ImagePicker.launchCamera')
+    else usage.all = true
+  }
 
   const heldBy = (raw: Node): Held | undefined => {
     const node = unwrap(raw)
@@ -191,17 +206,17 @@ export function analyzeModule(
           if (!property.computed && property.key.type === 'Identifier') name = property.key.name
           else if (property.key.type === 'Literal') name = String(property.key.value)
           if (name === undefined) {
-            if (record) usage.all = true
+            if (record) escapeHeld(held)
             continue
           }
-          if (record) usage.names.add(name)
+          if (record) recordRead(held, name)
           const next = step(held, name)
           if (next) bindPattern(property.value, next, record)
         }
         return
       default:
         // an array pattern or anything else cannot take apart a namespace
-        if (record) usage.all = true
+        if (record) escapeHeld(held)
     }
   }
 
@@ -215,7 +230,10 @@ export function analyzeModule(
         else {
           const imported = specifier.imported.name ?? String(specifier.imported.value)
           if (imported === 'One') bindings.set(specifier.local.name, 'one')
-          else usage.names.add(imported)
+          else {
+            usage.names.add(imported)
+            if (imported === 'ImagePicker') bindings.set(specifier.local.name, 'imagePicker')
+          }
         }
       }
     } else if (
@@ -265,6 +283,29 @@ export function analyzeModule(
     (parent.type === 'AssignmentExpression' && key === 'right' && parent.operator === '=' && unwrap(parent.left).type === 'Identifier') ||
     (parent.type === 'ExpressionStatement' && key === 'expression')
 
+  const escapeExportedIds = (pattern: Node) => {
+    switch (pattern.type) {
+      case 'Identifier': {
+        const held = bindings.get(pattern.name)
+        if (held) escapeHeld(held)
+        return
+      }
+      case 'AssignmentPattern':
+        escapeExportedIds(pattern.left)
+        return
+      case 'RestElement':
+        escapeExportedIds(pattern.argument)
+        return
+      case 'ObjectPattern':
+        for (const property of pattern.properties)
+          escapeExportedIds(property.type === 'RestElement' ? property.argument : property.value)
+        return
+      case 'ArrayPattern':
+        for (const element of pattern.elements) if (element) escapeExportedIds(element)
+        return
+    }
+  }
+
   const visit = (node: Node, parent: Node | undefined, key: string) => {
     if (node.type.startsWith('TS') && !valueTs.has(node.type)) return
     switch (node.type) {
@@ -272,11 +313,16 @@ export function analyzeModule(
         return
       case 'ExportNamedDeclaration':
         if (node.source) return
+        if (node.declaration?.type === 'VariableDeclaration') {
+          for (const declarator of node.declaration.declarations) escapeExportedIds(declarator.id)
+        }
         break
-      case 'ExportSpecifier':
+      case 'ExportSpecifier': {
         // `export { One }` hands the namespace to whoever imports this module
-        if (bindings.has(node.local.name)) usage.all = true
+        const held = bindings.get(node.local.name)
+        if (held) escapeHeld(held)
         return
+      }
       case 'ExportAllDeclaration':
         return
       case 'VariableDeclarator': {
@@ -295,11 +341,13 @@ export function analyzeModule(
         return
       }
       case 'MemberExpression': {
+        const self = heldBy(node)
+        if (self && !safeParent(node, parent, key)) escapeHeld(self)
         const object = heldBy(node.object)
         const name = staticName(node)
         if (object) {
-          if (name === undefined) usage.all = true
-          else usage.names.add(name)
+          if (name === undefined) escapeHeld(object)
+          else recordRead(object, name)
         }
         if (!node.computed) {
           visit(node.object, node, 'object')
@@ -317,7 +365,7 @@ export function analyzeModule(
         let held = name.type === 'JSXIdentifier' ? bindings.get(name.name) : undefined
         for (const part of path) {
           if (!held) break
-          usage.names.add(part)
+          recordRead(held, part)
           held = step(held, part)
         }
         for (const attribute of node.attributes) visit(attribute, node, 'attributes')
@@ -348,16 +396,20 @@ export function analyzeModule(
       case 'TemplateLiteral':
         if (!node.expressions.length && keys.has(node.quasis[0].value.cooked)) usage.keys.add(node.quasis[0].value.cooked)
         break
-      case 'Identifier':
+      case 'Identifier': {
         // a use that is neither a read nor an alias hands the namespace elsewhere
-        if (bindings.has(node.name) && !safeParent(node, parent, key)) usage.all = true
+        const held = bindings.get(node.name)
+        if (held && !safeParent(node, parent, key)) escapeHeld(held)
         return
+      }
       case 'ImportExpression':
         if (importedOne(node) && !(parent?.type === 'AwaitExpression')) usage.all = true
         break
-      case 'CallExpression':
-        if (heldBy(node) && !safeParent(node, parent, key)) usage.all = true
+      case 'CallExpression': {
+        const held = heldBy(node)
+        if (held && !safeParent(node, parent, key)) escapeHeld(held)
         break
+      }
     }
     if (node.type === 'MemberExpression' && !node.computed) return
     for (const [childKey, value] of Object.entries(node)) {

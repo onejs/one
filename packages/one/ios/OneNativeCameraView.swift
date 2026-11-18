@@ -1,4 +1,4 @@
-#if ONE_GROUP_MEDIA
+#if ONE_GROUP_CAMERA
 import AVFoundation
 import UIKit
 

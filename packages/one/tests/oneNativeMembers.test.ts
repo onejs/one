@@ -35,6 +35,8 @@ it('drops unrelated SDK backends for static namespace reads and preserves escape
       static: `import { One } from 'one'; globalThis.__oneResult = One.UI.Map();`,
       settings: `import { One } from 'one'; globalThis.__oneResult = One.openSettings();`,
       alias: `import { One } from 'one'; const UI = One.UI; globalThis.__oneResult = UI.Map();`,
+      destructure: `import { One } from 'one'; const { UI: { Map }, openSettings: open } = One; globalThis.__oneResult = [Map(), open()];`,
+      destructurePlatform: `import { One } from 'one'; const { Map } = One.UI; globalThis.__oneResult = Map();`,
       defaultParam: `import { One } from 'one'; function f(map = One.UI.Map) { return map(); } globalThis.__oneResult = f();`,
       shadowedAlias: `import { One } from 'one'; const UI = One.UI; function f({ map = UI.Map } = {}) { return map(); } function g(UI) { return UI; } globalThis.__oneResult = [f(), g(1)];`,
       getter: `import { One } from 'one'; globalThis.__onePlatform = 'ios'; const first = One.platform; globalThis.__onePlatform = 'android'; globalThis.__oneResult = [first, One.platform];`,
@@ -60,25 +62,49 @@ it('drops unrelated SDK backends for static namespace reads and preserves escape
       const { output } = await bundle.generate({ format: 'iife', minify: true })
       await bundle.close()
       const result = output[0] as { code: string }
-      if (['static', 'alias', 'settings', 'getter', 'defaultParam'].includes(name))
+      if (
+        [
+          'static',
+          'alias',
+          'destructure',
+          'destructurePlatform',
+          'settings',
+          'getter',
+          'defaultParam',
+        ].includes(name)
+      )
         expect(result.code).not.toContain('EventKit_unused')
       delete (globalThis as any).__oneBarrel
       new Function(result.code)()
       // reads resolve past the barrel to the module defining them
-      if (['static', 'alias', 'settings', 'defaultParam'].includes(name))
+      if (
+        [
+          'static',
+          'alias',
+          'destructure',
+          'destructurePlatform',
+          'settings',
+          'defaultParam',
+        ].includes(name)
+      )
         expect((globalThis as any).__oneBarrel).toBeUndefined()
       expect((globalThis as any).__oneResult).toEqual(
-        name === 'static' || name === 'alias' || name === 'defaultParam'
+        name === 'static' ||
+          name === 'alias' ||
+          name === 'destructurePlatform' ||
+          name === 'defaultParam'
           ? 'map'
-          : name === 'shadowedAlias'
-            ? ['map', 1]
-            : name === 'settings'
-              ? 'settings'
-              : name === 'identity'
-                ? true
-                : name === 'getter'
-                  ? ['ios', 'android']
-                  : ['map', 'shadow']
+          : name === 'destructure'
+            ? ['map', 'settings']
+            : name === 'shadowedAlias'
+              ? ['map', 1]
+              : name === 'settings'
+                ? 'settings'
+                : name === 'identity'
+                  ? true
+                  : name === 'getter'
+                    ? ['ios', 'android']
+                    : ['map', 'shadow']
       )
     }
     // every read is either rewritten or reported, so linking never drops a reached framework
@@ -86,6 +112,7 @@ it('drops unrelated SDK backends for static namespace reads and preserves escape
       'key.js': `import { One } from 'one'; const c = {}; c[One.Calendar] = 1;`,
       'update.js': `import { One } from 'one'; const c = {}; c[One.Calendar]++;`,
       'pattern.js': `import { One } from 'one'; let g; [g = One.Calendar] = [];`,
+      'restDestructure.js': `import { One } from 'one'; const { ...rest } = One; globalThis.__oneResult = rest;`,
       'namespace.ts': `import { One } from 'one'; namespace N { export const g = One.Calendar; }`,
       'enum.ts': `import { One } from 'one'; enum E { A = One.Calendar.length }`,
       'reexport.js': `export * as Lib from 'one';`,

@@ -1,4 +1,4 @@
-#if ONE_GROUP_MEDIA
+#if ONE_GROUP_CAMERA
 #import "OneNativeCameraComponentView.h"
 #import <React/RCTConversions.h>
 #import "One-Swift.h"
