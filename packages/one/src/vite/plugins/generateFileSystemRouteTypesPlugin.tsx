@@ -1,5 +1,5 @@
 import { join, resolve } from 'node:path'
-import { debounce } from 'perfect-debounce'
+import { debounce } from '../../utils/debounce'
 import type { Plugin } from 'vite'
 import { generateRouteTypes } from '../../typed-routes/generateRouteTypes'
 import { getRouterRootFromOneOptions } from '../../utils/getRouterRootFromOneOptions'
