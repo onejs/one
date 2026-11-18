@@ -165,4 +165,5 @@ export interface MenuProps extends ViewProps {
 // Native's own label on that subtree stands and the menu takes none of its own.
 export type ContextMenuProps = Omit<MenuProps, 'accessibilityLabel' | 'primaryAction'> & {
   accessibilityLabel?: string
+  preview?: ReactNode
 }

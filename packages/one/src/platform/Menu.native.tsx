@@ -1,5 +1,5 @@
 import { useControlled } from './controlled'
-import { useMemo } from 'react'
+import { useMemo, type ReactNode } from 'react'
 import { Platform, View } from 'react-native'
 import NativeMenu from './specs/OneNativeMenuNativeComponent'
 import { flattenMenuItems } from './menuItems'
@@ -35,8 +35,9 @@ function MenuPresentation({
   disabled = false,
   accessibilityLabel,
   presentation,
+  preview,
   ...props
-}: MenuProps & { presentation: string }) {
+}: MenuProps & { presentation: string; preview?: ReactNode }) {
   const iosVersion = Number.parseFloat(String(Platform.Version))
   assertSwiftUIValue('MenuOrder', menuOrder, iosVersion)
   assertSwiftUIValue('MenuActionDismissBehavior', menuActionDismissBehavior, iosVersion)
@@ -87,6 +88,9 @@ function MenuPresentation({
       }
     >
       <View collapsable={false}>{children}</View>
+      {preview != null && (
+        <View collapsable={false} style={{ position: 'absolute' }}>{preview}</View>
+      )}
     </NativeMenu>
   )
 }

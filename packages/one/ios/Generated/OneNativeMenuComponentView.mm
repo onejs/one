@@ -59,12 +59,14 @@ using namespace facebook::react;
 
 - (void)mountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index
 {
-  [_menuView mountTrigger:child];
+  if (index == 0) [_menuView mountTrigger:child];
+  else [_menuView mountPreview:child];
 }
 
 - (void)unmountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index
 {
-  [_menuView unmountTrigger:child];
+  if (index == 0) [_menuView unmountTrigger:child];
+  else [_menuView unmountPreview:child];
 }
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps
