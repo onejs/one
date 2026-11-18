@@ -18,6 +18,8 @@ declare function addPushTokenListener(_listener: (token: DevicePushToken) => voi
 declare function setHandler(_handler: NotificationHandlerInput | null): void;
 declare function getLastResponse(): NotificationResponse | null;
 declare function clearLastResponse(): void;
+declare function getPendingResponses(): NotificationResponse[];
+declare function acknowledgeResponse(_identifier: string): void;
 declare function schedule(_request: NotificationScheduleInput): Promise<string>;
 declare function cancelScheduled(_identifier: string): Promise<void>;
 declare function cancelAllScheduled(): Promise<void>;
@@ -44,6 +46,8 @@ export declare const Notifications: Readonly<{
     setHandler: typeof setHandler;
     getLastResponse: typeof getLastResponse;
     clearLastResponse: typeof clearLastResponse;
+    getPendingResponses: typeof getPendingResponses;
+    acknowledgeResponse: typeof acknowledgeResponse;
     schedule: typeof schedule;
     cancelScheduled: typeof cancelScheduled;
     cancelAllScheduled: typeof cancelAllScheduled;

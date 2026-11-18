@@ -7,6 +7,7 @@ export interface SpeechSynthesisUtterance {
     rate?: number;
     voice?: string;
     volume?: number;
+    useApplicationAudioSession?: boolean;
 }
 export interface OneSpeechSynthesis extends HybridObject<{
     ios: 'swift';

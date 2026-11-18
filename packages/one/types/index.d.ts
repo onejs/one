@@ -4,6 +4,8 @@ export { One } from './one.js';
 export { AESEncryptionKey, AESSealedData } from './platform/crypto/index.js';
 export { EdgeFade } from './platform/effects/EdgeFade.js';
 export type { EdgeFadeProps } from './platform/effects/types.js';
+export { HapticTap } from './platform/haptics/HapticTap.js';
+export type { HapticTapFeedback, HapticTapProps } from './platform/haptics/types.js';
 export { useFonts } from './platform/fonts/index.js';
 export { useKeepAwake } from './platform/keep-awake/index.js';
 export { useNativeState } from './platform/nativeState.js';
