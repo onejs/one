@@ -1,1 +1,3 @@
 {"id":"00000001794770297865:af9f9051a9c92338cc430169bbfef8d3","text":"Team Machine moved this task to s257963: every assignee (a141509) had ended."}
+
+{"id":"00000001795034115885:a9b61a82400124260261c4996090ff5c:2cd1c417cbc67493:a3ce461cb0f0fddbb83e59cfda178adb27e142b4b6f44c0253c6da5baf407860","text":"Opened PR #1311 (9c52ab7894) on oss-fixer/one-1215 fixing #1215 (camera link group + Contacts framework catalog, destructured One SDK pruning for EventKit, and cross-platform Expo link-set + react-native.config.cjs generation) with auto-merge queued; #1250 closed earlier via #1290."}
