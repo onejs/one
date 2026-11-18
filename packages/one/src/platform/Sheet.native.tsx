@@ -51,6 +51,7 @@ export function Sheet({
   onIsPresentedChange,
   onDismiss,
   revision = 0,
+  fitToContents = false,
   presentationDetents,
   selectedDetent,
   onSelectedDetentChange,
@@ -68,6 +69,14 @@ export function Sheet({
   const colorScheme = useContext(SheetAppearanceContext)
   if (typeof isPresented !== 'boolean')
     throw new Error('Swift.Sheet isPresented must be a boolean')
+  if (
+    fitToContents &&
+    (presentationDetents !== undefined ||
+      selectedDetent !== undefined ||
+      presentationSizing !== 'automatic' ||
+      typeof presentationBackgroundInteraction === 'object')
+  )
+    throw new Error('Swift.Sheet fitToContents requires automatic sizing and no explicit detents')
   const requestedDetents = presentationDetents ?? DEFAULT_DETENTS
   if (!Array.isArray(requestedDetents) || !requestedDetents.length)
     throw new Error('Swift.Sheet requires at least one presentation detent')
@@ -149,7 +158,7 @@ export function Sheet({
       presentationBackgroundInteractionDetentType={backgroundInteraction.detent.type}
       presentationBackgroundInteractionDetentValue={backgroundInteraction.detent.value}
       presentationContentInteraction={presentationContentInteraction}
-      presentationSizing={presentationSizing}
+      presentationSizing={fitToContents ? 'fitToContents' : presentationSizing}
       presentation="sheet"
       colorScheme={colorScheme ?? ''}
       onNativeSheetIsPresentedChange={({ nativeEvent }) =>
