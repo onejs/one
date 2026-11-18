@@ -26,17 +26,17 @@ public extension MotionAvailability {
   var accelerometer: Bool {
     return self.__accelerometer
   }
-
+  
   @inline(__always)
   var gyroscope: Bool {
     return self.__gyroscope
   }
-
+  
   @inline(__always)
   var magnetometer: Bool {
     return self.__magnetometer
   }
-
+  
   @inline(__always)
   var deviceMotion: Bool {
     return self.__deviceMotion

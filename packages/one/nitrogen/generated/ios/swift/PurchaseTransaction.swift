@@ -38,27 +38,27 @@ public extension PurchaseTransaction {
   var id: String {
     return String(self.__id)
   }
-
+  
   @inline(__always)
   var originalId: String {
     return String(self.__originalId)
   }
-
+  
   @inline(__always)
   var productId: String {
     return String(self.__productId)
   }
-
+  
   @inline(__always)
   var productType: PurchaseProductType {
     return self.__productType
   }
-
+  
   @inline(__always)
   var purchaseDateMs: Double {
     return self.__purchaseDateMs
   }
-
+  
   @inline(__always)
   var expirationDateMs: Double? {
     return { () -> Double? in
@@ -70,7 +70,7 @@ public extension PurchaseTransaction {
       }
     }()
   }
-
+  
   @inline(__always)
   var revocationDateMs: Double? {
     return { () -> Double? in
@@ -82,7 +82,7 @@ public extension PurchaseTransaction {
       }
     }()
   }
-
+  
   @inline(__always)
   var jws: String {
     return String(self.__jws)

@@ -32,7 +32,7 @@ public extension PhotoLibraryAssetPage {
   var assets: [PhotoLibraryAsset] {
     return self.__assets.map({ __item in __item })
   }
-
+  
   @inline(__always)
   var totalCount: Double {
     return self.__totalCount

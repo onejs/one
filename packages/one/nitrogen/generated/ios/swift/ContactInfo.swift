@@ -64,7 +64,7 @@ public extension ContactInfo {
   var emailAddresses: [String] {
     return self.__emailAddresses.map({ __item in String(__item) })
   }
-
+  
   @inline(__always)
   var postalAddresses: [ContactPostalAddress] {
     return self.__postalAddresses.map({ __item in __item })

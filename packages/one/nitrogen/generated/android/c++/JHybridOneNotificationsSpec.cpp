@@ -491,5 +491,23 @@ namespace margelo::nitro::one {
     static const auto method = _javaPart->javaClassStatic()->getMethod<void()>("clearLastNotificationResponse");
     method(_javaPart);
   }
+  std::vector<NativeNotificationResponse> JHybridOneNotificationsSpec::getPendingNotificationResponses() {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<jni::JArrayClass<JNativeNotificationResponse>>()>("getPendingNotificationResponses");
+    auto __result = method(_javaPart);
+    return [&](auto&& __input) {
+      size_t __size = __input->size();
+      std::vector<NativeNotificationResponse> __vector;
+      __vector.reserve(__size);
+      for (size_t __i = 0; __i < __size; __i++) {
+        auto __element = __input->getElement(__i);
+        __vector.push_back(__element->toCpp());
+      }
+      return __vector;
+    }(__result);
+  }
+  void JHybridOneNotificationsSpec::acknowledgeNotificationResponse(const std::string& identifier) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<jni::JString> /* identifier */)>("acknowledgeNotificationResponse");
+    method(_javaPart, jni::make_jstring(identifier));
+  }
 
 } // namespace margelo::nitro::one

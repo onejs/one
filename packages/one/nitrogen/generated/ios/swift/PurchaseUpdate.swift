@@ -38,12 +38,12 @@ public extension PurchaseUpdate {
   var status: PurchaseUpdateStatus {
     return self.__status
   }
-
+  
   @inline(__always)
   var transaction: PurchaseTransaction? {
     return self.__transaction.value
   }
-
+  
   @inline(__always)
   var error: String? {
     return { () -> String? in

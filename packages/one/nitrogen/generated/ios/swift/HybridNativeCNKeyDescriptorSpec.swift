@@ -13,7 +13,7 @@ public protocol HybridNativeCNKeyDescriptorSpec_protocol: HybridObject {
   var hash: Double { get }
 
   // Methods
-
+  
 }
 
 public extension HybridNativeCNKeyDescriptorSpec_protocol {

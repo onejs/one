@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneAppIntentsSpec``
 public protocol HybridOneAppIntentsSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func addInvocationListener(identifier: String, listener: @escaping (_ invocation: AppIntentInvocation) -> Void) throws -> () -> Void

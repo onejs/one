@@ -84,7 +84,7 @@ open class HybridOneDataScannerSpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -127,14 +127,14 @@ open class HybridOneDataScannerSpec_cxx {
       return self.__implementation.isSupported
     }
   }
-
+  
   public final var isAvailable: Bool {
     @inline(__always)
     get {
       return self.__implementation.isAvailable
     }
   }
-
+  
   public final var supportedTextRecognitionLanguages: bridge.std__vector_std__string_ {
     @inline(__always)
     get {
@@ -147,7 +147,7 @@ open class HybridOneDataScannerSpec_cxx {
       }()
     }
   }
-
+  
   public final var regionOfInterest: bridge.std__optional_DataScannerRect_ {
     @inline(__always)
     get {
@@ -164,14 +164,14 @@ open class HybridOneDataScannerSpec_cxx {
       self.__implementation.regionOfInterest = newValue.value
     }
   }
-
+  
   public final var isScanning: Bool {
     @inline(__always)
     get {
       return self.__implementation.isScanning
     }
   }
-
+  
   public final var zoomFactor: Double {
     @inline(__always)
     get {
@@ -194,7 +194,7 @@ open class HybridOneDataScannerSpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func setDelegate(didZoom: bridge.Func_void, didTapOn: bridge.Func_void_DataScannerRecognizedItem, didAdd: bridge.Func_void_std__vector_DataScannerRecognizedItem__std__vector_DataScannerRecognizedItem_, didUpdate: bridge.Func_void_std__vector_DataScannerRecognizedItem__std__vector_DataScannerRecognizedItem_, didRemove: bridge.Func_void_std__vector_DataScannerRecognizedItem__std__vector_DataScannerRecognizedItem_, becameUnavailable: bridge.Func_void_DataScannerScanningUnavailable) -> bridge.Result_void_ {
     do {
@@ -271,7 +271,7 @@ open class HybridOneDataScannerSpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func getMinZoomFactor() -> bridge.Result_double_ {
     do {
@@ -283,7 +283,7 @@ open class HybridOneDataScannerSpec_cxx {
       return bridge.create_Result_double_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func getMaxZoomFactor() -> bridge.Result_double_ {
     do {
@@ -295,7 +295,7 @@ open class HybridOneDataScannerSpec_cxx {
       return bridge.create_Result_double_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func present(animated: Bool) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -314,7 +314,7 @@ open class HybridOneDataScannerSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func dismiss(animated: Bool) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -333,7 +333,7 @@ open class HybridOneDataScannerSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func startScanning() -> bridge.Result_void_ {
     do {
@@ -344,7 +344,7 @@ open class HybridOneDataScannerSpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func stopScanning() -> bridge.Result_void_ {
     do {
@@ -355,7 +355,7 @@ open class HybridOneDataScannerSpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func capturePhoto() -> bridge.Result_std__shared_ptr_Promise_std__shared_ptr_HybridDocumentCameraImageSpec____ {
     do {
@@ -377,7 +377,7 @@ open class HybridOneDataScannerSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__shared_ptr_HybridDocumentCameraImageSpec____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func subscribeRecognizedItems(onItems: bridge.Func_void_std__vector_DataScannerRecognizedItem_, onEnd: bridge.Func_void) -> bridge.Result_double_ {
     do {
@@ -405,7 +405,7 @@ open class HybridOneDataScannerSpec_cxx {
       return bridge.create_Result_double_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func unsubscribeRecognizedItems(id: Double) -> bridge.Result_void_ {
     do {

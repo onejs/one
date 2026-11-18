@@ -56,7 +56,7 @@ public extension DataScannerRecognizedDataType {
   var type: DataScannerItemType {
     return self.__type
   }
-
+  
   @inline(__always)
   var languages: [String]? {
     return { () -> [String]? in
@@ -68,12 +68,12 @@ public extension DataScannerRecognizedDataType {
       }
     }()
   }
-
+  
   @inline(__always)
   var textContentType: DataScannerTextContentType? {
     return self.__textContentType.value
   }
-
+  
   @inline(__always)
   var symbologies: [String]? {
     return { () -> [String]? in

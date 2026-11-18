@@ -84,7 +84,7 @@ open class HybridOneMotionSpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOneMotionSpec_cxx {
   }
 
   // Properties
-
+  
 
   // Methods
   @inline(__always)
@@ -135,7 +135,7 @@ open class HybridOneMotionSpec_cxx {
       return bridge.create_Result_MotionAvailability_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func addListener(sensor: Int32, intervalMs: Double, onReading: bridge.Func_void_MotionReading, onError: bridge.Func_void_std__string_std__string) -> bridge.Result_std__function_void____ {
     do {

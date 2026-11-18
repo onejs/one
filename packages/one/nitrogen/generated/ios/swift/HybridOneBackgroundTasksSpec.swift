@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneBackgroundTasksSpec``
 public protocol HybridOneBackgroundTasksSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func submit(identifier: String, earliestBeginDateMs: Double?, requiresNetworkConnectivity: Bool?, requiresExternalPower: Bool?) throws -> Promise<Void>

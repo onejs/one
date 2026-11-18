@@ -84,7 +84,7 @@ open class HybridOneBackgroundTasksSpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOneBackgroundTasksSpec_cxx {
   }
 
   // Properties
-
+  
 
   // Methods
   @inline(__always)
@@ -163,7 +163,7 @@ open class HybridOneBackgroundTasksSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func getPending() -> bridge.Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____ {
     do {
@@ -188,7 +188,7 @@ open class HybridOneBackgroundTasksSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func cancel(identifier: std.string) -> bridge.Result_void_ {
     do {
@@ -199,7 +199,7 @@ open class HybridOneBackgroundTasksSpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func addTaskListener(onLaunch: bridge.Func_void_BackgroundTaskInvocation, onExpire: bridge.Func_void_std__string) -> bridge.Result_std__function_void____ {
     do {
@@ -224,7 +224,7 @@ open class HybridOneBackgroundTasksSpec_cxx {
       return bridge.create_Result_std__function_void____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func complete(executionId: std.string, success: Bool) -> bridge.Result_void_ {
     do {

@@ -126,6 +126,14 @@ abstract class HybridOneNotificationsSpec: HybridObject() {
   @DoNotStrip
   @Keep
   abstract fun clearLastNotificationResponse(): Unit
+  
+  @DoNotStrip
+  @Keep
+  abstract fun getPendingNotificationResponses(): Array<NativeNotificationResponse>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun acknowledgeNotificationResponse(identifier: String): Unit
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

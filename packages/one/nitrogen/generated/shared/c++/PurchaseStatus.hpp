@@ -29,8 +29,8 @@ namespace margelo::nitro::one {
    * An enum which can be represented as a JavaScript union (PurchaseStatus).
    */
   enum class PurchaseStatus {
-    PURCHASED      SWIFT_NAME(purchased) = 0,
-    CANCELLED      SWIFT_NAME(cancelled) = 1,
+    CANCELLED      SWIFT_NAME(cancelled) = 0,
+    PURCHASED      SWIFT_NAME(purchased) = 1,
     PENDING      SWIFT_NAME(pending) = 2,
   } CLOSED_ENUM;
 
@@ -44,8 +44,8 @@ namespace margelo::nitro {
     static inline margelo::nitro::one::PurchaseStatus fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("purchased"): return margelo::nitro::one::PurchaseStatus::PURCHASED;
         case hashString("cancelled"): return margelo::nitro::one::PurchaseStatus::CANCELLED;
+        case hashString("purchased"): return margelo::nitro::one::PurchaseStatus::PURCHASED;
         case hashString("pending"): return margelo::nitro::one::PurchaseStatus::PENDING;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum PurchaseStatus - invalid value!");
@@ -53,8 +53,8 @@ namespace margelo::nitro {
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::one::PurchaseStatus arg) {
       switch (arg) {
-        case margelo::nitro::one::PurchaseStatus::PURCHASED: return JSIConverter<std::string>::toJSI(runtime, "purchased");
         case margelo::nitro::one::PurchaseStatus::CANCELLED: return JSIConverter<std::string>::toJSI(runtime, "cancelled");
+        case margelo::nitro::one::PurchaseStatus::PURCHASED: return JSIConverter<std::string>::toJSI(runtime, "purchased");
         case margelo::nitro::one::PurchaseStatus::PENDING: return JSIConverter<std::string>::toJSI(runtime, "pending");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert PurchaseStatus to JS - invalid value: "
@@ -67,8 +67,8 @@ namespace margelo::nitro {
       }
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, value);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("purchased"):
         case hashString("cancelled"):
+        case hashString("purchased"):
         case hashString("pending"):
           return true;
         default:

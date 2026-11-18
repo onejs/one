@@ -26,17 +26,17 @@ public extension DataScannerBounds {
   var topLeft: DataScannerPoint {
     return self.__topLeft
   }
-
+  
   @inline(__always)
   var topRight: DataScannerPoint {
     return self.__topRight
   }
-
+  
   @inline(__always)
   var bottomRight: DataScannerPoint {
     return self.__bottomRight
   }
-
+  
   @inline(__always)
   var bottomLeft: DataScannerPoint {
     return self.__bottomLeft

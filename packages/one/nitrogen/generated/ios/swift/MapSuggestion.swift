@@ -26,12 +26,12 @@ public extension MapSuggestion {
   var id: String {
     return String(self.__id)
   }
-
+  
   @inline(__always)
   var title: String {
     return String(self.__title)
   }
-
+  
   @inline(__always)
   var subtitle: String {
     return String(self.__subtitle)

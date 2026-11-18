@@ -32,7 +32,7 @@ public extension PhotoLibraryAlbumPage {
   var albums: [PhotoLibraryAlbum] {
     return self.__albums.map({ __item in __item })
   }
-
+  
   @inline(__always)
   var totalCount: Double {
     return self.__totalCount

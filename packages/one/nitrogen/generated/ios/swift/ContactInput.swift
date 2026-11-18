@@ -65,7 +65,7 @@ public extension ContactInput {
   var emailAddresses: [String] {
     return self.__emailAddresses.map({ __item in String(__item) })
   }
-
+  
   @inline(__always)
   var postalAddresses: [ContactPostalAddressInput]? {
     return { () -> [ContactPostalAddressInput]? in

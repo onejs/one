@@ -48,7 +48,7 @@ namespace margelo::nitro::one {
 
     public:
       // Methods
-
+      
 
     protected:
       // Hybrid Setup

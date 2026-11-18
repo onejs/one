@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridNativeCNContactStoreSpec``
 public protocol HybridNativeCNContactStoreSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func unifiedContact(withIdentifier: String, keys: [String], descriptors: [(any HybridNativeCNKeyDescriptorSpec)]) throws -> Promise<(any HybridNativeCNContactSpec)>

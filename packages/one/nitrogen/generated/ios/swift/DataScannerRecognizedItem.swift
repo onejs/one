@@ -38,17 +38,17 @@ public extension DataScannerRecognizedItem {
   var type: DataScannerItemType {
     return self.__type
   }
-
+  
   @inline(__always)
   var id: String {
     return String(self.__id)
   }
-
+  
   @inline(__always)
   var bounds: DataScannerBounds {
     return self.__bounds
   }
-
+  
   @inline(__always)
   var transcript: String? {
     return { () -> String? in
@@ -60,7 +60,7 @@ public extension DataScannerRecognizedItem {
       }
     }()
   }
-
+  
   @inline(__always)
   var payloadStringValue: String? {
     return { () -> String? in

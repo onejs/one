@@ -50,32 +50,32 @@ public extension MotionReading {
   var sensor: MotionSensor {
     return self.__sensor
   }
-
+  
   @inline(__always)
   var timestampMs: Double {
     return self.__timestampMs
   }
-
+  
   @inline(__always)
   var value: MotionVector {
     return self.__value
   }
-
+  
   @inline(__always)
   var gravity: MotionVector? {
     return self.__gravity.value
   }
-
+  
   @inline(__always)
   var userAcceleration: MotionVector? {
     return self.__userAcceleration.value
   }
-
+  
   @inline(__always)
   var rotationRate: MotionVector? {
     return self.__rotationRate.value
   }
-
+  
   @inline(__always)
   var attitude: MotionVector? {
     return self.__attitude.value

@@ -84,7 +84,7 @@ open class HybridOneMapServicesSpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOneMapServicesSpec_cxx {
   }
 
   // Properties
-
+  
 
   // Methods
   @inline(__always)
@@ -148,7 +148,7 @@ open class HybridOneMapServicesSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__vector_MapPlace____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func autocomplete(query: std.string, center: MapCoordinate, radiusMeters: Double) -> bridge.Result_std__shared_ptr_Promise_std__vector_MapSuggestion____ {
     do {
@@ -173,7 +173,7 @@ open class HybridOneMapServicesSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__vector_MapSuggestion____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func resolveSuggestion(id: std.string) -> bridge.Result_std__shared_ptr_Promise_MapPlace___ {
     do {
@@ -192,7 +192,7 @@ open class HybridOneMapServicesSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_MapPlace___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func directions(origin: MapCoordinate, destination: MapCoordinate, transport: Int32) -> bridge.Result_std__shared_ptr_Promise_MapRoute___ {
     do {

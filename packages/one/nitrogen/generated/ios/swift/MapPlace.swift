@@ -26,12 +26,12 @@ public extension MapPlace {
   var name: String {
     return String(self.__name)
   }
-
+  
   @inline(__always)
   var address: String {
     return String(self.__address)
   }
-
+  
   @inline(__always)
   var coordinate: MapCoordinate {
     return self.__coordinate

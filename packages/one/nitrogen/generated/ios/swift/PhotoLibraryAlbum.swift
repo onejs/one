@@ -26,7 +26,7 @@ public extension PhotoLibraryAlbum {
   var identifier: String {
     return String(self.__identifier)
   }
-
+  
   @inline(__always)
   var title: String {
     return String(self.__title)

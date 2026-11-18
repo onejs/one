@@ -45,7 +45,7 @@ public extension AudioPlayOptions {
       }
     }()
   }
-
+  
   @inline(__always)
   var positionMs: Double? {
     return { () -> Double? in

@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneAppTrackingSpec``
 public protocol HybridOneAppTrackingSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func getPermissionStatus() throws -> AppTrackingPermissionStatus

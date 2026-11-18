@@ -32,7 +32,7 @@ public extension PurchaseResult {
   var status: PurchaseStatus {
     return self.__status
   }
-
+  
   @inline(__always)
   var transaction: PurchaseTransaction? {
     return self.__transaction.value

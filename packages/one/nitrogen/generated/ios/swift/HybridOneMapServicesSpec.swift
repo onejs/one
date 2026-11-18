@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneMapServicesSpec``
 public protocol HybridOneMapServicesSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func search(query: String, center: MapCoordinate, radiusMeters: Double) throws -> Promise<[MapPlace]>

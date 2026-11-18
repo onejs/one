@@ -26,7 +26,7 @@ public extension DataScannerPoint {
   var x: Double {
     return self.__x
   }
-
+  
   @inline(__always)
   var y: Double {
     return self.__y

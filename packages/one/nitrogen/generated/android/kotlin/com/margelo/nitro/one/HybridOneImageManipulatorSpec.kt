@@ -27,7 +27,7 @@ import com.margelo.nitro.core.HybridObject
 )
 abstract class HybridOneImageManipulatorSpec: HybridObject() {
   // Properties
-
+  
 
   // Methods
   @DoNotStrip

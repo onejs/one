@@ -8,21 +8,21 @@
 import NitroModules
 
 /**
- * Wraps a Swift `(_ chunk: ArrayBuffer) -> Void` as a class.
+ * Wraps a Swift `(_ value: ArrayBuffer) -> Void` as a class.
  * This class can be used from C++, e.g. to wrap the Swift closure as a `std::function`.
  */
 public final class Func_void_std__shared_ptr_ArrayBuffer_ {
   public typealias bridge = margelo.nitro.one.bridge.swift
 
-  private let closure: (_ chunk: ArrayBuffer) -> Void
+  private let closure: (_ value: ArrayBuffer) -> Void
 
-  public init(_ closure: @escaping (_ chunk: ArrayBuffer) -> Void) {
+  public init(_ closure: @escaping (_ value: ArrayBuffer) -> Void) {
     self.closure = closure
   }
 
   @inline(__always)
-  public func call(chunk: ArrayBuffer) -> Void {
-    self.closure(chunk)
+  public func call(value: ArrayBuffer) -> Void {
+    self.closure(value)
   }
 
   /**

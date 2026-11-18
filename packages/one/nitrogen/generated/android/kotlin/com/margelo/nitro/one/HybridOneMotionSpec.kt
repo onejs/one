@@ -26,15 +26,15 @@ import com.margelo.nitro.core.HybridObject
 )
 abstract class HybridOneMotionSpec: HybridObject() {
   // Properties
-
+  
 
   // Methods
   @DoNotStrip
   @Keep
   abstract fun getAvailability(): MotionAvailability
-
+  
   abstract fun addListener(sensor: MotionSensor, intervalMs: Double, onReading: (reading: MotionReading) -> Unit, onError: (code: String, message: String) -> Unit): () -> Unit
-
+  
   @DoNotStrip
   @Keep
   private fun addListener_cxx(sensor: MotionSensor, intervalMs: Double, onReading: Func_void_MotionReading, onError: Func_void_std__string_std__string): Func_void {

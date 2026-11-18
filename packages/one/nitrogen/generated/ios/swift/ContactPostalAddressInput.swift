@@ -87,7 +87,7 @@ public extension ContactPostalAddressInput {
       }
     }()
   }
-
+  
   @inline(__always)
   var street: String? {
     return { () -> String? in
@@ -99,7 +99,7 @@ public extension ContactPostalAddressInput {
       }
     }()
   }
-
+  
   @inline(__always)
   var subLocality: String? {
     return { () -> String? in
@@ -111,7 +111,7 @@ public extension ContactPostalAddressInput {
       }
     }()
   }
-
+  
   @inline(__always)
   var city: String? {
     return { () -> String? in
@@ -123,7 +123,7 @@ public extension ContactPostalAddressInput {
       }
     }()
   }
-
+  
   @inline(__always)
   var subAdministrativeArea: String? {
     return { () -> String? in
@@ -135,7 +135,7 @@ public extension ContactPostalAddressInput {
       }
     }()
   }
-
+  
   @inline(__always)
   var state: String? {
     return { () -> String? in
@@ -147,7 +147,7 @@ public extension ContactPostalAddressInput {
       }
     }()
   }
-
+  
   @inline(__always)
   var postalCode: String? {
     return { () -> String? in
@@ -159,7 +159,7 @@ public extension ContactPostalAddressInput {
       }
     }()
   }
-
+  
   @inline(__always)
   var country: String? {
     return { () -> String? in
@@ -171,7 +171,7 @@ public extension ContactPostalAddressInput {
       }
     }()
   }
-
+  
   @inline(__always)
   var isoCountryCode: String? {
     return { () -> String? in

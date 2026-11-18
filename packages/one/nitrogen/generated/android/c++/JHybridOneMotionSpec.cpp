@@ -62,7 +62,7 @@ namespace margelo::nitro::one {
   }
 
   // Properties
-
+  
 
   // Methods
   MotionAvailability JHybridOneMotionSpec::getAvailability() {

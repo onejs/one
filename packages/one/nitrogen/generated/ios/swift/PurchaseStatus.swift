@@ -17,10 +17,10 @@ public extension PurchaseStatus {
    */
   init?(fromString string: String) {
     switch string {
-      case "purchased":
-        self = .purchased
       case "cancelled":
         self = .cancelled
+      case "purchased":
+        self = .purchased
       case "pending":
         self = .pending
       default:
@@ -33,10 +33,10 @@ public extension PurchaseStatus {
    */
   var stringValue: String {
     switch self {
-      case .purchased:
-        return "purchased"
       case .cancelled:
         return "cancelled"
+      case .purchased:
+        return "purchased"
       case .pending:
         return "pending"
     }

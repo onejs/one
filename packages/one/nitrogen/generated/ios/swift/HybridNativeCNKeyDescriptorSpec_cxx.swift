@@ -84,7 +84,7 @@ open class HybridNativeCNKeyDescriptorSpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -129,5 +129,5 @@ open class HybridNativeCNKeyDescriptorSpec_cxx {
   }
 
   // Methods
-
+  
 }

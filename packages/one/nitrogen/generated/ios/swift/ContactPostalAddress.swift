@@ -26,42 +26,42 @@ public extension ContactPostalAddress {
   var label: String {
     return String(self.__label)
   }
-
+  
   @inline(__always)
   var street: String {
     return String(self.__street)
   }
-
+  
   @inline(__always)
   var subLocality: String {
     return String(self.__subLocality)
   }
-
+  
   @inline(__always)
   var city: String {
     return String(self.__city)
   }
-
+  
   @inline(__always)
   var subAdministrativeArea: String {
     return String(self.__subAdministrativeArea)
   }
-
+  
   @inline(__always)
   var state: String {
     return String(self.__state)
   }
-
+  
   @inline(__always)
   var postalCode: String {
     return String(self.__postalCode)
   }
-
+  
   @inline(__always)
   var country: String {
     return String(self.__country)
   }
-
+  
   @inline(__always)
   var isoCountryCode: String {
     return String(self.__isoCountryCode)

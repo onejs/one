@@ -32,27 +32,27 @@ public extension PurchaseProduct {
   var id: String {
     return String(self.__id)
   }
-
+  
   @inline(__always)
   var type: PurchaseProductType {
     return self.__type
   }
-
+  
   @inline(__always)
   var displayName: String {
     return String(self.__displayName)
   }
-
+  
   @inline(__always)
   var description: String {
     return String(self.__description)
   }
-
+  
   @inline(__always)
   var displayPrice: String {
     return String(self.__displayPrice)
   }
-
+  
   @inline(__always)
   var currencyCode: String? {
     return { () -> String? in

@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOnePurchasesSpec``
 public protocol HybridOnePurchasesSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func getProducts(productIds: [String]) throws -> Promise<[PurchaseProduct]>

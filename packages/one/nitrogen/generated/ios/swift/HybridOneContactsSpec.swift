@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneContactsSpec``
 public protocol HybridOneContactsSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func getPermissionStatus() throws -> ContactsPermissionStatus

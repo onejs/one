@@ -26,7 +26,7 @@ public extension MapRouteStep {
   var instructions: String {
     return String(self.__instructions)
   }
-
+  
   @inline(__always)
   var distanceMeters: Double {
     return self.__distanceMeters

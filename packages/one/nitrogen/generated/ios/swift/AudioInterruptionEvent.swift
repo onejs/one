@@ -26,7 +26,7 @@ public extension AudioInterruptionEvent {
   var type: AudioInterruptionType {
     return self.__type
   }
-
+  
   @inline(__always)
   var shouldResume: Bool {
     return self.__shouldResume

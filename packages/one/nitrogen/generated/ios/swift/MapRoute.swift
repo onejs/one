@@ -38,17 +38,17 @@ public extension MapRoute {
   var distanceMeters: Double {
     return self.__distanceMeters
   }
-
+  
   @inline(__always)
   var expectedTravelTimeSeconds: Double {
     return self.__expectedTravelTimeSeconds
   }
-
+  
   @inline(__always)
   var polyline: [MapCoordinate] {
     return self.__polyline.map({ __item in __item })
   }
-
+  
   @inline(__always)
   var steps: [MapRouteStep] {
     return self.__steps.map({ __item in __item })

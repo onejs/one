@@ -26,12 +26,12 @@ public extension BackgroundTaskInvocation {
   var executionId: String {
     return String(self.__executionId)
   }
-
+  
   @inline(__always)
   var identifier: String {
     return String(self.__identifier)
   }
-
+  
   @inline(__always)
   var kind: BackgroundTaskKind {
     return self.__kind

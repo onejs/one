@@ -44,7 +44,7 @@ public extension AudioNowPlayingInfo {
   var title: String {
     return String(self.__title)
   }
-
+  
   @inline(__always)
   var artist: String? {
     return { () -> String? in
@@ -56,7 +56,7 @@ public extension AudioNowPlayingInfo {
       }
     }()
   }
-
+  
   @inline(__always)
   var albumTitle: String? {
     return { () -> String? in
@@ -68,7 +68,7 @@ public extension AudioNowPlayingInfo {
       }
     }()
   }
-
+  
   @inline(__always)
   var artworkUri: String? {
     return { () -> String? in

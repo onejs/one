@@ -84,7 +84,7 @@ open class HybridNativeCNContactSpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -140,7 +140,7 @@ open class HybridNativeCNContactSpec_cxx {
       return bridge.create_Result_std__string_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func isKeyAvailable(key: std.string) -> bridge.Result_bool_ {
     do {
@@ -152,7 +152,7 @@ open class HybridNativeCNContactSpec_cxx {
       return bridge.create_Result_bool_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func mutableCopy() -> bridge.Result_std__shared_ptr_HybridNativeCNContactSpec__ {
     do {
@@ -167,7 +167,7 @@ open class HybridNativeCNContactSpec_cxx {
       return bridge.create_Result_std__shared_ptr_HybridNativeCNContactSpec__(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func setName(key: Int32, value: std.string) -> bridge.Result_void_ {
     do {

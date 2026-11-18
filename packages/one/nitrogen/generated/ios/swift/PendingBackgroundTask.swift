@@ -32,12 +32,12 @@ public extension PendingBackgroundTask {
   var identifier: String {
     return String(self.__identifier)
   }
-
+  
   @inline(__always)
   var kind: BackgroundTaskKind {
     return self.__kind
   }
-
+  
   @inline(__always)
   var earliestBeginDateMs: Double? {
     return { () -> Double? in
@@ -49,12 +49,12 @@ public extension PendingBackgroundTask {
       }
     }()
   }
-
+  
   @inline(__always)
   var requiresNetworkConnectivity: Bool {
     return self.__requiresNetworkConnectivity
   }
-
+  
   @inline(__always)
   var requiresExternalPower: Bool {
     return self.__requiresExternalPower

@@ -68,7 +68,7 @@ namespace margelo::nitro::one {
 
   public:
     // Methods
-
+    
 
   private:
     One::HybridNativeCNKeyDescriptorSpec_cxx _swiftPart;

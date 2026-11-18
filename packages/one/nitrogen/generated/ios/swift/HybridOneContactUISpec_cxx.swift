@@ -84,7 +84,7 @@ open class HybridOneContactUISpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -130,7 +130,7 @@ open class HybridOneContactUISpec_cxx {
       }()
     }
   }
-
+  
   public final var displayedPropertyKeys: bridge.std__optional_std__vector_std__string__ {
     @inline(__always)
     get {
@@ -160,7 +160,7 @@ open class HybridOneContactUISpec_cxx {
       }()
     }
   }
-
+  
   public final var alternateName: bridge.std__optional_std__string_ {
     @inline(__always)
     get {
@@ -184,7 +184,7 @@ open class HybridOneContactUISpec_cxx {
       }()
     }
   }
-
+  
   public final var message: bridge.std__optional_std__string_ {
     @inline(__always)
     get {
@@ -208,7 +208,7 @@ open class HybridOneContactUISpec_cxx {
       }()
     }
   }
-
+  
   public final var allowsEditing: Bool {
     @inline(__always)
     get {
@@ -219,7 +219,7 @@ open class HybridOneContactUISpec_cxx {
       self.__implementation.allowsEditing = newValue
     }
   }
-
+  
   public final var allowsActions: Bool {
     @inline(__always)
     get {
@@ -230,7 +230,7 @@ open class HybridOneContactUISpec_cxx {
       self.__implementation.allowsActions = newValue
     }
   }
-
+  
   public final var shouldShowLinkedContacts: Bool {
     @inline(__always)
     get {
@@ -257,7 +257,7 @@ open class HybridOneContactUISpec_cxx {
       return bridge.create_Result_std__shared_ptr_HybridNativeCNKeyDescriptorSpec__(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func configure(mode: Int32, contact: bridge.std__optional_std__shared_ptr_HybridNativeCNContactSpec__) -> bridge.Result_void_ {
     do {
@@ -279,7 +279,7 @@ open class HybridOneContactUISpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func getContactStore() -> bridge.Result_std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec___ {
     do {
@@ -300,7 +300,7 @@ open class HybridOneContactUISpec_cxx {
       return bridge.create_Result_std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func setContactStore(store: bridge.std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec__) -> bridge.Result_void_ {
     do {
@@ -322,7 +322,7 @@ open class HybridOneContactUISpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func highlightProperty(withKey: std.string, identifier: bridge.std__optional_std__string_) -> bridge.Result_void_ {
     do {
@@ -340,7 +340,7 @@ open class HybridOneContactUISpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func present(animated: Bool, didComplete: bridge.Func_void_std__optional_std__shared_ptr_HybridNativeCNContactSpec__) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -373,7 +373,7 @@ open class HybridOneContactUISpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func dismiss(animated: Bool) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {

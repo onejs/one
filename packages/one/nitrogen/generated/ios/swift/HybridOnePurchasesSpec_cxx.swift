@@ -84,7 +84,7 @@ open class HybridOnePurchasesSpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOnePurchasesSpec_cxx {
   }
 
   // Properties
-
+  
 
   // Methods
   @inline(__always)
@@ -148,7 +148,7 @@ open class HybridOnePurchasesSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__vector_PurchaseProduct____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func purchase(productId: std.string, appAccountToken: bridge.std__optional_std__string_) -> bridge.Result_std__shared_ptr_Promise_PurchaseResult___ {
     do {
@@ -174,7 +174,7 @@ open class HybridOnePurchasesSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_PurchaseResult___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func getCurrentEntitlements() -> bridge.Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____ {
     do {
@@ -199,7 +199,7 @@ open class HybridOnePurchasesSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func getUnfinishedTransactions() -> bridge.Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____ {
     do {
@@ -224,7 +224,7 @@ open class HybridOnePurchasesSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func finishTransaction(transactionId: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -243,7 +243,7 @@ open class HybridOnePurchasesSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func addTransactionListener(onUpdate: bridge.Func_void_PurchaseUpdate) -> bridge.Result_std__function_void____ {
     do {
@@ -263,7 +263,7 @@ open class HybridOnePurchasesSpec_cxx {
       return bridge.create_Result_std__function_void____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func sync() -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {

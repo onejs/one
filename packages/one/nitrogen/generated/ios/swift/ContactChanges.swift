@@ -117,7 +117,7 @@ public extension ContactChanges {
       }
     }()
   }
-
+  
   @inline(__always)
   var postalAddresses: [ContactPostalAddressInput]? {
     return { () -> [ContactPostalAddressInput]? in

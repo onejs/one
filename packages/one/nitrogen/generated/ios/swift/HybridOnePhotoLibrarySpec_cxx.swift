@@ -84,7 +84,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
   }
 
   // Properties
-
+  
 
   // Methods
   @inline(__always)
@@ -135,7 +135,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_PhotoLibraryPermissionStatus_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func requestAddPermission() -> bridge.Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___ {
     do {
@@ -154,7 +154,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func getReadPermissionStatus() -> bridge.Result_PhotoLibraryPermissionStatus_ {
     do {
@@ -166,7 +166,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_PhotoLibraryPermissionStatus_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func requestReadPermission() -> bridge.Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___ {
     do {
@@ -185,7 +185,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func presentLimitedLibraryPicker() -> bridge.Result_std__shared_ptr_Promise_std__vector_std__string____ {
     do {
@@ -210,7 +210,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__vector_std__string____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func listAssets(offset: Double, limit: Double) -> bridge.Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___ {
     do {
@@ -229,7 +229,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func getAsset(identifier: std.string) -> bridge.Result_std__shared_ptr_Promise_PhotoLibraryAsset___ {
     do {
@@ -248,7 +248,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryAsset___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func listAlbums(offset: Double, limit: Double) -> bridge.Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___ {
     do {
@@ -267,7 +267,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func getAlbum(identifier: std.string) -> bridge.Result_std__shared_ptr_Promise_PhotoLibraryAlbum___ {
     do {
@@ -286,7 +286,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryAlbum___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func createAlbum(title: std.string) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {
@@ -305,7 +305,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func renameAlbum(identifier: std.string, title: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -324,7 +324,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func listAlbumAssets(identifier: std.string, offset: Double, limit: Double) -> bridge.Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___ {
     do {
@@ -343,7 +343,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func addAssetToAlbum(albumIdentifier: std.string, assetIdentifier: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -362,7 +362,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func removeAssetFromAlbum(albumIdentifier: std.string, assetIdentifier: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -381,7 +381,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func deleteAlbum(identifier: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -400,7 +400,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func setFavorite(identifier: std.string, favorite: Bool) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -419,7 +419,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func deleteAsset(identifier: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -438,7 +438,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func replaceImageContent(identifier: std.string, uri: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -457,7 +457,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func replaceVideoContent(identifier: std.string, uri: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -476,7 +476,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func revertAssetContent(identifier: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -495,7 +495,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func exportOriginalAsset(identifier: std.string, allowNetwork: Bool) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {
@@ -514,7 +514,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func exportCurrentImage(identifier: std.string, allowNetwork: Bool) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {
@@ -533,7 +533,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func exportCurrentVideo(identifier: std.string, allowNetwork: Bool) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {
@@ -552,7 +552,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func saveImage(uri: std.string) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {
@@ -571,7 +571,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func saveVideo(uri: std.string) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {

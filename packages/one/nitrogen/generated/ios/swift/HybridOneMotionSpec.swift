@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneMotionSpec``
 public protocol HybridOneMotionSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func getAvailability() throws -> MotionAvailability

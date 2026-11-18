@@ -84,7 +84,7 @@ open class HybridOneAppIntentsSpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOneAppIntentsSpec_cxx {
   }
 
   // Properties
-
+  
 
   // Methods
   @inline(__always)
@@ -143,7 +143,7 @@ open class HybridOneAppIntentsSpec_cxx {
       return bridge.create_Result_std__function_void____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func claimPending(identifier: std.string) -> bridge.Result_std__vector_AppIntentInvocation__ {
     do {
@@ -161,7 +161,7 @@ open class HybridOneAppIntentsSpec_cxx {
       return bridge.create_Result_std__vector_AppIntentInvocation__(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func complete(executionId: std.string, success: Bool, output: std.string) -> bridge.Result_void_ {
     do {

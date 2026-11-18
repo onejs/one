@@ -32,27 +32,27 @@ public extension PhotoLibraryAsset {
   var identifier: String {
     return String(self.__identifier)
   }
-
+  
   @inline(__always)
   var mediaType: PhotoLibraryMediaType {
     return self.__mediaType
   }
-
+  
   @inline(__always)
   var width: Double {
     return self.__width
   }
-
+  
   @inline(__always)
   var height: Double {
     return self.__height
   }
-
+  
   @inline(__always)
   var durationMs: Double {
     return self.__durationMs
   }
-
+  
   @inline(__always)
   var creationDateMs: Double? {
     return { () -> Double? in
@@ -64,12 +64,12 @@ public extension PhotoLibraryAsset {
       }
     }()
   }
-
+  
   @inline(__always)
   var isFavorite: Bool {
     return self.__isFavorite
   }
-
+  
   @inline(__always)
   var isLivePhoto: Bool {
     return self.__isLivePhoto

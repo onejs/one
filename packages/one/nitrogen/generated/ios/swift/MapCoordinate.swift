@@ -26,7 +26,7 @@ public extension MapCoordinate {
   var latitude: Double {
     return self.__latitude
   }
-
+  
   @inline(__always)
   var longitude: Double {
     return self.__longitude

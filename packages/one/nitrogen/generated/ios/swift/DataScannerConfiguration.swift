@@ -32,32 +32,32 @@ public extension DataScannerConfiguration {
   var recognizedDataTypes: [DataScannerRecognizedDataType] {
     return self.__recognizedDataTypes.map({ __item in __item })
   }
-
+  
   @inline(__always)
   var qualityLevel: DataScannerQualityLevel {
     return self.__qualityLevel
   }
-
+  
   @inline(__always)
   var recognizesMultipleItems: Bool {
     return self.__recognizesMultipleItems
   }
-
+  
   @inline(__always)
   var isHighFrameRateTrackingEnabled: Bool {
     return self.__isHighFrameRateTrackingEnabled
   }
-
+  
   @inline(__always)
   var isPinchToZoomEnabled: Bool {
     return self.__isPinchToZoomEnabled
   }
-
+  
   @inline(__always)
   var isGuidanceEnabled: Bool {
     return self.__isGuidanceEnabled
   }
-
+  
   @inline(__always)
   var isHighlightingEnabled: Bool {
     return self.__isHighlightingEnabled
