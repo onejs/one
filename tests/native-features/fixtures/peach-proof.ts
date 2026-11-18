@@ -488,6 +488,7 @@ export const peachProof: Record<string, string[]> = {
   usePreventScreenCapture: ['OneNativeHooksLibraryCase'],
   useReservedRegions: ['OneNativeAdaptiveLibraryCase', 'OneReservedRegionMotionCase'],
   useReservedRegionsReady: ['OneNativeAdaptiveLibraryCase'],
+  useSafeAreaCornerRadius: ['OneNativeSafeAreaInsetsLibraryCase'],
   useSafeAreaFrame: ['OneNativeSafeAreaInsetsLibraryCase'],
   useSafeAreaInsets: ['OneNativeSafeAreaInsetsLibraryCase'],
   useSizeClass: ['OneNativeAdaptiveLibraryCase'],

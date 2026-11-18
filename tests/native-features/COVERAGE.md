@@ -330,3 +330,4 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `useLocales` | device | device | OneNativeHooksLibraryCase |  |
 | `useSafeAreaInsets` | safe-area, navigation-split-view | safe-area | OneNativeSafeAreaInsetsLibraryCase |  |
 | `useSafeAreaFrame` | safe-area, navigation-split-view | safe-area | OneNativeSafeAreaInsetsLibraryCase |  |
+| `useSafeAreaCornerRadius` | safe-area | safe-area | OneNativeSafeAreaInsetsLibraryCase |  |
