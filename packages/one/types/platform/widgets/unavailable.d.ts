@@ -12,7 +12,7 @@ export declare const Widgets: Readonly<{
 export declare const LiveActivities: Readonly<{
     contentState: typeof activityContentState;
     start(_title: string, _state: LiveActivityState, _push?: boolean): Promise<string>;
-    startView(_title: string, _view: ActivityView, _push?: boolean): Promise<string>;
+    startView(_title: string, _view: ActivityView, _push?: boolean, _url?: string): Promise<string>;
     update(_id: string, _state: LiveActivityState): Promise<void>;
     updateView(_id: string, _view: ActivityView): Promise<void>;
     end(_id: string): Promise<void>;

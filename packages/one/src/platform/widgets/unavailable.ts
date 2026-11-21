@@ -32,7 +32,12 @@ export const LiveActivities = Object.freeze({
   start(_title: string, _state: LiveActivityState, _push = false): Promise<string> {
     return Promise.reject(missingNativeBuild('LiveActivities.start'))
   },
-  startView(_title: string, _view: ActivityView, _push = false): Promise<string> {
+  startView(
+    _title: string,
+    _view: ActivityView,
+    _push = false,
+    _url?: string
+  ): Promise<string> {
     return Promise.reject(missingNativeBuild('LiveActivities.startView'))
   },
   update(_id: string, _state: LiveActivityState): Promise<void> {

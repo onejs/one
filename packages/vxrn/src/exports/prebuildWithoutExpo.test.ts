@@ -2450,6 +2450,7 @@ describe('ios widgets', () => {
       )
       const rendered = readFileSync(join(ios, 'OneWidgets', 'OneWidget.swift'), 'utf8')
       expect(rendered).toContain('ActivityConfiguration(for: OneWidgetContract.Attributes.self)')
+      expect(rendered.match(/\.widgetURL\(context\.attributes\.url\)/g)).toHaveLength(2)
       expect(rendered).toContain('OneLiveActivity()')
       expect(rendered).not.toContain('StaticConfiguration(')
       expect(rendered).not.toContain('OneWidget()')

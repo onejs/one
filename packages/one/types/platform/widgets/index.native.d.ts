@@ -29,7 +29,7 @@ declare const nativeWidgets: Readonly<{
 declare const nativeLiveActivities: Readonly<{
     contentState: typeof activityContentState;
     start(title: string, state: LiveActivityState, push?: boolean): Promise<string>;
-    startView(title: string, view: ActivityView, push?: boolean): Promise<string>;
+    startView(title: string, view: ActivityView, push?: boolean, url?: string): Promise<string>;
     update(id: string, state: LiveActivityState): Promise<void>;
     updateView(id: string, view: ActivityView): Promise<void>;
     end(id: string): Promise<void>;

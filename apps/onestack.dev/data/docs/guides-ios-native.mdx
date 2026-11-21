@@ -391,6 +391,11 @@ The activity view also accepts `expandedLeading`, `expandedTrailing`, and
 `expandedBottom` for the expanded Dynamic Island. The compact slots and
 `minimal` cover its other presentations.
 
+Pass an absolute URL as the fourth argument to `startView(title, view, push, url)`
+to open that destination when the Live Activity is tapped. The URL applies to
+the Lock Screen and Dynamic Island and requires a new iOS build. A `WidgetUI.Link`
+inside the layout can open its own destination.
+
 To update the same JSX layout through APNs, call
 `One.LiveActivities.contentState(view)` on your server and use the returned
 object as `aps["content-state"]`. It uses the same regions and size limit as

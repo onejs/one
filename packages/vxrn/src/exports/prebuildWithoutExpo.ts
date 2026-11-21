@@ -1057,6 +1057,7 @@ enum OneWidgetContract {
       }
     }
     let title: String
+    let url: URL?
   }
 }
 `
@@ -1300,6 +1301,7 @@ struct OneLiveActivity: Widget {
       }
       .padding()
       .activityBackgroundTint(.blue.opacity(0.2))
+      .widgetURL(context.attributes.url)
     } dynamicIsland: { context in
       DynamicIsland {
         DynamicIslandExpandedRegion(.leading) {
@@ -1342,6 +1344,7 @@ struct OneLiveActivity: Widget {
           Text(context.state.value)
         }
       }
+      .widgetURL(context.attributes.url)
     }
   }
 }
@@ -1364,6 +1367,7 @@ RCT_EXTERN_METHOD(writeWidget:(NSString *)title value:(NSString *)value subtitle
 RCT_EXTERN_METHOD(writeView:(NSString *)layout resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(start:(NSString *)title status:(NSString *)status value:(NSString *)value push:(BOOL)push resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(startView:(NSString *)title layout:(NSString *)layout push:(BOOL)push resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(startViewWithURL:(NSString *)title layout:(NSString *)layout push:(BOOL)push url:(NSString *)url resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(update:(NSString *)identifier status:(NSString *)status value:(NSString *)value resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(updateView:(NSString *)identifier layout:(NSString *)layout resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(end:(NSString *)identifier resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
@@ -1539,7 +1543,7 @@ class OneWidgetsBridge: RCTEventEmitter {
     }
     do {
       let activity = try Activity<OneWidgetContract.Attributes>.request(
-        attributes: .init(title: title),
+        attributes: .init(title: title, url: nil),
         content: .init(state: .init(status: status, value: value, layout: nil), staleDate: nil),
         pushType: push ? .token : nil
       )
@@ -1553,6 +1557,21 @@ class OneWidgetsBridge: RCTEventEmitter {
   @objc(startView:layout:push:resolver:rejecter:)
   func startView(_ title: String, layout: String, push: Bool,
                  resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
+    requestActivityView(title, layout: layout, push: push, url: nil, resolver: resolve, rejecter: reject)
+  }
+
+  @objc(startViewWithURL:layout:push:url:resolver:rejecter:)
+  func startViewWithURL(_ title: String, layout: String, push: Bool, url: String,
+                        resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
+    guard let destination = URL(string: url), destination.scheme != nil else {
+      reject("activity_url", "A Live Activity URL requires a scheme", nil)
+      return
+    }
+    requestActivityView(title, layout: layout, push: push, url: destination, resolver: resolve, rejecter: reject)
+  }
+
+  private func requestActivityView(_ title: String, layout: String, push: Bool, url: URL?,
+                                   resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
     guard ActivityAuthorizationInfo().areActivitiesEnabled else {
       reject("activities_disabled", "Live Activities are disabled", nil)
       return
@@ -1560,7 +1579,7 @@ class OneWidgetsBridge: RCTEventEmitter {
     do {
       let view = try OneActivityView.decode(layout)
       let activity = try Activity<OneWidgetContract.Attributes>.request(
-        attributes: .init(title: title),
+        attributes: .init(title: title, url: url),
         content: .init(state: .init(status: "", value: "", layout: view), staleDate: nil),
         pushType: push ? .token : nil
       )
