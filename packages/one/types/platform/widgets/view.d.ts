@@ -62,7 +62,28 @@ export type ActivityView = {
     expandedTrailing?: ReactNode;
     expandedBottom?: ReactNode;
 };
+type Node = {
+    type: string;
+    text?: string;
+    style?: WidgetStyle;
+    children?: Node[];
+    systemName?: string;
+    value?: number | string;
+    total?: number;
+    fill?: string;
+    cornerRadius?: number;
+    url?: string;
+    action?: string;
+};
+export type ActivityContentState = {
+    status: string;
+    value: string;
+    layout: Record<keyof ActivityView, Node | null> & {
+        lockScreen: Node;
+    };
+};
 export declare function encodeWidgetView(view: ReactNode): string;
 export declare function encodeActivityView(view: ActivityView): string;
+export declare function activityContentState(view: ActivityView): ActivityContentState;
 export {};
 //# sourceMappingURL=view.d.ts.map
