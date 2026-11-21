@@ -261,12 +261,12 @@ export function encodeWidgetView(view: ReactNode): string {
   return JSON.stringify(root)
 }
 
-function activityViewPayload(view: ActivityView) {
+export function encodeActivityView(view: ActivityView): string {
   const lockScreen = node(view.lockScreen)
   if (!lockScreen) {
     throw new Error('Live Activity JSX needs a lockScreen layout')
   }
-  const layout = {
+  const encoded = JSON.stringify({
     lockScreen,
     compactLeading: view.compactLeading == null ? null : node(view.compactLeading),
     compactTrailing: view.compactTrailing == null ? null : node(view.compactTrailing),
@@ -274,18 +274,13 @@ function activityViewPayload(view: ActivityView) {
     expandedLeading: view.expandedLeading == null ? null : node(view.expandedLeading),
     expandedTrailing: view.expandedTrailing == null ? null : node(view.expandedTrailing),
     expandedBottom: view.expandedBottom == null ? null : node(view.expandedBottom),
-  }
-  const encoded = JSON.stringify(layout)
+  })
   if (new TextEncoder().encode(encoded).length > 3500) {
     throw new Error('Live Activity JSX must fit within 3500 UTF-8 bytes')
   }
-  return { layout, encoded }
-}
-
-export function encodeActivityView(view: ActivityView): string {
-  return activityViewPayload(view).encoded
+  return encoded
 }
 
 export function activityContentState(view: ActivityView): ActivityContentState {
-  return { status: '', value: '', layout: activityViewPayload(view).layout }
+  return { status: '', value: '', layout: JSON.parse(encodeActivityView(view)) }
 }

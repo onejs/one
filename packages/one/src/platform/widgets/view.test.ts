@@ -30,9 +30,14 @@ describe('WidgetUI payload', () => {
 
   test('encodes the ActivityKit layout slots and rejects unsupported views', () => {
     const text = createElement(WidgetUI.Text, null, 'Ready')
-    const view = { lockScreen: text, compactTrailing: text, expandedBottom: text }
+    const style = { lineLimit: 1 }
+    const view = {
+      lockScreen: createElement(WidgetUI.Text, { style }, 'Ready'),
+      compactTrailing: text,
+      expandedBottom: text,
+    }
     const layout = {
-      lockScreen: { type: 'text', text: 'Ready' },
+      lockScreen: { type: 'text', text: 'Ready', style: { lineLimit: 1 } },
       compactLeading: null,
       compactTrailing: { type: 'text', text: 'Ready' },
       minimal: null,
@@ -41,7 +46,9 @@ describe('WidgetUI payload', () => {
       expandedBottom: { type: 'text', text: 'Ready' },
     }
     expect(JSON.parse(encodeActivityView(view))).toEqual(layout)
-    expect(JSON.parse(JSON.stringify(One.LiveActivities.contentState(view)))).toEqual({
+    const contentState = One.LiveActivities.contentState(view)
+    style.lineLimit = 1.5
+    expect(JSON.parse(JSON.stringify(contentState))).toEqual({
       status: '',
       value: '',
       layout,
