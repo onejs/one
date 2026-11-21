@@ -42,7 +42,9 @@ class OneNativeSafeAreaModule(reactContext: ReactApplicationContext) :
                         "y" to 0.0,
                         "width" to width,
                         "height" to height
-                    )
+                    ),
+                "cornerRadius" to
+                    OneNativeSafeAreaInsets.concentricCornerRadiusPx(root, 0, 0) / density
             )
         return mapOf("initialWindowMetrics" to metrics)
     }

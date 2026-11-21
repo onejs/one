@@ -93,7 +93,7 @@ private final class PickerModel: ObservableObject {
   private func updateHost() {
     guard compositionParent == nil else { return }
     propagateActive(false)
-    guard window != nil else { controller?.detach(); return }
+    guard window != nil else { controller?.hostLeftWindow(self); return }
     if controller == nil {
       bindCallbacks()
       controller = OneNativeHostingController(rootView: OneNativeMeasuredStandalone(content: PickerContent(model: model, content: content), onHeight: { [weak self] height in self?.onHeight?(height) }))

@@ -1,5 +1,12 @@
 import { execFileSync } from 'node:child_process'
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs'
 import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
@@ -86,9 +93,22 @@ export function assertLinkSet(
   )
 }
 
+function resolveEntryFile(root: string): string {
+  const defaultEntry = join(root, 'index.js')
+  if (existsSync(defaultEntry)) return defaultEntry
+  const appRequire = createRequire(join(root, 'package.json'))
+  try {
+    const expoRequire = createRequire(appRequire.resolve('expo/package.json'))
+    const { resolveEntryPoint } = expoRequire('@expo/config/paths')
+    return resolveEntryPoint(root, { platform: 'ios' })
+  } catch {
+    return defaultEntry
+  }
+}
+
 // builds the production native bundle the way the xcode bundle phase does and
 // records which groups its module graph uses.
-export function writeIosLinkSet(root: string, entryFile = join(root, 'index.js')) {
+export function writeIosLinkSet(root: string, entryFile = resolveEntryFile(root)) {
   const cli = createRequire(join(root, 'package.json')).resolve(
     createRequire(
       createRequire(join(root, 'package.json')).resolve('vxrn/package.json')
@@ -129,10 +149,9 @@ export function writeIosLinkSet(root: string, entryFile = join(root, 'index.js')
         '[one] the bundler produced no link set report, so a release build links every iOS feature group'
       )
     }
-    writeFileSync(
-      join(root, IOS_LINK_SET_FILE),
-      JSON.stringify(selection, null, 2) + '\n'
-    )
+    const linkSetPath = join(root, IOS_LINK_SET_FILE)
+    mkdirSync(dirname(linkSetPath), { recursive: true })
+    writeFileSync(linkSetPath, JSON.stringify(selection, null, 2) + '\n')
     return selection
   } finally {
     rmSync(out, { recursive: true, force: true })

@@ -1,6 +1,11 @@
 import { NativeEventEmitter, NativeModules, Platform } from 'react-native'
 import type { ReactNode } from 'react'
-import { encodeActivityView, encodeWidgetView, type ActivityView } from './view'
+import {
+  activityContentState,
+  encodeActivityView,
+  encodeWidgetView,
+  type ActivityView,
+} from './view'
 import { LiveActivities as unavailableLiveActivities } from './unavailable'
 
 export { WidgetUI, type WidgetStyle, type ActivityView } from './view'
@@ -20,6 +25,12 @@ interface WidgetsBridge {
   writeView(layout: string): Promise<void>
   start(title: string, status: string, value: string, push: boolean): Promise<string>
   startView(title: string, layout: string, push: boolean): Promise<string>
+  startViewWithURL(
+    title: string,
+    layout: string,
+    push: boolean,
+    url: string
+  ): Promise<string>
   update(id: string, status: string, value: string): Promise<void>
   updateView(id: string, layout: string): Promise<void>
   end(id: string): Promise<void>
@@ -56,11 +67,21 @@ const nativeWidgets = Object.freeze({
 })
 
 const nativeLiveActivities = Object.freeze({
+  contentState: activityContentState,
   start(title: string, state: LiveActivityState, push = false): Promise<string> {
     return bridge().start(title, state.status, state.value, push)
   },
-  startView(title: string, view: ActivityView, push = false): Promise<string> {
-    return bridge().startView(title, encodeActivityView(view), push)
+  startView(
+    title: string,
+    view: ActivityView,
+    push = false,
+    url?: string
+  ): Promise<string> {
+    const native = bridge()
+    const layout = encodeActivityView(view)
+    return url === undefined
+      ? native.startView(title, layout, push)
+      : native.startViewWithURL(title, layout, push, url)
   },
   update(id: string, state: LiveActivityState): Promise<void> {
     return bridge().update(id, state.status, state.value)

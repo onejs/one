@@ -820,6 +820,9 @@
           },
           "frameHeight": {
             "type": "Double"
+          },
+          "cornerRadius": {
+            "type": "Double"
           }
         }
       },

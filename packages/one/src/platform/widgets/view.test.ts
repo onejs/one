@@ -1,5 +1,6 @@
 import { createElement } from 'react'
 import { describe, expect, test } from 'vitest'
+import { One } from '../../one'
 import { WidgetUI, encodeActivityView, encodeWidgetView } from './view'
 
 describe('WidgetUI payload', () => {
@@ -29,29 +30,35 @@ describe('WidgetUI payload', () => {
 
   test('encodes the ActivityKit layout slots and rejects unsupported views', () => {
     const text = createElement(WidgetUI.Text, null, 'Ready')
-    expect(
-      JSON.parse(
-        encodeActivityView({
-          lockScreen: text,
-          compactTrailing: text,
-          expandedBottom: text,
-        })
-      )
-    ).toEqual({
-      lockScreen: { type: 'text', text: 'Ready' },
+    const style = { lineLimit: 1 }
+    const view = {
+      lockScreen: createElement(WidgetUI.Text, { style }, 'Ready'),
+      compactTrailing: text,
+      expandedBottom: text,
+    }
+    const layout = {
+      lockScreen: { type: 'text', text: 'Ready', style: { lineLimit: 1 } },
       compactLeading: null,
       compactTrailing: { type: 'text', text: 'Ready' },
       minimal: null,
       expandedLeading: null,
       expandedTrailing: null,
       expandedBottom: { type: 'text', text: 'Ready' },
+    }
+    expect(JSON.parse(encodeActivityView(view))).toEqual(layout)
+    const contentState = One.LiveActivities.contentState(view)
+    style.lineLimit = 1.5
+    expect(JSON.parse(JSON.stringify(contentState))).toEqual({
+      status: '',
+      value: '',
+      layout,
     })
     expect(() => encodeWidgetView(createElement('View'))).toThrow(/WidgetUI primitives/)
-    expect(() =>
-      encodeActivityView({
-        lockScreen: createElement(WidgetUI.Text, null, 'x'.repeat(4000)),
-      })
-    ).toThrow(/3500 UTF-8 bytes/)
+    const oversized = {
+      lockScreen: createElement(WidgetUI.Text, null, 'é'.repeat(2000)),
+    }
+    expect(() => encodeActivityView(oversized)).toThrow(/3500 UTF-8 bytes/)
+    expect(() => One.LiveActivities.contentState(oversized)).toThrow(/3500 UTF-8 bytes/)
   })
 
   test('encodes symbols, shapes, progress, links, and layered layout', () => {

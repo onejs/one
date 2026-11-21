@@ -49,7 +49,7 @@ export function NativeSafeAreaProvider({
         height: document.documentElement.offsetHeight,
       }
       // @ts-ignore: missing properties
-      onInsetsChange({ nativeEvent: { insets, frame } })
+      onInsetsChange({ nativeEvent: { insets, frame, cornerRadius: 0 } })
     }
     element.addEventListener(getSupportedTransitionEvent(), onEnd)
     onEnd()

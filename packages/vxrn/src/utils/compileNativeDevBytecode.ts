@@ -1,9 +1,9 @@
-import { accessSync, constants, readFileSync, statSync } from 'node:fs'
+import { accessSync, constants, existsSync, readFileSync, statSync } from 'node:fs'
 import { execFile } from 'node:child_process'
 import { createRequire } from 'node:module'
-import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
-import { dirname, join } from 'node:path'
+import { join } from 'node:path'
 import { promisify } from 'node:util'
 import type { NativeDevBundle } from './createNativeDevEngine'
 
@@ -93,14 +93,22 @@ export function resolveNpmHermesc(root: string): string {
       : process.platform === 'win32'
         ? 'win64-bin'
         : 'linux64-bin'
-  return join(dir, 'hermesc', bin, process.platform === 'win32' ? 'hermesc.exe' : 'hermesc')
+  return join(
+    dir,
+    'hermesc',
+    bin,
+    process.platform === 'win32' ? 'hermesc.exe' : 'hermesc'
+  )
 }
 
 // compile once per emitted bundle. the device can start a fresh hermes context
 // without compiling every cold route's module closures on its js thread.
 export function nativeDevBytecodeCompiler(root: string, platform: 'ios' | 'macos') {
   const compiler =
-    useHermescOverride() ?? (platform === 'ios' ? resolvePodHermesc(root) : resolveNpmHermesc(root))
+    useHermescOverride() ??
+    (platform === 'ios' && existsSync(join(root, 'ios/Pods'))
+      ? resolvePodHermesc(root)
+      : resolveNpmHermesc(root))
   const compiled = new WeakMap<NativeDevBundle, Map<string, Promise<Buffer>>>()
 
   return (bundle: NativeDevBundle, sourceURL: string): Promise<Buffer> => {
@@ -111,17 +119,21 @@ export function nativeDevBytecodeCompiler(root: string, platform: 'ios' | 'macos
     const result = (async () => {
       const directory = await mkdtemp(join(tmpdir(), 'vxrn-dev-hermes-'))
       try {
-        // hermesc records its input argument as the debug filename. use the
-        // served js url as a relative filename so stacks and devtools retain
-        // the original bundle coordinates without a second source map.
-        const source = join(directory, sourceURL)
-        await mkdir(dirname(source), { recursive: true })
+        // hermesc takes the debug filename from a trailing sourceURL comment,
+        // so stacks and devtools keep the served url without a url-shaped path
+        // (windows forbids ':' and '?' in file names).
         const output = join(directory, 'index.hbc')
-        await writeFile(source, bundle.code)
+        await writeFile(
+          join(directory, 'index.js'),
+          `${bundle.code}\n//# sourceURL=${sourceURL}`
+        )
         await execute(
           compiler,
-          ['-Og', '-g', '-emit-binary', '-out', output, sourceURL],
-          { cwd: directory, maxBuffer: 16 * 1024 * 1024 }
+          ['-Og', '-g', '-emit-binary', '-out', output, 'index.js'],
+          {
+            cwd: directory,
+            maxBuffer: 16 * 1024 * 1024,
+          }
         )
         return await readFile(output)
       } finally {

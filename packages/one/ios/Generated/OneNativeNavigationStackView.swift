@@ -121,7 +121,7 @@ public final class OneNativeNavigationStackView: UIView, OneNativeToolbarHost {
   private func updateHost() {
     model.active = false
     guard window != nil else {
-      controller?.detach()
+      controller?.hostLeftWindow(self)
       setActive(false)
       return
     }

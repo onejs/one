@@ -265,6 +265,7 @@ export interface NativeAppManifest {
       displayName: string
       description: string
       pushNotifications?: boolean
+      // an empty list generates a Live Activity without a timeline widget.
       families?: IosWidgetFamily[]
     }
     // launch handlers for One.BackgroundTasks. define the matching JS
@@ -796,12 +797,11 @@ export function validateNativeApp(
       if (widgets.families !== undefined) {
         if (
           !Array.isArray(widgets.families) ||
-          widgets.families.length === 0 ||
           new Set(widgets.families).size !== widgets.families.length ||
           widgets.families.some((family) => !IOS_WIDGET_FAMILIES.includes(family))
         ) {
           fail(
-            `ios.widgets.families must be a non-empty list of unique families from ${IOS_WIDGET_FAMILIES.join(', ')}`
+            `ios.widgets.families must be an array of unique families from ${IOS_WIDGET_FAMILIES.join(', ')}`
           )
         }
       }

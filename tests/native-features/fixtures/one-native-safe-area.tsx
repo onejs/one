@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
-import { One, useSafeAreaFrame, useSafeAreaInsets } from 'one'
+import { One, useSafeAreaCornerRadius, useSafeAreaFrame, useSafeAreaInsets } from 'one'
 
 // exercises the first-party safe-area takeover: our provider measures
 // insets natively, the hooks read them through our context, and the view
@@ -11,10 +11,12 @@ import { One, useSafeAreaFrame, useSafeAreaInsets } from 'one'
 function Readout({ prefix }: { prefix: string }) {
   const insets = useSafeAreaInsets()
   const frame = useSafeAreaFrame()
+  const cornerRadius = useSafeAreaCornerRadius()
   return (
     <View>
       <Text>{`${prefix}Insets: ${insets.top} ${insets.right} ${insets.bottom} ${insets.left}`}</Text>
       <Text>{`${prefix}Frame: ${frame.width}x${frame.height}`}</Text>
+      <Text>{`${prefix}Corner: ${cornerRadius}`}</Text>
     </View>
   )
 }

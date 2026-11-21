@@ -86,6 +86,7 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
 
   func launchCamera(options: ResolvedImagePickerOptions) throws -> Promise<ImagePickerNativeResult>
   {
+#if ONE_GROUP_CAMERA
     let promise = Promise<ImagePickerNativeResult>()
     DispatchQueue.main.async {
       guard self.takePending("launchCamera", promise) else { return }
@@ -143,14 +144,30 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
       }
     }
     return promise
+#else
+    return Promise.rejected(
+      withError: oneNativeError(
+        Self.failed,
+        "ImagePicker.launchCamera: camera feature group was compiled out; run one prebuild --platform ios and rebuild"
+      ))
+#endif
   }
 
   func getCameraPermissions() throws -> Promise<CameraPermissionResponse> {
+#if ONE_GROUP_CAMERA
     // a read, never a prompt; outside the pending slot so it answers during a pick.
     return Promise.resolved(withResult: Self.cameraPermissionResponse())
+#else
+    return Promise.rejected(
+      withError: oneNativeError(
+        Self.failed,
+        "ImagePicker.getCameraPermissions: camera feature group was compiled out; run one prebuild --platform ios and rebuild"
+      ))
+#endif
   }
 
   func requestCameraPermissions() throws -> Promise<CameraPermissionResponse> {
+#if ONE_GROUP_CAMERA
     if !Self.cameraDeclared {
       return Promise.rejected(
         withError: oneNativeError(
@@ -168,8 +185,16 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
       }
     }
     return promise
+#else
+    return Promise.rejected(
+      withError: oneNativeError(
+        Self.failed,
+        "ImagePicker.requestCameraPermissions: camera feature group was compiled out; run one prebuild --platform ios and rebuild"
+      ))
+#endif
   }
 
+#if ONE_GROUP_CAMERA
   private static var cameraDeclared: Bool {
     return Bundle.main.object(forInfoDictionaryKey: "NSCameraUsageDescription") != nil
   }
@@ -223,6 +248,7 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
     default: return .typeHigh
     }
   }
+#endif
 
   // MARK: library crop UI
 

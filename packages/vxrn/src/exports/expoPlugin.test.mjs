@@ -11,7 +11,7 @@ import {
 } from 'node:fs'
 import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
-import { join } from 'node:path'
+import { dirname, join } from 'node:path'
 import { afterEach, describe, expect, it } from 'vitest'
 import withVxrn from '../../expo-plugin.cjs'
 
@@ -365,6 +365,106 @@ describe('vxrn/expo-plugin', () => {
     expect(result).toContain('[vxrn/one] minify iOS Hermes Release bundle input')
     expect(result).toContain("ENV['RNS_GAMMA_ENABLED'] ||= '1'")
   })
+
+  it('writes react-native.config.cjs and rejects one missing one/react-native-config', async () => {
+    const projectRoot = expoProject()
+    const iosRoot = join(projectRoot, 'ios')
+    mkdirSync(iosRoot, { recursive: true })
+    writeFileSync(join(iosRoot, 'Podfile'), podfile)
+
+    const config = withVxrn({
+      name: 'TestApp',
+      slug: 'test-app',
+      _internal: { projectRoot },
+    })
+    await config.mods.ios.dangerous({
+      ...config,
+      modRequest: dangerousRequest(iosRoot, projectRoot, 'ios'),
+      modResults: {},
+    })
+    expect(readFileSync(join(projectRoot, 'react-native.config.cjs'), 'utf8')).toBe(
+      `module.exports = require('one/react-native-config')\n`
+    )
+
+    rmSync(join(projectRoot, 'react-native.config.cjs'))
+    writeFileSync(join(projectRoot, 'react-native.config.js'), 'module.exports = {}\n')
+    await expect(
+      config.mods.ios.dangerous({
+        ...config,
+        modRequest: dangerousRequest(iosRoot, projectRoot, 'ios'),
+        modResults: {},
+      })
+    ).rejects.toThrow('one/react-native-config')
+  })
+
+  it('writes trimmed ios/one-link-set.json for an Expo app on any platform', () => {
+    const projectRoot = mkdtempSync(join(tmpdir(), 'vxrn-expo-link-set-'))
+    temporaryDirectories.push(projectRoot)
+    writeFileSync(
+      join(projectRoot, 'package.json'),
+      JSON.stringify({
+        name: 'expo-link-set-fixture',
+        type: 'module',
+        private: true,
+        main: 'src/entry.js',
+        dependencies: { expo: '*', one: '*', vxrn: '*', react: '*', 'react-native': '*' },
+      })
+    )
+    const workspaceNodeModules = dirname(dirname(require.resolve('expo/package.json')))
+    symlinkSync(workspaceNodeModules, join(projectRoot, 'node_modules'), 'dir')
+    mkdirSync(join(projectRoot, 'src'), { recursive: true })
+    mkdirSync(join(projectRoot, 'app'), { recursive: true })
+    writeFileSync(
+      join(projectRoot, 'vite.config.ts'),
+      `import { one } from 'one/vite'\nexport default { plugins: [one()] }\n`
+    )
+    writeFileSync(join(projectRoot, 'src/entry.js'), `export {}\n`)
+    writeFileSync(
+      join(projectRoot, 'app/index.tsx'),
+      `import { One } from 'one'
+const { Notifications, Storage, openSettings, iOS: { DatePicker }, ImagePicker } = One
+export default function Page() {
+  globalThis.__used = [Notifications, Storage, openSettings, DatePicker, ImagePicker.launchLibrary]
+  return null
+}
+`
+    )
+    const iosRoot = join(projectRoot, 'ios')
+    mkdirSync(iosRoot)
+    writeFileSync(join(iosRoot, 'Podfile'), podfile)
+
+    execFileSync(
+      process.execPath,
+      [
+        '--input-type=module',
+        '-e',
+        `
+      import withVxrn from ${JSON.stringify(new URL('../../expo-plugin.cjs', import.meta.url).href)}
+      Object.defineProperty(process, 'platform', { value: 'linux' })
+      const projectRoot = process.argv[1]
+      const config = withVxrn({ name: 'TestApp', slug: 'test-app', _internal: { projectRoot } })
+      await config.mods.ios.dangerous({
+        ...config,
+        modRequest: {
+          projectRoot, platformProjectRoot: projectRoot + '/ios',
+          platform: 'ios', modName: 'dangerous', projectName: 'TestApp', introspect: false,
+        },
+        modResults: {},
+      })
+    `,
+        projectRoot,
+      ],
+      { encoding: 'utf8' }
+    )
+
+    expect(readFileSync(join(projectRoot, 'react-native.config.cjs'), 'utf8')).toBe(
+      `module.exports = require('one/react-native-config')\n`
+    )
+    expect(JSON.parse(readFileSync(join(iosRoot, 'one-link-set.json'), 'utf8'))).toEqual({
+      groups: ['photos'],
+      frameworks: [],
+    })
+  }, 120_000)
 })
 
 function nativeSourceProject() {

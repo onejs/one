@@ -98,7 +98,7 @@ private final class MapModel: ObservableObject {
   private func updateHost() {
     guard compositionParent == nil else { return }
     propagateActive(false)
-    guard window != nil else { controller?.detach(); return }
+    guard window != nil else { controller?.hostLeftWindow(self); return }
     if controller == nil {
       bindCallbacks()
       controller = OneNativeHostingController(rootView: OneNativeStandalone(content: MapContent(model: model, mapControls: mapControls)))

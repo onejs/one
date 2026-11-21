@@ -1,6 +1,7 @@
 package dev.onejs.onenative
 
 import android.os.Build
+import android.view.RoundedCorner
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
@@ -51,6 +52,16 @@ internal object OneNativeSafeAreaInsets {
         max(min(visible.left + view.width - windowWidth, 0) + window[1], 0),
         max(min(visible.top + view.height - windowHeight, 0) + window[2], 0),
         max(window[3] - visible.left, 0))
+  }
+
+  // the display corner's radius concentric with a view whose top-left sits at
+  // (x, y) in the root, in pixels: the top-left rounded corner's radius less the
+  // view's inset from it. Android reports rounded corners from API 31.
+  fun concentricCornerRadiusPx(rootView: View, x: Int, y: Int): Int {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) return 0
+    val corner =
+        rootView.rootWindowInsets?.getRoundedCorner(RoundedCorner.POSITION_TOP_LEFT) ?: return 0
+    return max(corner.radius - max(x, y), 0)
   }
 
   // [x, y, width, height] of the view in root coordinates, in pixels.

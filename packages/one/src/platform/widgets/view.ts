@@ -74,6 +74,12 @@ type Node = {
   action?: string
 }
 
+export type ActivityContentState = {
+  status: string
+  value: string
+  layout: Record<keyof ActivityView, Node | null> & { lockScreen: Node }
+}
+
 const hexColor = /^#[0-9a-fA-F]{6}$/
 
 const styleNumberKeys = [
@@ -273,4 +279,8 @@ export function encodeActivityView(view: ActivityView): string {
     throw new Error('Live Activity JSX must fit within 3500 UTF-8 bytes')
   }
   return encoded
+}
+
+export function activityContentState(view: ActivityView): ActivityContentState {
+  return { status: '', value: '', layout: JSON.parse(encodeActivityView(view)) }
 }

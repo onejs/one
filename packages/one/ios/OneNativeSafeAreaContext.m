@@ -33,6 +33,18 @@ RCT_EXPORT_MODULE()
     }
 
     UIEdgeInsets safeAreaInsets = window.safeAreaInsets;
+    CGFloat cornerRadius = 0;
+    if (@available(iOS 26.0, *)) {
+      // a probe over the whole window resolves to the display's own corner
+      UIView *probe = [[UIView alloc] initWithFrame:window.bounds];
+      probe.hidden = YES;
+      probe.cornerConfiguration =
+          [UICornerConfiguration configurationWithRadius:[UICornerRadius containerConcentricRadius]];
+      [window addSubview:probe];
+      [probe layoutIfNeeded];
+      cornerRadius = [probe effectiveRadiusForCorner:UIRectCornerTopLeft];
+      [probe removeFromSuperview];
+    }
 
     constants = @{
       @"initialWindowMetrics" : @{
@@ -48,6 +60,7 @@ RCT_EXPORT_MODULE()
           @"width" : @(window.frame.size.width),
           @"height" : @(window.frame.size.height),
         },
+        @"cornerRadius" : @(cornerRadius),
       }
     };
   });

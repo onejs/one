@@ -2358,7 +2358,10 @@ describe('ios widgets', () => {
     expect(readGenerated('MyApp/OneWidgetsBridge.swift')).toContain('"oneWidgetAction"')
     // the shared contract carries the serialized layouts and interactive actions
     const contract = readGenerated('MyApp/OneWidgetContract.swift')
-    expect(contract.match(/let layout: String\?/g)).toHaveLength(2)
+    expect(contract).toMatch(/struct Data: Codable \{[^}]*let layout: String\?/)
+    expect(contract).toMatch(
+      /struct ContentState: Codable, Hashable \{[^}]*let layout: OneActivityView\?/
+    )
     expect(contract).toContain('static let actionKeyPrefix = "one.widget.action."')
     expect(contract).toContain('struct Action: Codable')
     expect(rendered).toContain('OneWidgetContract.actionKeyPrefix + item.id')
@@ -2426,6 +2429,37 @@ describe('ios widgets', () => {
     )
     expect(swift).toContain('systemImageName: "waveform.circle.fill"')
     expect(swift).toContain('systemImageName: "bolt.fill"')
+  }, 180000)
+
+  it('generates a Live Activity extension without a timeline widget for empty families', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-activity-only-'))
+    try {
+      const ios = join(output, 'ios')
+      await generateForPlatform(
+        workspaceRoot,
+        'ios',
+        {
+          ...widgetsApp,
+          ios: {
+            ...widgetsApp.ios,
+            widgets: { ...widgetsApp.ios.widgets, families: [] },
+          },
+        },
+        ios
+      )
+      const rendered = readFileSync(join(ios, 'OneWidgets', 'OneWidget.swift'), 'utf8')
+      expect(rendered).toContain('ActivityConfiguration(for: OneWidgetContract.Attributes.self)')
+      expect(rendered.match(/\.widgetURL\(context\.attributes\.url\)/g)).toHaveLength(2)
+      expect(rendered).toContain('OneLiveActivity()')
+      expect(rendered).not.toContain('StaticConfiguration(')
+      expect(rendered).not.toContain('OneWidget()')
+      expect(readFileSync(join(ios, 'MyApp', 'Info.plist'), 'utf8')).toContain(
+        'NSSupportsLiveActivities'
+      )
+    } finally {
+      rmSync(output, { recursive: true, force: true })
+    }
   }, 180000)
 
   it('regenerates byte-identical widget projects and adds nothing without the config', async () => {

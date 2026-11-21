@@ -30,6 +30,7 @@ const payload = {
   frameY: 0,
   frameWidth: 393,
   frameHeight: 852,
+  cornerRadius: 62,
 }
 
 describe('resolveSafeAreaEdgeModes', () => {
@@ -191,6 +192,7 @@ describe('providerEventToMetrics', () => {
     expect(providerEventToMetrics(payload)).toEqual({
       insets: { top: 59, right: 0, bottom: 34, left: 0 },
       frame: { x: 0, y: 0, width: 393, height: 852 },
+      cornerRadius: 62,
     })
   })
 
@@ -212,6 +214,7 @@ describe('native safe-area module', () => {
     const metrics = {
       insets: { top: 59, right: 0, bottom: 34, left: 0 },
       frame: { x: 0, y: 0, width: 393, height: 852 },
+      cornerRadius: 62,
     }
     vi.mocked(TurboModuleRegistry.get).mockReturnValue({
       getConstants: () => ({ initialWindowMetrics: metrics }),
@@ -225,6 +228,7 @@ describe('native safe-area module', () => {
     const metrics = {
       insets: { top: 59, right: 0, bottom: 34, left: 0 },
       frame: { x: 0, y: 0, width: 393, height: 852 },
+      cornerRadius: 62,
     }
     vi.mocked(TurboModuleRegistry.get).mockReturnValue({ initialWindowMetrics: metrics })
     const { getInitialWindowMetrics } = await import('../src/platform/safe-area/index.native')

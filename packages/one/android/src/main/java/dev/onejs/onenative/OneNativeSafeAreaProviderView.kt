@@ -12,11 +12,12 @@ import com.facebook.react.views.view.ReactViewGroup
 // manager confirms delivery. framework APIs only, so no new dependency.
 class OneNativeSafeAreaProviderView(context: Context) :
     ReactViewGroup(context), ViewTreeObserver.OnPreDrawListener {
-  private var insetsChangeHandler: ((insetsPx: IntArray, framePx: IntArray) -> Boolean)? = null
+  private var insetsChangeHandler: ((insetsPx: IntArray, framePx: IntArray, cornerRadiusPx: Int) -> Boolean)? = null
   private var lastInsets: IntArray? = null
   private var lastFrame: IntArray? = null
+  private var lastCornerRadius = -1
 
-  fun setOnInsetsChangeHandler(handler: ((IntArray, IntArray) -> Boolean)?) {
+  fun setOnInsetsChangeHandler(handler: ((IntArray, IntArray, Int) -> Boolean)?) {
     insetsChangeHandler = handler
     maybeUpdateInsets()
   }
@@ -44,10 +45,16 @@ class OneNativeSafeAreaProviderView(context: Context) :
     val window = OneNativeSafeAreaInsets.rootWindowInsetsPx(root) ?: return
     val insets = OneNativeSafeAreaInsets.overlappingInsetsPx(this, window)
     val frame = OneNativeSafeAreaInsets.framePx(root, this) ?: return
-    if (insets.contentEquals(lastInsets) && frame.contentEquals(lastFrame)) return
-    if (handler(insets, frame)) {
+    val cornerRadius = OneNativeSafeAreaInsets.concentricCornerRadiusPx(root, frame[0], frame[1])
+    if (
+        insets.contentEquals(lastInsets) &&
+            frame.contentEquals(lastFrame) &&
+            cornerRadius == lastCornerRadius)
+        return
+    if (handler(insets, frame, cornerRadius)) {
       lastInsets = insets
       lastFrame = frame
+      lastCornerRadius = cornerRadius
     }
   }
 
@@ -55,5 +62,6 @@ class OneNativeSafeAreaProviderView(context: Context) :
     insetsChangeHandler = null
     lastInsets = null
     lastFrame = null
+    lastCornerRadius = -1
   }
 }

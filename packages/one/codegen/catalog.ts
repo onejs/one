@@ -1685,8 +1685,9 @@ export const components = [
   {
     // first-party safe-area boundary: a Yoga view that reports its own
     // safe-area insets plus its frame to React. the insets source is UIKit
-    // on iOS and WindowInsets on Android; the adapter reshapes the flat
-    // event fields into EdgeInsets and a frame. no controlled protocol: an
+    // on iOS and WindowInsets on Android, and cornerRadius is the screen
+    // corner's radius concentric with the provider's own corners. the adapter
+    // reshapes the flat event fields into EdgeInsets and a frame. no controlled protocol: an
     // inset update is a sensor reading, never a state change to acknowledge.
     name: 'OneNativeSafeAreaProvider',
     publicName: 'SafeAreaProvider',
@@ -1701,6 +1702,7 @@ export const components = [
         frameY: 'Double',
         frameWidth: 'Double',
         frameHeight: 'Double',
+        cornerRadius: 'Double',
       },
     },
     layout: { kind: 'container' },
