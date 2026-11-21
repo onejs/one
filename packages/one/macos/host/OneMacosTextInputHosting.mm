@@ -438,7 +438,9 @@ static char kFieldEditorKey;
   if (selector == @selector(insertBacktab:)) { [view.window selectPreviousKeyView:view]; return YES; }
   if (selector == @selector(insertNewline:) || selector == @selector(insertNewlineIgnoringFieldEditor:)) {
     NSString* behavior = _props[@"submitBehavior"];
-    const BOOL submits = [_props[@"multiline"] boolValue] ? [behavior isEqualToString:@"submit"] || [behavior isEqualToString:@"blurAndSubmit"] : ![behavior isEqualToString:@"newline"];
+    // a multiline input submits on a bare return; shift or option with it breaks the line
+    const BOOL bare = !(NSApp.currentEvent.modifierFlags & (NSEventModifierFlagShift | NSEventModifierFlagOption));
+    const BOOL submits = [_props[@"multiline"] boolValue] ? bare && ([behavior isEqualToString:@"submit"] || [behavior isEqualToString:@"blurAndSubmit"]) : ![behavior isEqualToString:@"newline"];
     if (!submits) return NO;
     [self emit:@"submitEditing"];
     if ([behavior isEqualToString:@"blurAndSubmit"]) [view.window makeFirstResponder:nil];
