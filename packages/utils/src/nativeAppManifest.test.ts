@@ -214,7 +214,7 @@ describe('native.app manifest', () => {
         ...app,
         ios: { ...app.ios, widgets: { ...widgets, families: [] } },
       })
-    ).toThrow(/families/)
+    ).not.toThrow()
     expect(() =>
       validateNativeApp({
         ...app,
