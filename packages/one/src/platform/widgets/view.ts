@@ -74,6 +74,12 @@ type Node = {
   action?: string
 }
 
+export type ActivityContentState = {
+  status: string
+  value: string
+  layout: Record<keyof ActivityView, Node | null> & { lockScreen: Node }
+}
+
 const hexColor = /^#[0-9a-fA-F]{6}$/
 
 const styleNumberKeys = [
@@ -255,12 +261,12 @@ export function encodeWidgetView(view: ReactNode): string {
   return JSON.stringify(root)
 }
 
-export function encodeActivityView(view: ActivityView): string {
+function activityViewPayload(view: ActivityView) {
   const lockScreen = node(view.lockScreen)
   if (!lockScreen) {
     throw new Error('Live Activity JSX needs a lockScreen layout')
   }
-  const encoded = JSON.stringify({
+  const layout = {
     lockScreen,
     compactLeading: view.compactLeading == null ? null : node(view.compactLeading),
     compactTrailing: view.compactTrailing == null ? null : node(view.compactTrailing),
@@ -268,9 +274,18 @@ export function encodeActivityView(view: ActivityView): string {
     expandedLeading: view.expandedLeading == null ? null : node(view.expandedLeading),
     expandedTrailing: view.expandedTrailing == null ? null : node(view.expandedTrailing),
     expandedBottom: view.expandedBottom == null ? null : node(view.expandedBottom),
-  })
+  }
+  const encoded = JSON.stringify(layout)
   if (new TextEncoder().encode(encoded).length > 3500) {
     throw new Error('Live Activity JSX must fit within 3500 UTF-8 bytes')
   }
-  return encoded
+  return { layout, encoded }
+}
+
+export function encodeActivityView(view: ActivityView): string {
+  return activityViewPayload(view).encoded
+}
+
+export function activityContentState(view: ActivityView): ActivityContentState {
+  return { status: '', value: '', layout: activityViewPayload(view).layout }
 }
