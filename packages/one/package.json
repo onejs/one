@@ -290,7 +290,6 @@
   "dependencies": {
     "@azure/core-asynciterator-polyfill": "^1.0.2",
     "@bacons/text-decoder": "^0.0.0",
-    "@cloudflare/vite-plugin": "^1.33.1",
     "@op-engineering/op-sqlite": "18.2.5",
     "@react-native-community/cli-platform-android": "^20.2.0",
     "@react-native-community/cli-platform-ios": "^20.2.0",
@@ -299,7 +298,6 @@
     "@react-navigation/elements": "3.0.0-alpha.55",
     "@react-navigation/native-stack": "8.0.0-alpha.59",
     "@react-navigation/routers": "8.0.0-alpha.21",
-    "@rozenite/middleware": "^2.5.0",
     "@ungap/structured-clone": "^1.2.0",
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/compiler": "workspace:*",
@@ -337,6 +335,8 @@
     "xxhashjs": "^0.2.2"
   },
   "peerDependencies": {
+    "@cloudflare/vite-plugin": "^1.33.1",
+    "@rozenite/middleware": "^2.5.0",
     "@callstack/liquid-glass": ">=0.6.0",
     "@react-native/babel-preset": "^0.88.0",
     "@react-navigation/core": "8.0.0-alpha.41",
@@ -365,6 +365,12 @@
     "react-native-css-interop": "^0.2.6"
   },
   "peerDependenciesMeta": {
+    "@cloudflare/vite-plugin": {
+      "optional": true
+    },
+    "@rozenite/middleware": {
+      "optional": true
+    },
     "@react-native/babel-preset": {
       "optional": true
     },
@@ -427,6 +433,8 @@
     }
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.33.1",
+    "@rozenite/middleware": "^2.5.0",
     "@tamagui/sheet": "3.3.3",
     "@callstack/liquid-glass": "^0.8.1",
     "@react-native/babel-plugin-codegen": "0.88.0",

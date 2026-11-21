@@ -2,7 +2,6 @@ import { mkdirSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { resolvePath } from '@vxrn/resolve'
-import { cloudflare } from '@cloudflare/vite-plugin'
 import { getPlatformEnvDefine } from '@vxrn/utils'
 import { exactRegex } from 'rolldown/filter'
 import { type Plugin, type PluginOption } from 'vite'
@@ -16,6 +15,7 @@ import { absorbedPackageAliases } from '../../utils/absorbedPackages'
 import {
   createCloudflareWranglerConfig,
   getCloudflareProjectNameSync,
+  loadCloudflarePlugin,
   loadUserWranglerConfigSync,
   shouldEnableWorkerdDev,
 } from '../cloudflareWranglerConfig'
@@ -248,15 +248,16 @@ export default {
 `
 }
 
-export function createWorkerdDevPlugins(
+export async function createWorkerdDevPlugins(
   options: One.PluginOptions,
   root: string,
   routeIndex: RouteIndex
-): PluginOption[] {
+): Promise<PluginOption[]> {
   if (!shouldEnableWorkerdDev(options.web?.deploy, root)) {
     return []
   }
 
+  const cloudflare = await loadCloudflarePlugin()
   const cacheDir = join(root, WORKERD_DEV_DIR)
   const wranglerInputPath = join(cacheDir, '_wrangler.input.jsonc')
   const workerEntryPath = join(cacheDir, 'worker-entry.js')

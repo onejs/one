@@ -13,6 +13,7 @@
     "one": "workspace:*"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.33.1",
     "kill-my-port": "1.1.2",
     "@playwright/test": "^1.58.2",
     "playwright": "^1.58.2",
