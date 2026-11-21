@@ -6,7 +6,7 @@ import type {
   WidgetData,
 } from './index.native'
 import type { ReactNode } from 'react'
-import type { ActivityView } from './view'
+import { activityContentState, type ActivityView } from './view'
 
 export { WidgetUI, type WidgetStyle, type ActivityView } from './view'
 
@@ -28,6 +28,7 @@ export const Widgets = Object.freeze({
 })
 
 export const LiveActivities = Object.freeze({
+  contentState: activityContentState,
   start(_title: string, _state: LiveActivityState, _push = false): Promise<string> {
     return Promise.reject(missingNativeBuild('LiveActivities.start'))
   },

@@ -1,6 +1,11 @@
 import { NativeEventEmitter, NativeModules, Platform } from 'react-native'
 import type { ReactNode } from 'react'
-import { encodeActivityView, encodeWidgetView, type ActivityView } from './view'
+import {
+  activityContentState,
+  encodeActivityView,
+  encodeWidgetView,
+  type ActivityView,
+} from './view'
 import { LiveActivities as unavailableLiveActivities } from './unavailable'
 
 export { WidgetUI, type WidgetStyle, type ActivityView } from './view'
@@ -56,6 +61,7 @@ const nativeWidgets = Object.freeze({
 })
 
 const nativeLiveActivities = Object.freeze({
+  contentState: activityContentState,
   start(title: string, state: LiveActivityState, push = false): Promise<string> {
     return bridge().start(title, state.status, state.value, push)
   },
