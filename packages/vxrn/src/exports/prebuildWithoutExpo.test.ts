@@ -2428,6 +2428,36 @@ describe('ios widgets', () => {
     expect(swift).toContain('systemImageName: "bolt.fill"')
   }, 180000)
 
+  it('generates a Live Activity extension without a timeline widget for empty families', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-activity-only-'))
+    try {
+      const ios = join(output, 'ios')
+      await generateForPlatform(
+        workspaceRoot,
+        'ios',
+        {
+          ...widgetsApp,
+          ios: {
+            ...widgetsApp.ios,
+            widgets: { ...widgetsApp.ios.widgets, families: [] },
+          },
+        },
+        ios
+      )
+      const rendered = readFileSync(join(ios, 'OneWidgets', 'OneWidget.swift'), 'utf8')
+      expect(rendered).toContain('ActivityConfiguration(for: OneWidgetContract.Attributes.self)')
+      expect(rendered).toContain('OneLiveActivity()')
+      expect(rendered).not.toContain('StaticConfiguration(')
+      expect(rendered).not.toContain('OneWidget()')
+      expect(readFileSync(join(ios, 'MyApp', 'Info.plist'), 'utf8')).toContain(
+        'NSSupportsLiveActivities'
+      )
+    } finally {
+      rmSync(output, { recursive: true, force: true })
+    }
+  }, 180000)
+
   it('regenerates byte-identical widget projects and adds nothing without the config', async () => {
     const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
     const first = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-widgets-a-'))
