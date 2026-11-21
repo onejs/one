@@ -1196,7 +1196,7 @@ struct OneWidgetRendered: View {
     .background { if let fill = oneColor(node.style?.backgroundColor) { fill } }
     .clipShape(RoundedRectangle(cornerRadius: CGFloat(node.style?.borderRadius ?? 0)))
   }
-}
+}${supportedFamilies ? `
 
 struct OneWidgetEntry: TimelineEntry {
   let date: Date
@@ -1245,7 +1245,7 @@ struct OneWidget: Widget {
     .description(${JSON.stringify(widgets.description)})
     .supportedFamilies([${supportedFamilies}])
   }
-}
+}` : ''}
 
 struct OneLiveActivity: Widget {
   var body: some WidgetConfiguration {
@@ -1320,8 +1320,7 @@ struct OneLiveActivity: Widget {
 @main
 struct OneWidgetsBundle: WidgetBundle {
   var body: some Widget {
-    OneWidget()
-    OneLiveActivity()
+    ${supportedFamilies ? 'OneWidget()\n    ' : ''}OneLiveActivity()
   }
 }
 `
