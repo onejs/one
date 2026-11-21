@@ -2358,7 +2358,10 @@ describe('ios widgets', () => {
     expect(readGenerated('MyApp/OneWidgetsBridge.swift')).toContain('"oneWidgetAction"')
     // the shared contract carries the serialized layouts and interactive actions
     const contract = readGenerated('MyApp/OneWidgetContract.swift')
-    expect(contract.match(/let layout: String\?/g)).toHaveLength(2)
+    expect(contract).toMatch(/struct Data: Codable \{[^}]*let layout: String\?/)
+    expect(contract).toMatch(
+      /struct ContentState: Codable, Hashable \{[^}]*let layout: OneActivityView\?/
+    )
     expect(contract).toContain('static let actionKeyPrefix = "one.widget.action."')
     expect(contract).toContain('struct Action: Codable')
     expect(rendered).toContain('OneWidgetContract.actionKeyPrefix + item.id')

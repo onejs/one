@@ -932,6 +932,82 @@ function generateIosWidgets(dest: string, app: NativeAppManifest): void {
     `import Foundation
 import ActivityKit
 
+struct OneWidgetNode: Codable, Hashable {
+  let type: String
+  let text: String?
+  let style: Style?
+  let children: [OneWidgetNode]?
+  let systemName: String?
+  let value: Value?
+  let total: Double?
+  let fill: String?
+  let cornerRadius: Double?
+  let url: String?
+  let action: String?
+
+  enum Value: Codable, Hashable {
+    case number(Double)
+    case string(String)
+
+    var number: Double? {
+      if case .number(let value) = self { return value }
+      return nil
+    }
+
+    var string: String? {
+      if case .string(let value) = self { return value }
+      return nil
+    }
+
+    func encode(to encoder: Encoder) throws {
+      var container = encoder.singleValueContainer()
+      switch self {
+      case .number(let value): try container.encode(value)
+      case .string(let value): try container.encode(value)
+      }
+    }
+
+    init(from decoder: Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      if let number = try? container.decode(Double.self) {
+        self = .number(number)
+      } else {
+        self = .string(try container.decode(String.self))
+      }
+    }
+  }
+
+  struct Style: Codable, Hashable {
+    let color: String?
+    let backgroundColor: String?
+    let fontSize: Double?
+    let fontWeight: String?
+    let fontDesign: String?
+    let padding: Double?
+    let borderRadius: Double?
+    let spacing: Double?
+    let width: Double?
+    let height: Double?
+    let opacity: Double?
+    let lineLimit: Int?
+    let alignment: String?
+  }
+}
+
+struct OneActivityView: Codable, Hashable {
+  let lockScreen: OneWidgetNode
+  let compactLeading: OneWidgetNode?
+  let compactTrailing: OneWidgetNode?
+  let minimal: OneWidgetNode?
+  let expandedLeading: OneWidgetNode?
+  let expandedTrailing: OneWidgetNode?
+  let expandedBottom: OneWidgetNode?
+
+  static func decode(_ json: String) throws -> OneActivityView {
+    try JSONDecoder().decode(Self.self, from: Foundation.Data(json.utf8))
+  }
+}
+
 enum OneWidgetContract {
   static let appGroup = ${JSON.stringify(widgets.appGroup)}
   static let kind = ${JSON.stringify(widgets.kind)}
@@ -956,7 +1032,29 @@ enum OneWidgetContract {
     struct ContentState: Codable, Hashable {
       let status: String
       let value: String
-      let layout: String?
+      let layout: OneActivityView?
+
+      private enum CodingKeys: String, CodingKey {
+        case status, value, layout
+      }
+
+      init(status: String, value: String, layout: OneActivityView?) {
+        self.status = status
+        self.value = value
+        self.layout = layout
+      }
+
+      init(from decoder: Decoder) throws {
+        let content = try decoder.container(keyedBy: CodingKeys.self)
+        status = try content.decode(String.self, forKey: .status)
+        value = try content.decode(String.self, forKey: .value)
+        // activities already on the device may have a JSON string layout
+        if let encoded = try? content.decode(String.self, forKey: .layout) {
+          layout = try OneActivityView.decode(encoded)
+        } else {
+          layout = try content.decodeIfPresent(OneActivityView.self, forKey: .layout)
+        }
+      }
     }
     let title: String
   }
@@ -969,60 +1067,6 @@ enum OneWidgetContract {
 import WidgetKit
 import ActivityKit
 import AppIntents
-
-struct OneWidgetNode: Decodable {
-  let type: String
-  let text: String?
-  let style: Style?
-  let children: [OneWidgetNode]?
-  let systemName: String?
-  let value: Value?
-  let total: Double?
-  let fill: String?
-  let cornerRadius: Double?
-  let url: String?
-  let action: String?
-
-  enum Value: Decodable {
-    case number(Double)
-    case string(String)
-
-    var number: Double? {
-      if case .number(let value) = self { return value }
-      return nil
-    }
-
-    var string: String? {
-      if case .string(let value) = self { return value }
-      return nil
-    }
-
-    init(from decoder: Decoder) throws {
-      let container = try decoder.singleValueContainer()
-      if let number = try? container.decode(Double.self) {
-        self = .number(number)
-      } else {
-        self = .string(try container.decode(String.self))
-      }
-    }
-  }
-
-  struct Style: Decodable {
-    let color: String?
-    let backgroundColor: String?
-    let fontSize: Double?
-    let fontWeight: String?
-    let fontDesign: String?
-    let padding: Double?
-    let borderRadius: Double?
-    let spacing: Double?
-    let width: Double?
-    let height: Double?
-    let opacity: Double?
-    let lineLimit: Int?
-    let alignment: String?
-  }
-}
 
 struct OneWidgetButtonIntent: AppIntent {
   static var title: LocalizedStringResource = "Widget Action"
@@ -1059,16 +1103,6 @@ struct OneWidgetButtonIntent: AppIntent {
     WidgetCenter.shared.reloadTimelines(ofKind: OneWidgetContract.kind)
     return .result()
   }
-}
-
-struct OneActivityView: Decodable {
-  let lockScreen: OneWidgetNode
-  let compactLeading: OneWidgetNode?
-  let compactTrailing: OneWidgetNode?
-  let minimal: OneWidgetNode?
-  let expandedLeading: OneWidgetNode?
-  let expandedTrailing: OneWidgetNode?
-  let expandedBottom: OneWidgetNode?
 }
 
 private func oneDecode<T: Decodable>(_ value: String?, as type: T.Type) -> T? {
@@ -1251,7 +1285,7 @@ struct OneLiveActivity: Widget {
   var body: some WidgetConfiguration {
     ActivityConfiguration(for: OneWidgetContract.Attributes.self) { context in
       Group {
-        if let layout = oneDecode(context.state.layout, as: OneActivityView.self) {
+        if let layout = context.state.layout {
           OneWidgetRendered(node: layout.lockScreen)
         } else {
           HStack {
@@ -1269,45 +1303,40 @@ struct OneLiveActivity: Widget {
     } dynamicIsland: { context in
       DynamicIsland {
         DynamicIslandExpandedRegion(.leading) {
-          if let layout = oneDecode(context.state.layout, as: OneActivityView.self),
-             let leading = layout.expandedLeading {
+          if let leading = context.state.layout?.expandedLeading {
             OneWidgetRendered(node: leading)
           } else {
             Text(context.attributes.title)
           }
         }
         DynamicIslandExpandedRegion(.trailing) {
-          if let layout = oneDecode(context.state.layout, as: OneActivityView.self),
-             let trailing = layout.expandedTrailing {
+          if let trailing = context.state.layout?.expandedTrailing {
             OneWidgetRendered(node: trailing)
           } else {
             Text(context.state.value)
           }
         }
         DynamicIslandExpandedRegion(.bottom) {
-          if let layout = oneDecode(context.state.layout, as: OneActivityView.self) {
+          if let layout = context.state.layout {
             OneWidgetRendered(node: layout.expandedBottom ?? layout.lockScreen)
           } else {
             Text(context.state.status)
           }
         }
       } compactLeading: {
-        if let layout = oneDecode(context.state.layout, as: OneActivityView.self),
-           let leading = layout.compactLeading {
+        if let leading = context.state.layout?.compactLeading {
           OneWidgetRendered(node: leading)
         } else {
           Text(context.attributes.title)
         }
       } compactTrailing: {
-        if let layout = oneDecode(context.state.layout, as: OneActivityView.self),
-           let trailing = layout.compactTrailing {
+        if let trailing = context.state.layout?.compactTrailing {
           OneWidgetRendered(node: trailing)
         } else {
           Text(context.state.value)
         }
       } minimal: {
-        if let layout = oneDecode(context.state.layout, as: OneActivityView.self),
-           let minimal = layout.minimal {
+        if let minimal = context.state.layout?.minimal {
           OneWidgetRendered(node: minimal)
         } else {
           Text(context.state.value)
@@ -1529,9 +1558,10 @@ class OneWidgetsBridge: RCTEventEmitter {
       return
     }
     do {
+      let view = try OneActivityView.decode(layout)
       let activity = try Activity<OneWidgetContract.Attributes>.request(
         attributes: .init(title: title),
-        content: .init(state: .init(status: "", value: "", layout: layout), staleDate: nil),
+        content: .init(state: .init(status: "", value: "", layout: view), staleDate: nil),
         pushType: push ? .token : nil
       )
       observeToken(activity)
@@ -1561,9 +1591,14 @@ class OneWidgetsBridge: RCTEventEmitter {
       reject("activity_missing", "Live Activity not found", nil)
       return
     }
-    Task {
-      await activity.update(.init(state: .init(status: "", value: "", layout: layout), staleDate: nil))
-      resolve(nil)
+    do {
+      let view = try OneActivityView.decode(layout)
+      Task {
+        await activity.update(.init(state: .init(status: "", value: "", layout: view), staleDate: nil))
+        resolve(nil)
+      }
+    } catch {
+      reject("activity_update", error.localizedDescription, error)
     }
   }
 
