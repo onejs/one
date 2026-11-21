@@ -439,7 +439,8 @@ static char kFieldEditorKey;
   if (selector == @selector(insertNewline:) || selector == @selector(insertNewlineIgnoringFieldEditor:)) {
     NSString* behavior = _props[@"submitBehavior"];
     // a multiline input submits on a bare return; shift or option with it breaks the line
-    const BOOL bare = !(NSApp.currentEvent.modifierFlags & (NSEventModifierFlagShift | NSEventModifierFlagOption));
+    NSEvent* key = NSApp.currentEvent.type == NSEventTypeKeyDown ? NSApp.currentEvent : nil;
+    const BOOL bare = selector == @selector(insertNewline:) && !(key.modifierFlags & NSEventModifierFlagShift);
     const BOOL submits = [_props[@"multiline"] boolValue] ? bare && ([behavior isEqualToString:@"submit"] || [behavior isEqualToString:@"blurAndSubmit"]) : ![behavior isEqualToString:@"newline"];
     if (!submits) return NO;
     [self emit:@"submitEditing"];
