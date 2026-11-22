@@ -1,1 +1,3 @@
 {"id":"00000001794770298005:db7eb512c085490a13c989ee01d95913","text":"Team Machine moved this task to s257963: every assignee (a141509) had ended."}
+
+{"id":"00000001795367357964:ecf80abc685db09b821368c1f208617e:6b37748bca717c18:","text":"Team Machine canceled this task: untouched for 7+ days with no assignee proven working it. Reopen with `tm task update t-mwi39zkq-242x0 --status open`."}
