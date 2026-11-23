@@ -1,7 +1,9 @@
+import structuredClone from '@ungap/structured-clone'
 import type {
   ClientState,
   DesiredQuery,
   Engine,
+  EngineRequest,
   Format,
   JSONValue,
   MaterializedView,
@@ -174,12 +176,8 @@ export class NativeZero<M extends Mutators = Mutators> {
     return result
   }
 
-  private async request<T>(request: object): Promise<T> {
-    return this.dispatch(serialize(request))
-  }
-
-  private async dispatch<T>(request: string): Promise<T> {
-    return JSON.parse(await this.options.engine.execute(request)) as T
+  private async request<T>(request: EngineRequest): Promise<T> {
+    return (await this.options.engine.execute(request)) as T
   }
 
   private async query<T>(query: Query, transaction?: string): Promise<T> {
@@ -377,11 +375,11 @@ export class NativeZero<M extends Mutators = Mutators> {
     args: JSONValue | undefined,
     committed: (mutation: Mutation) => void
   ): Promise<unknown> {
-    const request = serialize({ op: 'beginMutation', name, args, timestamp: Date.now() })
+    const request = { op: 'beginMutation', name, args: structuredClone(args), timestamp: Date.now() }
     return this.enqueue(async () => {
       if (!this.mutators.has(name))
         throw new Error(`Unknown native Zero mutator: ${name}`)
-      const { transaction, mutation } = await this.dispatch<{
+      const { transaction, mutation } = await this.request<{
         transaction: string
         mutation: Mutation
       }>(request)

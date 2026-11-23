@@ -1,12 +1,12 @@
 import assert from 'node:assert/strict'
 import { spawn, type ChildProcessWithoutNullStreams } from 'node:child_process'
 import { createInterface } from 'node:readline'
-import type { Engine } from '../../src/zero/native/types'
+import type { Engine, EngineRequest } from '../../src/zero/native/types'
 
 export class DriverEngine implements Engine {
   private process: ChildProcessWithoutNullStreams
   private waiters: {
-    resolve: (value: string) => void
+    resolve: (value: unknown) => void
     reject: (reason: Error) => void
   }[] = []
   private readyResolve!: () => void
@@ -36,7 +36,7 @@ export class DriverEngine implements Engine {
       const waiter = this.waiters.shift()
       if (!waiter) throw new Error('unexpected native driver response')
       if (parsed.error) waiter.reject(new Error(parsed.error))
-      else waiter.resolve(JSON.stringify(parsed.result))
+      else waiter.resolve(parsed.result)
     })
     this.process.stderr.on('data', (data) => process.stderr.write(data))
     this.process.on('error', (error) => this.readyReject(error))
@@ -46,15 +46,15 @@ export class DriverEngine implements Engine {
       for (const waiter of this.waiters.splice(0)) waiter.reject(error)
     })
   }
-  async execute(request: string): Promise<string> {
+  async execute(request: EngineRequest): Promise<unknown> {
     await this.ready
     return new Promise((resolve, reject) => {
       this.waiters.push({ resolve, reject })
-      this.process.stdin.write(request + '\n')
+      this.process.stdin.write(JSON.stringify(request) + '\n')
     })
   }
-  async raw(request: object) {
-    return JSON.parse(await this.execute(JSON.stringify(request)))
+  async raw(request: EngineRequest) {
+    return this.execute(request) as Promise<any>
   }
   async close() {
     this.process.stdin.end()

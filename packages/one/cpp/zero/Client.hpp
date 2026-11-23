@@ -5,13 +5,15 @@
 
 namespace one::zero {
 
+struct Json;
+
 class Client {
  public:
-  Client(const std::string& path, const std::string& schema, const std::string& clientID);
+  Client(const std::string& path, const Json& schema, const std::string& clientID);
   ~Client();
   Client(const Client&) = delete;
   Client& operator=(const Client&) = delete;
-  std::string execute(const std::string& request);
+  Json executeValue(const Json& request);
   void close();
 
  private:

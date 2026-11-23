@@ -295,7 +295,7 @@ const networkEngine = engine
 client = new NativeZero({
   engine: {
     execute(request) {
-      if (JSON.parse(request).op === 'beginMutation') localWriteStarted = true
+      if (request.op === 'beginMutation') localWriteStarted = true
       return networkEngine.execute(request)
     },
     close: () => networkEngine.close(),

@@ -34,7 +34,6 @@ export declare class NativeZero<M extends Mutators = Mutators> {
     private enqueue;
     private synchronize;
     private request;
-    private dispatch;
     private query;
     run<T = unknown>(query: Query): Promise<T>;
     get clientID(): string;

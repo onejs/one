@@ -1,6 +1,8 @@
 #include "Client.hpp"
 #include "Json.hpp"
 
+#include <sqlite3.h>
+
 #include <algorithm>
 #include <atomic>
 #include <cstdint>
@@ -45,12 +47,12 @@ class Statement {
     if (code != SQLITE_DONE) throw std::runtime_error(sqlite3_errmsg(db_));
     return false;
   }
-  std::string text(int col) const {
-    auto* value = sqlite3_column_text(stmt_, col);
-    return value
-               ? std::string(reinterpret_cast<const char*>(value), sqlite3_column_bytes(stmt_, col))
-               : "";
+  std::string_view view(int col) const {
+    const auto* value = sqlite3_column_text(stmt_, col);
+    if (!value) return {};
+    return {reinterpret_cast<const char*>(value), static_cast<size_t>(sqlite3_column_bytes(stmt_, col))};
   }
+  std::string text(int col) const { return std::string(view(col)); }
 
  private:
   sqlite3* db_;
@@ -62,64 +64,6 @@ void sql(sqlite3* db, const std::string& text, const std::vector<Json>& args = {
   for (size_t i = 0; i < args.size(); ++i) statement.bind(static_cast<int>(i + 1), args[i]);
   while (statement.step()) {
   }
-}
-
-Json parse(sqlite3* db, const std::string& input) {
-  Statement valid(db, "SELECT json_valid(?)");
-  valid.bind(1, input);
-  valid.step();
-  if (!sqlite3_column_int(valid.get(), 0)) throw std::runtime_error("invalid JSON");
-  Statement tree(db, "SELECT id,parent,key,type,atom FROM json_tree(?)");
-  tree.bind(1, input);
-  struct Node {
-    Json value;
-    int64_t parent;
-    std::string key;
-    std::vector<int64_t> children;
-  };
-  std::map<int64_t, Node> nodes;
-  int64_t root = -1;
-  while (tree.step()) {
-    int64_t id = sqlite3_column_int64(tree.get(), 0);
-    bool isRoot = sqlite3_column_type(tree.get(), 1) == SQLITE_NULL;
-    int64_t parent = isRoot ? -1 : sqlite3_column_int64(tree.get(), 1);
-    std::string type = tree.text(3);
-    Json value;
-    if (type == "object")
-      value = Json::Object{};
-    else if (type == "array")
-      value = Json::Array{};
-    else if (type == "text")
-      value = tree.text(4);
-    else if (type == "true" || type == "false")
-      value = type == "true";
-    else if (type == "integer" || type == "real") {
-      double number = sqlite3_column_double(tree.get(), 4);
-      if (!std::isfinite(number))
-        throw std::runtime_error("JSON number is outside the finite range");
-      value = number;
-    }
-    nodes.emplace(id, Node{std::move(value), parent, tree.text(2), {}});
-    if (isRoot)
-      root = id;
-    else
-      nodes.at(parent).children.push_back(id);
-  }
-  std::function<Json(int64_t, unsigned)> assemble = [&](int64_t id, unsigned depth) -> Json {
-    if (depth > 128) throw std::runtime_error("JSON nesting exceeds 128 levels");
-    auto& node = nodes.at(id);
-    for (int64_t child : node.children) {
-      Json value = assemble(child, depth + 1);
-      if (node.value.array())
-        std::get<Json::Array>(node.value.value).push_back(std::move(value));
-      else
-        std::get<Json::Object>(node.value.value)
-            .insert_or_assign(nodes.at(child).key, std::move(value));
-    }
-    return std::move(node.value);
-  };
-  if (root < 0) throw std::runtime_error("expected a JSON value");
-  return assemble(root, 0);
 }
 
 std::string quoted(const std::string& s) {
@@ -205,7 +149,7 @@ struct Client::Impl {
   std::string transactionKind;
   bool deleted = false;
 
-  Impl(const std::string& path, const std::string& schemaText, const std::string& identity)
+  Impl(const std::string& path, const Json& schema, const std::string& identity)
       : clientID(identity) {
     if (path.empty() || path.find('\0') != std::string::npos)
       throw std::runtime_error("database path is required");
@@ -221,7 +165,6 @@ struct Client::Impl {
       sqlite3_busy_timeout(db, 5000);
       sqlite3_create_function_v2(db, "one_zero_like", 2, SQLITE_UTF8 | SQLITE_DETERMINISTIC,
                                  nullptr, like, nullptr, nullptr, nullptr);
-      Json schema = parse(db, schemaText);
       for (const auto& [name, description] : schema.at("tables").fields()) {
         if (name.empty() || name.find('\0') != std::string::npos)
           throw std::runtime_error("invalid table name");
@@ -341,7 +284,7 @@ struct Client::Impl {
   Json meta(const std::string& name) {
     Statement statement(db, "SELECT value FROM one_zero_meta WHERE key=?");
     statement.bind(1, name);
-    return statement.step() ? parse(db, statement.text(0)) : Json();
+    return statement.step() ? Json::parse(statement.text(0)) : Json();
   }
   void setMeta(const std::string& name, const Json& value) {
     sql(db,
@@ -412,7 +355,7 @@ struct Client::Impl {
       if (existing.step()) {
         if (kind == "insert") return;
         validate(name, value, false);
-        Json old = parse(db, existing.text(0));
+        Json old = Json::parse(existing.text(0));
         for (const auto& [column, field] : value.fields())
           std::get<Json::Object>(old.value).insert_or_assign(column, field);
         value = std::move(old);
@@ -658,9 +601,7 @@ struct Client::Impl {
       statement.bind(static_cast<int>(i + 1), compiled.args[i]);
     Json::Array rows;
     while (statement.step()) {
-      // stored rows already passed JSON validation; only parents need field access.
-      Json row = ast.has("related") ? parse(db, statement.text(0))
-                                    : Json(Json::Serialized{statement.text(0)});
+      Json row = Json::parse(statement.view(0));
       if (ast.has("related")) {
         for (const Json& related : ast.at("related").items()) {
           const Json& child = related.at("subquery");
@@ -687,7 +628,7 @@ struct Client::Impl {
                             {"timestamp", sqlite3_column_double(statement.get(), 3)},
                             {"clientID", clientID}};
       const auto args = statement.text(2);
-      if (!args.empty()) mutation.emplace("args", parse(db, args));
+      if (!args.empty()) mutation.emplace("args", Json::parse(args));
       result.emplace_back(std::move(mutation));
     }
     return result;
@@ -821,7 +762,7 @@ struct Client::Impl {
               existing.bind(1, name);
               existing.bind(2, key(name, id));
               if (!existing.step()) throw std::runtime_error("row patch updates an absent row");
-              Json row = parse(db, existing.text(0));
+              Json row = Json::parse(existing.text(0));
               if (patch.has("merge")) {
                 auto [unused, merge] =
                     mapServerRow(patch.at("tableName").string(), patch.at("merge"));
@@ -972,13 +913,14 @@ struct Client::Impl {
   }
 };
 
-Client::Client(const std::string& path, const std::string& schema, const std::string& clientID)
+Client::Client(const std::string& path, const Json& schema,
+               const std::string& clientID)
     : impl_(std::make_unique<Impl>(path, schema, clientID)) {}
 Client::~Client() = default;
-std::string Client::execute(const std::string& request) {
+Json Client::executeValue(const Json& request) {
   std::lock_guard<std::mutex> lock(impl_->mutex);
   if (!impl_->db) throw std::runtime_error("native Zero client is closed");
-  return impl_->execute(parse(impl_->db, request)).dump();
+  return impl_->execute(request);
 }
 void Client::close() {
   std::lock_guard<std::mutex> lock(impl_->mutex);

@@ -17,9 +17,9 @@ class HybridOneZero : public HybridOneZeroSpec {
  public:
   HybridOneZero();
   ~HybridOneZero() override;
-  std::shared_ptr<Promise<void>> open(const std::string& name, const std::string& schemaJson,
+  std::shared_ptr<Promise<void>> open(const std::string& name, ZeroValue schema,
                                       const std::string& clientID) override;
-  std::shared_ptr<Promise<std::string>> execute(const std::string& requestJson) override;
+  std::shared_ptr<Promise<ZeroResult>> execute(ZeroValue request) override;
   std::shared_ptr<Promise<void>> close() override;
 
  private:

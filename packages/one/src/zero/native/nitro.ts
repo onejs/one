@@ -10,7 +10,7 @@ export async function createNativeZero<M extends Mutators>(
   const engine = NitroModules.createHybridObject<OneZero>("OneZero")
   const client = new NativeZero({ ...options, engine })
   try {
-    await engine.open(options.name, JSON.stringify(options.schema), options.clientID ?? "")
+    await engine.open(options.name, options.schema, options.clientID ?? "")
     await client.ready()
     return client
   } catch (error) {

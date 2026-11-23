@@ -12,7 +12,7 @@ const mockState = vi.hoisted(() => {
     name = ""
     opened = false
     closed = false
-    async open(name: string, _schema: string, _clientID: string) {
+    async open(name: string, _schema: object, _clientID: string) {
       this.name = name
       if (name === "fail-open") {
         throw new Error("simulated open failure")
@@ -23,10 +23,9 @@ const mockState = vi.hoisted(() => {
       openStores.add(name)
       this.opened = true
     }
-    async execute(requestJson: string) {
-      const req = JSON.parse(requestJson)
+    async execute(req: { op: string }) {
       if (req.op === "state") {
-        return JSON.stringify({
+        return {
           clientID: "mock-client",
           cookie: null,
           nextMutationID: 1,
@@ -36,9 +35,9 @@ const mockState = vi.hoisted(() => {
           recoveryRequired: null,
           completedQueries: [],
           queryErrors: {},
-        })
+        }
       }
-      return JSON.stringify({})
+      return {}
     }
     async close() {
       state.closeCalls++

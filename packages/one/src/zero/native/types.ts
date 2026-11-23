@@ -1,3 +1,6 @@
+import type { EngineRequest } from '../../platform/specs/OneZero.nitro'
+export type { EngineRequest } from '../../platform/specs/OneZero.nitro'
+
 export type JSONValue =
   | null
   | boolean
@@ -58,7 +61,7 @@ export type PullResponse = {
   [key: string]: JSONValue | undefined
 }
 export interface Engine {
-  execute(request: string): Promise<string>
+  execute(request: EngineRequest): Promise<unknown>
   close(): Promise<void>
 }
 export type Schema = {
