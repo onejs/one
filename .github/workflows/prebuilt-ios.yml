@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/prebuilt-ios.yml'
+      - '.github/workflows/build-one-ios-libraries.yml'
+      - '.github/actions/cache-ios-sdk/**'
       - 'scripts/package-one-ios.mts'
       - 'scripts/publish-one-ios.mts'
       - 'packages/one/One.podspec'
@@ -19,6 +21,8 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/prebuilt-ios.yml'
+      - '.github/workflows/build-one-ios-libraries.yml'
+      - '.github/actions/cache-ios-sdk/**'
       - 'scripts/package-one-ios.mts'
       - 'scripts/publish-one-ios.mts'
       - 'packages/one/One.podspec'
@@ -36,48 +40,7 @@ permissions:
 
 jobs:
   compile:
-    name: One iOS (${{ matrix.configuration }})
-    # standard public arm64 runners, not a paid larger-runner pool.
-    runs-on: xcode-27
-    # device+simulator slices at -jobs 2 outlast an hour on shared runners.
-    timeout-minutes: 180
-    strategy:
-      fail-fast: false
-      matrix:
-        configuration: [Debug, Release]
-    env:
-      ONE_PREBUILT_IOS: '0'
-    steps:
-      - uses: actions/checkout@v6
-      - uses: ./.github/actions/install
-        with:
-          workspace-focus: 'one'
-          install-playwright: 'false'
-      - name: Generate the native producer
-        working-directory: tests/native-features
-        run: bun run prebuild:native --platform ios --no-install
-      - name: Build the complete release catalog
-        run: rm -f tests/native-features/ios/one-link-set.json
-      - name: Install producer dependencies using React Native binaries
-        working-directory: tests/native-features/ios
-        run: USE_FRAMEWORKS=static pod install
-      - name: Build and package device and simulator libraries
-        run: >-
-          node scripts/package-one-ios.mts
-          --ios tests/native-features/ios
-          --configuration '${{ matrix.configuration }}'
-          --reuse-published
-          --output '${{ runner.temp }}/one-ios'
-          --derived-data '${{ runner.temp }}/one-ios-build'
-      - uses: actions/upload-artifact@v7
-        with:
-          name: one-ios-${{ matrix.configuration }}
-          compression-level: 0
-          retention-days: 3
-          if-no-files-found: error
-          path: |
-            ${{ runner.temp }}/one-ios/*.tar.gz
-            ${{ runner.temp }}/one-ios/*.json
+    uses: ./.github/workflows/build-one-ios-libraries.yml
 
   publish:
     needs: validate-consumer
@@ -113,6 +76,9 @@ jobs:
         with:
           workspace-focus: 'one'
           install-playwright: 'false'
+      - uses: ./.github/actions/cache-ios-sdk
+        with:
+          workspace: native-features
       - uses: actions/download-artifact@v7
         with:
           pattern: one-ios-*
