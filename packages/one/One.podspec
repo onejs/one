@@ -78,7 +78,8 @@ Pod::Spec.new do |s|
     s.dependency 'NitroModules'
     s.script_phase = {
       :name => '[One] Select precompiled iOS configuration',
-      :execution_position => :before_compile,
+      :execution_position => :after_compile,
+      :input_files => ['$(PODS_XCFRAMEWORKS_BUILD_DIR)/One/One.framework'],
       :always_out_of_date => '1',
       :script => <<~SCRIPT
         set -e
