@@ -5,3 +5,5 @@
 {"id":"00000001794811008022:1ef7a577912ef3e279e8b7ccc5708de2","text":"static BunEngine.o (sim+device, 202MB, 141 exports) built from beast relink inputs via apple ld -r; probe app runs bun statically on sim with program in __TEXT,__bun + post-link identity. One wiring on tm/bun-ios-static: static pod, BunEngine.o + -sectcreate link flags, debug weak tbd, bundle phase declares program output, identity phase after link. one-basic release sim build in progress (air-16 saturated, governor pauses)."}
 
 {"id":"00000001794812178193:e5ae04a96c829f33dc3a2141b475bb1d","text":"DONE: one-basic Release on iOS 27.1 sim links bun statically (BunEngine.o), launches+renders on bun, dyld shows no Bun/BunCompat images, single executable segment. bun-engine v0.2.0 prerelease (branch static-object db2046f, sha256 44af4a3d...). One branch tm/bun-ios-static b3cb683272 (not merged; needs Nate via b67657). Recipe sent to m127298."}
+
+{"id":"00000001795408083999:2e4f0f2615a07e27babcc9f10cfc7f63:1df208cb72292ddb:","text":"Team Machine canceled this task: untouched for 7+ days with no assignee proven working it. Reopen with `tm task update t-mwiriy0g-1d180 --status open`."}
