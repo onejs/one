@@ -215,6 +215,26 @@ export async function downloadArchive(key, entry, destination) {
   )
 }
 
+function linkXCFramework(target, destination) {
+  mkdirSync(dirname(destination), { recursive: true })
+  if (lstatSync(destination, { throwIfNoEntry: false })) {
+    try {
+      if (realpathSync(destination) === target) return
+    } catch {}
+  }
+  const staged = join(
+    dirname(destination),
+    `.One.xcframework.${process.pid}.${Date.now()}`
+  )
+  symlinkSync(target, staged)
+  try {
+    renameSync(staged, destination)
+  } catch (error) {
+    rmSync(staged, { force: true })
+    throw error
+  }
+}
+
 export async function install(ios, local) {
   const mode = process.env.ONE_PREBUILT_IOS ?? 'auto'
   assert(
@@ -341,25 +361,25 @@ export async function install(ios, local) {
   mkdirSync(link, { recursive: true })
   for (const configuration of configurations) {
     const entry = join(link, configuration, 'One.xcframework')
-    mkdirSync(dirname(entry), { recursive: true })
-    try {
-      symlinkSync(join(cache, configuration, 'One.xcframework'), entry)
-    } catch (error) {
-      if (!(error instanceof Error && 'code' in error && error.code === 'EEXIST'))
-        throw error
-    }
+    linkXCFramework(join(cache, configuration, 'One.xcframework'), entry)
     assert(
       realpathSync(entry) === join(cache, configuration, 'One.xcframework'),
       `${entry} must link to its matching One binary cache`
     )
   }
+  // CocoaPods reads Active/One.xcframework during Copy XCFrameworks; the
+  // before_compile script phase swaps this link to Debug or Release first.
+  linkXCFramework(
+    join(cache, 'Debug', 'One.xcframework'),
+    join(link, 'Active', 'One.xcframework')
+  )
   writeFileSync(join(link, 'manifest.json'), readFileSync(join(cache, 'manifest.json')))
   return { path: relative }
 }
 
-// CocoaPods first copies its declared Debug xcframework. this phase then picks
-// the matching configuration before dependents compile or link against One.
-export function select(root, destination) {
+// runs before CocoaPods' Copy XCFrameworks phase so Copy XCFrameworks copies
+// the matching Debug or Release One.framework into XCFrameworkIntermediates.
+export function select(root) {
   const configuration = process.env.CONFIGURATION === 'Debug' ? 'Debug' : 'Release'
   const platform = process.env.PLATFORM_NAME
   assert(
@@ -370,14 +390,9 @@ export function select(root, destination) {
     process.env.ARCHS?.trim() === 'arm64',
     'One iOS binaries require ARCHS=arm64; run ONE_PREBUILT_IOS=0 pod install for other architectures'
   )
-  const slice = platform === 'iphoneos' ? 'ios-arm64' : 'ios-arm64-simulator'
-  const source = join(root, configuration, 'One.xcframework', slice, 'One.framework')
-  mkdirSync(destination, { recursive: true })
-  rmSync(join(destination, 'One.framework'), { recursive: true, force: true })
-  cpSync(source, join(destination, 'One.framework'), {
-    recursive: true,
-    mode: constants.COPYFILE_FICLONE,
-  })
+  const target = realpathSync(join(root, configuration, 'One.xcframework'))
+  const active = join(root, 'Active', 'One.xcframework')
+  linkXCFramework(target, active)
 }
 
 if (process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)) {
@@ -412,7 +427,6 @@ if (process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.me
   } else if (command === 'identity')
     console.log(JSON.stringify(identity(resolve(argument)), null, 2))
   else if (command === 'select') {
-    assert(process.argv[4], 'expected a One binary destination')
-    select(resolve(argument), resolve(process.argv[4]))
+    select(resolve(argument))
   } else throw new Error(`unknown One iOS binary command: ${command}`)
 }

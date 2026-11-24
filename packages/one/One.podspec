@@ -72,19 +72,18 @@ Pod::Spec.new do |s|
   s.public_header_files = 'ios/SDK/OneSDKBridge.h', 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneViewCulling.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h', 'ios/Keyboard/objc/TextInput+OneKCDelegateManager.h', 'ios/Keyboard/objc/NSObject+OneKCSafeKVC.h'
   if prebuilt['path']
     Pod::UI.puts "[One] Using precompiled iOS libraries (#{File.basename(prebuilt['path'])[0, 12]})"
-    s.vendored_frameworks = "#{prebuilt['path']}/Debug/One.xcframework"
+    s.vendored_frameworks = "#{prebuilt['path']}/Active/One.xcframework"
     s.preserve_paths = ['ios/prebuilt.mjs', "#{prebuilt['path']}/**/*"]
     s.module_map = false
     s.dependency 'NitroModules'
     s.script_phase = {
       :name => '[One] Select precompiled iOS configuration',
-      :execution_position => :after_compile,
-      :input_files => ['$(PODS_XCFRAMEWORKS_BUILD_DIR)/One/One.framework'],
+      :execution_position => :before_compile,
       :always_out_of_date => '1',
       :script => <<~SCRIPT
         set -e
         . "$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh"
-        "$NODE_BINARY" "$PODS_TARGET_SRCROOT/ios/prebuilt.mjs" select "$PODS_TARGET_SRCROOT/#{prebuilt['path']}" "$PODS_XCFRAMEWORKS_BUILD_DIR/One"
+        "$NODE_BINARY" "$PODS_TARGET_SRCROOT/ios/prebuilt.mjs" select "$PODS_TARGET_SRCROOT/#{prebuilt['path']}"
       SCRIPT
     }
   else
