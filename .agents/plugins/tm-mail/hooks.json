@@ -1,0 +1,11 @@
+{
+  "tm-mail": {
+    "PreInvocation": [
+      {
+        "type": "command",
+        "command": "/Users/n8/team-machine/.deploy/tm-agent _agy-hook",
+        "timeout": 10
+      }
+    ]
+  }
+}
