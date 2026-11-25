@@ -2,7 +2,6 @@ import { join, resolve } from 'node:path'
 
 import FSExtra from 'fs-extra'
 import type { RolldownOutput } from 'rolldown'
-import { isMatching, P } from 'ts-pattern'
 import type { One } from '../../vite/types'
 import { vercelBuildOutputConfigBase } from './config/vc-build-output-config-base'
 import { serverlessVercelNodeJsConfig } from './config/vc-config-base'
@@ -60,8 +59,9 @@ export const buildVercelOutputDirectory = async ({
 
   const { routeToBuildInfo } = buildInfoForWriting
   if (apiOutput) {
-    const compiltedApiRoutes = (apiOutput?.output ?? []).filter((o) =>
-      isMatching({ code: P.string, facadeModuleId: P.string }, o)
+    const compiltedApiRoutes = (apiOutput?.output ?? []).filter(
+      (o): o is typeof o & { code: string; facadeModuleId: string } =>
+        'code' in o && typeof o.code === 'string' && typeof o.facadeModuleId === 'string'
     )
     for (const route of buildInfoForWriting.manifest.apiRoutes) {
       const compiledRoute = compiltedApiRoutes.find((compiled) => {
