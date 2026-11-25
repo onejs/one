@@ -1,7 +1,10 @@
 #pragma once
 
 #include <NitroModules/JSIConverter.hpp>
+#include <NitroModules/Null.hpp>
 #include <memory>
+#include <string>
+#include <variant>
 
 namespace one::zero {
 struct Json;

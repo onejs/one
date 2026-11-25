@@ -69,7 +69,7 @@ Pod::Spec.new do |s|
   # declared for both paths: the app's bridging header imports these C
   # entries without importing the One module, and the sources are present
   # in the pod either way.
-  s.public_header_files = 'ios/SDK/OneSDKBridge.h', 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneViewCulling.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h', 'ios/Keyboard/objc/TextInput+OneKCDelegateManager.h', 'ios/Keyboard/objc/NSObject+OneKCSafeKVC.h'
+  s.public_header_files = 'ios/SDK/OneSDKBridge.h', 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneViewCulling.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h', 'ios/Keyboard/objc/TextInput+OneKCDelegateManager.h', 'ios/Keyboard/objc/NSObject+OneKCSafeKVC.h', 'cpp/ZeroValue.hpp'
   if prebuilt['path']
     Pod::UI.puts "[One] Using precompiled iOS libraries (#{File.basename(prebuilt['path'])[0, 12]})"
     s.vendored_frameworks = "#{prebuilt['path']}/Debug/One.xcframework"
@@ -92,7 +92,7 @@ Pod::Spec.new do |s|
       File.read(file).scan(/#include "([^"]+\.cpp)"/).flatten.map { |name| "cpp/#{name}" }
     end
     s.exclude_files = ['ios/Tests/**/*', 'ios/Generated/*ComponentView.mm', 'ios/Prebuilt/**/*'] + shadow_members
-    s.source_files = 'ios/**/*.{h,m,swift,mm,cpp}', 'cpp/**/*.{h,cpp}'
+    s.source_files = 'ios/**/*.{h,m,swift,mm,cpp}', 'cpp/**/*.{h,hpp,cpp}'
     load 'nitrogen/generated/ios/One+autolinking.rb'
     add_nitrogen_files(s)
   end
