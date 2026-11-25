@@ -1,6 +1,31 @@
+import { cleanErrorStack } from './cleanErrorStack'
 import type { RouteErrorViewProps } from './RouteErrorView'
 
-const mono = { color: 'white', fontFamily: 'monospace', margin: 0 } as const
+const sans =
+  '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
+const mono = 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+
+function Frames({ title, frames }: { title: string; frames: string[] }) {
+  if (!frames.length) return null
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+      <div style={{ color: '#777', fontSize: 12, fontFamily: sans }}>{title}</div>
+      <pre
+        style={{
+          margin: 0,
+          color: '#a3a3a3',
+          fontSize: 12,
+          lineHeight: '18px',
+          fontFamily: mono,
+          whiteSpace: 'pre-wrap',
+          overflowWrap: 'anywhere',
+        }}
+      >
+        {frames.join('\n')}
+      </pre>
+    </div>
+  )
+}
 
 export function RouteErrorView({
   routeName,
@@ -9,54 +34,66 @@ export function RouteErrorView({
   onRetry,
 }: RouteErrorViewProps) {
   return (
-    <div style={{ backgroundColor: '#000', padding: 16 }}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <div>
-          <span
-            style={{
-              padding: 5,
-              backgroundColor: 'red',
-              color: 'white',
-              fontSize: 20,
-              fontFamily: 'monospace',
-            }}
-          >
-            Error on route "{routeName}"
-          </span>
+    <div
+      style={{
+        minHeight: '100%',
+        boxSizing: 'border-box',
+        backgroundColor: '#0c0c0c',
+        padding: 20,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 20,
+      }}
+    >
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div
+          style={{ color: '#ff6363', fontSize: 13, fontWeight: 600, fontFamily: sans }}
+        >
+          Error on route "{routeName}"
         </div>
-        <pre style={{ ...mono, fontSize: 16, whiteSpace: 'pre-wrap' }}>
+        <div
+          style={{
+            color: '#f5f5f5',
+            fontSize: 17,
+            lineHeight: '24px',
+            fontWeight: 500,
+            fontFamily: sans,
+            whiteSpace: 'pre-wrap',
+            overflowWrap: 'anywhere',
+          }}
+        >
           {error instanceof Error ? error.message : String(error)}
-        </pre>
-        <div>
-          <button
-            type="button"
-            onClick={onRetry}
-            style={{
-              padding: 6,
-              border: 'none',
-              backgroundColor: 'white',
-              color: 'black',
-              fontSize: 14,
-              fontFamily: 'monospace',
-              cursor: 'pointer',
-            }}
-          >
-            Retry
-          </button>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {error instanceof Error ? (
-            <pre style={{ ...mono, fontSize: 12, whiteSpace: 'pre-wrap' }}>
-              {error.stack}
-            </pre>
-          ) : null}
-          {errorInfo?.componentStack ? (
-            <pre style={{ ...mono, fontSize: 12, whiteSpace: 'pre-wrap' }}>
-              Component Stack: {errorInfo.componentStack}
-            </pre>
-          ) : null}
         </div>
       </div>
+      <div>
+        <button
+          type="button"
+          onClick={onRetry}
+          style={{
+            padding: '7px 14px',
+            border: 'none',
+            borderRadius: 8,
+            backgroundColor: '#f5f5f5',
+            color: '#0c0c0c',
+            fontSize: 14,
+            fontWeight: 500,
+            fontFamily: sans,
+            cursor: 'pointer',
+          }}
+        >
+          Retry
+        </button>
+      </div>
+      <Frames
+        title="Stack"
+        frames={error instanceof Error && error.stack ? cleanErrorStack(error.stack) : []}
+      />
+      <Frames
+        title="Component stack"
+        frames={
+          errorInfo?.componentStack ? cleanErrorStack(errorInfo.componentStack) : []
+        }
+      />
     </div>
   )
 }
