@@ -3,3 +3,5 @@
 {"id":"00000001794964143350:7c50d591609d325c14fbd60f1c883317:6b37748bca717c18","text":"Remaining candidates (not started): vxrn sucrase (only backgroundComputation.ts token parser; port to oxc-parser, which vxrn already ships), vxrn dotenv+dotenv-expand (loadEnv.ts; compare with vite loadEnv semantics), one fs-extra (12 files -> node:fs; tamagui/rn cli bring it anyway, so tidiness only). Worktree removed; #1306 commits pushed on chore/trim-root-devdeps with auto-merge."}
 
 {"id":"00000001795004499823:3d77ace3ad466259be6019ca658f7177:6b37748bca717c18:","text":"Team Machine returned this task to open: its assignee (b78458) ended 6+ hours ago."}
+
+{"id":"00000001795609301582:b4c511d5bf810cc551e7703a62f3905b:96a6dbe692cadabc:","text":"Team Machine canceled this task: untouched for 7+ days with no assignee proven working it. Reopen with `tm task update t-mwlauses-g390 --status open`."}
