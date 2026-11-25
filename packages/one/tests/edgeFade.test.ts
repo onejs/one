@@ -205,6 +205,34 @@ describe('resolveEdges blur', () => {
     ).toBe(0.05)
   })
 
+  it('defaults blur to linear and keeps explicit curves', () => {
+    const blur = normalize.resolveEdges(
+      { mode: 'blur', top: true, bottom: 120, start: { size: 40 }, color: '#000' },
+      true
+    )
+    expect(blur.top).toMatchObject({ size: 80, curve: 'linear' })
+    expect(blur.bottom).toMatchObject({ size: 120, curve: 'linear' })
+    expect(blur.right).toMatchObject({ size: 40, curve: 'linear' })
+    expect(blur.left).toBeNull()
+    const global = normalize.resolveEdges({ mode: 'blur', bottom: 80, curve: 'smooth' }, false)
+    expect(global.bottom?.curve).toBe('smooth')
+    const stops = { type: 'stops' as const, values: [1, 0.5, 0] as [number, number, number] }
+    const perEdge = normalize.resolveEdges(
+      { mode: 'blur', top: { size: 60, curve: stops }, bottom: 80 },
+      false
+    )
+    expect(perEdge.top?.curve).toBe(stops)
+    expect(perEdge.bottom?.curve).toBe('linear')
+    // mask and color-inferred overlay keep smooth.
+    expect(normalize.resolveEdges({ bottom: 80 }, false).bottom?.curve).toBe('smooth')
+    expect(
+      normalize.resolveEdges({ bottom: { size: 80, color: '#000' } }, false).bottom?.curve
+    ).toBe('smooth')
+    expect(
+      normalize.resolveEdges({ end: { size: 80, color: '#000' } }, true).left?.curve
+    ).toBe('smooth')
+  })
+
   it('warns when a per-edge color meets the global-only veil', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     normalize.resolveEdges({ bottom: { size: 80, color: '#fff' }, mode: 'blur' }, false)
@@ -316,6 +344,7 @@ describe('EdgeFade blur mode', () => {
     expect(element.props.frostProgression).toBe(0.5)
     const clamped = EdgeFade({ top: 160, mode: 'blur', frostProgression: 40 } as never)
     expect(clamped.props.frostProgression).toBe(1)
+    expect(clamped.props.curveTop).toBe('linear')
   })
 })
 
