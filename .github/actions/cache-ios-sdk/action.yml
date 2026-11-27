@@ -1,0 +1,24 @@
+name: Cache iOS SDK generation
+description: Reuse Apple symbol graphs and validated Swift binding tables
+inputs:
+  workspace:
+    required: true
+    description: App whose SDK binding tables are being generated
+runs:
+  using: composite
+  steps:
+    - name: Identify the Xcode build
+      id: xcode
+      shell: bash
+      run: echo "build=$(xcodebuild -version | awk '/^Build version / {print $3}')" >> "$GITHUB_OUTPUT"
+    - name: Cache SDK symbol graphs
+      uses: actions/cache@v5
+      with:
+        path: ~/.cache/one/sdk-graphs
+        key: one-ios-graphs-${{ runner.arch }}-${{ steps.xcode.outputs.build }}-${{ hashFiles('packages/one/codegen/sdk/graph.ts') }}
+    - name: Cache SDK binding tables
+      uses: actions/cache@v5
+      with:
+        path: ~/.cache/one/sdk-bindings
+        key: one-ios-bindings-${{ runner.arch }}-${{ steps.xcode.outputs.build }}-${{ hashFiles('packages/one/ios-bindings/manifest.json') }}-${{ inputs.workspace }}
+        restore-keys: one-ios-bindings-${{ runner.arch }}-${{ steps.xcode.outputs.build }}-${{ hashFiles('packages/one/ios-bindings/manifest.json') }}-
